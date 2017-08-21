@@ -1,0 +1,12 @@
+@import '/../../../../../assets/styles/_variables.scss';
+
+.top-nav {
+    background-color: $header-color;
+}
+
+.mix-logo {
+    img {
+        width: 56px;
+        height: 26px;
+    }
+}

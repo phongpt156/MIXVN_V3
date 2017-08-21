@@ -1,0 +1,11 @@
+@import './_variables.scss';
+
+body {
+    font-size: 14px;
+    color: #fff;
+    background-color: $main-color;
+}
+
+.container-fluid {
+    padding: 0;
+}
