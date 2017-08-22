@@ -1,11 +1,22 @@
 @import './_variables.scss';
 
 body {
-    font-size: 14px;
+    line-height: $line-height-base;
+    font-size: $font-size-base;
+    font-family: $font-family-base;
     color: #fff;
     background-color: $main-color;
 }
 
 .container-fluid {
     padding: 0;
+}
+
+a:hover, .navbar-toggler:hover {
+    opacity: 0.6;
+    color: $link-color;
+}
+
+.navbar-toggler:hover {
+    cursor: pointer;
 }

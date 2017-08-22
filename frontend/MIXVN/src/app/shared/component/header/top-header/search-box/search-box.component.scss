@@ -1,0 +1,25 @@
+:host {
+    flex-grow: 1;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+.search-box {
+    border-bottom: 1px solid #fff;
+
+    input {
+        outline: none;
+        font-size: 0.94rem;
+        flex-grow: 1;
+        color: #fff;
+        border: none;
+        background-color: transparent;
+    }
+    .search-icon {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
