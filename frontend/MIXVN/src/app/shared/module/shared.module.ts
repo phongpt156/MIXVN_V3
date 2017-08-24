@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 import { HeaderComponent } from './../component/header/header.component';
 import { FooterComponent } from './../component/footer/footer.component';
 import { TopHeaderComponent } from './../component/header/top-header/top-header.component';
@@ -10,7 +12,8 @@ import { SearchTaggingListComponent } from './../component/header/top-header/sea
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    BsDropdownModule.forRoot()
   ],
   declarations: [
     HeaderComponent,

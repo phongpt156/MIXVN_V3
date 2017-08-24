@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { MainAppRoutingModule } from './main-app-routing.module';
 import { SharedModule } from 'app/shared/module/shared.module';
@@ -10,7 +9,6 @@ import { SearchPageComponent } from './search-page/search-page.component';
 
 @NgModule({
   imports: [
-    CommonModule,
     MainAppRoutingModule,
     SharedModule
   ],

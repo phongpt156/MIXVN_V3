@@ -17,6 +17,14 @@ a:hover, .navbar-toggler:hover {
     color: $link-color;
 }
 
+a:hover, a:focus, a:active, a:visited {
+    background-color: transparent !important;
+}
+
 .navbar-toggler:hover {
     cursor: pointer;
+}
+
+button:focus {
+    outline: 5px auto rgba(255, 255, 255, 0.1);
 }

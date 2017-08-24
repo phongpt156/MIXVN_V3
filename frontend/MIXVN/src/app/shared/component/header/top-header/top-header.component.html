@@ -1,11 +1,32 @@
-<nav class="navbar navbar-dark top-nav">
-  <a href="" class="navbar-brand mix-logo">
-    <img src="http://i.imgur.com/qwR1IG9.png" alt="MIX-shop" class="img-responsive" />
-  </a>
-  <mix-search-box></mix-search-box>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="">
-    <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
-      <path stroke="#fafafa" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
-    </svg>
-  </button>
-</nav>
+<div class="top-nav">
+  <nav class="navbar navbar-dark">
+    <a href="" class="navbar-brand mix-logo">
+      <img src="http://i.imgur.com/qwR1IG9.png" alt="MIX-shop" class="img-responsive" />
+    </a>
+    <ng-container *ngIf="!mobile">
+      <mix-search-box></mix-search-box>
+    </ng-container>
+    <div dropdown class="dropdown" placement="bottom right">
+      <button dropdownToggle  class="navbar-toggler border-0" type="button">
+        <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
+          <path stroke="#fafafa" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
+        </svg>
+      </button>
+      <ul *dropdownMenu class="dropdown-menu dropdown-menu-right p-0 pb-4" role="menu">
+        <li role="menuitem"><a href="#" class="dropdown-item">Home</a></li>
+        <li role="menuitem"><a href="#" class="dropdown-item">Shop</a></li>
+        <li role="menuitem"><a href="#" class="dropdown-item">Login</a></li>
+        <li role="menuitem"><a href="#" class="dropdown-item">Sign Up</a></li>
+        <li role="menuitem"><a href="#" class="dropdown-item">Location</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div *ngIf="mobile" class="d-flex align-items-center">
+    <mix-search-box [isMobile]="true"></mix-search-box>
+    <button class="navbar-toggler border-0" type="button">
+      <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
+        <path stroke="#fafafa" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
+      </svg>
+    </button>
+  </div>
+</div>

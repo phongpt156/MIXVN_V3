@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'mix-search-box',
@@ -6,15 +6,15 @@ import { Component, OnInit, HostBinding, ChangeDetectorRef } from '@angular/core
   styleUrls: ['./search-box.component.scss']
 })
 export class SearchBoxComponent implements OnInit {
-  @HostBinding('class.text-center') textCenter: boolean = false;
-  @HostBinding('class.align-self-md-end') alignSelfEnd: boolean = false;
+  @Input() isMobile = false;
+
+  @HostBinding('class') classes = 'text-center align-self-sm-end';
+
   constructor(
-    private searchBoxRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-    this.textCenter = true;
-    this.alignSelfEnd = true;
+
   }
 
 }

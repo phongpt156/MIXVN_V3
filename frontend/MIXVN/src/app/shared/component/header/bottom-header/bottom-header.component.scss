@@ -1,0 +1,26 @@
+@import '/../../../../../assets/styles/_variables.scss';
+
+:host {
+    display: block;
+}
+
+.nav-fill {
+    background-color: $nav-color;
+}
+
+.dropdown-menu {
+    width: 100vw;
+    opacity: 0.97;
+    margin-top: 3px;
+    border-radius: unset;
+    border: none;
+    background-color: $category-background-color;
+
+    a {
+        color: $text-color;
+    }
+}
+
+.border {
+    border-color: #686868;
+}
