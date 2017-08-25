@@ -1,0 +1,18 @@
+:host {
+    display: block;
+}
+
+a {
+    position: relative;
+    padding-top: calc(100% * 14 / 47) !important;
+    min-width: 235px;
+    display: block;
+}
+
+.img-fluid {
+    width: 100%;
+    top: 0;
+    position: absolute;
+    left: 0;
+    height: 100%;
+}

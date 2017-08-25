@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    color: #fff;
+    background-color: #242323;
+}
+
+.collection-link {
+    color: #c3c3c3;
+    border-bottom: 1px solid #717171;
+
+    &:hover {
+        text-decoration: none;
+    }
+    
+    p {
+        font-size: 1rem;
+        flex-grow: 1;
+    }
+}

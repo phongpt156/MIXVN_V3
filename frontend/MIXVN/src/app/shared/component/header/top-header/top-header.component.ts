@@ -21,6 +21,6 @@ export class TopHeaderComponent implements OnInit {
   }
 
   isMobile(): boolean {
-    return this.temRef.nativeElement.offsetWidth < 576 ? true : false;
+    return this.temRef.nativeElement.offsetWidth < 769 ? true : false;
   }
 }

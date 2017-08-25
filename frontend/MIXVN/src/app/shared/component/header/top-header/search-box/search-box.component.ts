@@ -8,7 +8,7 @@ import { Component, OnInit, HostBinding, Input } from '@angular/core';
 export class SearchBoxComponent implements OnInit {
   @Input() isMobile = false;
 
-  @HostBinding('class') classes = 'text-center align-self-sm-end';
+  @HostBinding('class') classes = 'text-center align-self-md-end';
 
   constructor(
   ) { }

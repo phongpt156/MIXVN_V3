@@ -6,6 +6,18 @@
 
 .nav-fill {
     background-color: $nav-color;
+    
+    &>.nav-item {
+        &.open {
+            background-color: #343433;
+        }
+        &:hover {
+            background-color: #343433;
+        }
+    }
+    .text-uppercase {
+        color: #bcbcbc;
+    }
 }
 
 .dropdown-menu {

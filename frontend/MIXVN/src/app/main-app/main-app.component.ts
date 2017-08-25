@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'mix-main-app',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-app.component.scss']
 })
 export class MainAppComponent implements OnInit {
-
+  @HostBinding('style.padding-top') paddingTop = '97px';
+  
   constructor() { }
 
   ngOnInit() {
