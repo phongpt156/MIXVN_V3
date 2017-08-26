@@ -28,3 +28,29 @@ a:hover, a:focus, a:active, a:visited {
 button:focus {
     outline: 5px auto rgba(255, 255, 255, 0.1);
 }
+
+
+/**------------------- Modal Style -------------------**/
+.modal {
+    text-align: center;
+}
+
+.modal::before {
+    vertical-align: middle;
+    margin-right: -4px;    
+    height: 100%;
+    display: inline-block;
+    content: '';
+}
+
+.modal-dialog {
+    vertical-align: middle;    
+    display: inline-block;
+}
+
+.modal-content {
+    opacity: 0.90;
+    border-radius: unset;
+    border: none;
+    background-color: #222;
+}

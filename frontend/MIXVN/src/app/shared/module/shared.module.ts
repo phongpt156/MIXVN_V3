@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { HeaderComponent } from './../component/header/header.component';
 import { FooterComponent } from './../component/footer/footer.component';
@@ -9,11 +10,15 @@ import { TopHeaderComponent } from './../component/header/top-header/top-header.
 import { BottomHeaderComponent } from './../component/header/bottom-header/bottom-header.component';
 import { SearchBoxComponent } from './../component/header/top-header/search-box/search-box.component';
 import { SearchTaggingListComponent } from './../component/header/top-header/search-box/search-tagging-list/search-tagging-list.component';
+import { AlertLoginComponent } from './../component/alert-login/alert-login.component';
+
+import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll-load-more.directive';
 
 @NgModule({
   imports: [
     CommonModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot()
   ],
   declarations: [
     HeaderComponent,
@@ -22,6 +27,8 @@ import { SearchTaggingListComponent } from './../component/header/top-header/sea
     BottomHeaderComponent,
     SearchBoxComponent,
     SearchTaggingListComponent,
+    ScrollLoadMoreDirective,
+    AlertLoginComponent,    
   ],
   exports: [
     CommonModule,
@@ -31,6 +38,11 @@ import { SearchTaggingListComponent } from './../component/header/top-header/sea
     BottomHeaderComponent,
     SearchBoxComponent,
     SearchTaggingListComponent,
+    ScrollLoadMoreDirective,
+    AlertLoginComponent    
+  ],
+  entryComponents: [
+    AlertLoginComponent
   ]
 })
 export class SharedModule {}

@@ -1,3 +1,4 @@
-<p>
-  product-list works!
-</p>
+<div id="product-item-container" class="d-flex flex-wrap">
+  <mix-product-item *ngFor="let product of products" [product]="product">
+  </mix-product-item>
+</div>

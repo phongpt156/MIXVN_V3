@@ -1,0 +1,5 @@
+.justify-content-center {
+    &:not(:last-child) {
+        border-right: 1px solid #b4b4b4;
+    }
+}

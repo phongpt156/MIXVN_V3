@@ -16,6 +16,7 @@ import { CollectionListComponent } from './home-page/body/aside/collection-list/
 import { CollectionItemComponent } from './home-page/body/aside/collection-list/collection-item/collection-item.component';
 import { ProductListComponent } from './home-page/body/main-body/product-list/product-list.component';
 import { ProductItemComponent } from './home-page/body/main-body/product-list/product-item/product-item.component';
+import { ProductUserInteractiveComponent } from './home-page/body/main-body/product-list/product-item/product-user-interactive/product-user-interactive.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { ProductItemComponent } from './home-page/body/main-body/product-list/pr
     CollectionListComponent,
     CollectionItemComponent,
     ProductListComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    ProductUserInteractiveComponent
   ]
 })
 export class MainAppModule { }

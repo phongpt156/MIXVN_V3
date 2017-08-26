@@ -1,3 +1,25 @@
-<p>
-  product-item works!
-</p>
+<div class="product-item-top w-100">
+  <img [src]="product.group.img.src" alt="" class="img-fluid" />
+  <!-- <div class="product-action d-none flex-row bg-white w-100">
+    <div class="w-100 d-flex align-items-center justify-content-center">
+      <img src="http://i.imgur.com/LjwCZFM.png" alt="">
+    </div>
+    <div class="w-100 d-flex align-items-center justify-content-center">
+      <img src="http://i.imgur.com/O7whI4a.png" alt="">
+    </div>
+    <div class="w-100 d-flex align-items-center justify-content-center">
+      <img src="https://s10.postimg.org/eaem2xss9/ghim.png" alt="">
+    </div>
+  </div> -->
+  <div class="product-action d-none w-100">
+    <mix-product-user-interactive [product]="product"></mix-product-user-interactive>
+  </div>
+</div>
+<div class="product-item-body w-100 p-2">
+  <p class="text-uppercase product-name font-weight-bold m-0 mb-2">{{ product.name }}</p>
+  <p class="m-0">{{ product.supplier.name }}</p>
+  <div class="clearfix">
+    <p class="text-left float-left m-0">{{ product.price }}</p>
+    <p class="text-right float-right m-0">{{ product.like }} <i class="fa fa-heart"></i></p>
+  </div>
+</div>

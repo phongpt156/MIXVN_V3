@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'mix-product-item',
@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent implements OnInit {
+  @HostBinding('class') classes = 'px-1 pb-2';
 
+  @Input() product = {};
+  
   constructor() { }
 
   ngOnInit() {

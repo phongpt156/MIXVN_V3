@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { CategoryService } from './shared/services/category/category.service';
+import { UserService } from './shared/services/user/user.service';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -18,7 +19,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AppRoutingModule
   ],
   providers: [
-    CategoryService
+    CategoryService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
