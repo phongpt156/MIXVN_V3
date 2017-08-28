@@ -1,0 +1,46 @@
+@import "/../../../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+:host {
+    display: block;
+    background-color: #191919;
+}
+
+a, p {
+    font-size: 0.8rem;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.border-md-right {
+    border-right: 1px solid #aaaaaa;
+}
+
+@include media-breakpoint-down(lg) {
+    .border-md-right {
+        border-right: none;
+    }
+}
+
+.find-us-on {
+    font-size: 1rem;
+}
+
+.social-container {
+    // transform: rotate(-45deg);
+    // padding: 0px 11px 2px 8px;
+    // background-color: #282828;
+
+    .fa {
+        // transform: rotate(45deg);
+        font-size: 0.8rem;
+    }
+    a {
+        margin-bottom: 0.5px;
+    }
+}
+
+.bottom-footer {
+    font-size: 1.5rem;
+}

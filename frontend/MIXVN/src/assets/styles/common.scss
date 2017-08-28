@@ -8,6 +8,14 @@ body {
     background-color: $main-color;
 }
 
+.blur {
+    filter: blur(5px);
+}
+
+.box-shadow {
+    box-shadow: 0 0 10px #888888;
+}
+
 .container-fluid {
     padding: 0;
 }

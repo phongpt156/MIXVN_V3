@@ -2,6 +2,8 @@ import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { BsModalService  } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
+import { CommonService } from 'app/shared/services/common/common.service';
+
 import { AlertLoginComponent } from 'app/shared/component/alert-login/alert-login.component';
 
 @Component({
@@ -16,13 +18,15 @@ export class ProductUserInteractiveComponent implements OnInit {
   bsModalRef: BsModalRef;
 
   constructor(
-    private bsModalService: BsModalService
+    private bsModalService: BsModalService,
+    private commonService: CommonService
   ) { }
 
   ngOnInit() {
   }
 
   onClick() {
+    this.commonService.setAlertLogin(true);
     this.bsModalRef = this.bsModalService.show(AlertLoginComponent);
   }
 }

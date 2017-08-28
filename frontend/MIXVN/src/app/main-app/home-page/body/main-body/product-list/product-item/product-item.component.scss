@@ -1,8 +1,8 @@
 @import "/../../../../../../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
 
 :host {
-    display: block;
     flex-basis: calc(100% / 6);
+    display: block;
 }
 
 .product-item-top {

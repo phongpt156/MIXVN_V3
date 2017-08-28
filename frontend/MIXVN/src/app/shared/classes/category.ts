@@ -1,10 +1,10 @@
 export class Category {
-    protected id: number;
-    protected name: string;
-    public parent_id: number;
-    protected gender_id: number;
-    protected type: number;
-    protected order: number;
+    id: number;
+    name: string;
+    parent_id: number;
+    gender_id: number;
+    type: number;
+    order: number;
 
     constructor(category: any = {}) {
         this.id = category.id;

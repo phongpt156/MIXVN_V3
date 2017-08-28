@@ -1,21 +1,24 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 
-import { UserService } from 'app/shared/services/user/user.service';
+import { CommonService } from 'app/shared/services/common/common.service';
 
 @Component({
   selector: 'mix-alert-login',
   templateUrl: './alert-login.component.html',
   styleUrls: ['./alert-login.component.scss']
 })
-export class AlertLoginComponent implements OnInit {
+export class AlertLoginComponent implements OnInit, OnDestroy {
   @HostBinding('class') classes = 'py-4';
   
   constructor(
-    private userService: UserService
+    private commonService: CommonService
   ) { }
 
   ngOnInit() {
-    console.log(this.userService.getLoginStatus());
+  }
+
+  ngOnDestroy() {
+    this.commonService.setAlertLogin(false);
   }
 
 }

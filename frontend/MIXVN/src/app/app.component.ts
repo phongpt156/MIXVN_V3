@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { UserService } from './shared/services/user/user.service';
+import { CommonService } from 'app/shared/services/common/common.service';
 
 @Component({
   selector: 'mix-root',
@@ -11,10 +10,9 @@ export class AppComponent implements OnInit {
   user = {};
 
   constructor(
-    private userService: UserService
-  ) { }
+    private commonService: CommonService
+  ) {}
 
   ngOnInit() {
-    this.userService.setLoginStatus(false);
   }
 }
