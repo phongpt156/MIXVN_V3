@@ -8,6 +8,7 @@ const appRoutes: Routes = [
     path: '',
     children: [
       { path: '', loadChildren: './main-app/main-app.module#MainAppModule' },
+      { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
     ]
   },
   { path: '**', component: PageNotFoundComponent }

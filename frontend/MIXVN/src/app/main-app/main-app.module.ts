@@ -22,7 +22,7 @@ import { ProductUserInteractiveComponent } from './home-page/body/main-body/prod
   imports: [
     MainAppRoutingModule,
     SharedModule,
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
   ],
   declarations: [
     MainAppComponent,

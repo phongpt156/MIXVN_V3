@@ -62,3 +62,24 @@ button:focus {
     border: none;
     background-color: #222;
 }
+
+.mat-input-placeholder, .mat-focused .mat-input-placeholder {
+    color: #868e96 !important;
+}
+
+.mat-input-underline, .mat-input-ripple, .mat-focused .mat-input-ripple {
+    background-color: #868e96 !important;
+}
+
+.mat-checkbox-frame {
+    border-color: #868e96;
+}
+
+.mat-input-invalid {
+    .mat-input-ripple {
+        background-color: #f44336 !important;
+    }
+    .mat-input-placeholder {
+        color: #f44336 !important;
+    }
+}
