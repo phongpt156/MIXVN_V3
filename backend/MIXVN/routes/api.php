@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('test', function () {
+        $response = ['admin' => App\Admin::get()];
+        return response()->json($response, 200);
+    });
+});
