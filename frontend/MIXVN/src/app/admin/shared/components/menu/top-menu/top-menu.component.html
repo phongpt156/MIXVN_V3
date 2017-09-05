@@ -1,13 +1,25 @@
 <div class="md-white-500-bg d-flex">
   <md-toolbar class="mat-elevation-z1 mat-toolbar align-items-end">
-    <button aria-haspopup="true" class="user-button mat-button" md-button>
+    <button aria-haspopup="true" class="user-button mat-button" md-button [mdMenuTriggerFor]="menu">
       <span class="mat-button-wrapper">
-        <div fxlayout="row" fxlayoutalign="center center" style="box-sizing: border-box; max-height: 100%; display: flex; flex-direction: row; -webkit-box-orient: horizontal; -webkit-box-direction: normal; place-content: center; align-items: center; -webkit-box-pack: center; -webkit-box-align: center;">
-            <img class="avatar" src="/assets/imgs/avatars/profile.jpg">
-            <span class="username mr-12">John Doe</span>
-            <md-icon class="s-16 mat-icon material-icons" role="img" aria-hidden="true">keyboard_arrow_down</md-icon>
-        </div>
+        <img class="avatar" src="/assets/imgs/avatars/profile.jpg">
+        <span class="username mr-12">{{ admin.name }}</span>
+        <md-icon class="s-16 mat-icon material-icons" role="img" aria-hidden="true">keyboard_arrow_down</md-icon>
       </span>
     </button>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item>
+        <md-icon class="mat-icon material-icons">account_circle</md-icon>
+        <span>My Profile</span>
+      </button>
+      <button md-menu-item>
+        <md-icon class="mat-icon material-icons">mail</md-icon>
+        <span>Inbox</span>
+      </button>
+      <button md-menu-item (click)="logout()">
+        <md-icon class="mat-icon material-icons">exit_to_app</md-icon>
+        <span>Logout</span>
+      </button>
+    </md-menu>
   </md-toolbar>
 </div>
