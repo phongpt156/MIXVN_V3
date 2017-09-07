@@ -5,8 +5,16 @@ import { AuthGuard } from 'app/admin/shared/guards/auth-guard.service';
 
 import { DashboardComponent } from './dashboard.component';
 
-export const dashBoardRoutes = [
-  { path: 'dashboard', component: DashboardComponent, canActive: [AuthGuard]}
+export const dashBoardRoutes: Routes = [
+  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard/product',
+    loadChildren: './product/product.module#ProductModule'
+  },
+  {
+    path: 'dashboard/category',
+    loadChildren: './category/category.module#CategoryModule'
+  }
 ];
 
 @NgModule({

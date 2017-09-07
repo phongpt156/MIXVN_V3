@@ -14,14 +14,34 @@
       <div class="nav-subheader d-flex align-items-center">
         <span class="hint-text text-uppercase">Menu</span>
       </div>
-      <div class="nav-collapse nav-item">
-        <a class="nav-link mat-ripple d-flex align-items-center">
+      <div class="nav-collapse nav-item" [ngClass]="{'open': !isCollapsed}">
+        <a class="nav-link mat-ripple d-flex align-items-center" (click)="isCollapsed = !isCollapsed">
           <md-icon class="nav-link-icon mat-icon material-icons d-flex align-items-center">dashboard</md-icon>
           <span class="nav-link-title">
             Dashboards
           </span>
           <md-icon class="collapse-arrow mat-icon materials-icon d-flex align-items-center">keyboard_arrow_right</md-icon>
         </a>
+        <div [collapse]="isCollapsed" class="collapse-children">
+          <a class="nav-link mat-ripple d-flex align-items-center" routerLink="/admin/dashboard/product">
+            Product
+          </a>
+          <a class="nav-link mat-ripple d-flex align-items-center" routerLink="/admin/dashboard/group-product">
+            Group Product
+          </a>
+          <a class="nav-link mat-ripple d-flex align-items-center" routerLink="/admin/dashboard/category">
+            Category
+          </a>
+          <a class="nav-link mat-ripple d-flex align-items-center" routerLink="/admin/dashboard/collection">
+            Collection
+          </a>
+          <a class="nav-link mat-ripple d-flex align-items-center" routerLink="/admin/dashboard/feature">
+            Feature
+          </a>
+          <a class="nav-link mat-ripple d-flex align-items-center" routerLink="/admin/dashboard/supplier">
+            Supplier
+          </a>
+        </div>
       </div>
     </div>
   </div>

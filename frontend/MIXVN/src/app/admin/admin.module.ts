@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AuthGuard } from './shared/guards/auth-guard.service';
+import { CheckLogin } from './shared/guards/check-login.service';
 import { AdminService } from './shared/services/admin/admin.service';
 import { AuthService } from 'app/shared/services/auth/auth.service';
 
@@ -27,6 +28,7 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     AuthGuard,
+    CheckLogin,
     AdminService,
     AuthService
   ]

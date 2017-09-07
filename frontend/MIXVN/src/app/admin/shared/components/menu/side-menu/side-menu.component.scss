@@ -91,6 +91,14 @@ button:focus {
             }
 
             .collapse-arrow {
+                width: 16px;
+                min-width: 16px;                
+                transition: opacity .25s ease-in-out .1s, -webkit-transform .3s ease-in-out;
+                transition: transform .3s ease-in-out, opacity .25s ease-in-out .1s;
+                transform: rotate(0);
+                height: 16px;
+                min-height: 16px;
+                line-height: 16px;
                 font-size: 16px;
             }
 
@@ -103,6 +111,23 @@ button:focus {
             &:hover {
                 background-color: rgba(0, 0, 0, 0.04) !important;
             }
+        }
+    }
+}
+
+.collapse-children {
+    a {
+        padding-left: 64px !important;
+        font-size: 14px;
+    }
+}
+
+.nav-collapse {
+    &.open {
+        background: rgba(0,0,0,.12) !important;
+        
+        .collapse-arrow {
+            transform: rotate(90deg) !important;
         }
     }
 }
