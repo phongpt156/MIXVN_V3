@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'app/admin/shared/guards/auth-guard.service';
 
 import { DashboardComponent } from './dashboard.component';
+import { CategoryComponent } from './category/category.component';
 
 export const dashBoardRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -13,7 +14,7 @@ export const dashBoardRoutes: Routes = [
   },
   {
     path: 'dashboard/category',
-    loadChildren: './category/category.module#CategoryModule'
+    component: CategoryComponent
   }
 ];
 

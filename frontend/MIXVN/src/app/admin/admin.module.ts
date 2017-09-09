@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { AuthGuard } from './shared/guards/auth-guard.service';
 import { CheckLogin } from './shared/guards/check-login.service';
 import { AdminService } from './shared/services/admin/admin.service';
-import { AuthService } from 'app/shared/services/auth/auth.service';
 
 import { SharedModule } from './shared/modules/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -30,7 +29,6 @@ import { LoginComponent } from './login/login.component';
     AuthGuard,
     CheckLogin,
     AdminService,
-    AuthService
   ]
 })
 export class AdminModule { }

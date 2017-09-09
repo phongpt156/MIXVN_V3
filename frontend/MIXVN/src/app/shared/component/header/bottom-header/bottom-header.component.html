@@ -1,70 +1,16 @@
 <ul class="nav nav-fill" id="test">
-  <li class="nav-item">
-    <a href="javascript:void(0)" class="nav-link text-uppercase">Head</a>
-  </li>
-  <li class="nav-item" dropdown [autoClose]="false">
-    <a dropdownToggle href="javascript:void(0)" class="nav-link text-uppercase">Top</a>
+  <li class="nav-item" dropdown [autoClose]="false" *ngFor="let parentCategory of categories">
+    <a dropdownToggle href="javascript:void(0)" class="nav-link text-uppercase">{{ parentCategory.name }}</a>
     <div *dropdownMenu class="dropdown-menu px-4 w-100 mt-0" role="menu">
       <div class="d-flex flex-row inner-dropdown-menu pt-2">
         <div class="w-100">
           <div class="text-center"><i class="fa fa-mars text-white" style="font-size: 2rem"></i></div>
           <div class="py-5">
-            <ul class="nav">
-              <li class="nav-item">
+            <ul class="nav" >
+              <li class="nav-item" *ngFor="let groupCategory of parentCategory.male_cate">
                 <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo phông</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo polo</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Sweater</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo sơ mi</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo 3 lỗ</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo len</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo vest</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo denim</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Cardigan</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo dạ</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo hoodies</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo da</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo măng tô</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Ghi lê</a>
+                  <li class="nav-item" *ngFor="let category of groupCategory.categories">
+                    <a href="javascript:void(0)" class="nav-link">{{ category.name }}</a>
                   </li>
                 </ul>
               </li>
@@ -73,64 +19,13 @@
         </div>
         <div class="border border-top-0 border-right-0 border-bottom-0 my-4"></div>
         <div class="w-100">
-          <div class="text-center"><i class="fa fa-venus text-white" style="font-size: 2rem"></i></div>
+          <div class="text-center"><i class="fa fa-mars text-white" style="font-size: 2rem"></i></div>
           <div class="py-5">
-            <ul class="nav">
-              <li class="nav-item">
+            <ul class="nav" >
+              <li class="nav-item" *ngFor="let groupCategory of parentCategory.female_cate">
                 <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo phông</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo tanktop</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo kiểu</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo swater</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo sơ mi</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo croptop</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo hở vai</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo len</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo denim</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo dạ</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo phao</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo hoodies</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo cardigan</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">Áo khác</a>
+                  <li class="nav-item" *ngFor="let category of groupCategory.categories">
+                    <a href="javascript:void(0)" class="nav-link">{{ category.name }}</a>
                   </li>
                 </ul>
               </li>
@@ -139,14 +34,5 @@
         </div>
       </div>
     </div>
-  </li>
-  <li class="nav-item">
-    <a href="javascript:void(0)" class="nav-link text-uppercase">Bot</a>
-  </li>
-  <li class="nav-item">
-    <a href="javascript:void(0)" class="nav-link text-uppercase">Foot</a>
-  </li>
-  <li class="nav-item">
-    <a href="javascript:void(0)" class="nav-link text-uppercase">Accessories</a>
   </li>
 </ul>

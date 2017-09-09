@@ -8,6 +8,16 @@ body {
     background-color: $main-color;
 }
 
+legend {
+    width: auto;
+    color: #0c4e84;
+}
+
+fieldset {
+    padding: 1rem;
+    border: 2px threedface groove;
+}
+
 .blur {
     filter: blur(5px);
 }
@@ -82,4 +92,8 @@ button:focus {
     .mat-input-placeholder {
         color: #f44336 !important;
     }
+}
+
+.submit {
+    background-color: #2e2e2e;    
 }

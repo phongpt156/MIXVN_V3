@@ -1,0 +1,17 @@
+a {
+    cursor: pointer;
+}
+
+.bg-custom {
+    background-color: #3B3738;
+}
+
+.bg-dark-custom {
+    background-color: #191919;
+}
+
+tr {
+    &.show {
+        display: table-row !important;
+    }
+}

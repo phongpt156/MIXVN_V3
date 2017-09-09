@@ -1,3 +1,162 @@
-<p>
-  category works!
-</p>
+<form class="p-5">
+  <fieldset>
+    <legend>
+      Manage Category
+    </legend>
+    <table class="table table-responsive table-hover table-inverse">
+      <thead>
+        <tr>
+          <th><h3>#</h3></th>
+          <th><h3>Name</h3></th>
+          <th><h3>Order</h3></th>
+          <th><a (click)="openAddParentCategory(addParentCategoryModal)"><i class="material-icons">add_circle</i></a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let parentCategory of categories; let i = index">
+          <tr style="cursor: pointer" (click)="listCollapsed[parentCategory.id] = !listCollapsed[parentCategory.id]">
+            <td><h4>{{ i + 1 }}</h4></td>
+            <td><h4>{{ parentCategory.name }}</h4></td>
+            <td><h4>{{ parentCategory.order }}</h4></td>
+            <td>
+              <a (click)="openEditParentCategory(editParentCategoryModal, $event)"><i class="material-icons tex-white">mode_edit</i></a>
+              <a (click)="openDeleteParentCategory(deleteParentCategoryModal, $event)"><i class="material-icons"><i class="material-icons">delete_forever</i></i></a>
+            </td>
+          </tr>
+          
+          <!-- male category -->
+          <ng-container>
+            <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
+              <td colspan="4"># Male</td>
+            </tr>
+            <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
+              <td>Group</td>
+              <td colspan="2">Order</td>
+              <td>
+                <a><i class="material-icons"><i class="material-icons">add_circle</i></i></a>
+              </td>
+            </tr>
+            <ng-container *ngFor="let groupCategory of parentCategory.male_cate; let j = index">
+              <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
+                <td><h5>{{ j + 1 }}</h5></td>
+                <td colspan="2"><h5>{{ groupCategory.order }}</h5></td>
+                <td>
+                  <a><i class="material-icons tex-white">mode_edit</i></a>
+                  <a><i class="material-icons"><i class="material-icons">delete_forever</i></i></a>
+                </td>
+              </tr>
+
+              <tr class="bg-custom" [collapse]="listCollapsed[parentCategory.id]">
+                <td>Name</td>
+                <td colspan="2">Active</td>
+                <td>
+                  <a><i class="material-icons tex-white">mode_edit</i></a>
+                  <a><i class="material-icons"><i class="material-icons">delete_forever</i></i></a>
+                </td>
+              </tr>
+              <tr class="bg-custom" *ngFor="let category of groupCategory.categories" [collapse]="listCollapsed[parentCategory.id]">
+                <td>{{ category.name }}</td>
+                <td colspan="2"><md-checkbox [checked]="category.active" color="primary" readonly="readonly"></md-checkbox></td>
+                <td>
+                  <a><i class="material-icons tex-white">mode_edit</i></a>
+                  <a><i class="material-icons"><i class="material-icons">delete_forever</i></i></a>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container><!-- end male category -->
+
+          <!-- female category -->
+          <ng-container>
+            <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
+              <td colspan="4"># Female</td>
+            </tr>
+            <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
+              <td>Group</td>
+              <td colspan="2">Order</td>
+              <td>
+                <a><i class="material-icons"><i class="material-icons">add_circle</i></i></a>
+              </td>
+            </tr>
+            <ng-container *ngFor="let groupCategory of parentCategory.female_cate; let j = index">
+              <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
+                <td><h5>{{ j + 1 }}</h5></td>
+                <td colspan="3"><h5>{{ groupCategory.order }}</h5></td>
+              </tr>
+
+              <tr class="bg-custom" [collapse]="listCollapsed[parentCategory.id]">
+                <td>Name</td>
+                <td colspan="3">Active</td>
+              </tr>
+              <tr class="bg-custom" *ngFor="let category of groupCategory.categories" [collapse]="listCollapsed[parentCategory.id]">
+                <td>{{ category.name }}</td>
+                <td colspan="2"><md-checkbox [checked]="category.active" color="primary" readonly="readonly"></md-checkbox></td>
+                <td>
+                  <a><i class="material-icons tex-white">mode_edit</i></a>
+                  <a><i class="material-icons"><i class="material-icons">delete_forever</i></i></a>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container><!-- end female category -->
+
+        </ng-container>
+      </tbody>
+    </table>
+  </fieldset>
+
+
+  <!-- add parent category modal -->
+  <ng-template #addParentCategoryModal>
+    <div class="modal-dialog modal-lg my-0">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left pr-3">Add Parent Category</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <md-input-container class="w-100">
+              <input type="text" mdInput placeholder="Name" required="required" [formControl]="parentCategoryName" />
+            </md-input-container>
+          </div>
+          <div>
+            <md-input-container class="w-100">
+              <input type="number" mdInput placeholder="Order" required="required" [formControl]="parentCategoryOrder" />
+            </md-input-container>
+          </div>
+          <div class="text-right">
+            <button md-button type="submit" class="submit" (click)="addParentCategory()">Thêm mới</button>
+            <button md-button type="submit" class="submit" (click)="modalRef.hide()">Hủy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- edit parent category modal -->
+  <ng-template #editParentCategoryModal>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      This is edit parent category modal
+    </div>
+  </ng-template>
+
+  <!-- add parent category modal -->
+  <ng-template #deleteParentCategoryModal>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      This is remove parent category modal.
+    </div>
+  </ng-template>
+</form>

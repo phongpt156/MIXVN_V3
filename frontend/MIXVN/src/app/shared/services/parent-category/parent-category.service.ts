@@ -8,21 +8,20 @@ import 'rxjs/add/operator/catch';
 import { ApiResponse } from 'app/shared/interfaces/api-response';
 import { createCommonHeaders, extractData, extractDataArray, handleError, handleErrorRes } from 'app/shared/functions/http-req';
 import { AuthService } from 'app/shared/services/auth/auth.service';
-import { CATEGORY } from 'app/shared/constants/api';
+import { PARENT_CATEGORY } from 'app/shared/constants/api';
 
 @Injectable()
-export class CategoryService {
+export class ParentCategoryService {
 
   constructor(
     private http: Http,
     private authService: AuthService
   ) { }
-
-  getCategories(): Observable<ApiResponse> {
+  
+  addParentCategory(body): Observable<ApiResponse> {
     let options = createCommonHeaders(this.authService);
-    return this.http.get(CATEGORY.getAll, options)
-    .map(extractDataArray)
+    return this.http.post(PARENT_CATEGORY.add, body, options)
+    .map(extractData)
     .catch(handleError);
   }
-
 }

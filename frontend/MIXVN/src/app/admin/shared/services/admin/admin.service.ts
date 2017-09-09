@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { AuthService } from 'app/shared/services/auth/auth.service';
-import { createCommonHeaders, extractData, extractDataArray, handleError, handleErrorRes } from 'app/admin/shared/functions/http-req';
+import { createCommonHeaders, extractData, extractDataArray, handleError, handleErrorRes } from 'app/shared/functions/http-req';
 import { ADMIN } from 'app/shared/constants/api';
 
 @Injectable()

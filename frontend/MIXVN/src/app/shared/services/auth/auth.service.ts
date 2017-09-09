@@ -6,6 +6,7 @@ export class AuthService {
   constructor() { }
 
   getToken(): string {
+    console.log(localStorage.getItem('token'));
     return localStorage.getItem('token');
   }
 
