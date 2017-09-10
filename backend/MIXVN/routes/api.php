@@ -16,8 +16,9 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'admin'], function () {
     Route::post('/signin', 'Backend\AdminController@signin');
     Route::get('/info', 'Backend\AdminController@getAdmin');
-    Route::resource('category', 'Backend\CategoryController');
-    Route::resource('parent-category', 'Backend\ParentCategoryController');
+    Route::resource('category', 'Backend\CategoryController')->middleware('admin.super');
+    Route::resource('parent-category', 'Backend\ParentCategoryController')->middleware('admin.super');
+    Route::resource('category-group', 'Backend\CategoryGroupController')->middleware('admin.super');
 });
 
 Route::resource('category', 'Frontend\CategoryController');

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AdminService } from 'app/admin/shared/services/admin/admin.service';
 
-import { ADMIN } from 'app/shared/constants/api';
+import { ADMIN } from 'app/shared/constants/api/backend';
 
 @Component({
   selector: 'mix-admin',

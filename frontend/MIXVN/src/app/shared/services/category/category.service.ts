@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 import { ApiResponse } from 'app/shared/interfaces/api-response';
 import { createCommonHeaders, extractData, extractDataArray, handleError, handleErrorRes } from 'app/shared/functions/http-req';
 import { AuthService } from 'app/shared/services/auth/auth.service';
-import { CATEGORY } from 'app/shared/constants/api';
+import { CATEGORY } from 'app/shared/constants/api/frontend';
 
 @Injectable()
 export class CategoryService {

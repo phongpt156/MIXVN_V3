@@ -19,8 +19,8 @@
             <td><h4>{{ parentCategory.name }}</h4></td>
             <td><h4>{{ parentCategory.order }}</h4></td>
             <td>
-              <a (click)="openEditParentCategory(editParentCategoryModal, $event)"><i class="material-icons tex-white">mode_edit</i></a>
-              <a (click)="openDeleteParentCategory(deleteParentCategoryModal, $event)"><i class="material-icons"><i class="material-icons">delete_forever</i></i></a>
+              <a (click)="openEditParentCategory(editParentCategoryModal, $event, parentCategory)"><i class="material-icons tex-white">mode_edit</i></a>
+              <a (click)="openDeleteParentCategory(deleteParentCategoryModal, $event, parentCategory.id)"><i class="material-icons"><i class="material-icons">delete_forever</i></i></a>
             </td>
           </tr>
           
@@ -33,7 +33,7 @@
               <td>Group</td>
               <td colspan="2">Order</td>
               <td>
-                <a><i class="material-icons"><i class="material-icons">add_circle</i></i></a>
+                <a (click)="openAddCategoryGroupModal(addCategoryGroupModal, $event, parentCategory, gender.male)"><i class="material-icons"><i class="material-icons">add_circle</i></i></a>
               </td>
             </tr>
             <ng-container *ngFor="let groupCategory of parentCategory.male_cate; let j = index">
@@ -115,20 +115,22 @@
           </button>
         </div>
         <div class="modal-body">
-          <div>
-            <md-input-container class="w-100">
-              <input type="text" mdInput placeholder="Name" required="required" [formControl]="parentCategoryName" />
-            </md-input-container>
-          </div>
-          <div>
-            <md-input-container class="w-100">
-              <input type="number" mdInput placeholder="Order" required="required" [formControl]="parentCategoryOrder" />
-            </md-input-container>
-          </div>
-          <div class="text-right">
-            <button md-button type="submit" class="submit" (click)="addParentCategory()">Thêm mới</button>
-            <button md-button type="submit" class="submit" (click)="modalRef.hide()">Hủy</button>
-          </div>
+          <form>
+            <div>
+              <md-input-container class="w-100">
+                <input type="text" mdInput placeholder="Name" required="required" [formControl]="parentCategoryName" />
+              </md-input-container>
+            </div>
+            <div>
+              <md-input-container class="w-100">
+                <input type="number" mdInput placeholder="Order" required="required" [formControl]="parentCategoryOrder" />
+              </md-input-container>
+            </div>
+            <div class="text-right">
+              <button md-button type="submit" class="submit" (click)="addParentCategory()">Add</button>
+              <button md-button type="submit" class="submit" (click)="modalRef.hide()">Cancel</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -137,26 +139,118 @@
   <!-- edit parent category modal -->
   <ng-template #editParentCategoryModal>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
+      <h4 class="modal-title pull-left pr-3">Edit Parent Category</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      This is edit parent category modal
+      <form>
+        <div>
+          <md-input-container class="w-100">
+            <input type="text" mdInput placeholder="Name" required="required" [formControl]="parentCategoryName" />
+          </md-input-container>
+        </div>
+        <div>
+          <md-input-container class="w-100">
+            <input type="number" mdInput placeholder="Order" required="required" [formControl]="parentCategoryOrder" />
+          </md-input-container>
+        </div>
+        <div class="text-right">
+          <button md-button type="submit" class="submit" (click)="editParentCategory()">Edit</button>
+          <button md-button type="submit" class="submit" (click)="modalRef.hide()">Cancel</button>
+        </div>
+      </form>
     </div>
   </ng-template>
 
-  <!-- add parent category modal -->
+  <!-- delete parent category modal -->
   <ng-template #deleteParentCategoryModal>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
+      <h4 class="modal-title pull-left">Delete Parent Category</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      This is remove parent category modal.
+      <p>Are you sure to delete this parent category?</p>
+      <div class="text-right">
+        <button md-button type="submit" class="submit" (click)="deleteParentCategory()">Delete</button>
+        <button md-button type="submit" class="submit" (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- add category group modal -->
+  <ng-template #addCategoryGroupModal>
+    <div class="modal-dialog modal-lg my-0">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left pr-3">Add Category Group</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div>
+              <p class="text-left">Parent Category: {{ choosedParentCategory.name }}</p>
+              <p class="text-left">Gender: Male</p>
+              <md-input-container class="w-100">
+                <input type="number" mdInput placeholder="Order" required="required" [formControl]="categoryGroupOrder" />
+              </md-input-container>
+            </div>
+            <div class="text-right">
+              <button md-button type="submit" class="submit" (click)="addCategoryGroup()">Add</button>
+              <button md-button type="submit" class="submit" (click)="modalRef.hide()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- edit category group modal -->
+  <ng-template #editCategoryGroupModal>
+    <div class="modal-dialog modal-lg my-0">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left pr-3">Edit Category Group</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div>
+              <md-input-container class="w-100">
+                <input type="text" mdInput placeholder="Order" required="required" [formControl]="categoryGroupOrder" />
+              </md-input-container>
+            </div>
+            <div class="text-right">
+              <button md-button type="submit" class="submit" (click)="editCategoryGroup()">Edit</button>
+              <button md-button type="submit" class="submit" (click)="modalRef.hide()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- delete category group modal -->
+  <ng-template #deleteCategoryGroupModal>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete Parent Category</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure to delete this parent category?</p>
+      <div class="text-right">
+        <button md-button type="submit" class="submit" (click)="deleteCategoryGroup()">Delete</button>
+        <button md-button type="submit" class="submit" (click)="modalRef.hide()">Cancel</button>
+      </div>
     </div>
   </ng-template>
 </form>

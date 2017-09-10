@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 
 import { AuthService } from 'app/shared/services/auth/auth.service';
 import { createCommonHeaders, extractData, extractDataArray, handleError, handleErrorRes } from 'app/shared/functions/http-req';
-import { ADMIN } from 'app/shared/constants/api';
+import { ADMIN } from 'app/shared/constants/api/backend';
 
 @Injectable()
 export class AdminService {

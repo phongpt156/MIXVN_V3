@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ParentCategory;
+use App\Http\Requests\ParentCategory as ParentCategoryRequest;
+use Carbon\Carbon;
+use App\ParentCategory;
 
 class ParentCategoryController extends Controller
 {
@@ -34,11 +36,15 @@ class ParentCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ParentCategory $request)
+    public function store(ParentCategoryRequest $request)
     {
-        $parentCategory = new \App\ParentCategory;
+        $parentCategory = new ParentCategory;
+
         $parentCategory->name = $request->input('name');
         $parentCategory->order = $request->input('order');
+        $parentCategory->created_at = Carbon::now('UTC');
+        $parentCategory->updated_at = Carbon::now('UTC');
+
         $success = $parentCategory->save();
 
         $parentCategory = $parentCategory::where('id', $parentCategory->id)->first();
@@ -81,9 +87,23 @@ class ParentCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ParentCategoryRequest $request, $id)
     {
-        //
+        $parentCategory = ParentCategory::find($id);
+        
+        $parentCategory->name = $request->input('name');
+        $parentCategory->order = $request->input('order');
+        $parentCategory->updated_at = Carbon::now('UTC');
+
+        $success = $parentCategory->save();
+        
+        if ($success) return response()->json([
+            'id' => $parentCategory->id,
+            'name' => $parentCategory->name,
+            'order' => $parentCategory->order
+        ], 200);
+
+        return response()->json([], 401);
     }
 
     /**
@@ -94,6 +114,12 @@ class ParentCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $success = ParentCategory::destroy($id);
+
+        if ($success) {
+            return response()->json(['messages' => 'success'], 200);
+        }
+
+        return response()->json([], 401);
     }
 }
