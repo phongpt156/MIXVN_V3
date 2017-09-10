@@ -29,4 +29,15 @@ class AdminController extends Controller
         $admin = JWTAuth::parseToken()->authenticate();
         return response()->json(compact('admin'), 200);
     }
+
+    public function getRole(Request $request)
+    {
+        return JWTAuth::parseToken()->authenticate()->role_id;
+    }
+
+    public function isSuperAdmin(Request $request)
+    {
+        $role_id = $this->getRole($request);
+        return $role_id === \App\Constants\Admin::getSuperAdmin();
+    }
 }
