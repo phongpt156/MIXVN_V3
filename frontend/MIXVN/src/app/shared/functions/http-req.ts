@@ -23,10 +23,8 @@ export function createCommonHeaders(authService, contentType = 'application/json
 export function handleError(response: HttpResponse<any> | any) {
     let errMsg: string;
     console.log(response);
-    if (response instanceof HttpResponse) {
-        const body = response;
-        const err = body || JSON.stringify(body);
-        errMsg = `${response.status} - ${response.statusText || ''} ${err}`;
+    if (!response.error) {
+        errMsg = `${response.status} - ${response.statusText || ''} ${response.message}`;
     } else {
         errMsg = response.error.message ? response.error.message : response.message.toString();
     }

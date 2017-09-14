@@ -1,12 +1,12 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left pr-3 text-dark">Add Shop</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="hiddenAddSupplierModal()">
+  <h4 class="modal-title pull-left pr-3 text-dark">Edit Shop</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 
 <div class="modal-body">
-  <form [formGroup]="addSupplierForm" enctype='multipart/form-data'>
+  <form [formGroup]="editSupplierForm">
     <div class="row">
       <div class="col-md-6">
         <md-input-container class="w-100">
@@ -46,11 +46,21 @@
     <div class="row">
       <div class="col-12">
         <image-upload [max]="1" [buttonCaption]="'Background Image'" (onFileUploadFinish)="imageUploaded($event, 'background_image')" (onRemove)="imageRemoved($event, 'background_image')"></image-upload>
+        <div class="py-5" *ngIf="supplierBackgroundImage">
+          <div class="image-wrapper image-21-9">
+            <img [src]="supplierBackgroundImage" alt="" />
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
         <image-upload [max]="1" [buttonCaption]="'Avatar'" (onFileUploadFinish)="imageUploaded($event, 'avatar')" (onRemove)="imageRemoved($event, 'avatar')"></image-upload>
+        <div class="py-5 w-25" *ngIf="supplierAvatar">
+          <div class="image-wrapper image-1-1">
+            <img [src]="supplierAvatar" alt="" />
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -60,7 +70,7 @@
     </div>
     <div class="row mt-4">
       <div class="text-right col-12">
-        <button md-button type="submit" class="text-white" (click)="onSubmit()" color="add">Add</button>
+        <button md-button type="submit" class="text-white" (click)="onSubmit()" color="add">Edit</button>
       </div>
     </div>
   </form>

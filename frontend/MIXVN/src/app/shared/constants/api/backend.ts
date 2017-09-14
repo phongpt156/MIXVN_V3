@@ -29,6 +29,13 @@ export const CATEGORY_GROUP = {
 export const SUPPLIER = {
     getAll: HOST + '/api/admin/supplier',
     add: HOST + '/api/admin/supplier',
-    edit: HOST + '/api/admin/supplier/',
-    delete: HOST + '/api/admin/supplier/'
+    edit: HOST + '/api/admin/supplier/update/',
+    delete: HOST + '/api/admin/supplier/delete/'
+}
+
+export const COLLECTION = {
+    getAll: HOST + '/api/admin/collection',
+    add: HOST + '/api/admin/collection',
+    edit: HOST + '/api/admin/collection/update',
+    delete: HOST + '/api/admin/collection/delete'
 }

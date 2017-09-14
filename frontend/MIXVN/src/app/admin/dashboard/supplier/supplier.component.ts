@@ -7,6 +7,7 @@ import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal/modal-options.clas
 import { Page } from 'app/shared/classes/page';
 
 import { AddSupplierComponent } from './add-supplier/add-supplier.component';
+import { EditSupplierComponent } from './edit-supplier/edit-supplier.component';
 
 @Component({
   selector: 'mix-supplier',
@@ -14,21 +15,18 @@ import { AddSupplierComponent } from './add-supplier/add-supplier.component';
   styleUrls: ['./supplier.component.scss']
 })
 export class SupplierComponent implements OnInit {
-  rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' },
-  ];
+  @ViewChild('deleteSupplierModal') deleteSupplierModal;
+
   page: Page = new Page;
-  suppliers: any = {};
   bsModalRef: BsModalRef;
   config: ModalOptions = {
     class: 'mw-100 w-75'
   };
+  selectedSupplierId: number;
 
   constructor(
     private bsModalService: BsModalService,
-    private supplierService: SupplierService
+    private supplierService: SupplierService,
   ) { }
 
   ngOnInit() {
@@ -38,8 +36,7 @@ export class SupplierComponent implements OnInit {
   getSuppliers() {
     this.supplierService.getAll()
     .subscribe(res => {
-      console.log(res);
-      this.suppliers = res.data;
+      this.supplierService.suppliers = res.data;
       this.page.size = res.meta.per_page;
       this.page.totalElements = res.meta.total;
       this.page.totalPages = res.meta.last_page;
@@ -51,4 +48,21 @@ export class SupplierComponent implements OnInit {
     this.bsModalRef = this.bsModalService.show(AddSupplierComponent, this.config);
   }
 
+  openEditSupplierModal(supplier: any) {
+    this.bsModalRef = this.bsModalService.show(EditSupplierComponent, this.config);
+    this.bsModalRef.content.supplier = supplier;
+  }
+
+  openRemoveSupplierModal(id: number) {
+    this.bsModalRef = this.bsModalService.show(this.deleteSupplierModal);
+    this.selectedSupplierId = id;
+  }
+
+  deleteSupplier() {
+    this.bsModalRef.hide();
+    this.supplierService.delete(this.selectedSupplierId)
+    .subscribe(res => {
+      this.getSuppliers();
+    });
+  }
 }

@@ -55,7 +55,7 @@
               </tr>
               <tr class="bg-custom" *ngFor="let category of categoryGroup.categories" [collapse]="listCollapsed[parentCategory.id]">
                 <td>{{ category.name }}</td>
-                <td colspan="2"><md-checkbox [checked]="category.active" readonly="readonly"></md-checkbox></td>
+                <td colspan="2"><md-checkbox [checked]="category.active" readonly="readonly" click-prevent-default></md-checkbox></td>
                 <td>
                   <a (click)="openEditCategoryModal(editCategoryModal, categoryGroup.id, category)"><i class="material-icons tex-white">mode_edit</i></a>
                   <a (click)="openDeleteCategoryModal(deleteCategoryModal, category.id)"><i class="material-icons">delete_forever</i></a>
@@ -98,7 +98,7 @@
               </tr>
               <tr class="bg-custom" *ngFor="let category of categoryGroup.categories" [collapse]="listCollapsed[parentCategory.id]">
                 <td>{{ category.name }}</td>
-                <td colspan="2"><md-checkbox [checked]="category.active" readonly="readonly"></md-checkbox></td>
+                <td colspan="2"><md-checkbox [checked]="category.active" readonly="readonly" click-prevent-default></md-checkbox></td>
                 <td>
                   <a (click)="openEditCategoryModal(editCategoryModal, categoryGroup.id, category)"><i class="material-icons tex-white">mode_edit</i></a>
                   <a (click)="openDeleteCategoryModal(deleteCategoryModal, category.id)"><i class="material-icons">delete_forever</i></a>

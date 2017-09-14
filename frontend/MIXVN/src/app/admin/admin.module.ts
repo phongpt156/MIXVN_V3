@@ -10,6 +10,7 @@ import { ParentCategoryService } from 'app/shared/services/parent-category/paren
 import { CategoryGroupService } from 'app/shared/services/category-group/category-group.service';
 import { CategoryService } from 'app/shared/services/category/category.service';
 import { SupplierService } from 'app/shared/services/supplier/supplier.service';
+import { CollectionService } from 'app/shared/services/collection/collection.service';
 
 import { SharedModule } from './shared/modules/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -36,7 +37,8 @@ import { LoginComponent } from './login/login.component';
     ParentCategoryService,
     CategoryGroupService,
     CategoryService,
-    SupplierService
+    SupplierService,
+    CollectionService
   ]
 })
 export class AdminModule { }

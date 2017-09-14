@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
+use Storage;
 
 class Supplier extends Resource
 {
@@ -22,8 +23,8 @@ class Supplier extends Resource
             'facebook_title' => $this->facebook_title,
             'instagram_link' => $this->instagram_link,
             'instagram_title' => $this->instagram_title,
-            'background_image' => $this->background_image,
-            'avatar' => $this->avatar,
+            'background_image' => $this->background_image ? asset($this->background_image) : '',
+            'avatar' => $this->avatar ? asset($this->avatar) : '',
             'active' => $this->active
         ];
     }

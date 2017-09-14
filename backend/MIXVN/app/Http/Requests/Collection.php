@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Supplier extends FormRequest
+class Collection extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class Supplier extends FormRequest
     {
         return [
             'name' => 'required',
-            'address' => 'required',
+            'img' => 'required',
             'active' => 'required'
         ];
     }
