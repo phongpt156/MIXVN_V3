@@ -1,4 +1,4 @@
-import { Headers, RequestOptions, Response } from '@angular/http';
+import { HttpHeaders, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
@@ -15,43 +15,25 @@ export function createCommonHeaders(authService, contentType = 'application/json
         headerObj['Authorization'] = `Bearer ${token}`;
     }
 
-    let headers = new Headers( headerObj );
-    return new RequestOptions({ headers });
+    let headers = new HttpHeaders( headerObj );
+    return { headers: headers };
 }
 
-export function extractData(res: Response) {
-    let body: any = {};
-    try {
-        body = res.json();
-    } catch (e) {
-        console.log(e);
-    }
-    return body || {};
-}
 
-export function extractDataArray(res: Response) {
-    let body: any[] = [];
-    try {
-        body = res.json();
-    } catch (e) {
-        console.log(e);
-    }
-    return body || [];
-}
-
-export function handleError(error: Response | any) {
+export function handleError(response: HttpResponse<any> | any) {
     let errMsg: string;
-    if (error instanceof Response) {
-        const body = error.json();
-        const err = body.error || JSON.stringify(body);
-        errMsg = `${error.status} - ${error.statusText || ''} ${err}`
+    console.log(response);
+    if (response instanceof HttpResponse) {
+        const body = response;
+        const err = body || JSON.stringify(body);
+        errMsg = `${response.status} - ${response.statusText || ''} ${err}`;
     } else {
-        errMsg = error.message ? error.message : error.toString();
+        errMsg = response.error.message ? response.error.message : response.message.toString();
     }
     return Observable.throw(errMsg);
 }
 
-export function handleErrorRes(error: Response | any) {
+export function handleErrorRes(error: HttpResponse<any> | any) {
     // In a real world app, we might use a remote logging infrastructure
     return Observable.throw(error);
 }

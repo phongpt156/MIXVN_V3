@@ -43,13 +43,23 @@ a:hover, a:focus, a:active, a:visited {
     cursor: pointer;
 }
 
-button:focus {
-    outline: 5px auto rgba(255, 255, 255, 0.1);
+button[color="add"] {
+    background-color: #039be5;
+}
+button {
+    &:focus {
+        outline: 5px auto rgba(255, 255, 255, 0.1);
+    }
+    &.close {
+        cursor: pointer;
+    }
+    
 }
 
 
 /**------------------- Modal Style -------------------**/
 .modal {
+    z-index: 9000;
     text-align: center;
 }
 
@@ -67,12 +77,12 @@ button:focus {
 }
 
 .modal-content {
-    opacity: 0.90;
     border-radius: unset;
     border: none;
-    background-color: #222;
 }
 
+
+// Material themes custom //
 .mat-input-placeholder, .mat-focused .mat-input-placeholder {
     color: #868e96 !important;
 }
@@ -93,6 +103,15 @@ button:focus {
         color: #f44336 !important;
     }
 }
+
+.cdk-overlay-container {
+    z-index: 5000;
+}
+
+.mat-input-underline {
+    height: 2px !important;
+}
+// End Material themes custom //
 
 .submit {
     background-color: #2e2e2e;    

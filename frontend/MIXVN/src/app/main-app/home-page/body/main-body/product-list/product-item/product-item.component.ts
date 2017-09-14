@@ -8,7 +8,7 @@ import { Component, OnInit, Input, HostBinding } from '@angular/core';
 export class ProductItemComponent implements OnInit {
   @HostBinding('class') classes = 'px-1 pb-2';
 
-  @Input() product = {};
+  @Input() product: any = {};
   
   constructor() { }
 

@@ -5,6 +5,7 @@ import { AuthGuard } from 'app/admin/shared/guards/auth-guard.service';
 
 import { DashboardComponent } from './dashboard.component';
 import { CategoryComponent } from './category/category.component';
+import { SupplierComponent } from './supplier/supplier.component';
 
 export const dashBoardRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -15,6 +16,10 @@ export const dashBoardRoutes: Routes = [
   {
     path: 'dashboard/category',
     component: CategoryComponent
+  },
+  {
+    path: 'dashboard/supplier',
+    component: SupplierComponent
   }
 ];
 

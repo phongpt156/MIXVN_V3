@@ -8,7 +8,10 @@ export const ADMIN = {
 }
 
 export const CATEGORY = {
-    getAll: HOST + '/api/category'
+    getAll: HOST + '/api/category',
+    add: HOST + '/api/admin/category',
+    edit: HOST + '/api/admin/category/',
+    delete: HOST + '/api/admin/category/'
 }
 
 export const PARENT_CATEGORY = {
@@ -21,4 +24,11 @@ export const CATEGORY_GROUP = {
     add: HOST + '/api/admin/category-group',
     edit: HOST + '/api/admin/category-group/',
     delete: HOST + '/api/admin/category-group/',
+}
+
+export const SUPPLIER = {
+    getAll: HOST + '/api/admin/supplier',
+    add: HOST + '/api/admin/supplier',
+    edit: HOST + '/api/admin/supplier/',
+    delete: HOST + '/api/admin/supplier/'
 }

@@ -17,10 +17,12 @@ class CreateSupplierTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
-            $table->string('facebook_link');
-            $table->string('facebook_title');
-            $table->string('instagram_link');
-            $table->string('instagram_title');
+            $table->string('facebook_link')->nullable();
+            $table->string('facebook_title')->nullable();
+            $table->string('instagram_link')->nullable();
+            $table->string('instagram_title')->nullable();
+            $table->string('background_image')->nullable();
+            $table->string('avatar')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });

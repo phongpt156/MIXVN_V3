@@ -46,14 +46,14 @@ class ParentCategoryController extends Controller
         $parentCategory->updated_at = Carbon::now('UTC');
 
         $success = $parentCategory->save();
-
-        $parentCategory = $parentCategory::where('id', $parentCategory->id)->first();
-        
-        if ($success) return response()->json([
-            'id' => $parentCategory->id,
-            'name' => $parentCategory->name,
-            'order' => $parentCategory->order
-        ], 200);
+                
+        if ($success) {        
+            return response()->json([
+                'id' => $parentCategory->id,
+                'name' => $parentCategory->name,
+                'order' => $parentCategory->order
+            ], 200);
+        }
 
         return response()->json([], 401);
     }

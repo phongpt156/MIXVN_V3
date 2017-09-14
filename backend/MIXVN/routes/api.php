@@ -19,6 +19,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('category', 'Backend\CategoryController')->middleware('admin.super');
     Route::resource('parent-category', 'Backend\ParentCategoryController')->middleware('admin.super');
     Route::resource('category-group', 'Backend\CategoryGroupController')->middleware('admin.super');
+    Route::resource('supplier', 'Backend\SupplierController')->middleware('admin.super');
 });
 
 Route::resource('category', 'Frontend\CategoryController');

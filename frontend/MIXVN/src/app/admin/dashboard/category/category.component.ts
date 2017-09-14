@@ -19,11 +19,17 @@ export class CategoryComponent implements OnInit {
   listCollapsed: any = {};
   modalRef: BsModalRef;
   parentCategoryName: FormControl = new FormControl('', [Validators.required]);
+  parentCategoryId: FormControl = new FormControl('', [Validators.required]);
+  genderId: FormControl = new FormControl('', [Validators.required]);
   parentCategoryOrder: FormControl = new FormControl('', [Validators.required]);
-  categoryGroupOrder: FormControl = new FormControl('', [Validators.required], )
+  categoryGroupOrder: FormControl = new FormControl('', [Validators.required]);
+  categoryName: FormControl = new FormControl('', [Validators.required]);
+  categoryActive: FormControl = new FormControl(true, [Validators.required]);
   choosedParentCategoryId: number;
   choosedParentCategory: any;
-  choosedGenderId: number;
+  choosedGender: any;
+  choosedCategoryGroupId: number;
+  choosedCategoryId: number;
   gender: any = GENDER;
 
   constructor(
@@ -42,7 +48,7 @@ export class CategoryComponent implements OnInit {
     .subscribe(res => {
       this.categories = res.data;
       this.categories.forEach(val => {
-        this.listCollapsed[val.id] = true;
+        this.listCollapsed[val.id] = false;
       });
     });
   }
@@ -105,11 +111,25 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-  openAddCategoryGroupModal(addCategoryGroupModal: TemplateRef<any>, e, parentCategory: any, genderId: number) {
-    e.stopPropagation();
+  openAddCategoryGroupModal(addCategoryGroupModal: TemplateRef<any>, parentCategory: any, gender: any) {
     this.choosedParentCategory = parentCategory;
-    this.choosedGenderId = genderId;
+    this.choosedGender = gender;
     this.modalRef = this.modalService.show(addCategoryGroupModal);
+  }
+
+  openEditCategoryGroupModal(editCategoryGroupModal: TemplateRef<any>, categoryGroup: any, parentCategory: any, gender: any) {
+    this.modalRef = this.modalService.show(editCategoryGroupModal);
+
+    this.choosedCategoryGroupId = categoryGroup.id;
+    this.categoryGroupOrder.setValue(categoryGroup.order);
+    this.parentCategoryId.setValue(parentCategory.id);
+    this.genderId.setValue(gender.id);
+  }
+
+  openDeleteCategoryGroupModal(deleteCategoryGroupModal: TemplateRef<any>, categoryGroupId: number) {
+    this.modalRef = this.modalService.show(deleteCategoryGroupModal);
+
+    this.choosedCategoryGroupId = categoryGroupId;
   }
 
   addCategoryGroup() {
@@ -117,7 +137,7 @@ export class CategoryComponent implements OnInit {
       let body: any = {};
 
       body.parent_category = this.choosedParentCategory.id;
-      body.gender = this.choosedGenderId;
+      body.gender = this.choosedGender.id;
       body.order = this.categoryGroupOrder.value;
 
       this.categoryGroupService.add(body)
@@ -128,5 +148,116 @@ export class CategoryComponent implements OnInit {
         this.categoryGroupOrder.reset();
       });
     }
+  }
+
+  editCategoryGroup() {
+    if (this.categoryGroupOrder.valid) {
+      let body: any = {};
+
+      body.parent_category = this.parentCategoryId.value;
+      body.gender = this.genderId.value;
+      body.order = this.categoryGroupOrder.value;
+      let categoryGroupId = this.choosedCategoryGroupId;
+
+      this.categoryGroupService.edit(body, categoryGroupId)
+      .subscribe(res => {
+        this.modalRef.hide();
+        this.getCategories();
+        this.categoryGroupOrder.reset();
+      });
+    }
+  }
+
+  deleteCategoryGroup() {
+    this.categoryGroupService.delete(this.choosedCategoryGroupId)
+    .subscribe(res => {
+      this.modalRef.hide();
+      this.getCategories();
+    });
+  }
+
+  openAddCategoryModal(addCategoryModal: TemplateRef<any>, categoryGroupId: number) {
+    this.modalRef = this.modalService.show(addCategoryModal);
+
+    this.choosedCategoryGroupId = categoryGroupId;
+  }
+
+  openEditCategoryModal(editCategoryModal: TemplateRef<any>, categoryGroupId: number, category: any) {
+    this.modalRef = this.modalService.show(editCategoryModal);
+
+    this.categoryName.setValue(category.name);
+    this.categoryActive.setValue(category.active);
+    this.choosedCategoryGroupId = categoryGroupId;
+    this.choosedCategoryId = category.id;
+  }
+
+  openDeleteCategoryModal(deleteCategoryModal: TemplateRef<any>, categoryId: number) {
+    this.modalRef = this.modalService.show(deleteCategoryModal);
+    
+    this.choosedCategoryId = categoryId;
+  }
+
+  addCategory() {
+    if (this.categoryName.valid && this.categoryActive.valid) {
+      let body: any = {};    
+      body.category_group = this.choosedCategoryGroupId;
+      body.name = this.categoryName.value;
+      body.active = this.categoryActive.value;
+
+      this.categoryService.add(body)
+      .subscribe(res => {
+        this.modalRef.hide();
+        this.getCategories();
+        this.categoryName.reset();
+        this.categoryActive.setValue(true);
+      });
+    }
+  }
+
+  editCategory() {
+    if (this.categoryName.valid && this.categoryActive.valid) {
+      let body:any = {};
+
+      body.name = this.categoryName.value;
+      body.active = this.categoryActive.value;
+      body.category_group = this.choosedCategoryGroupId;
+
+      this.categoryService.edit(body, this.choosedCategoryId)
+      .subscribe(res => {
+        console.log(res);
+        this.modalRef.hide();
+        this.getCategories();
+        this.categoryName.reset();
+        this.categoryActive.setValue(true);
+      });
+    }
+  }
+
+  deleteCategory() {
+    this.categoryService.delete(this.choosedCategoryId)
+    .subscribe(res => {
+      console.log(res);
+      this.modalRef.hide();
+      this.getCategories();
+    });
+  }
+  
+  hiddenParentCategoryModal() {
+    this.modalRef.hide();
+    this.parentCategoryName.reset();
+    this.parentCategoryOrder.reset();
+  }
+
+  hiddenCategoryGroupModal() {
+    this.modalRef.hide();
+    this.parentCategoryId.reset();
+    this.genderId.reset();
+    this.categoryGroupOrder.reset();
+  }
+
+  hiddenCategoryModal() {
+    this.modalRef.hide();
+    this.categoryName.reset();
+    this.categoryActive.reset();
   }
 }

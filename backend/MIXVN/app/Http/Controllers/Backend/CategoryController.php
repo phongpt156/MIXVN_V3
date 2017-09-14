@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ParentCategory as ParentCategoryResource;
+use App\Http\Requests\Category as CategoryRequest;
+use App\Category;
+use Carbon\Carbon;
 
 class CategoryController extends Controller
 {
@@ -34,9 +37,27 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $category = new Category;
+        
+        $category->name = $request->input('name');
+        $category->group_id = $request->input('category_group');
+        $category->active = $request->input('active');
+        $category->created_at = Carbon::now('UTC');
+        $category->updated_at = Carbon::now('UTC');
+
+        $success = $category->save();
+
+        if ($success) {
+            return response()->json([
+                'id' => $category->id,
+                'name' => $category->name,
+                'active' => $category->active
+            ], 200);
+        }
+
+        return response()->json([], 401);
     }
 
     /**
@@ -68,9 +89,27 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->name = $request->name;
+        $category->group_id = $request->category_group;
+        $category->active = $request->active;
+        $category->updated_at = Carbon::now('UTC');
+
+        $success = $category->save();
+
+        if ($success) {
+            return response()->json([
+                'id' => $category->id,
+                'name' => $category->name,
+                'group_id' => $category->group_id,
+                'active' => $category->active,
+            ], 200);
+        }
+
+        return response()->json([], 401);
     }
 
     /**
@@ -81,6 +120,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $success = Category::destroy($id);
+
+        if ($success) {
+            return response()->json(['messages' => 'success'], 200);
+        }
+
+        return response()->json([], 401);
     }
 }

@@ -48,9 +48,8 @@ class CategoryGroupController extends Controller
 
         $success = $categoryGroup->save();
         
-        $categoryGroup = CategoryGroup::where('id', $categoryGroup->id)->first();
 
-        if ($success) {
+        if ($success) {           
             return response()->json([
                 'id' => $categoryGroup->id,
                 'gender_id' => $categoryGroup->gender_id,
@@ -122,7 +121,7 @@ class CategoryGroupController extends Controller
      */
     public function destroy($id)
     {
-        $success = GroupCategory::destroy($id);
+        $success = CategoryGroup::destroy($id);
 
         if ($success) {
             return response()->json(['messages' => 'success'], 200);

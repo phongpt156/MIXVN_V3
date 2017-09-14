@@ -1,0 +1,62 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left pr-3 text-dark">Add Shop</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="hiddenAddSupplierModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="addSupplierForm">
+    <div class="row">
+      <div class="col-md-6">
+        <md-input-container class="w-100">
+          <input type="text" mdInput formControlName="name" placeholder="Name" required="required" />
+        </md-input-container>
+      </div>
+      <div class="col-md-6">
+        <md-input-container class="w-100">
+          <input type="text" mdInput formControlName="address" placeholder="Address" required="required" />
+        </md-input-container>
+      </div>
+    </div>    
+    <div class="row">
+      <div class="col-md-6">
+        <md-input-container class="w-100">
+          <input type="text" mdInput formControlName="facebook_link" placeholder="Facebook Link" />
+        </md-input-container>
+      </div>
+      <div class="col-md-6">
+        <md-input-container class="w-100">
+          <input type="text" mdInput formControlName="facebook_title" placeholder="Facebook Title" required="required" />
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <md-input-container class="w-100">
+          <input type="text" mdInput formControlName="instagram_link" placeholder="Instagram Link" />
+        </md-input-container>
+      </div>
+      <div class="col-md-6">
+        <md-input-container class="w-100">
+          <input type="text" mdInput formControlName="instagram_title" placeholder="Instagram Title" required="required" />
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <input type="file" formControlName="background_image" (change)="onChange($event)" />
+        <image-upload [buttonCaption]="'Background'" (onFileUploadFinish)="imageUploaded($event)"></image-upload>
+        <image-upload [buttonCaption]="'Background'" (onFileUploadFinish)="imageUploaded($event)" [preview]="false"></image-upload>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <image-upload [buttonCaption]="'Avatar'"></image-upload>
+      </div>
+    </div>
+    <div class="text-right">
+      <button md-button type="submit" (click)="onSubmit()">Add</button>
+    </div>
+  </form>
+</div>

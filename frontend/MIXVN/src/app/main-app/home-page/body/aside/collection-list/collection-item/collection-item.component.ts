@@ -8,7 +8,7 @@ import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/co
 export class CollectionItemComponent implements OnInit {
   @HostBinding('class') classes = 'my-4 collection-item';
 
-  @Input() collection = {};
+  @Input() collection: any = {};
 
   constructor() { }
 
