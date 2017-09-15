@@ -19,6 +19,12 @@ import { EditSupplierComponent } from './supplier/edit-supplier/edit-supplier.co
 import { CollectionComponent } from './collection/collection.component';
 import { AddCollectionComponent } from './collection/add-collection/add-collection.component';
 import { EditCollectionComponent } from './collection/edit-collection/edit-collection.component';
+import { FeatureComponent } from './feature/feature.component';
+import { UploadComponent } from './upload/upload.component';
+import { AddFeatureComponent } from './feature/add-feature/add-feature.component';
+import { EditFeatureComponent } from './feature/edit-feature/edit-feature.component';
+import { AddFeatureValueComponent } from './feature-value/add-feature-value/add-feature-value.component';
+import { EditFeatureValueComponent } from './feature-value/edit-feature-value/edit-feature-value.component';
 
 @NgModule({
   imports: [
@@ -40,13 +46,23 @@ import { EditCollectionComponent } from './collection/edit-collection/edit-colle
     EditSupplierComponent,
     CollectionComponent,
     AddCollectionComponent,
-    EditCollectionComponent
+    EditCollectionComponent,
+    FeatureComponent,
+    UploadComponent,
+    AddFeatureComponent,
+    EditFeatureComponent,
+    AddFeatureValueComponent,
+    EditFeatureValueComponent,
   ],
   entryComponents: [
     AddSupplierComponent,
     EditSupplierComponent,
     AddCollectionComponent,
-    EditCollectionComponent
+    EditCollectionComponent,
+    AddFeatureComponent,
+    EditFeatureComponent,
+    AddFeatureValueComponent,
+    EditFeatureValueComponent
   ]
 })
 export class DashboardModule { }

@@ -33,6 +33,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update/{id}', 'Backend\CollectionController@update')->where('id', '[0-9]+')->middleware('admin.super');
         Route::get('/delete/{id}', 'Backend\CollectionController@destroy')->where('id', '[0-9]+')->middleware('admin.super');
     });
+    
+    Route::resource('feature', 'Backend\FeatureController')->middleware('admin.super');
+    Route::resource('feature-value', 'Backend\FeatureValueController')->middleware('admin.super');
 });
 
 Route::resource('category', 'Frontend\CategoryController');

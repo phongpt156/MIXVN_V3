@@ -36,6 +36,20 @@ export const SUPPLIER = {
 export const COLLECTION = {
     getAll: HOST + '/api/admin/collection',
     add: HOST + '/api/admin/collection',
-    edit: HOST + '/api/admin/collection/update',
-    delete: HOST + '/api/admin/collection/delete'
+    edit: HOST + '/api/admin/collection/update/',
+    delete: HOST + '/api/admin/collection/delete/'
+}
+
+export const FEATURE = {
+    getAll: HOST + '/api/admin/feature',
+    add: HOST + '/api/admin/feature',
+    edit: HOST + '/api/admin/feature/',
+    delete: HOST + '/api/admin/feature/'
+}
+
+export const FEATURE_VALUE = {
+    getAll: HOST + '/api/admin/feature-value',
+    add: HOST + '/api/admin/feature-value',
+    edit: HOST + '/api/admin/feature-value/',
+    delete: HOST + '/api/admin/feature-value/'
 }

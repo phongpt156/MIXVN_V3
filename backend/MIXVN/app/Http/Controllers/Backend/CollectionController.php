@@ -20,7 +20,7 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        return CollectionResource::collection(Collection::paginate(10));
+        return CollectionResource::collection(Collection::paginate());
     }
 
     /**
@@ -47,7 +47,7 @@ class CollectionController extends Controller
         if ($request->img) {
             $collection->img = Storage::disk('upload_image')->put('images', $request->img);
         }
-        $collection->active = $request->active;        
+        $collection->active = ($collection->active === 'true' || $collection->active == 1) ? true : false;        
         $collection->created_at = Carbon::now('UTC');
         $collection->updated_at = Carbon::now('UTC');
 
@@ -105,7 +105,7 @@ class CollectionController extends Controller
             $collection->img = Storage::disk('upload_image')->put('images', $request->img);
         }
         $collection->name = $request->name;
-        $collection->active = $request->active;
+        $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;
         $collection->updated_at = Carbon::now('UTC');
 
         $success = $collection->save();
@@ -115,7 +115,7 @@ class CollectionController extends Controller
                 'id' => $collection->id,
                 'img' => $collection->img ? asset($collection->img) : '',
                 'name' => $collection->name,
-                'active' => $collection->active,
+                'active' => $collection->active
             ]);
         }
 

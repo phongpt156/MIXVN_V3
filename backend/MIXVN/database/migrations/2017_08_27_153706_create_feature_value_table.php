@@ -17,6 +17,7 @@ class CreateFeatureValueTable extends Migration
             $table->increments('id');
             $table->string('vi_name')->nullable();
             $table->string('dev_name')->nullable();
+            $table->integer('order');
             $table->integer('feature_id');
             $table->boolean('active');
             $table->timestamps();

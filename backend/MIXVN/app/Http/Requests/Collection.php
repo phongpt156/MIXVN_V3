@@ -24,9 +24,9 @@ class Collection extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'img' => 'required',
-            'active' => 'required'
+            // 'name' => 'required',
+            // 'img' => 'required',
+            // 'active' => 'required'
         ];
     }
 }

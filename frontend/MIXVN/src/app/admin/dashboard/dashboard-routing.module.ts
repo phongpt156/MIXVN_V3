@@ -7,6 +7,8 @@ import { DashboardComponent } from './dashboard.component';
 import { CategoryComponent } from './category/category.component';
 import { SupplierComponent } from './supplier/supplier.component';
 import { CollectionComponent } from './collection/collection.component';
+import { FeatureComponent } from './feature/feature.component';
+import { UploadComponent } from './upload/upload.component';
 
 export const dashBoardRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -25,6 +27,14 @@ export const dashBoardRoutes: Routes = [
   {
     path: 'dashboard/collection',
     component: CollectionComponent
+  },
+  {
+    path: 'dashboard/feature',
+    component: FeatureComponent
+  },
+  {
+    path: 'dashboard/upload',
+    component: UploadComponent
   }
 ];
 

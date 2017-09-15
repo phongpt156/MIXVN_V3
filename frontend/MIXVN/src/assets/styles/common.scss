@@ -78,6 +78,9 @@ button {
 .image-21-9 {
     padding-top: calc(100% * 9 / 21);
 }
+.image-16-9 {
+    padding-top: calc(100% * 9 / 16);
+}
 .image-1-1 {
     padding-top: 100%;
 }
@@ -92,7 +95,7 @@ button {
 
 /**------------------- Modal Style -------------------**/
 .modal {
-    z-index: 9000;
+    z-index: 4900;
     text-align: center;
 }
 
@@ -136,6 +139,7 @@ button {
         color: #f44336 !important;
     }
 }
+
 
 .cdk-overlay-container {
     z-index: 5000;

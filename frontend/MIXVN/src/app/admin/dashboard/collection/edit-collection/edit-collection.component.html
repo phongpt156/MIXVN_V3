@@ -1,3 +1,36 @@
-<p>
-  edit-collection works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title pull-left pr-3 text-dark">Edit Collection</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="editCollectionForm" enctype='multipart/form-data'>
+    <div class="row">
+      <div class="col-md-6">
+        <md-input-container class="w-100">
+          <input type="text" class="text-dark" mdInput formControlName="name" placeholder="Name" required="required" />
+        </md-input-container>
+      </div>
+      <div class="col-md-6 d-flex align-items-center">
+        <md-checkbox formControlName="active" class="text-dark">Active</md-checkbox>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <image-upload [max]="1" [buttonCaption]="'Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved($event)"></image-upload>
+      </div>
+      <div class="col-4" *ngIf="collectionImage">
+        <div class="image-wrapper image-16-9">
+          <img [src]="collectionImage" />
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="text-right col-12">
+        <button md-button type="submit" class="text-white" (click)="onSubmit()" color="add">Add</button>
+      </div>
+    </div>
+  </form>
+</div>

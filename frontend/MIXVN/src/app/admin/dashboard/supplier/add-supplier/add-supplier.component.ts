@@ -38,10 +38,6 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
       this.supplierService.suppliers = res.data;
     });
   }
-  
-  hiddenAddSupplierModal() {
-    this.bsModalRef.hide();
-  }
 
   imageUploaded(e, name: string) {
     if (name === 'background_image') {
