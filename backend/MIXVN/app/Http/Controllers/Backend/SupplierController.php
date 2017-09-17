@@ -10,6 +10,7 @@ use App\Http\Requests\Supplier as SupplierRequest;
 use App\Supplier;
 use Carbon\Carbon;
 use Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SupplierController extends Controller
 {
@@ -42,7 +43,8 @@ class SupplierController extends Controller
     public function store(SupplierRequest $request)
     {
         $supplier = new Supplier;
-        
+        $now = Carbon::now('UTC');
+
         $supplier->name = $request->name;
         $supplier->address = $request->address;
         $supplier->facebook_link = $request->facebook_link;
@@ -50,14 +52,20 @@ class SupplierController extends Controller
         $supplier->instagram_link = $request->instagram_link;
         $supplier->instagram_title = $request->instagram_title;
         if ($request->background_image) {
-            $supplier->background_image = Storage::disk('upload_image')->put('images', $request->background_image);
+            $supplier->background_image = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->background_image->getClientOriginalName();
+            Image::make($request->background_image)->resize(1366, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($supplier->background_image);
         }
         if ($request->avatar) {
-            $supplier->avatar = Storage::disk('upload_image')->put('images', $request->avatar);
+            $supplier->avatar = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->avatar->getClientOriginalName();
+            Image::make($request->avatar)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($supplier->avatar);
         }
         $supplier->active = $request->active === 'true' ? true : false;
-        $supplier->created_at = Carbon::now('UTC');
-        $supplier->updated_at = Carbon::now('UTC');
+        $supplier->created_at = $now;
+        $supplier->updated_at = $now;
         
         $success = $supplier->save();
 

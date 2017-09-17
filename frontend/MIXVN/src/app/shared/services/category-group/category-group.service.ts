@@ -37,4 +37,11 @@ export class CategoryGroupService {
     return this.http.delete(CATEGORY_GROUP.delete + id, options)
     .catch(handleError);
   }
+
+  getByGender(genderId: number): Observable<ApiResponse> {
+    let options = createCommonHeaders(this.authService);
+
+    return this.http.get(CATEGORY_GROUP.getByGender + genderId, options)
+    .catch(handleError);
+  }
 }

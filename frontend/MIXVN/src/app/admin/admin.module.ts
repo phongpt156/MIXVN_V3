@@ -13,6 +13,8 @@ import { SupplierService } from 'app/shared/services/supplier/supplier.service';
 import { CollectionService } from 'app/shared/services/collection/collection.service';
 import { FeatureService } from 'app/shared/services/feature/feature.service';
 import { FeatureValueService } from 'app/shared/services/feature-value/feature-value.service';
+import { ProductService } from 'app/shared/services/product/product.service';
+import { ProductGroupService } from 'app/shared/services/product-group/product-group.service';
 
 import { SharedModule } from './shared/modules/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -42,7 +44,9 @@ import { LoginComponent } from './login/login.component';
     SupplierService,
     CollectionService,
     FeatureService,
-    FeatureValueService
+    FeatureValueService,
+    ProductService,
+    ProductGroupService
   ]
 })
 export class AdminModule { }

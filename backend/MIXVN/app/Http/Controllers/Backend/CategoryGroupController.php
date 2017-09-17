@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryGroup as CategoryGroupRequest;
+use App\Http\Resources\CategoryGroup as CategoryGroupResource;
 use App\CategoryGroup;
 use Carbon\Carbon;
 
@@ -128,5 +129,10 @@ class CategoryGroupController extends Controller
         }
 
         return response()->json([], 401);
+    }
+
+    public function getGenderCategoryGroups($genderId)
+    {
+        return CategoryGroupResource::collection(CategoryGroup::where('gender_id', $genderId)->get());
     }
 }

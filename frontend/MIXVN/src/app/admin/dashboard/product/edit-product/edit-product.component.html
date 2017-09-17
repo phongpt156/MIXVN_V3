@@ -1,0 +1,71 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left pr-3 text-dark">Edit Product</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="editProductForm">
+    <div class="row form-group">
+      <div class="col-md-6">
+        <md-input-container class="w-100">
+          <input type="text" class="text-dark" mdInput formControlName="name" placeholder="Name" required="required" />
+        </md-input-container>
+      </div>
+    </div>    
+    <div class="row form-group">
+      <div class="col-md-6">
+        <md-input-container class="w-100">
+          <input type="text" mdInput class="text-dark" formControlName="price" placeholder="Price" required="required" />
+        </md-input-container>
+      </div>
+      <div class="col-md-6">
+        <md-input-container class="w-100">
+          <input type="text" mdInput class="text-dark" formControlName="discount" placeholder="Discount" />
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-4">
+        <md-select formControlName="category">
+          <md-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</md-option>
+        </md-select>
+      </div>
+      <div class="col-md-4">
+        <md-select formControlName="supplier">
+          <md-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</md-option>
+        </md-select>
+      </div>
+      <div class="col-md-4">
+        <select multiple formControlName="features" *ngIf="features.length">
+          <ng-container *ngFor="let feature of features">
+            <option disabled="disabled" class="feature-option">+ {{ feature.name }}</option>
+            <option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-12">
+        <image-upload [max]="1" [buttonCaption]="'Product Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved($event)"></image-upload>
+        <div class="py-5" *ngIf="product?.img" style="width: 150px">
+          <div class="image-wrapper image-2-3">
+            <img [src]="product.img" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="text-right col-12">
+        <md-checkbox formControlName="active" class="text-dark">Active</md-checkbox>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="text-right col-12">
+        <button md-button type="submit" class="text-white" (click)="onSubmit()" color="add">Edit</button>
+      </div>
+    </div>
+  </form>
+</div>
+  

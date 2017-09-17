@@ -24,6 +24,7 @@ export const CATEGORY_GROUP = {
     add: HOST + '/api/admin/category-group',
     edit: HOST + '/api/admin/category-group/',
     delete: HOST + '/api/admin/category-group/',
+    getByGender: HOST + '/api/admin/category-group/gender/'
 }
 
 export const SUPPLIER = {
@@ -52,4 +53,13 @@ export const FEATURE_VALUE = {
     add: HOST + '/api/admin/feature-value',
     edit: HOST + '/api/admin/feature-value/',
     delete: HOST + '/api/admin/feature-value/'
+}
+
+export const PRODUCT = {
+    getAll: HOST + '/api/admin/product',
+    searchByName: HOST + '/api/admin/product/search/'
+}
+
+export const PRODUCT_GROUP = {
+    add: HOST + '/api/admin/product-group'
 }

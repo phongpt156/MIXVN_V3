@@ -21,13 +21,8 @@ class CreateProductTable extends Migration
             $table->mediumInteger('sum_like')->default(0);
             $table->mediumInteger('sum_buy')->default(0);
             $table->mediumInteger('sum_mark')->default(0);
-            $table->string('xs_img');
-            $table->string('sm_img');
-            $table->string('md_img');
-            $table->string('lg_img');
-            $table->string('xl_img');
+            $table->string('img');
             $table->string('alt_img')->nullable();
-            $table->string('description_img')->nullable();
             $table->integer('category_id');
             $table->integer('supplier_id');
             $table->boolean('active');

@@ -25,6 +25,11 @@ import { AddFeatureComponent } from './feature/add-feature/add-feature.component
 import { EditFeatureComponent } from './feature/edit-feature/edit-feature.component';
 import { AddFeatureValueComponent } from './feature-value/add-feature-value/add-feature-value.component';
 import { EditFeatureValueComponent } from './feature-value/edit-feature-value/edit-feature-value.component';
+import { AddProductFormComponent } from './upload/add-product-form/add-product-form.component';
+import { SearchProductComponent } from './upload/add-product-form/search-product/search-product.component';
+import { ProductComponent } from './product/product.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { EditProductComponent } from './product/edit-product/edit-product.component';
 
 @NgModule({
   imports: [
@@ -53,6 +58,11 @@ import { EditFeatureValueComponent } from './feature-value/edit-feature-value/ed
     EditFeatureComponent,
     AddFeatureValueComponent,
     EditFeatureValueComponent,
+    AddProductFormComponent,
+    SearchProductComponent,
+    ProductComponent,
+    AddProductComponent,
+    EditProductComponent
   ],
   entryComponents: [
     AddSupplierComponent,
@@ -62,7 +72,9 @@ import { EditFeatureValueComponent } from './feature-value/edit-feature-value/ed
     AddFeatureComponent,
     EditFeatureComponent,
     AddFeatureValueComponent,
-    EditFeatureValueComponent
+    EditFeatureValueComponent,
+    AddProductComponent,
+    EditProductComponent
   ]
 })
 export class DashboardModule { }

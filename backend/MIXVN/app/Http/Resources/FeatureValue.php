@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
+use App\Http\Backend\FeatureValue\Feature as FeatureResource;
 
 class FeatureValue extends Resource
 {
@@ -18,9 +19,9 @@ class FeatureValue extends Resource
             'id' => $this->id,
             'vi_name' => $this->vi_name,
             'dev_name' => $this->dev_name,
-            'feature_id' => $this->feature_id,
+            'feature' => $this->feature,
             'order' => $this->order,            
-            'active' => $this->active
+            'active' => $this->active,
         ];
     }
 }

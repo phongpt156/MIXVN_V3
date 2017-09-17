@@ -8,8 +8,8 @@ class Category extends Model
 {
     protected $table = 'category';
 
-    public function categoryGroups()
+    public function categoryGroup()
     {
-        return $this->belongsTo('App\CategoryGroup');
+        return $this->belongsToMany('App\CategoryGroup');
     }
 }

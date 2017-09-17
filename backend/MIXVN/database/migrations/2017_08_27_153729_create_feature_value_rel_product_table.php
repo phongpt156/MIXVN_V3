@@ -17,7 +17,7 @@ class CreateFeatureValueRelProductTable extends Migration
             $table->integer('feature_value_id');
             $table->integer('product_id');
             $table->timestamps();
-            $table->primary('feature_value_id', 'product_id');
+            $table->primary(['feature_value_id', 'product_id']);
         });
     }
 

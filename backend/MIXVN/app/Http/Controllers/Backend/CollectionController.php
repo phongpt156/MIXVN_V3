@@ -10,6 +10,7 @@ use App\Http\Requests\Collection as CollectionRequest;
 use App\Collection;
 use Carbon\Carbon;
 use Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class CollectionController extends Controller
 {
@@ -41,15 +42,19 @@ class CollectionController extends Controller
      */
     public function store(CollectionRequest $request)
     {
+        $now = Carbon::now('UTC');
         $collection = new Collection;
 
         $collection->name = $request->name;
         if ($request->img) {
-            $collection->img = Storage::disk('upload_image')->put('images', $request->img);
+            $collection->img = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
+            Image::make($request->img)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($collection->img);
         }
         $collection->active = ($collection->active === 'true' || $collection->active == 1) ? true : false;        
-        $collection->created_at = Carbon::now('UTC');
-        $collection->updated_at = Carbon::now('UTC');
+        $collection->created_at = $now;
+        $collection->updated_at = $now;
 
         $success = $collection->save();
 
@@ -96,17 +101,22 @@ class CollectionController extends Controller
      */
     public function update(CollectionRequest $request, $id)
     {
+        $now = Carbon::now('UTC');
+        
         $collection = Collection::find($id);
 
         if ($request->img) {
             if (File::exists($collection->img)) {
                 File::delete($collection->img);
             }
-            $collection->img = Storage::disk('upload_image')->put('images', $request->img);
+            $collection->img = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
+            Image::make($request->img)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($collection->img);
         }
         $collection->name = $request->name;
         $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;
-        $collection->updated_at = Carbon::now('UTC');
+        $collection->updated_at = $now;
 
         $success = $collection->save();
 

@@ -16,9 +16,7 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'admin'], function () {
     Route::post('/signin', 'Backend\AdminController@signin');
     Route::get('/info', 'Backend\AdminController@getAdmin');
-    Route::resource('category', 'Backend\CategoryController')->middleware('admin.super');
     Route::resource('parent-category', 'Backend\ParentCategoryController')->middleware('admin.super');
-    Route::resource('category-group', 'Backend\CategoryGroupController')->middleware('admin.super');
 
     Route::group(['prefix' => 'supplier'], function () {
         Route::get('', 'Backend\SupplierController@index')->middleware('admin.super');
@@ -36,6 +34,31 @@ Route::group(['prefix' => 'admin'], function () {
     
     Route::resource('feature', 'Backend\FeatureController')->middleware('admin.super');
     Route::resource('feature-value', 'Backend\FeatureValueController')->middleware('admin.super');
+
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('', 'Backend\ProductController@index')->middleware('admin.super');
+        Route::get('search/{name?}', 'Backend\ProductController@search')->middleware('admin.super');
+    });
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('', 'Backend\CategoryController@index')->middleware('admin.super');
+        Route::post('', 'Backend\CategoryController@store')->middleware('admin.super');
+        Route::put('/{id}', 'Backend\CategoryController@update')->middleware('admin.super')->where('id', '[0-9]+');
+        Route::delete('/{id}', 'Backend\CategoryController@destroy')->middleware('admin.super')->where('id', '[0-9]+');
+    });
+
+    Route::group(['prefix' => 'category-group'], function () {
+        Route::get('', 'Backend\CategoryGroupController@index')->middleware('admin.super');
+        Route::post('', 'Backend\CategoryGroupController@store')->middleware('admin.super');
+        Route::put('/{id}', 'Backend\CategoryGroupController@update')->middleware('admin.super')->where('id', '[0-9]+');
+        Route::delete('/{id}', 'Backend\CategoryGroupController@destroy')->middleware('admin.super')->where('id', '[0-9]+');
+        Route::get('/gender/{genderId}', 'Backend\CategoryGroupController@getGenderCategoryGroups')->where('genderId', '[0-9]+');
+    });
+
+    Route::group(['prefix' => 'product-group'], function () {
+        Route::get('', 'Backend\ProductGroupController@index');
+        Route::post('', 'Backend\ProductGroupController@store');
+    });
 });
 
 Route::resource('category', 'Frontend\CategoryController');

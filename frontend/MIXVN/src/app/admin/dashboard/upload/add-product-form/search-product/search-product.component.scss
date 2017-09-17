@@ -1,0 +1,17 @@
+.search {
+    position: relative;
+}
+
+.search-result-wrapper {
+    z-index: 8000;
+    width: 100%;
+    position: absolute;
+    overflow: auto;
+    height: 300px;
+    top: 37px;
+
+    .search-result {
+        color: #fff;
+        background-color: #424242;
+    }
+}

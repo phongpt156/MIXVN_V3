@@ -50,6 +50,9 @@ a:hover, a:focus, a:active, a:visited {
 button[color="add"] {
     background-color: #039be5;
 }
+button[color="delete"] {
+    background-color: #EA63A5;
+}
 button {
     &:focus {
         outline: 5px auto rgba(255, 255, 255, 0.1);
@@ -83,6 +86,9 @@ button {
 }
 .image-1-1 {
     padding-top: 100%;
+}
+.image-2-3 {
+    padding-top: calc(100% * 3 / 2);
 }
 
 /**------------------- Textarea Readonly Style -------------------**/
@@ -123,6 +129,19 @@ button {
     color: #868e96 !important;
 }
 
+.mat-select-value, .mat-select-arrow, .mat-select-underline, .mat-select-trigger {
+    color: #868e96;
+}
+
+.mat-radio-outer-circle {
+    border-color: #868e86;
+}
+
+.mat-select-underline {
+    height: 2px !important;
+    background-color: #868e96;
+}
+
 .mat-input-underline, .mat-input-ripple, .mat-focused .mat-input-ripple {
     background-color: #868e96 !important;
 }
@@ -160,4 +179,9 @@ button {
     &:hover {
         background-color: #039be5 !important;
     }
+}
+
+.feature-option {
+    font-weight: bold;
+    color: #10323F;
 }
