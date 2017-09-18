@@ -124,6 +124,12 @@ button {
     border: none;
 }
 
+.dark-modal {
+    opacity: 0.90;
+    color: #fff;
+    background-color: #222;    
+}
+
 /**------------------- Material themes custom -------------------**/
 .mat-input-placeholder, .mat-focused .mat-input-placeholder {
     color: #868e96 !important;

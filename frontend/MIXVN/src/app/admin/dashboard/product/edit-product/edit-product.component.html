@@ -26,24 +26,36 @@
         </md-input-container>
       </div>
     </div>
-    <div class="row form-group">
+    <div class="row">
+      <div class="col-12 form-group text-left">
+        <md-radio-group required="required" formControlName="gender">
+          <md-radio-button [value]="gender.male.id" (click)="getCategories(gender.male.id)">
+            {{ gender.male.name }}
+          </md-radio-button>
+          <md-radio-button [value]="gender.female.id" (click)="getCategories(gender.female.id)">
+            {{ gender.female.name }}
+          </md-radio-button>
+        </md-radio-group>
+      </div>
+    </div>
+    <div class="row form-group text-left">
       <div class="col-md-4">
-        <md-select formControlName="category">
+        <md-select formControlName="category" placeholder="Category">
           <md-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</md-option>
         </md-select>
       </div>
       <div class="col-md-4">
-        <md-select formControlName="supplier">
+        <md-select formControlName="supplier" placeholder="Supplier">
           <md-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</md-option>
         </md-select>
       </div>
       <div class="col-md-4">
-        <select multiple formControlName="features" *ngIf="features.length">
+        <md-select [multiple]="true" formControlName="features" *ngIf="features.length" placeholder="Feature">
           <ng-container *ngFor="let feature of features">
-            <option disabled="disabled" class="feature-option">+ {{ feature.name }}</option>
-            <option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</option>
+            <md-option disabled="disabled" class="feature-option">+ {{ feature.name }}</md-option>
+            <md-option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</md-option>
           </ng-container>
-        </select>
+        </md-select>
       </div>
     </div>
     <div class="row form-group">

@@ -66,12 +66,12 @@ class ProductGroupController extends Controller
                     $newProduct->price = $product['price'];
                     $newProduct->discount = $product['discount'];
                     $newProduct->category_id = $product['category'];
+                    $newProduct->gender_id = $product['gender'];
                     if ($product['img']) {
                         $newProduct->img = 'images/' . $now->format('Y-m-dTH-i-s-') . $product['img']->getClientOriginalName();
                         Image::make($product['img'])->resize(300, null, function ($constraint) {
                             $constraint->aspectRatio();
                         })->save($newProduct->img);
-                        
                     }
                     $newProduct->active = ($product['active'] === 'true' || $product['active'] == 1) ? true : false;
                     $newProduct->supplier_id = $product['supplier'];

@@ -37,6 +37,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('', 'Backend\ProductController@index')->middleware('admin.super');
+        Route::post('', 'Backend\ProductController@store')->middleware('admin.super');
+        Route::post('/{id}', 'Backend\ProductController@update')->where('id', '[0-9]+')->middleware('admin.super');
+        Route::delete('/{id}', 'Backend\ProductController@destroy')->where('id', '[0-9]+')->middleware('admin.super');
         Route::get('search/{name?}', 'Backend\ProductController@search')->middleware('admin.super');
     });
 

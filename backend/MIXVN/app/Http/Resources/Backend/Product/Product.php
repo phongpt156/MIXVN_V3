@@ -30,6 +30,7 @@ class Product extends Resource
             'active' => $this->active,
             'category' => new CategoryResource($this->category),
             'supplier' => new SupplierResource($this->supplier),
+            'gender' => $this->gender_id,
             'featureValues' => FeatureValueResource::collection($this->featureValues)
         ];
     }

@@ -116,6 +116,7 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $now = Carbon::now('UTC');
         $supplier = Supplier::find($id);
 
         $supplier->name = $request->name;
@@ -130,7 +131,10 @@ class SupplierController extends Controller
                 File::delete($supplier->background_image);
             }
             
-            $supplier->background_image = Storage::disk('upload_image')->put('images', $request->background_image);
+            $supplier->background_image = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->background_image->getClientOriginalName();
+            Image::make($request->background_image)->resize(1366, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($supplier->background_image);
 
         }
 
@@ -139,11 +143,14 @@ class SupplierController extends Controller
                 File::delete($supplier->avatar);
             }
 
-            $supplier->avatar = Storage::disk('upload_image')->put('images', $request->avatar);
+            $supplier->avatar = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->avatar->getClientOriginalName();
+            Image::make($request->avatar)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($supplier->avatar);
         }
 
         $supplier->active = $request->active === 'true' ? true : false;
-        $supplier->updated_at = Carbon::now('UTC');
+        $supplier->updated_at = $now;
         
         $success = $supplier->save();
         

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
@@ -13,7 +13,10 @@ import { EditProductComponent } from './edit-product/edit-product.component';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
+  @ViewChild('deleteProductModal') deleteProductModal;
+
   bsModalRef: BsModalRef;
+  selectedProductId: number;
 
   constructor(
     private productService: ProductService,
@@ -32,8 +35,25 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  openAddProductModal() {
+    this.bsModalRef = this.bsModalService.show(AddProductComponent, {class: 'w-75 modal-lg'});
+  }
+
   openEditProductModal(product: any) {
     this.bsModalRef = this.bsModalService.show(EditProductComponent, {class: 'w-75 modal-lg'});
     this.bsModalRef.content.product = product;
+  }
+
+  openDeleteProductModal(id: number) {
+    this.selectedProductId = id;
+    this.bsModalRef = this.bsModalService.show(this.deleteProductModal);
+  }
+
+  deleteProduct() {
+    this.productService.delete(this.selectedProductId)
+    .subscribe(res => {
+      this.bsModalRef.hide();
+      this.getProducts();
+    });
   }
 }

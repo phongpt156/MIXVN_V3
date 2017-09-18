@@ -23,6 +23,7 @@ class CreateProductTable extends Migration
             $table->mediumInteger('sum_mark')->default(0);
             $table->string('img');
             $table->string('alt_img')->nullable();
+            $table->smallInteger('gender_id');
             $table->integer('category_id');
             $table->integer('supplier_id');
             $table->boolean('active');

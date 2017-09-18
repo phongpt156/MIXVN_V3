@@ -57,6 +57,9 @@ export const FEATURE_VALUE = {
 
 export const PRODUCT = {
     getAll: HOST + '/api/admin/product',
+    add: HOST + '/api/admin/product',
+    edit: HOST + '/api/admin/product/',
+    delete: HOST + '/api/admin/product/',
     searchByName: HOST + '/api/admin/product/search/'
 }
 

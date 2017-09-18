@@ -8,7 +8,7 @@ import { CommonService } from 'app/shared/services/common/common.service';
   styleUrls: ['./alert-login.component.scss']
 })
 export class AlertLoginComponent implements OnInit, OnDestroy {
-  @HostBinding('class') classes = 'py-4';
+  @HostBinding('class') classes = 'py-4 dark-modal';
   
   constructor(
     private commonService: CommonService

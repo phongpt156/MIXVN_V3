@@ -35,7 +35,7 @@
                 <td>{{ product.sum_like }}</td>
                 <td>{{ product.sum_buy }}</td>
                 <td>{{ product.sum_mark }}</td>
-                <td style="width: 150px">
+                <td style="width: 100px">
                   <div class="image-wrapper image-2-3" *ngIf="product.img">
                     <img [src]="product.img" />
                   </div>
@@ -56,7 +56,7 @@
                 </td>
                 <td class="d-flex flex-row">
                   <a (click)="openEditProductModal(product)"><i class="material-icons tex-white">mode_edit</i></a>
-                  <a (click)="openRemoveProductModal(product.id)"><i class="material-icons">delete_forever</i></a>
+                  <a (click)="openDeleteProductModal(product.id)"><i class="material-icons">delete_forever</i></a>
                 </td>
               </tr>
             </tbody>
@@ -66,18 +66,18 @@
     </fieldset>
 </form>
 
-<!-- delete supplier modal -->
-<ng-template #deleteSupplierModal>
+<!-- delete product modal -->
+<ng-template #deleteProductModal>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Delete Supplier</h4>
+    <h4 class="modal-title pull-left">Delete Product</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <p>Are you sure to delete this Supplier?</p>
+    <p>Are you sure to delete this Product?</p>
     <div class="text-right">
-      <button md-button type="submit" class="submit text-white" (click)="deleteSupplier()">Delete</button>
+      <button md-button type="submit" class="submit text-white" (click)="deleteProduct()">Delete</button>
       <button md-button type="submit" class="submit text-white" (click)="bsModalRef.hide()">Cancel</button>
     </div>
   </div>

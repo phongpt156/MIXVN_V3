@@ -34,8 +34,6 @@ export class AddProductFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.addProductForm.addControl('gender', new FormControl(1));
-
     this.getCategories(this.addProductForm.value.gender);
 
     this.getSuppliers();

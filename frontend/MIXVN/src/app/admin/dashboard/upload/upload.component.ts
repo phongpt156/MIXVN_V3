@@ -44,6 +44,7 @@ export class UploadComponent implements OnInit {
       discount: [''],
       category: ['', Validators.required],
       supplier: ['', Validators.required],
+      gender: ['', Validators.required],
       features: [''],
       active: [true, Validators.required]
     });
@@ -114,6 +115,7 @@ export class UploadComponent implements OnInit {
             this.formData.append(`products[${i}][supplier]`, val.value.supplier);
             this.formData.append(`products[${i}][features]`, val.value.features);
             this.formData.append(`products[${i}][active]`, val.value.active);
+            this.formData.append(`products[${i}][gender]`, val.value.gender);
           }
         });
         

@@ -62,12 +62,12 @@
             <md-checkbox formControlName="active">Active</md-checkbox>
           </div>
         </div>
-        <select multiple formControlName="features" *ngIf="features.length">
+        <md-select [multiple]="true" formControlName="features" *ngIf="features.length" placeholder="Feature">
           <ng-container *ngFor="let feature of features">
-            <option disabled="disabled" class="feature-option">+ {{ feature.name }}</option>
-            <option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</option>
+            <md-option disabled="disabled" class="feature-option">+ {{ feature.name }}</md-option>
+            <md-option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</md-option>
           </ng-container>
-        </select>
+        </md-select>
       </div>
       
       <div *ngIf="isDisabled && product">
