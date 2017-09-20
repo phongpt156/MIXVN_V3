@@ -1,0 +1,38 @@
+<ul class="nav nav-fill" id="test">
+  <li class="nav-item" dropdown *ngFor="let parentCategory of categories">
+    <a dropdownToggle href="javascript:void(0)" class="nav-link text-uppercase">{{ parentCategory.name }}</a>
+    <div *dropdownMenu class="dropdown-menu px-4 w-100 mt-0" role="menu">
+      <div class="d-flex flex-row inner-dropdown-menu pt-2">
+        <div class="w-100">
+          <div class="text-center"><i class="fa fa-mars text-white" style="font-size: 2rem"></i></div>
+          <div class="py-5">
+            <ul class="nav" >
+              <li class="nav-item" *ngFor="let groupCategory of parentCategory.male_cate">
+                <ul class="nav flex-column">
+                  <li class="nav-item" *ngFor="let category of groupCategory.categories" (click)="addSearchTagging(category)">
+                    <a href="javascript:void(0)" class="nav-link">{{ category.name }}</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="border border-top-0 border-right-0 border-bottom-0 my-4"></div>
+        <div class="w-100">
+          <div class="text-center"><i class="fa fa-mars text-white" style="font-size: 2rem"></i></div>
+          <div class="py-5">
+            <ul class="nav" >
+              <li class="nav-item" *ngFor="let groupCategory of parentCategory.female_cate">
+                <ul class="nav flex-column">
+                  <li class="nav-item" *ngFor="let category of groupCategory.categories" (click)="addSearchTagging(category)">
+                    <a href="javascript:void(0)" class="nav-link">{{ category.name }}</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

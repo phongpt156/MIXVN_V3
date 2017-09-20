@@ -4,7 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { CommonService } from 'app/shared/services/common/common.service';
 
-import { AlertLoginComponent } from 'app/shared/component/alert-login/alert-login.component';
+import { AlertLoginComponent } from 'app/main-app/main-app-shared/component/alert-login/alert-login.component';
 
 @Component({
   selector: 'mix-product-user-interactive',
@@ -26,7 +26,7 @@ export class ProductUserInteractiveComponent implements OnInit {
   }
 
   onClick() {
-    this.commonService.setAlertLogin(true);
+    this.commonService.setBlur(true);
     this.bsModalRef = this.bsModalService.show(AlertLoginComponent);
   }
 }

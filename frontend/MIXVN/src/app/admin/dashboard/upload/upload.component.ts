@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 
 import { ProductGroupService } from 'app/shared/services/product-group/product-group.service';
 
+declare var Cropper: any;
+
 @Component({
   selector: 'mix-upload',
   templateUrl: './upload.component.html',
@@ -14,13 +16,16 @@ import { ProductGroupService } from 'app/shared/services/product-group/product-g
 })
 
 export class UploadComponent implements OnInit {
+  @ViewChild('productGroupImagePreview') productGroupImagePreview;
   addProductGroupForm: FormGroup;
   productGroupImage: File;
-  productImages: File[] = [];
+  // productImages: File[] = [];
   productIds: any[] = [];
   selectedProduct: any = {};
   formData: FormData = new FormData;
   isPending: boolean = false;
+  cropper: any;
+  isSelectImage: boolean = false;
 
   constructor(
     public snackBar: MdSnackBar,
@@ -35,18 +40,23 @@ export class UploadComponent implements OnInit {
       active: [true, Validators.required],
       products: this.fb.array([])
     });
+
+    this.cropper = new Cropper(this.productGroupImagePreview.nativeElement, {
+      aspectRatio: 21 / 9,
+      viewMode: 1
+    });
   }
 
   initProduct() {
     return this.fb.group({
-      name: ['', Validators.required],
-      price: ['', Validators.required],
-      discount: [''],
-      category: ['', Validators.required],
-      supplier: ['', Validators.required],
-      gender: ['', Validators.required],
-      features: [''],
-      active: [true, Validators.required]
+      // name: ['', Validators.required],
+      // price: ['', Validators.required],
+      // discount: [''],
+      // category: ['', Validators.required],
+      // supplier: ['', Validators.required],
+      // gender: ['', Validators.required],
+      // features: [''],
+      // active: [true, Validators.required]
     });
   }
 
@@ -70,63 +80,72 @@ export class UploadComponent implements OnInit {
   }
   
 
-  imageUploaded(e, name: string) {
-    if (name === 'product_group_image') {
-      this.productGroupImage = e.file;
+  imageUploaded(e) {
+    let oFReader = new FileReader();
+    
+    oFReader.readAsDataURL(e.file);
+    oFReader.onload = (oFREvent) => {
+      this.cropper.destroy();
+      this.isSelectImage = true;
+      this.cropper.replace(oFREvent.target['result']);
     }
   }
 
-  imageRemoved(e, name: string) {
-    if (name === 'product_group_image') {
-      this.productGroupImage = undefined;
-    }
+  imageRemoved() {
+    this.isSelectImage = false;
+    this.cropper.destroy();
   }
   
-  productImageChange(e) {
-    this.productImages[e.index] = e.productImage;
-  }
+  // productImageChange(e) {
+  //   this.productImages[e.index] = e.productImage;
+  // }
 
   onSubmit() {
     if (!this.isPending) {
-      if (this.addProductGroupForm.valid && this.productGroupImage) {
-        this.isPending = true;
-        let valid: boolean = true;
+      if (this.addProductGroupForm.valid && this.isSelectImage) {
+        this.cropper.getCroppedCanvas().toBlob((productGroupImage) => {
+          this.formData.append('img', productGroupImage);
 
-        this.formData.append('img', this.productGroupImage, this.productGroupImage.name);
-        this.formData.append('active', this.addProductGroupForm.value.active);
-        this.productIds.forEach((val, i) => {
-          this.formData.append(`productIds[${i}]`, val);
-        });
-        console.log(this.addProductGroupForm.controls);
+          this.isPending = true;
+          let valid: boolean = true;
 
-        this.addProductGroupForm.controls.products['controls'].forEach((val, i) => {
-          if (!this.selectedProduct[i]) {
-            if (!this.productImages[i]) {
-              valid = false;
-              this.openSnackBar('Please upload product image');
-              return;
-            }
-
-            this.formData.append(`products[${i}][img]`, this.productImages[i], this.productImages[i].name);
-            this.formData.append(`products[${i}][name]`, val.value.name);
-            this.formData.append(`products[${i}][price]`, val.value.price);
-            this.formData.append(`products[${i}][discount]`, val.value.discount);
-            this.formData.append(`products[${i}][category]`, val.value.category);
-            this.formData.append(`products[${i}][supplier]`, val.value.supplier);
-            this.formData.append(`products[${i}][features]`, val.value.features);
-            this.formData.append(`products[${i}][active]`, val.value.active);
-            this.formData.append(`products[${i}][gender]`, val.value.gender);
+          this.formData.append('active', this.addProductGroupForm.value.active);
+          this.productIds.forEach((val, i) => {
+            this.formData.append(`productIds[${i}]`, val);
+          });
+  
+          // this.addProductGroupForm.controls.products['controls'].forEach((val, i) => {
+          //   if (!this.selectedProduct[i]) {
+          //     if (!this.productImages[i]) {
+          //       valid = false;
+          //       this.openSnackBar('Please upload product image');
+          //       return;
+          //     }
+  
+          //     this.formData.append(`products[${i}][img]`, this.productImages[i], this.productImages[i].name);
+          //     this.formData.append(`products[${i}][name]`, val.value.name);
+          //     this.formData.append(`products[${i}][price]`, val.value.price);
+          //     this.formData.append(`products[${i}][discount]`, val.value.discount);
+          //     this.formData.append(`products[${i}][category]`, val.value.category);
+          //     this.formData.append(`products[${i}][supplier]`, val.value.supplier);
+          //     this.formData.append(`products[${i}][features]`, val.value.features);
+          //     this.formData.append(`products[${i}][active]`, val.value.active);
+          //     this.formData.append(`products[${i}][gender]`, val.value.gender);
+          //   }
+          // });
+          
+          if (valid) {
+            this.productGroupService.add(this.formData)
+            .subscribe(res => {
+              console.log(res);
+              this.isPending = false;
+              this.cropper.destroy();
+              this.openSnackBar('Successfully Added New Product Group');
+              this.resetForm();
+            });
           }
         });
         
-        if (valid) {
-          this.productGroupService.add(this.formData)
-          .subscribe(res => {
-            this.isPending = false;
-            this.openSnackBar('Successfully Added New Product Group');
-            this.resetForm();
-          });
-        }
       } else {
         this.openSnackBar('Please fill in all require field');
         this.isPending = false;
@@ -135,15 +154,15 @@ export class UploadComponent implements OnInit {
   }
 
   resetForm() {
-    this.addProductGroupForm.reset();
-    this.addProductGroupForm.controls.active.setValue(true);
+    // this.addProductGroupForm.reset();
+    // this.addProductGroupForm.controls.active.setValue(true);
     let length = this.addProductGroupForm.controls.products['controls'].length;
     for (let i = length - 1; i > -1; i--) {
       this.removeProduct(i);
     }
     this.productIds = [];
-    this.productImages = [];
-    this.selectedProduct = {};
+    // this.productImages = [];
+    // this.selectedProduct = {};
   }
 
   openSnackBar(message) {

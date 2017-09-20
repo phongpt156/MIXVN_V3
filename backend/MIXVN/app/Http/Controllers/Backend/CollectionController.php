@@ -52,7 +52,7 @@ class CollectionController extends Controller
                 $constraint->aspectRatio();
             })->save($collection->img);
         }
-        $collection->active = ($collection->active === 'true' || $collection->active == 1) ? true : false;        
+        $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;        
         $collection->created_at = $now;
         $collection->updated_at = $now;
 

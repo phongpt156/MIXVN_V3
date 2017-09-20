@@ -1,5 +1,5 @@
-<div class="product-item-top w-100">
-  <img [src]="product.group?.img?.src" alt="" class="img-fluid" />
+<div class="product-item-top image-wrapper image-3-4">
+  <img [src]="product.group?.img?.src" alt="" class="img-fluid" (click)="openDetailProductModal(product)" />
   <div class="product-action d-none w-100">
     <mix-product-user-interactive [product]="product"></mix-product-user-interactive>
   </div>

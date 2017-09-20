@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CommonService {
-  private isAlertLogin: boolean = false;
+  private isBlur: boolean = false;
 
   constructor() { }
 
-  getAlertLogin(): boolean {
-    return this.isAlertLogin;
+  getBlur(): boolean {
+    return this.isBlur;
   }
 
-  setAlertLogin(status: boolean) {
-    this.isAlertLogin = status;
+  setBlur(status: boolean) {
+    this.isBlur = status;
   }
 }

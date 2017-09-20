@@ -113,6 +113,8 @@ class ProductGroupController extends Controller
             }
             
         }, 1);
+
+        return response()->json([]);
     }
 
     /**

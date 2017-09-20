@@ -1,5 +1,7 @@
 import { Component, OnInit, OnChanges, HostListener, Input } from '@angular/core';
 
+import { ProductService } from 'app/main-app/main-app-shared/services/product/product.service';
+
 @Component({
   selector: 'mix-product-list',
   templateUrl: './product-list.component.html',
@@ -466,12 +468,16 @@ export class ProductListComponent implements OnInit, OnChanges {
     },
   ];
 
-  constructor() { }
+  constructor(
+    private productService: ProductService
+  ) { }
 
   ngOnInit() {
+    this.productService.products = this.products;
   }
 
   ngOnChanges() {
     this.products = this.products.concat(this.loadMoreProductData);
+    this.productService.products = this.products;
   }
 }

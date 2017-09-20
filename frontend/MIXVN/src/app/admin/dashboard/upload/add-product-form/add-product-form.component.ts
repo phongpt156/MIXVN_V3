@@ -18,13 +18,13 @@ export class AddProductFormComponent implements OnInit {
   @Output() productImageAction: EventEmitter<any> = new EventEmitter;
   @Output() productId: EventEmitter<any> = new EventEmitter;
 
-  gender: any = GENDER;
-  categories: any[] = [];
-  suppliers: any[] = [];
-  productImage: File;
-  isDisabled: boolean = false;
+  // gender: any = GENDER;
+  // categories: any[] = [];
+  // suppliers: any[] = [];
+  // productImage: File;
+  // isDisabled: boolean = false;
   product: any;
-  features: any[] = [];
+  // features: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -34,51 +34,51 @@ export class AddProductFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getCategories(this.addProductForm.value.gender);
+    // this.getCategories(this.addProductForm.value.gender);
 
-    this.getSuppliers();
-    this.getFeatures();
+    // this.getSuppliers();
+    // this.getFeatures();
   }
 
-  getCategories(genderId: number) {
-    this.categoryGroupService.getByGender(genderId)
-    .subscribe(res => {
-      this.categories = [];
-      res.data.forEach(categoryGroup => {
-        this.categories = this.categories.concat(categoryGroup.categories);
-      });
-    })
-  }
+  // getCategories(genderId: number) {
+  //   this.categoryGroupService.getByGender(genderId)
+  //   .subscribe(res => {
+  //     this.categories = [];
+  //     res.data.forEach(categoryGroup => {
+  //       this.categories = this.categories.concat(categoryGroup.categories);
+  //     });
+  //   })
+  // }
 
-  getFeatures() {
-    this.featureService.getAll()
-    .subscribe(res => {
-      this.features = res.data;
-      console.log(this.features);
-    });
-  }
+  // getFeatures() {
+  //   this.featureService.getAll()
+  //   .subscribe(res => {
+  //     this.features = res.data;
+  //     console.log(this.features);
+  //   });
+  // }
 
-  getSuppliers() {
-    this.supplierService.getAll()
-    .subscribe(res => {
-      this.suppliers = res.data;
-    });
-  }
+  // getSuppliers() {
+  //   this.supplierService.getAll()
+  //   .subscribe(res => {
+  //     this.suppliers = res.data;
+  //   });
+  // }
 
-  imageUploaded(e) {
-    this.productImage = e.file;
-    this.productImageAction.emit({productImage: this.productImage, index: this.index});
-  }
+  // imageUploaded(e) {
+  //   this.productImage = e.file;
+  //   this.productImageAction.emit({productImage: this.productImage, index: this.index});
+  // }
 
-  imageRemoved(e) {
-    this.productImage = undefined;
-    this.productImageAction.emit({productImage: this.productImage, index: this.index});
-  }
+  // imageRemoved(e) {
+  //   this.productImage = undefined;
+  //   this.productImageAction.emit({productImage: this.productImage, index: this.index});
+  // }
 
   selectedProduct(e) {
     this.addProductForm.disable();
     this.productId.emit({productId: e.product.id, index: this.index});
-    this.isDisabled = true;
+    // this.isDisabled = true;
     this.product = e.product;
   }
 }

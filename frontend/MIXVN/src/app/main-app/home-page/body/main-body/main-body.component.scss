@@ -22,3 +22,19 @@ a {
         }
     }
 }
+
+.gender-selection {
+    padding: 8px;
+    opacity: 1 !important;
+    font-size: 30px;
+    font-size: 28px;
+    border-radius: 30%;
+    background-color: #151515 !important;
+    
+    .dropdown-menu {
+        min-width: unset;
+        left: 6px !important;
+        border: none;
+        background-color: transparent;
+    }
+}

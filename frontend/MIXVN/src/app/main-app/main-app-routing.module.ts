@@ -10,8 +10,17 @@ const mainAppRoutes: Routes = [
     path: '',
     component: MainAppComponent,
     children: [
-      { path: '', component: HomePageComponent, pathMatch: 'full' },
-      { path: 'tim-kiem', component: SearchPageComponent }
+      {
+        path: '',
+        loadChildren: './home-page/home-page.module#HomePageModule',
+        data: {
+          preload: true
+        }
+      },
+      {
+        path: 'tim-kiem',
+        loadChildren: './search-page/search-page.module#SearchPageModule' 
+      }
     ]
   }
 //   { path: 'homepage', component: MainAppComponent }

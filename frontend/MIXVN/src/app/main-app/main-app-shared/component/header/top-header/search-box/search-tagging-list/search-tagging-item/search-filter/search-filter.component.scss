@@ -1,0 +1,39 @@
+:host {
+    z-index: 9999;
+    width: 100%;
+    top: 45px;
+    position: absolute;
+    left: 0;
+    background-color: #3a3a3a;
+}
+
+.row-container {
+    position: relative;
+
+    .feature-label {
+        text-transform: uppercase;
+        position: absolute;
+        left: 0;
+    }
+}
+
+.feature-wrapper {
+    a {
+        padding: 1px 10px;
+
+        &:hover {
+            background-color: #575757 !important;
+        }
+    }
+}
+
+.border-bottom {
+    border-bottom: 3px solid #9d9d9d;
+}
+
+.color {
+    width: 55px;
+    height: 15px;
+    display: inline-block;
+    border: 1px solid #787878;
+}

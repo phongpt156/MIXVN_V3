@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { CustomPreloader } from 'app/shared/classes/custom.preloader';
+
 import { CategoryService } from './shared/services/category/category.service';
 import { CommonService } from './shared/services/common/common.service';
 import { AuthService } from './shared/services/auth/auth.service';
@@ -24,6 +26,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpClientModule
   ],
   providers: [
+    CustomPreloader,
     CategoryService,
     CommonService,
     AuthService

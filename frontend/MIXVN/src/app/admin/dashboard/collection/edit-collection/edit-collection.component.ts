@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { CollectionService } from 'app/shared/services/collection/collection.service';
+
+declare var Cropper: any;
 
 @Component({
   selector: 'mix-edit-collection',
@@ -10,11 +12,13 @@ import { CollectionService } from 'app/shared/services/collection/collection.ser
   styleUrls: ['./edit-collection.component.scss']
 })
 export class EditCollectionComponent implements OnInit {
+  @ViewChild('collectionImagePreview') collectionImagePreview;
   collection: any = {};
   collectionImage: string;
   editCollectionForm: FormGroup;
-  imgFile: File;
   formData: FormData = new FormData;
+  cropper: any;
+  isSelectImage: boolean = false;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -29,6 +33,12 @@ export class EditCollectionComponent implements OnInit {
     });
     
     this.patchValue();
+
+    this.cropper = new Cropper(this.collectionImagePreview.nativeElement, {
+      aspectRatio: 21 / 9,
+      viewMode: 1
+    });
+    
   }
 
   patchValue() {
@@ -50,29 +60,42 @@ export class EditCollectionComponent implements OnInit {
   }
 
   imageUploaded(e) {
-    this.imgFile = e.file;
+    this.isSelectImage = true;
+    let oFReader = new FileReader();
+    
+    oFReader.readAsDataURL(e.file);
+    oFReader.onload = (oFREvent) => {
+      this.cropper.replace(oFREvent.target['result']);
+    }
   }
 
   imageRemoved(e) {
-    this.imgFile = undefined;
+    this.isSelectImage = false;
+    this.cropper.destroy();
   }
 
   onSubmit() {
     if (this.editCollectionForm.valid) {
-      if (this.imgFile) {
-        this.formData.append('img', this.imgFile, this.imgFile.name);
+      if (this.isSelectImage) {
+        this.cropper.getCroppedCanvas().toBlob((collectionImage) => {
+          this.formData.append('img', collectionImage);
+          this.sendData();
+        });
+      } else {
+        this.sendData();
       }
-
-      for (let i in this.editCollectionForm.value) {
-        this.formData.append(i, this.editCollectionForm.value[i]);
-      }
-
-      this.collectionService.edit(this.formData, this.collection.id)
-      .subscribe(res => {
-        this.bsModalRef.hide();
-        console.log(res);
-      });
     }
   }
 
+  sendData() {
+    for (let i in this.editCollectionForm.value) {
+      this.formData.append(i, this.editCollectionForm.value[i]);
+    }
+
+    this.collectionService.edit(this.formData, this.collection.id)
+    .subscribe(res => {
+      this.bsModalRef.hide();
+      console.log(res);
+    });
+  }
 }

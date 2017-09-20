@@ -1,21 +1,13 @@
 @import "/../../../../../../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
 
 :host {
-    flex-basis: calc(100% / 6);
+    padding: 0 12px 24px 12px;
+    flex-basis: calc(100% / 5);
     display: block;
 }
 
 .product-item-top {
-    position: relative;
-    padding-top: calc(100% * 3 / 2);
-    
     &>img {
-        width: 100%;
-        top: 0;
-        position: absolute;
-        left: 0;
-        height: 100%;
-
         &:hover {
             cursor: pointer;
         }
@@ -40,7 +32,7 @@
 
 @include media-breakpoint-down(xl) {
     :host {
-        flex-basis: calc(100% / 6);
+        flex-basis: calc(100% / 5);
     }
 }
 

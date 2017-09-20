@@ -19,7 +19,20 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <image-upload [max]="1" [buttonCaption]="'Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved($event)"></image-upload>
+        <div class="d-flex">
+          <div class="w-100">
+            <img alt="" #collectionImagePreview id="collectionImagePreview" />
+          </div>
+          <div *ngIf="isSelectImage" class="ml-2">
+            <button class="btn btn-primary" (click)="cropper.zoom(0.1)">
+              <a><span class="fa fa-search-plus"></span></a>
+            </button>
+            <button class="btn btn-primary" (click)="cropper.zoom(-0.1)">
+              <a><span class="fa fa-search-minus"></span></a>
+            </button>
+          </div>
+        </div>
+        <image-upload [max]="1" [buttonCaption]="'Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved()" [preview]="false"></image-upload>
       </div>
       <div class="col-4" *ngIf="collectionImage">
         <div class="image-wrapper image-16-9">
@@ -29,7 +42,7 @@
     </div>
     <div class="row mt-4">
       <div class="text-right col-12">
-        <button md-button type="submit" class="text-white" (click)="onSubmit()" color="add">Add</button>
+        <button md-button type="submit" class="text-white" (click)="onSubmit()" color="add">Save</button>
       </div>
     </div>
   </form>

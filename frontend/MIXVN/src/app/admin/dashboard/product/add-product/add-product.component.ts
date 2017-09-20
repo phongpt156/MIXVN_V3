@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
@@ -9,18 +9,24 @@ import { FeatureService } from 'app/shared/services/feature/feature.service';
 
 import { GENDER } from 'app/shared/constants/constants';
 
+declare var Cropper: any;
+
 @Component({
   selector: 'mix-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit, OnDestroy {
+  @ViewChild('productImagePreview') productImagePreview;
   addProductForm: FormGroup;
-  productImage: File;
   categories: any[] = [];
   suppliers: any[] = [];
   features: any[] = [];
   gender: any = GENDER;
+  cropper: any;
+  isSelectImage: boolean = false;
+  formData: FormData = new FormData;
+  isPending: boolean = false;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -41,6 +47,11 @@ export class AddProductComponent implements OnInit, OnDestroy {
       features: [],
       gender: ['', Validators.required],
       active: [true, Validators.required ]
+    });
+
+    this.cropper = new Cropper(this.productImagePreview.nativeElement, {
+      aspectRatio: 3 / 4,
+      viewMode: 1
     });
 
     this.getSuppliers();
@@ -76,11 +87,19 @@ export class AddProductComponent implements OnInit, OnDestroy {
   }
 
   imageUploaded(e) {
-    this.productImage = e.file;
+    let oFReader = new FileReader();
+    
+    oFReader.readAsDataURL(e.file);
+    oFReader.onload = (oFREvent) => {
+      this.cropper.destroy();
+      this.isSelectImage = true;
+      this.cropper.replace(oFREvent.target['result']);
+    }
   }
 
   imageRemoved(e) {
-    this.productImage = undefined;
+    this.isSelectImage = false;
+    this.cropper.destroy();
   }
 
   getProducts() {
@@ -90,20 +109,32 @@ export class AddProductComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSubmit() {
-    if (this.addProductForm.valid && this.productImage) {
-      let formData: FormData = new FormData;
-      console.log(this.addProductForm.value);      
-      formData.append('img', this.productImage, this.productImage.name);
-
-      for (let name in this.addProductForm.value) {
-        formData.append(name, this.addProductForm.value[name]);
+  async onSubmit() {
+    if (!this.isPending) {
+      if (this.addProductForm.valid && this.isSelectImage) {
+        this.isPending = true;
+        await this.convertBlob();
+        for (let name in this.addProductForm.value) {
+          this.formData.append(name, this.addProductForm.value[name]);
+        }
+        console.log(123);
+        this.productService.add(this.formData)
+        .subscribe(res => {
+          console.log(res);
+          this.bsModalRef.hide();
+          this.cropper.destroy();
+          this.isPending = false;
+        });
       }
-
-      this.productService.add(formData)
-      .subscribe(res => {
-        this.bsModalRef.hide();
-      });
     }
-  } 
+  }
+  
+  convertBlob() {
+    return new Promise(() => {
+      this.cropper.getCroppedCanvas().toBlob((productImage) => {
+        this.formData.append('img', productImage);
+        console.log(123);
+      });
+    })
+  }
 }

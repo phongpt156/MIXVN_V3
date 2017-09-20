@@ -1,0 +1,55 @@
+.left-product-detail, .right-product-detail {
+    width: 287px;
+}
+
+.image-wrapper-footer {
+    position: absolute;
+    opacity: 0.91;
+    left: 0;
+    color: #fff;
+    bottom: 0;
+    background-color: #474747;
+    
+    .supplier-name {
+        padding: 0 40px;
+        border-right: 1px solid #fff;
+    }
+
+    &>a {
+        flex-grow: 1;
+    }
+}
+
+
+.right-product-detail {
+    color: #fff;
+    background-color: #272727;
+
+    hr {
+        border-top: 1px solid #4a4a4a;
+    }
+
+    .collection-name {
+        font-size: 10px;
+        color: #d4d4d4;
+    }
+    
+    .right-product-detail-content {
+        p {
+            font-size: 12px;
+            color: #dedede;
+        }
+    }
+}
+
+.arrow {
+    position: absolute;
+}
+
+.arrow-left {
+    left: -46px;
+}
+
+.arrow-right {
+    right: -46px;
+}
