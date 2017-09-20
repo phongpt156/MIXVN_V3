@@ -16,7 +16,7 @@ import { FeatureValueService } from 'app/shared/services/feature-value/feature-v
 import { ProductService } from 'app/shared/services/product/product.service';
 import { ProductGroupService } from 'app/shared/services/product-group/product-group.service';
 
-import { SharedModule } from './shared/modules/shared.module';
+import { AdminSharedModule } from './shared/modules/admin-shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 
 import { AdminComponent } from './admin.component';
@@ -26,7 +26,7 @@ import { LoginComponent } from './login/login.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule,
+    AdminSharedModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

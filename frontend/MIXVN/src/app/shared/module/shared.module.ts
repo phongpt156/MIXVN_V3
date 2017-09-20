@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { GoToHomepageDirective } from 'app/shared/directives/go-to-homepage/go-to-homepage.directive';
 
 @NgModule({
   imports: [
-    CommonModule,
+  ],
+  declarations: [
+    GoToHomepageDirective
   ],
   exports: [
-    CommonModule,
+    GoToHomepageDirective,
   ],
 })
 export class SharedModule {}

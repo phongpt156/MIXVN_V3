@@ -16,6 +16,7 @@ class CreateCollectionTable extends Migration
         Schema::create('collection', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('sm_img');
             $table->string('img');
             $table->boolean('active');
             $table->timestamps();

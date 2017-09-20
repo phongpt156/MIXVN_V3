@@ -45,7 +45,7 @@ export class AddCollectionComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.addCollectionForm.valid && this.isSelectImage) {
-      this.cropper.getCroppedCanvas().toBlob((collectionImage) => {
+      this.cropper.getCroppedCanvas().toBlob(collectionImage => {
         this.formData.append('img', collectionImage);
 
         for (let i in this.addCollectionForm.value) {

@@ -52,7 +52,7 @@ class SupplierController extends Controller
         $supplier->instagram_link = $request->instagram_link;
         $supplier->instagram_title = $request->instagram_title;
         if ($request->background_image) {
-            $supplier->background_image = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->background_image->getClientOriginalName();
+            $supplier->background_image = 'images/bg_' . $now->format('Y-m-dTH-i-s-') . $request->background_image->getClientOriginalName();
             Image::make($request->background_image)->resize(1366, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($supplier->background_image);
@@ -131,7 +131,7 @@ class SupplierController extends Controller
                 File::delete($supplier->background_image);
             }
             
-            $supplier->background_image = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->background_image->getClientOriginalName();
+            $supplier->background_image = 'images/bg_' . $now->format('Y-m-dTH-i-s-') . $request->background_image->getClientOriginalName();
             Image::make($request->background_image)->resize(1366, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($supplier->background_image);

@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule, MdIconModule } from '@angular/material';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule } from '@angular/router';
-
+import { SharedModule } from 'app/shared/module/shared.module';
 import { TopMenuComponent } from './../components/menu/top-menu/top-menu.component';
 import { SideMenuComponent } from './../components/menu/side-menu/side-menu.component';
 
 @NgModule({
   imports: [
+    SharedModule,
     CommonModule,
     RouterModule,
     MaterialModule,
@@ -16,7 +17,6 @@ import { SideMenuComponent } from './../components/menu/side-menu/side-menu.comp
     CollapseModule.forRoot()
   ],
   exports: [
-    CommonModule,
     TopMenuComponent,
     SideMenuComponent,
     MaterialModule,
@@ -28,4 +28,4 @@ import { SideMenuComponent } from './../components/menu/side-menu/side-menu.comp
     SideMenuComponent
   ]
 })
-export class SharedModule {}
+export class AdminSharedModule {}

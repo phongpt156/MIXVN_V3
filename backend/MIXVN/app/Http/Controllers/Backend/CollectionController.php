@@ -48,9 +48,14 @@ class CollectionController extends Controller
         $collection->name = $request->name;
         if ($request->img) {
             $collection->img = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
+            $collection->sm_img = 'images/sm_' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
+
             Image::make($request->img)->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($collection->img);
+            Image::make($request->img)->resize(1366, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($collection->sm_img);
         }
         $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;        
         $collection->created_at = $now;
@@ -63,6 +68,7 @@ class CollectionController extends Controller
                 'id' => $collection->id,
                 'name' => $collection->name,
                 'img' => $collection->img ? asset($collection->img) : '',
+                'sm_img' => $collection->img ? asset($collection->sm_img) : '',
                 'active' => $collection->active
             ], 200);
         }
@@ -104,18 +110,28 @@ class CollectionController extends Controller
         $now = Carbon::now('UTC');
         
         $collection = Collection::find($id);
-
+        $collection->name = $request->name;
         if ($request->img) {
             if (File::exists($collection->img)) {
                 File::delete($collection->img);
             }
+            if (File::exists($collection->sm_img)) {
+                File::delete($collection->sm_img);
+            }
+            
             $collection->img = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
+            $collection->sm_img = 'images/sm_' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
+
             Image::make($request->img)->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($collection->img);
+            Image::make($request->img)->resize(1366, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($collection->sm_img);
         }
-        $collection->name = $request->name;
-        $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;
+
+        $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;        
+        $collection->created_at = $now;
         $collection->updated_at = $now;
 
         $success = $collection->save();
@@ -124,9 +140,10 @@ class CollectionController extends Controller
             return response()->json([
                 'id' => $collection->id,
                 'img' => $collection->img ? asset($collection->img) : '',
+                'img' => $collection->img ? asset($collection->sm_img) : '',
                 'name' => $collection->name,
                 'active' => $collection->active
-            ]);
+            ], 200);
         }
 
         return response()->json([], 401);
@@ -144,6 +161,9 @@ class CollectionController extends Controller
 
         if (File::exists($collection->img)) {
             File::delete($collection->img);
+        }
+        if (File::exists($collection->sm_img)) {
+            File::delete($collection->sm_img);
         }
 
         $success = $collection->delete();

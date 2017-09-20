@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImageUploadModule } from 'angular2-image-upload';
 
-import { SharedModule } from '../shared/modules/shared.module';
+import { AdminSharedModule } from '../shared/modules/admin-shared.module';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
@@ -33,8 +34,9 @@ import { EditProductComponent } from './product/edit-product/edit-product.compon
 
 @NgModule({
   imports: [
+    CommonModule,
     DashboardRoutingModule,
-    SharedModule,
+    AdminSharedModule,
     ReactiveFormsModule,
     FormsModule,
     ImageUploadModule.forRoot(),

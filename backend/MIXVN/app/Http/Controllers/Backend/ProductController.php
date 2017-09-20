@@ -125,16 +125,17 @@ class ProductController extends Controller
             $product->supplier_id = $request->supplier;
             $product->gender_id = $request->gender;
             $product->active = ($request->active === 'true' || $request->active == 1) ? true : false;
+
             if ($request->img) {
                 if (File::exists($product->img)) {
                     File::delete($product->img);
-                };
-
+                }
                 $product->img = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
                 Image::make($request->img)->resize(300, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($product->img);
             }
+
             $product->updated_at = $now;
             $product->save();
 
@@ -184,9 +185,9 @@ class ProductController extends Controller
                 File::delete($product->img);
             }
             $product->delete();
-
-            return response()->json([]);
         });
+
+        return response()->json([]);
     }
 
     public function search($name = null)

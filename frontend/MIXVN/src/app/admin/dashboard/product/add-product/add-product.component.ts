@@ -109,15 +109,15 @@ export class AddProductComponent implements OnInit, OnDestroy {
     });
   }
 
-  async onSubmit() {
+  async submit() {
     if (!this.isPending) {
       if (this.addProductForm.valid && this.isSelectImage) {
         this.isPending = true;
         await this.convertBlob();
+        
         for (let name in this.addProductForm.value) {
           this.formData.append(name, this.addProductForm.value[name]);
         }
-        console.log(123);
         this.productService.add(this.formData)
         .subscribe(res => {
           console.log(res);
@@ -129,11 +129,15 @@ export class AddProductComponent implements OnInit, OnDestroy {
     }
   }
   
+  onSubmit() {
+    this.submit();
+  }
+
   convertBlob() {
-    return new Promise(() => {
+    return new Promise((resolve) => {
       this.cropper.getCroppedCanvas().toBlob((productImage) => {
         this.formData.append('img', productImage);
-        console.log(123);
+        resolve();
       });
     })
   }

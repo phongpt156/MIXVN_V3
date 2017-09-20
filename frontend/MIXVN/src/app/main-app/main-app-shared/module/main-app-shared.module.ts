@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { SharedModule } from 'app/shared/module/shared.module';
 
 import { SearchTaggingService } from './../services/search-tagging/search-tagging.service';
 
@@ -21,6 +21,7 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot()
   ],
@@ -37,7 +38,6 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     SearchFilterComponent,    
   ],
   exports: [
-    CommonModule,
     HeaderComponent,
     FooterComponent,
     TopHeaderComponent,

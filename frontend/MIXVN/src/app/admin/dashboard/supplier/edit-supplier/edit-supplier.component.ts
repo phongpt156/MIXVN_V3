@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { SupplierService } from 'app/shared/services/supplier/supplier.service';
+
+declare var Cropper: any;
 
 @Component({
   selector: 'mix-edit-supplier',
@@ -10,15 +12,19 @@ import { SupplierService } from 'app/shared/services/supplier/supplier.service';
   styleUrls: ['./edit-supplier.component.scss']
 })
 export class EditSupplierComponent implements OnInit, OnDestroy {
+  @ViewChild('supplierBackgroundImagePreview') supplierBackgroundImagePreview;
+  @ViewChild('supplierAvatarImagePreview') supplierAvatarImagePreview;
   editSupplierForm: FormGroup;
-  backgroundImageFile: File;
-  avatarFile: File;
   supplier: any = {};
   supplierAvatar: string;
   supplierBackgroundImage: string;
   tmpSupplierAvatar: string;
   tmpSupplierBackgroundImage: string;
-  formData: FormData = new FormData;
+  private formData: FormData = new FormData;
+  backgroundCropper: any;
+  avatarCropper: any;
+  isSelectBackgroundImage: boolean = false;
+  isSelectAvatarImage: boolean = false;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -39,6 +45,16 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.patchValue();
+    });
+
+    this.backgroundCropper = new Cropper(this.supplierBackgroundImagePreview.nativeElement, {
+      aspectRatio: 21 / 9,
+      viewMode: 1
+    });
+
+    this.avatarCropper = new Cropper(this.supplierAvatarImagePreview.nativeElement, {
+      aspectRatio: 1 / 1,
+      viewMode: 1
     });
   }
 
@@ -65,39 +81,69 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
   }
 
   imageUploaded(e, name: string) {
+    let oFReader = new FileReader();
+    oFReader.readAsDataURL(e.file);
     if (name === 'background_image') {
-      this.backgroundImageFile = e.file;
+      oFReader.onload = (oFREvent) => {
+        this.backgroundCropper.replace(oFREvent.target['result']);
+      }
+      this.isSelectBackgroundImage = true;  
     } else if (name === 'avatar') {
-      this.avatarFile = e.file;
+      oFReader.onload = (oFREvent) => {
+        this.avatarCropper.replace(oFREvent.target['result']);
+      }
+      this.isSelectAvatarImage = true;  
     }
   }
 
   imageRemoved(e, name: string) {
     if (name === 'background_image') {
-      this.backgroundImageFile = undefined;
+      this.isSelectBackgroundImage = false;
+      this.backgroundCropper.destroy();
     } else if (name === 'avatar') {
-      this.avatarFile = undefined;
+      this.isSelectAvatarImage = false;
+      this.avatarCropper.destroy();
     }
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.editSupplierForm.valid) {
-      if (this.backgroundImageFile) {
-        this.formData.append('background_image', this.backgroundImageFile, this.backgroundImageFile.name);
+      if (this.isSelectBackgroundImage) {
+        await this.convertBlob('background_image');
       }
 
-      if (this.avatarFile) {
-        this.formData.append('avatar', this.avatarFile, this.avatarFile.name);
+      if (this.isSelectAvatarImage) {
+        await this.convertBlob('avatar');
       }
-
-      for (let i in this.editSupplierForm.value) {
-        this.formData.append(i, this.editSupplierForm.value[i]);
-      }
-      
-      this.supplierService.edit(this.formData, this.supplier.id)
-      .subscribe(res => {
-        this.bsModalRef.hide();
-      });
+      this.senData();
     }
+  }
+
+  convertBlob(name: string) {
+    return new Promise(resolve => {
+      if (name === 'background_image') {
+        this.backgroundCropper.getCroppedCanvas().toBlob(backgroundImage => {
+          this.formData.append('background_image', backgroundImage);
+          resolve();
+        });
+      } else if (name === 'avatar') {
+        this.avatarCropper.getCroppedCanvas().toBlob(avatarImage => {
+          this.formData.append('avatar', avatarImage);
+          resolve();
+        });
+      }
+    });
+  }
+
+  senData() {
+    for (let i in this.editSupplierForm.value) {
+      this.formData.append(i, this.editSupplierForm.value[i]);
+    }
+    
+    this.supplierService.edit(this.formData, this.supplier.id)
+    .subscribe(res => {
+      console.log(res);
+      this.bsModalRef.hide();
+    });
   }
 }

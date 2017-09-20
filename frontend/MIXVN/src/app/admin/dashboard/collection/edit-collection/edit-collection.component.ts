@@ -74,28 +74,35 @@ export class EditCollectionComponent implements OnInit {
     this.cropper.destroy();
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.editCollectionForm.valid) {
       if (this.isSelectImage) {
-        this.cropper.getCroppedCanvas().toBlob((collectionImage) => {
-          this.formData.append('img', collectionImage);
-          this.sendData();
-        });
-      } else {
-        this.sendData();
+        await this.convertBlob();
       }
+
+      this.sendData();
     }
   }
 
   sendData() {
-    for (let i in this.editCollectionForm.value) {
-      this.formData.append(i, this.editCollectionForm.value[i]);
-    }
+      for (let i in this.editCollectionForm.value) {
+        this.formData.append(i, this.editCollectionForm.value[i]);
+      }
+  
+      this.collectionService.edit(this.formData, this.collection.id)
+      .subscribe(res => {
+        this.bsModalRef.hide();
+        console.log(res);
+      });
+    
+  }
 
-    this.collectionService.edit(this.formData, this.collection.id)
-    .subscribe(res => {
-      this.bsModalRef.hide();
-      console.log(res);
+  convertBlob() {
+    return new Promise(resolve => {
+      this.cropper.getCroppedCanvas().toBlob((collectionImage) => {
+        this.formData.append('img', collectionImage);
+        resolve();
+      });
     });
   }
 }

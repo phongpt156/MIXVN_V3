@@ -18,6 +18,7 @@ class Collection extends Resource
             'id' => $this->id,
             'name' => $this->name,
             'img' => $this->img ? asset($this->img) : '',
+            'sm_img' => $this->sm_img ? asset($this->sm_img) : '',
             'active' => $this->active
         ];
     }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'app/admin/shared/services/admin/admin.service';
 
 @Component({
   selector: 'mix-dashboard',
@@ -6,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  constructor() { }
+  admin: any = {};
+
+  constructor(
+    private adminService: AdminService
+  ) { }
 
   ngOnInit() {
+    this.adminService.getAdmin().subscribe(res => {
+      this.admin = res.admin;
+    });
   }
 
 }

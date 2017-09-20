@@ -28,6 +28,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
   cropper: any;
   isSelectImage: boolean = false;
   formData: FormData = new FormData;
+  isPending: boolean = false;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -132,16 +133,15 @@ export class EditProductComponent implements OnInit, OnDestroy {
     this.cropper.destroy();
   }
 
-  onSubmit() {
-    if (this.editProductForm.valid) {
-      if (this.isSelectImage) {
-        this.cropper.getCroppedCanvas().toBlob((productImage) => {
-          this.formData.append('img', productImage);
-        });
-      }
-      setTimeout(() => {
+  async onSubmit() {
+    if (!this.isPending) {
+      if (this.editProductForm.valid) {
+        this.isPending = true;
+        if (this.isSelectImage) {
+          await this.convertBlob();
+        }
         this.sendData();
-      }) 
+      }
     }
   }
 
@@ -149,10 +149,20 @@ export class EditProductComponent implements OnInit, OnDestroy {
     for (let name in this.editProductForm.value) {
       this.formData.append(name, this.editProductForm.value[name]);
     }
-
-    this.productService.add(this.formData)
+    this.productService.edit(this.formData, this.product.id)
     .subscribe(res => {
+      console.log(res);
       this.bsModalRef.hide();
+      this.isPending = false;
+    });
+  }
+
+  convertBlob() {
+    return new Promise(resolve => {
+      this.cropper.getCroppedCanvas().toBlob((productImage) => {
+        this.formData.append('img', productImage);
+        resolve();
+      });
     });
   }
 }
