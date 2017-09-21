@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'category'], function () {
-        Route::get('', 'Backend\CategoryController@index')->middleware('admin.super');
+        Route::get('', 'Backend\CategoryController@index')->middleware('admin.super');;
         Route::post('', 'Backend\CategoryController@store')->middleware('admin.super');
         Route::put('/{id}', 'Backend\CategoryController@update')->middleware('admin.super')->where('id', '[0-9]+');
         Route::delete('/{id}', 'Backend\CategoryController@destroy')->middleware('admin.super')->where('id', '[0-9]+');
@@ -64,4 +64,6 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-Route::resource('category', 'Frontend\CategoryController');
+Route::group(['prefix' => 'category'], function () {
+    Route::get('', 'Frontend\CategoryController@index');
+});

@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal/modal-options.class';
 
-import { FeatureService } from 'app/shared/services/feature/feature.service';
-import { FeatureValueService } from 'app/shared/services/feature-value/feature-value.service';
+import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
+import { FeatureValueService } from 'app/admin/admin-shared/services/feature-value/feature-value.service';
 
 import { AddFeatureComponent } from './add-feature/add-feature.component';
 import { EditFeatureComponent } from './edit-feature/edit-feature.component';

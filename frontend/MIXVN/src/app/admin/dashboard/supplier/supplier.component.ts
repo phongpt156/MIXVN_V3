@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { SupplierService } from 'app/shared/services/supplier/supplier.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal/modal-options.class';
+
+import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 
 import { Page } from 'app/shared/classes/page';
 
@@ -23,7 +23,6 @@ export class SupplierComponent implements OnInit {
     class: 'mw-100 w-75'
   };
   selectedSupplierId: number;
-
   constructor(
     private bsModalService: BsModalService,
     private supplierService: SupplierService,

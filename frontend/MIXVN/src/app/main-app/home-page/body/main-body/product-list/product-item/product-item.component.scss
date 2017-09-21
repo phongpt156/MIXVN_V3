@@ -2,7 +2,7 @@
 
 :host {
     padding: 0 12px 24px 12px;
-    flex-basis: calc(100% / 5);
+    flex-basis: calc(100% / 6);
     display: block;
 }
 
@@ -32,7 +32,7 @@
 
 @include media-breakpoint-down(xl) {
     :host {
-        flex-basis: calc(100% / 5);
+        flex-basis: calc(100% / 6);
     }
 }
 
@@ -48,7 +48,7 @@
     }
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(xs) {
     :host {
         flex-basis: calc(100% / 2);
     }

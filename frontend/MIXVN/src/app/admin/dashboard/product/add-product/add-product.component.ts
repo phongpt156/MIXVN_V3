@@ -2,10 +2,10 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
-import { ProductService } from 'app/shared/services/product/product.service';
-import { CategoryGroupService } from 'app/shared/services/category-group/category-group.service';
-import { SupplierService } from 'app/shared/services/supplier/supplier.service';
-import { FeatureService } from 'app/shared/services/feature/feature.service';
+import { ProductService } from 'app/admin/admin-shared/services/product/product.service';
+import { CategoryGroupService } from 'app/admin/admin-shared/services/category-group/category-group.service';
+import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
+import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 
 import { GENDER } from 'app/shared/constants/constants';
 

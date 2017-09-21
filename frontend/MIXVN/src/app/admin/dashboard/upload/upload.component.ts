@@ -5,7 +5,7 @@ import { MdSnackBar } from '@angular/material';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { ProductGroupService } from 'app/shared/services/product-group/product-group.service';
+import { ProductGroupService } from 'app/admin/admin-shared/services/product-group/product-group.service';
 
 declare var Cropper: any;
 

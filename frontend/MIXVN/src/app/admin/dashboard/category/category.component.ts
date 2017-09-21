@@ -3,9 +3,9 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { FormControl, Validators } from '@angular/forms';
 
-import { CategoryService } from 'app/shared/services/category/category.service';
-import { ParentCategoryService } from 'app/shared/services/parent-category/parent-category.service';
-import { CategoryGroupService } from 'app/shared/services/category-group/category-group.service';
+import { CategoryService } from 'app/admin/admin-shared/services/category/category.service';
+import { ParentCategoryService } from 'app/admin/admin-shared/services/parent-category/parent-category.service';
+import { CategoryGroupService } from 'app/admin/admin-shared/services/category-group/category-group.service';
 
 import { GENDER } from 'app/shared/constants/constants';
 

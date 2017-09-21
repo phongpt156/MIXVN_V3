@@ -10,6 +10,8 @@ import { ProductService } from 'app/main-app/main-app-shared/services/product/pr
 import { ProductDetailModalComponent } from './home-page/body/main-body/product-list/product-item/product-detail-modal/product-detail-modal.component';
 import { MainAppComponent } from './main-app.component';
 
+import { CategoryService } from './main-app-shared/services/category/category.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { MainAppComponent } from './main-app.component';
     ProductDetailModalComponent,
   ],
   providers: [
-    ProductService
+    ProductService,
+    CategoryService
   ],
   entryComponents: [
     ProductDetailModalComponent

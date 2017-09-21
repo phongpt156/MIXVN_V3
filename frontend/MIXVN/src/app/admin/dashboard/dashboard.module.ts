@@ -5,7 +5,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImageUploadModule } from 'angular2-image-upload';
 
-import { AdminSharedModule } from '../shared/modules/admin-shared.module';
+import { AdminSharedModule } from '../admin-shared/modules/admin-shared.module';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 

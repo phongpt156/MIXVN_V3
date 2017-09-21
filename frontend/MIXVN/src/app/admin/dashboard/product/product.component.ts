@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
-import { ProductService } from 'app/shared/services/product/product.service';
+import { ProductService } from 'app/admin/admin-shared/services/product/product.service';
 
 import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';

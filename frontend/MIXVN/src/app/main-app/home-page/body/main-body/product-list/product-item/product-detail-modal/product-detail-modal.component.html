@@ -3,18 +3,18 @@
     <a (click)="changeProduct(1)"><img src="http://i.imgur.com/N0iLNfz.png" alt="" /></a>
   </div>
   <div class="product-detail d-flex">
-    <div class="left-product-detail w-50">
+    <div class="left-product-detail w-100">
       <div class="image-wrapper image-3-4">
         <img [src]="productService.selectedProduct?.group?.img.src" alt="" />
         <div class="image-wrapper-footer d-flex align-items-center py-1 w-100 justify-content-between">
-          <div class="text-uppercase supplier-name">{{ productService.selectedProduct?.supplier?.name }}</div>
+          <div class="text-uppercase supplier-name w-100">{{ productService.selectedProduct?.supplier?.name }}</div>
           <a class="w-100">
             <i class="fa fa-long-arrow-right"></i>
           </a>
         </div>
       </div>
     </div>
-    <div class="right-product-detail text-left pt-2 pl-3 pr-5 w-50">
+    <div class="right-product-detail text-left pt-2 pl-3 pr-5">
       <div class="right-product-detail-header d-inline-block">
         <h5 class="text-uppercase text-left">{{ productService.selectedProduct?.name }}</h5>
         <a><div class="text-uppercase text-right collection-name">top 10 cách mặc bomber</div></a>

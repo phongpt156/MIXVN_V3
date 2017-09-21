@@ -3,9 +3,9 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 import { GENDER } from 'app/shared/constants/constants';
 
-import { CategoryGroupService } from 'app/shared/services/category-group/category-group.service';
-import { SupplierService } from 'app/shared/services/supplier/supplier.service';
-import { FeatureService } from 'app/shared/services/feature/feature.service';
+import { CategoryGroupService } from 'app/admin/admin-shared/services/category-group/category-group.service';
+import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
+import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 
 @Component({
   selector: 'mix-add-product-form',

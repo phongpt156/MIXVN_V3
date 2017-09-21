@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
-import { FeatureService } from 'app/shared/services/feature/feature.service';
+import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 
 @Component({
   selector: 'mix-add-feature',

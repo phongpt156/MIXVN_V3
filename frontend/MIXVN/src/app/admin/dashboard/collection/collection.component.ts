@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal/modal-options.class';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
-import { CollectionService } from 'app/shared/services/collection/collection.service';
+import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
 
 import { AddCollectionComponent } from './add-collection/add-collection.component';
 import { EditCollectionComponent } from './edit-collection/edit-collection.component';

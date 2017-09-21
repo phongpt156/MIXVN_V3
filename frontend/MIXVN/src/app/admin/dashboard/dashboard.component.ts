@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'app/admin/shared/services/admin/admin.service';
+import { AdminService } from 'app/admin/admin-shared/services/admin/admin.service';
 
 @Component({
   selector: 'mix-dashboard',

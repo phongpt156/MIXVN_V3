@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SupplierService } from 'app/shared/services/supplier/supplier.service';
+
+import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 
 declare var Cropper: any;
 

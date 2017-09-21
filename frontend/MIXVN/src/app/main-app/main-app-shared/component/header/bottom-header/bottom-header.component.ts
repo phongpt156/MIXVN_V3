@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 
-import { CategoryService } from 'app/shared/services/category/category.service';
+import { CategoryService } from 'app/main-app/main-app-shared/services/category/category.service';
 import { SearchTaggingService } from 'app/main-app/main-app-shared/services/search-tagging/search-tagging.service';
 
 @Component({

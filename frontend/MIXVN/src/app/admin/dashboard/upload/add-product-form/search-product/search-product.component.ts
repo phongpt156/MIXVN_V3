@@ -5,7 +5,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { ProductService } from 'app/shared/services/product/product.service';
+import { ProductService } from 'app/admin/admin-shared/services/product/product.service';
 
 @Component({
   selector: 'mix-search-product',

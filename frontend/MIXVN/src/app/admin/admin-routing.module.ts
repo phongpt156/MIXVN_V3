@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './shared/guards/auth-guard.service';
-import { CheckLogin } from './shared/guards/check-login.service';
+import { AuthGuard } from './admin-shared/guards/auth-guard.service';
+import { CheckLogin } from './admin-shared/guards/check-login.service';
 
 import { AdminComponent } from './admin.component';
 import { LoginComponent } from './login/login.component';

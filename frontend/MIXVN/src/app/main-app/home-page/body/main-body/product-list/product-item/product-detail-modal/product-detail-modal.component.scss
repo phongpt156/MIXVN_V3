@@ -15,7 +15,6 @@
     background-color: #474747;
     
     .supplier-name {
-        padding: 0 40px;
         border-right: 1px solid #fff;
     }
 
@@ -26,6 +25,8 @@
 
 
 .right-product-detail {
+    min-width: 350px;
+    max-width: 400px;
     color: #fff;
     background-color: #272727;
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AdminService } from 'app/admin/shared/services/admin/admin.service';
+import { AdminService } from 'app/admin/admin-shared/services/admin/admin.service';
 
 @Component({
   selector: 'mix-login',
