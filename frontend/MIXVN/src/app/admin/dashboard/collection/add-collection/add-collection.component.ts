@@ -16,7 +16,7 @@ export class AddCollectionComponent implements OnInit, OnDestroy {
   addCollectionForm: FormGroup;
   formData: FormData = new FormData;
   cropper: any;
-  isSelectImage: boolean = false;
+  isSelectImage = false;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -27,7 +27,7 @@ export class AddCollectionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.addCollectionForm = this.fb.group({
       name: ['', Validators.required],
-      active: true
+      active: [true]
     });
 
     this.cropper = new Cropper(this.collectionImagePreview.nativeElement, {
@@ -48,10 +48,10 @@ export class AddCollectionComponent implements OnInit, OnDestroy {
       this.cropper.getCroppedCanvas().toBlob(collectionImage => {
         this.formData.append('img', collectionImage);
 
-        for (let i in this.addCollectionForm.value) {
+        for (const i of Object.keys(this.addCollectionForm.value)) {
           this.formData.append(i, this.addCollectionForm.value[i]);
         }
-    
+
         this.collectionService.add(this.formData)
         .subscribe(res => {
           console.log(res);
@@ -62,9 +62,9 @@ export class AddCollectionComponent implements OnInit, OnDestroy {
   }
 
   imageUploaded(e) {
-    this.isSelectImage = true;    
-    let oFReader = new FileReader();
-    
+    this.isSelectImage = true;
+    const oFReader = new FileReader();
+
     oFReader.readAsDataURL(e.file);
     oFReader.onload = (oFREvent) => {
       this.cropper.replace(oFREvent.target['result']);

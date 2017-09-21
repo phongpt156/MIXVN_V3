@@ -14,7 +14,7 @@ import { AlertLoginComponent } from 'app/main-app/main-app-shared/component/aler
 export class ProductUserInteractiveComponent implements OnInit {
   @HostBinding('class') classes = 'd-flex flex-row bg-white w-100'
   @Input() product;
-  
+
   bsModalRef: BsModalRef;
 
   constructor(

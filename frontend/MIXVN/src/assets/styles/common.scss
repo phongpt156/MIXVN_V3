@@ -91,7 +91,18 @@ button {
 .image-3-4 {
     padding-top: calc(100% * 4 / 3);
 }
+.wrapper-percentage {
+    width: 100%;
+    position: relative;
 
+    &>div {
+        top: 0;
+        right: 0;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+}
 /**------------------- Textarea Readonly Style -------------------**/
 .textare-readonly {
     outline: none;

@@ -59,10 +59,13 @@
       </div>
     </div>
     <div class="row form-group">
-      <div class="col-12">
+      <div class="col-7">
+        <image-upload [max]="1" [buttonCaption]="'Product Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved($)" [preview]="false"></image-upload>
         <div class="d-flex">
-          <div class="w-100">
-            <img alt="" #productImagePreview />
+          <div class="wrapper-percentage image-3-4">
+            <div>
+              <img alt="" #productImagePreview />
+            </div>
           </div>
           <div *ngIf="isSelectImage" class="ml-2">
             <button class="btn btn-primary" (click)="cropper.zoom(0.1)">
@@ -71,12 +74,6 @@
             <button class="btn btn-primary" (click)="cropper.zoom(-0.1)">
               <a><span class="fa fa-search-minus"></span></a>
             </button>
-          </div>
-        </div>
-        <image-upload [max]="1" [buttonCaption]="'Product Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved()" [preview]="false"></image-upload>
-        <div class="py-5" *ngIf="product?.img" style="width: 150px">
-          <div class="image-wrapper image-2-3">
-            <img [src]="product.img" alt="" />
           </div>
         </div>
       </div>

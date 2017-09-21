@@ -19,13 +19,13 @@ export class AdminService {
   ) { }
 
   login(body): Observable<any> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
     return this.http.post(ADMIN.signin, body, options)
     .catch(handleError);
   }
 
   getAdmin(): Observable<any> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
     return this.http.get(ADMIN.getAdmin, options)
     .catch((error: Response | any) => {
       localStorage.removeItem('token');

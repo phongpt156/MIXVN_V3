@@ -13,35 +13,35 @@ import { SUPPLIER } from 'app/shared/constants/api/backend';
 @Injectable()
 export class SupplierService {
   public suppliers: any[] = [];
-  
+
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
   getAll(): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.get(SUPPLIER.getAll, options)
     .catch(handleError);
   }
 
   add(body): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService, '');
+    const options = createCommonHeaders(this.authService, '');
 
     return this.http.post(SUPPLIER.add, body, options)
     .catch(handleError);
   }
 
   edit(body, id: number): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService, '');
+    const options = createCommonHeaders(this.authService, '');
 
     return this.http.post(SUPPLIER.edit + id, body, options)
     .catch(handleError);
   }
 
   delete(id: number): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.get(SUPPLIER.delete + id, options)
     .catch(handleError);

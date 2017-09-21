@@ -18,7 +18,7 @@ export class ProductGroupService {
   ) { }
 
   add(body): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService, '');
+    const options = createCommonHeaders(this.authService, '');
 
     return this.http.post(PRODUCT_GROUP.add, body, options)
     .catch(handleError);

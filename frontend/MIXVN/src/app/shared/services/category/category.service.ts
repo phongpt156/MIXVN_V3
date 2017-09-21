@@ -18,28 +18,28 @@ export class CategoryService {
   ) { }
 
   getCategories(): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.get(CATEGORY.getAll, options)
     .catch(handleError);
   }
 
   add(body: any): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.post(CATEGORY.add, body, options)
     .catch(handleError);
   }
 
   edit(body: any, id: number): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.put(CATEGORY.edit + id, body, options)
     .catch(handleError);
   }
 
   delete(id: number): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.delete(CATEGORY.delete + id, options)
     .catch(handleError);

@@ -16,21 +16,21 @@ export class ParentCategoryService {
     private http: HttpClient,
     private authService: AuthService
   ) { }
-  
+
   add(body): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
     return this.http.post(PARENT_CATEGORY.add, body, options)
     .catch(handleError);
   }
 
   delete(id: number): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
     return this.http.delete(PARENT_CATEGORY.delete + id, options)
     .catch(handleError);
   }
 
   edit(body, id: number): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
     return this.http.put(PARENT_CATEGORY.edit + id, body, options)
     .catch(handleError);
   }

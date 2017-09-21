@@ -8,7 +8,7 @@ import { SearchTaggingService } from 'app/main-app/main-app-shared/services/sear
   styleUrls: ['./top-header.component.scss']
 })
 export class TopHeaderComponent implements OnInit {
-  mobile: boolean = false;
+  mobile = false;
 
   constructor(
     private temRef: ElementRef,

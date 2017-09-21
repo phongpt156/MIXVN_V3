@@ -35,7 +35,7 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     ScrollLoadMoreDirective,
     AlertLoginComponent,
     SearchTaggingItemComponent,
-    SearchFilterComponent,    
+    SearchFilterComponent,
   ],
   exports: [
     HeaderComponent,
@@ -46,7 +46,7 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     SearchTaggingListComponent,
     ScrollLoadMoreDirective,
     AlertLoginComponent,
-    SearchTaggingItemComponent,    
+    SearchTaggingItemComponent,
   ],
   providers: [
     SearchTaggingService

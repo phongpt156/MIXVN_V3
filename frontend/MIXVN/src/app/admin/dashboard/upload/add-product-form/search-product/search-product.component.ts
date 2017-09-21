@@ -20,9 +20,9 @@ export class SearchProductComponent implements OnInit {
   @Output() productChange: EventEmitter<any> = new EventEmitter;
   productName: FormControl;
   products: any[] = [];
-  isSearchFocus: boolean = false
-  isSelectProduct: boolean = false;
-  
+  isSearchFocus = false
+  isSelectProduct = false;
+
   constructor(
     private productService: ProductService,
     private elementRef: ElementRef
@@ -38,16 +38,16 @@ export class SearchProductComponent implements OnInit {
       this.products = res.data;
     });
   }
-  
+
   handleClick(e) {
     let clickedComponent = e.target;
-    let inside: boolean = false;
-    
+    let inside = false;
+
     do {
       if (clickedComponent === this.elementRef.nativeElement) {
         inside = true;
       }
-      
+
       clickedComponent = clickedComponent.parentNode;
     } while (clickedComponent);
 

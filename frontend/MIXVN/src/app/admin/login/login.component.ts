@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    let body: any = {};
+    const body: any = {};
     body.email = this.loginForm.value.email;
     body.password = this.loginForm.value.password;
-    let admin = this.adminService.login(body);
+    const admin = this.adminService.login(body);
     admin.subscribe(res => {
       if (res.token) {
         localStorage.setItem('token', res.token);

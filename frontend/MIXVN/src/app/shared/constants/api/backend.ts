@@ -4,7 +4,7 @@ export const HOST = `//${location.hostname}:${PORT}`;
 
 export const ADMIN = {
     signin: HOST + '/api/admin/signin',
-    getAdmin: HOST + '/api/admin/info' 
+    getAdmin: HOST + '/api/admin/info'
 }
 
 export const CATEGORY = {
@@ -16,7 +16,7 @@ export const CATEGORY = {
 
 export const PARENT_CATEGORY = {
     add: HOST + '/api/admin/parent-category',
-    edit: HOST + '/api/admin/parent-category/',    
+    edit: HOST + '/api/admin/parent-category/',
     delete: HOST + '/api/admin/parent-category/',
 }
 

@@ -19,30 +19,30 @@ export class CollectionService {
     private http: HttpClient,
     private authService: AuthService
   ) { }
-  
+
   getAll(): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.get(COLLECTION.getAll, options)
     .catch(handleError);
   }
 
   add(body): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService, '');
+    const options = createCommonHeaders(this.authService, '');
 
     return this.http.post(COLLECTION.add, body, options)
     .catch(handleError);
   }
 
   edit(body, id: number): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService, '');
+    const options = createCommonHeaders(this.authService, '');
 
     return this.http.post(COLLECTION.edit + id, body, options)
     .catch(handleError);
   }
 
   delete(id: number): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.get(COLLECTION.delete + id, options)
     .catch(handleError);

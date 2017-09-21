@@ -7,7 +7,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 })
 export class MainAppComponent implements OnInit {
   @HostBinding('style.padding-top') paddingTop = '97px';
-  
+
   constructor() { }
 
   ngOnInit() {

@@ -45,9 +45,12 @@
     </div>
     <div class="row">
       <div class="col-12">
+        <image-upload [max]="1" [buttonCaption]="'Background Image'" (onFileUploadFinish)="imageUploaded($event, 'background_image')" (onRemove)="imageRemoved($event, 'background_image')" [preview]="false"></image-upload>
         <div class="d-flex">
-          <div class="w-100">
-            <img alt="" #supplierBackgroundImagePreview />
+          <div class="wrapper-percentage image-21-9">
+            <div>
+              <img alt="" #supplierBackgroundImagePreview />
+            </div>
           </div>
           <div *ngIf="isSelectBackgroundImage" class="ml-2">
             <button class="btn btn-primary" (click)="cropper.zoom(0.1)">
@@ -58,19 +61,16 @@
             </button>
           </div>
         </div>
-        <image-upload [max]="1" [buttonCaption]="'Background Image'" (onFileUploadFinish)="imageUploaded($event, 'background_image')" (onRemove)="imageRemoved($event, 'background_image')" [preview]="false"></image-upload>
-        <div class="py-5" *ngIf="supplierBackgroundImage">
-          <div class="image-wrapper image-21-9">
-            <img [src]="supplierBackgroundImage" alt="" />
-          </div>
-        </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-5">
+        <image-upload [max]="1" [buttonCaption]="'Avatar'" (onFileUploadFinish)="imageUploaded($event, 'avatar')" (onRemove)="imageRemoved($event, 'avatar')" [preview]="false"></image-upload>
         <div class="d-flex">
-          <div class="w-100">
-            <img alt="" #supplierAvatarImagePreview />
+          <div class="wrapper-percentage image-1-1">
+            <div>
+              <img alt="" #supplierAvatarImagePreview />
+            </div>
           </div>
           <div *ngIf="isSelectAvatarImage" class="ml-2">
             <button class="btn btn-primary" (click)="cropper.zoom(0.1)">
@@ -81,14 +81,8 @@
             </button>
           </div>
         </div>
-        <image-upload [max]="1" [buttonCaption]="'Avatar'" (onFileUploadFinish)="imageUploaded($event, 'avatar')" (onRemove)="imageRemoved($event, 'avatar')" [preview]="false"></image-upload>
-        <div class="py-5 w-25" *ngIf="supplierAvatar">
-          <div class="image-wrapper image-1-1">
-            <img [src]="supplierAvatar" alt="" />
-          </div>
-        </div>
       </div>
-    </div>
+    </div>>
     <div class="row">
       <div class="text-right col-12">
         <md-checkbox formControlName="active" class="text-dark">Active</md-checkbox>

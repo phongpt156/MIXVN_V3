@@ -17,8 +17,8 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
   private formData: FormData = new FormData;
   backgroundCropper: any;
   avatarCropper: any;
-  isSelectBackgroundImage: boolean = false;
-  isSelectAvatarImage: boolean = false;
+  isSelectBackgroundImage = false;
+  isSelectAvatarImage = false;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -47,7 +47,7 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
       viewMode: 1
     });
   }
-  
+
   ngOnDestroy() {
     this.supplierService.getAll()
     .subscribe(res => {
@@ -56,21 +56,21 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
   }
 
   imageUploaded(e, name: string) {
-    let oFReader = new FileReader();
+    const oFReader = new FileReader();
     oFReader.readAsDataURL(e.file);
     if (name === 'background_image') {
       oFReader.onload = (oFREvent) => {
         this.backgroundCropper.replace(oFREvent.target['result']);
       }
-      this.isSelectBackgroundImage = true;  
+      this.isSelectBackgroundImage = true;
     } else if (name === 'avatar') {
       oFReader.onload = (oFREvent) => {
         this.avatarCropper.replace(oFREvent.target['result']);
       }
-      this.isSelectAvatarImage = true;  
+      this.isSelectAvatarImage = true;
     }
   }
-  
+
   imageRemoved(e, name: string) {
     if (name === 'background_image') {
       this.isSelectBackgroundImage = false;
@@ -110,7 +110,7 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
   }
 
   sendData() {
-    for (let i in this.addSupplierForm.value) {
+  for (const i of Object.keys(this.addSupplierForm.value)) {
       this.formData.append(i, this.addSupplierForm.value[i]);
     }
 

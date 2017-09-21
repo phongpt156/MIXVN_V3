@@ -23,8 +23,8 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
   private formData: FormData = new FormData;
   backgroundCropper: any;
   avatarCropper: any;
-  isSelectBackgroundImage: boolean = false;
-  isSelectAvatarImage: boolean = false;
+  isSelectBackgroundImage = false;
+  isSelectAvatarImage = false;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -81,18 +81,18 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
   }
 
   imageUploaded(e, name: string) {
-    let oFReader = new FileReader();
+    const oFReader = new FileReader();
     oFReader.readAsDataURL(e.file);
     if (name === 'background_image') {
       oFReader.onload = (oFREvent) => {
         this.backgroundCropper.replace(oFREvent.target['result']);
       }
-      this.isSelectBackgroundImage = true;  
+      this.isSelectBackgroundImage = true;
     } else if (name === 'avatar') {
       oFReader.onload = (oFREvent) => {
         this.avatarCropper.replace(oFREvent.target['result']);
       }
-      this.isSelectAvatarImage = true;  
+      this.isSelectAvatarImage = true;
     }
   }
 
@@ -136,10 +136,10 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
   }
 
   senData() {
-    for (let i in this.editSupplierForm.value) {
+    for (const i of Object.keys(this.editSupplierForm.value)) {
       this.formData.append(i, this.editSupplierForm.value[i]);
     }
-    
+
     this.supplierService.edit(this.formData, this.supplier.id)
     .subscribe(res => {
       console.log(res);

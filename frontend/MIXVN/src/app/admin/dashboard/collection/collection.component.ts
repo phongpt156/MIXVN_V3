@@ -28,7 +28,7 @@ export class CollectionComponent implements OnInit {
   ngOnInit() {
     this.getCollections();
   }
-  
+
 
   getCollections() {
     this.collectionService.getAll()

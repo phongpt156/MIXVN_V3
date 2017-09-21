@@ -21,7 +21,7 @@ import { ProductUserInteractiveComponent } from './body/main-body/product-list/p
     CommonModule,
     HomePageRoutingModule,
     CollapseModule.forRoot(),
-    BsDropdownModule.forRoot()   
+    BsDropdownModule.forRoot()
   ],
   declarations: [
     HomePageComponent,

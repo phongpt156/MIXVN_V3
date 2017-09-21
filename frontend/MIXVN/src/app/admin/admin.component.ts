@@ -11,9 +11,9 @@ import { ADMIN } from 'app/shared/constants/api/backend';
 })
 export class AdminComponent implements OnInit {
   admin: any = {};
-  
+
   constructor(
-    private adminService: AdminService    
+    private adminService: AdminService
   ) { }
 
   ngOnInit() {

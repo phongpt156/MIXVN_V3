@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
@@ -11,14 +11,14 @@ declare var Cropper: any;
   templateUrl: './edit-collection.component.html',
   styleUrls: ['./edit-collection.component.scss']
 })
-export class EditCollectionComponent implements OnInit {
+export class EditCollectionComponent implements OnInit, OnDestroy {
   @ViewChild('collectionImagePreview') collectionImagePreview;
   collection: any = {};
   collectionImage: string;
   editCollectionForm: FormGroup;
   formData: FormData = new FormData;
   cropper: any;
-  isSelectImage: boolean = false;
+  isSelectImage = false;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -31,14 +31,14 @@ export class EditCollectionComponent implements OnInit {
       name: ['', Validators.required],
       active: [true]
     });
-    
+
     this.patchValue();
 
     this.cropper = new Cropper(this.collectionImagePreview.nativeElement, {
       aspectRatio: 21 / 9,
       viewMode: 1
     });
-    
+
   }
 
   patchValue() {
@@ -61,8 +61,8 @@ export class EditCollectionComponent implements OnInit {
 
   imageUploaded(e) {
     this.isSelectImage = true;
-    let oFReader = new FileReader();
-    
+    const oFReader = new FileReader();
+
     oFReader.readAsDataURL(e.file);
     oFReader.onload = (oFREvent) => {
       this.cropper.replace(oFREvent.target['result']);
@@ -85,16 +85,16 @@ export class EditCollectionComponent implements OnInit {
   }
 
   sendData() {
-      for (let i in this.editCollectionForm.value) {
+      for (const i of Object.keys(this.editCollectionForm.value)) {
         this.formData.append(i, this.editCollectionForm.value[i]);
       }
-  
+
       this.collectionService.edit(this.formData, this.collection.id)
       .subscribe(res => {
         this.bsModalRef.hide();
         console.log(res);
       });
-    
+
   }
 
   convertBlob() {

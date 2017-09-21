@@ -33,7 +33,7 @@ export class EditFeatureValueComponent implements OnInit, OnDestroy {
     this.getFeatures();
     this.patchValue();
   }
-  
+
   ngOnDestroy() {
     this.getFeatures();
   }

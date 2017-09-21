@@ -37,7 +37,7 @@ export class FeatureComponent implements OnInit {
     this.featureService.getAll()
     .subscribe(res => {
       res.data.forEach(val => {
-        this.listCollapsed[val.id]
+        this.listCollapsed[val.id] = false;
       });
       this.featureService.features = res.data;
     });

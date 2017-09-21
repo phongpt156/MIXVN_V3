@@ -24,9 +24,9 @@ export class AddProductComponent implements OnInit, OnDestroy {
   features: any[] = [];
   gender: any = GENDER;
   cropper: any;
-  isSelectImage: boolean = false;
+  isSelectImage = false;
   formData: FormData = new FormData;
-  isPending: boolean = false;
+  isPending = false;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -87,8 +87,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
   }
 
   imageUploaded(e) {
-    let oFReader = new FileReader();
-    
+    const oFReader = new FileReader();
+
     oFReader.readAsDataURL(e.file);
     oFReader.onload = (oFREvent) => {
       this.cropper.destroy();
@@ -114,8 +114,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
       if (this.addProductForm.valid && this.isSelectImage) {
         this.isPending = true;
         await this.convertBlob();
-        
-        for (let name in this.addProductForm.value) {
+
+        for (const name of Object.keys(this.addProductForm.value)) {
           this.formData.append(name, this.addProductForm.value[name]);
         }
         this.productService.add(this.formData)
@@ -128,7 +128,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
       }
     }
   }
-  
+
   onSubmit() {
     this.submit();
   }

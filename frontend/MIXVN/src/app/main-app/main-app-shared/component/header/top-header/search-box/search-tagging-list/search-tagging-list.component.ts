@@ -9,7 +9,7 @@ import { SearchTaggingService } from 'app/main-app/main-app-shared/services/sear
 })
 export class SearchTaggingListComponent implements OnInit {
   @HostBinding('class') classes = 'd-flex';
-  
+
   constructor(
     private searchTaggingService: SearchTaggingService
   ) { }

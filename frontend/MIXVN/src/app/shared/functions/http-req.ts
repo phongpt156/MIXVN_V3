@@ -3,19 +3,19 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
 export function createCommonHeaders(authService, contentType = 'application/json') {
-    let headerObj = {};
+    const headerObj = {};
     headerObj['X-Requested-With'] = 'XMLHttpRequest';
 
     if (contentType) {
         headerObj['Content-Type'] = contentType;
     }
 
-    let token = authService.getToken();
+    const token = authService.getToken();
     if (token) {
         headerObj['Authorization'] = `Bearer ${token}`;
     }
 
-    let headers = new HttpHeaders( headerObj );
+    const headers = new HttpHeaders( headerObj );
     return { headers: headers };
 }
 

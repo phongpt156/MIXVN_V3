@@ -7,7 +7,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @HostBinding('class') classes = 'fixed-top';
-  
+
   constructor() { }
 
   ngOnInit() {

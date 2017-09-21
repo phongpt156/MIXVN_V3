@@ -17,7 +17,7 @@ export class ProductItemComponent implements OnInit {
 
   @Input() product: any = {};
   @Input() index: number;
-  
+
   constructor(
     private commonService: CommonService,
     private bsModalService: BsModalService,
@@ -29,7 +29,7 @@ export class ProductItemComponent implements OnInit {
 
   openDetailProductModal(product: any) {
     this.commonService.setBlur(true);
-    
+
     this.bsModalRef = this.bsModalService.show(ProductDetailModalComponent, { class: 'modal-lg'});
 
     this.bsModalRef.content.index = this.index;

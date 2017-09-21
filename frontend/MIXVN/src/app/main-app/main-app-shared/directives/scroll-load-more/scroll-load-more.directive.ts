@@ -4,15 +4,13 @@ import { Directive, OnInit, Output, EventEmitter, HostListener, ElementRef } fro
   selector: '[mixScrollLoadMore]'
 })
 export class ScrollLoadMoreDirective implements OnInit {
+  @Output() onScroll: EventEmitter<any> = new EventEmitter();
+  el: any;
+  children: any;
   @HostListener('scroll') scroll() {
     this.loadMore();
   }
-  
-  @Output() onScroll: EventEmitter<any> = new EventEmitter();
 
-  el: any;
-  children: any;
-  
   constructor(
     private elementRef: ElementRef
   ) { }
@@ -33,7 +31,7 @@ export class ScrollLoadMoreDirective implements OnInit {
   }
 
   getData() {
-    let data = [
+    const data = [
       {
         like: '1001',
         name: 'Babydoll trắng',

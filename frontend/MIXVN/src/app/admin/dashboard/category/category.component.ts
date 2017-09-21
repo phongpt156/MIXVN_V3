@@ -57,7 +57,7 @@ export class CategoryComponent implements OnInit {
     this.modalRef = this.modalService.show(addParentCategoryModal);
   }
 
-  openEditParentCategory(editParentCategoryModal: TemplateRef<any>, e: any,parentCategory: any) {
+  openEditParentCategory(editParentCategoryModal: TemplateRef<any>, e: any, parentCategory: any) {
     e.stopPropagation();
     this.modalRef = this.modalService.show(editParentCategoryModal);
     this.parentCategoryName.setValue(parentCategory.name);
@@ -73,7 +73,7 @@ export class CategoryComponent implements OnInit {
 
   addParentCategory() {
     if (this.parentCategoryName.valid && this.parentCategoryOrder.valid) {
-      let body: any = {};
+      const body: any = {};
       body.name = this.parentCategoryName.value;
       body.order = this.parentCategoryOrder.value;
 
@@ -97,7 +97,7 @@ export class CategoryComponent implements OnInit {
 
   editParentCategory() {
     if (this.parentCategoryName.valid && this.parentCategoryOrder.valid) {
-      let body: any = {};
+      const body: any = {};
       body.name = this.parentCategoryName.value;
       body.order = this.parentCategoryOrder.value;
 
@@ -134,7 +134,7 @@ export class CategoryComponent implements OnInit {
 
   addCategoryGroup() {
     if (this.categoryGroupOrder.valid) {
-      let body: any = {};
+      const body: any = {};
 
       body.parent_category = this.choosedParentCategory.id;
       body.gender = this.choosedGender.id;
@@ -152,12 +152,12 @@ export class CategoryComponent implements OnInit {
 
   editCategoryGroup() {
     if (this.categoryGroupOrder.valid) {
-      let body: any = {};
+      const body: any = {};
 
       body.parent_category = this.parentCategoryId.value;
       body.gender = this.genderId.value;
       body.order = this.categoryGroupOrder.value;
-      let categoryGroupId = this.choosedCategoryGroupId;
+      const categoryGroupId = this.choosedCategoryGroupId;
 
       this.categoryGroupService.edit(body, categoryGroupId)
       .subscribe(res => {
@@ -193,13 +193,13 @@ export class CategoryComponent implements OnInit {
 
   openDeleteCategoryModal(deleteCategoryModal: TemplateRef<any>, categoryId: number) {
     this.modalRef = this.modalService.show(deleteCategoryModal);
-    
+
     this.choosedCategoryId = categoryId;
   }
 
   addCategory() {
     if (this.categoryName.valid && this.categoryActive.valid) {
-      let body: any = {};    
+      const body: any = {};
       body.category_group = this.choosedCategoryGroupId;
       body.name = this.categoryName.value;
       body.active = this.categoryActive.value;
@@ -216,7 +216,7 @@ export class CategoryComponent implements OnInit {
 
   editCategory() {
     if (this.categoryName.valid && this.categoryActive.valid) {
-      let body:any = {};
+      const body: any = {};
 
       body.name = this.categoryName.value;
       body.active = this.categoryActive.value;
@@ -241,7 +241,7 @@ export class CategoryComponent implements OnInit {
       this.getCategories();
     });
   }
-  
+
   hiddenParentCategoryModal() {
     this.modalRef.hide();
     this.parentCategoryName.reset();

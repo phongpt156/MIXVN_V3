@@ -19,35 +19,35 @@ export class ProductService {
   ) {}
 
   searchByName(name: string): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.get(PRODUCT.searchByName + name, options)
     .catch(handleError);
   }
 
   getAll(): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.get(PRODUCT.getAll, options)
     .catch(handleError);
   }
 
   add(body): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService, '');
+    const options = createCommonHeaders(this.authService, '');
 
     return this.http.post(PRODUCT.add, body, options)
     .catch(handleError);
   }
 
   edit(body, id: number): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService, '');
+    const options = createCommonHeaders(this.authService, '');
 
     return this.http.post(PRODUCT.edit + id, body, options)
     .catch(handleError);
   }
 
   delete(id: number): Observable<ApiResponse> {
-    let options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders(this.authService);
 
     return this.http.delete(PRODUCT.delete + id, options)
     .catch(handleError);

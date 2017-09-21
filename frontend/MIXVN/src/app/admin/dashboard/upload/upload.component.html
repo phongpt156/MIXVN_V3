@@ -7,9 +7,12 @@
     <form [formGroup]="addProductGroupForm">  
       <div class="row">
         <div class="col-12 form-group">
+          <image-upload [max]="1" [buttonCaption]="'Product Group Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved()" [preview]="false"></image-upload>
           <div class="d-flex">
-            <div class="product-group-wrapper w-100">
-              <img alt="" #productGroupImagePreview id="productGroupImagePreview" />
+            <div class="wrapper-percentage image-21-9">
+              <div>
+                <img alt="" #productGroupImagePreview id="productGroupImagePreview" />
+              </div>
             </div>
             <div *ngIf="isSelectImage" class="ml-2">
               <button class="btn btn-primary" (click)="cropper.zoom(0.1)">
@@ -20,7 +23,6 @@
               </button>
             </div>
           </div>
-          <image-upload [max]="1" [buttonCaption]="'Product Group Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved()" [preview]="false"></image-upload>
         </div>
         <div class="col-6 d-flex align-items-end form-group">
           <md-checkbox formControlName="active">Active</md-checkbox>

@@ -5,8 +5,8 @@ import { SearchTagging } from '../../classes/search-tagging';
 @Injectable()
 export class SearchTaggingService {
   public searchTaggings: any[] = [];
-  public isFilter: boolean = false;
+  public isFilter = false;
   public selectedIndex: number;
-  
+
   constructor() { }
 }

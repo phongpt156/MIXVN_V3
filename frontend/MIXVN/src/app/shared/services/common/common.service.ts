@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CommonService {
-  private isBlur: boolean = false;
+  private isBlur = false;
 
   constructor() { }
 

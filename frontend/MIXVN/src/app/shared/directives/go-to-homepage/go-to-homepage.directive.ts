@@ -8,7 +8,7 @@ export class GoToHomepageDirective {
   @HostListener('click') goToHomePage() {
     this.router.navigate(['/']);
   }
-  
+
   constructor(
     private router: Router
   ) { }

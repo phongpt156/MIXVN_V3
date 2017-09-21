@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class ProductService {
   products: any[];
   selectedProduct: any;
-  
+
   constructor() { }
 
 }

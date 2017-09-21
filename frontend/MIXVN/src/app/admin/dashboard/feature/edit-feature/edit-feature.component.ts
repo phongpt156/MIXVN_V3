@@ -25,7 +25,7 @@ export class EditFeatureComponent implements OnInit, OnDestroy {
       order: ['', Validators.required],
       active: [true]
     });
-    
+
     this.patchValue();
   }
 

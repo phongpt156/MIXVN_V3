@@ -19,7 +19,7 @@ const mainAppRoutes: Routes = [
       },
       {
         path: 'tim-kiem',
-        loadChildren: './search-page/search-page.module#SearchPageModule' 
+        loadChildren: './search-page/search-page.module#SearchPageModule'
       }
     ]
   }
