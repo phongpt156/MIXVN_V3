@@ -25,7 +25,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let supplier of supplierService.suppliers; let i = index">
+              <tr *ngFor="let supplier of suppliers; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ supplier.name }}</td>
                 <td><textarea class="textare-readonly" autosize disabled="disabled">{{ supplier.address }}</textarea></td>

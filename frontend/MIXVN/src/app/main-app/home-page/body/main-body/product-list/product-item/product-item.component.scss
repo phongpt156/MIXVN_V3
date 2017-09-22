@@ -42,9 +42,16 @@
     }
 }
 
-@include media-breakpoint-down(sm) {
+
+@include media-breakpoint-down(md) {
     :host {
         flex-basis: calc(100% / 4);
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    :host {
+        flex-basis: calc(100% / 3);
     }
 }
 

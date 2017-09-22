@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, HostListener, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, HostListener, HostBinding, Input } from '@angular/core';
 
 import { ProductService } from 'app/main-app/main-app-shared/services/product/product.service';
 
@@ -9,7 +9,8 @@ import { ProductService } from 'app/main-app/main-app-shared/services/product/pr
 })
 export class ProductListComponent implements OnInit, OnChanges {
   @Input() loadMoreProductData = [];
-
+  @HostBinding('class') classes = 'custom-scrollbar';
+   
   products = [
     {
       like: '1001',
@@ -473,11 +474,11 @@ export class ProductListComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.productService.products = this.products;
+    this.productService.setProducts(this.products);
   }
 
   ngOnChanges() {
     this.products = this.products.concat(this.loadMoreProductData);
-    this.productService.products = this.products;
+    this.productService.setProducts(this.products);
   }
 }

@@ -32,8 +32,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/delete/{id}', 'Backend\CollectionController@destroy')->where('id', '[0-9]+')->middleware('admin.super');
     });
     
-    Route::resource('feature', 'Backend\FeatureController')->middleware('admin.super');
-    Route::resource('feature-value', 'Backend\FeatureValueController')->middleware('admin.super');
+    Route::resource('feature', 'Backend\FeatureController');
+    Route::resource('feature-value', 'Backend\FeatureValueController');
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('', 'Backend\ProductController@index')->middleware('admin.super');

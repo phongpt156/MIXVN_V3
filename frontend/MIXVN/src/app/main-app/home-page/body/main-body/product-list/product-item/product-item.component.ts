@@ -33,6 +33,6 @@ export class ProductItemComponent implements OnInit {
     this.bsModalRef = this.bsModalService.show(ProductDetailModalComponent, { class: 'modal-lg'});
 
     this.bsModalRef.content.index = this.index;
-    this.productService.selectedProduct = this.product;
+    this.productService.setSelectedProduct(this.product);
   }
 }

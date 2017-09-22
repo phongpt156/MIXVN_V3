@@ -27,9 +27,13 @@ export class AddFeatureComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.getFeatures();
+  }
+
+  getFeatures() {
     this.featureService.getAll()
     .subscribe(res => {
-      this.featureService.features = res.data;
+      this.featureService.setFeatures(res.data);
     });
   }
 

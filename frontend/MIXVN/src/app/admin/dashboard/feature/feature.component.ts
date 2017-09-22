@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal/modal-options.class';
+import { Subscription } from 'rxjs/Subscription';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 import { FeatureValueService } from 'app/admin/admin-shared/services/feature-value/feature-value.service';
@@ -15,13 +16,15 @@ import { EditFeatureValueComponent } from '../feature-value/edit-feature-value/e
   templateUrl: './feature.component.html',
   styleUrls: ['./feature.component.scss']
 })
-export class FeatureComponent implements OnInit {
+export class FeatureComponent implements OnInit, OnDestroy {
   @ViewChild('deleteFeatureModal') deleteFeatureModal;
   @ViewChild('deleteFeatureValueModal') deleteFeatureValueModal;
   bsModalRef: BsModalRef;
   selectedFeatureId: number;
   selectedFeatureValueId: number;
   listCollapsed: any = {};
+  features: any[] = [];
+  _subscription: Subscription;
 
   constructor(
     private featureService: FeatureService,
@@ -30,7 +33,17 @@ export class FeatureComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.features = this.featureService.getFeatures();
+
+    this._subscription = this.featureService.featuresChange.subscribe((features: any[]) => {
+      this.features = features;
+    });
+
     this.getFeatures();
+  }
+
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
   }
 
   getFeatures() {
@@ -39,7 +52,8 @@ export class FeatureComponent implements OnInit {
       res.data.forEach(val => {
         this.listCollapsed[val.id] = false;
       });
-      this.featureService.features = res.data;
+      this.featureService.setFeatures(res.data);
+      console.log(res.data);
     });
   }
 

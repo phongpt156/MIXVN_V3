@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CommonService {
-  private isBlur = false;
+  protected isBlur = false;
 
-  constructor() { }
+  blurChange: Subject<boolean> = new Subject<boolean>();
+
+  constructor() {}
 
   getBlur(): boolean {
     return this.isBlur;
   }
 
   setBlur(status: boolean) {
-    this.isBlur = status;
+    this.blurChange.next(status);
   }
 }

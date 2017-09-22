@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/operator/catch';
 
@@ -12,12 +13,22 @@ import { SUPPLIER } from 'app/shared/constants/api/backend';
 
 @Injectable()
 export class SupplierService {
-  public suppliers: any[] = [];
+  protected suppliers: any[] = [];
+  suppliersChange: Subject<any[]> = new Subject<any[]>();
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
+
+  getSuppliers(): any[] {
+    return this.suppliers;
+  }
+
+  setSuppliers(suppliers: any[]) {
+    this.suppliers = suppliers;
+    this.suppliersChange.next(suppliers);
+  }
 
   getAll(): Observable<ApiResponse> {
     const options = createCommonHeaders(this.authService);

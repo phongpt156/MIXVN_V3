@@ -97,7 +97,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
     }
   }
 
-  imageRemoved(e) {
+  imageRemoved() {
     this.isSelectImage = false;
     this.cropper.destroy();
   }

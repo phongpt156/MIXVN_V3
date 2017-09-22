@@ -1,9 +1,0 @@
-:host {
-    background-color: #2b2b2b;
-}
-
-.product-image {
-    min-width: 225px;
-    position: relative;
-    min-height: calc(225px * 4 / 3);
-}

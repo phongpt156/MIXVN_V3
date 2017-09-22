@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal/modal-options.class';
+import { Subscription } from 'rxjs/Subscription';
 
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 
@@ -14,28 +15,41 @@ import { EditSupplierComponent } from './edit-supplier/edit-supplier.component';
   templateUrl: './supplier.component.html',
   styleUrls: ['./supplier.component.scss']
 })
-export class SupplierComponent implements OnInit {
+export class SupplierComponent implements OnInit, OnDestroy {
   @ViewChild('deleteSupplierModal') deleteSupplierModal;
-
+  _subscription: Subscription;
+  suppliers: any[] = [];
   page: Page = new Page;
   bsModalRef: BsModalRef;
   config: ModalOptions = {
     class: 'mw-100 w-75'
   };
   selectedSupplierId: number;
+
   constructor(
     private bsModalService: BsModalService,
     private supplierService: SupplierService,
   ) { }
 
   ngOnInit() {
+    this.suppliers = this.supplierService.getSuppliers();
+
+    this._subscription = this.supplierService.suppliersChange
+    .subscribe((suppliers: any[]) => {
+      this.suppliers = suppliers;
+    });
+
     this.getSuppliers();
+  }
+
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
   }
 
   getSuppliers() {
     this.supplierService.getAll()
     .subscribe(res => {
-      this.supplierService.suppliers = res.data;
+      this.supplierService.setSuppliers(res.data);
       this.page.size = res.meta.per_page;
       this.page.totalElements = res.meta.total;
       this.page.totalPages = res.meta.last_page;

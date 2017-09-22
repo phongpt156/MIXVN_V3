@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { Subscription } from 'rxjs/Subscription';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 import { FeatureValueService } from 'app/admin/admin-shared/services/feature-value/feature-value.service';
@@ -13,6 +14,8 @@ import { FeatureValueService } from 'app/admin/admin-shared/services/feature-val
 export class AddFeatureValueComponent implements OnInit, OnDestroy {
   addFeatureValueForm: FormGroup;
   feature: any = {};
+  features: any[] = [];
+  _subscription: Subscription;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -22,6 +25,10 @@ export class AddFeatureValueComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this._subscription = this.featureService.featuresChange.subscribe((features: any[]) => {
+      this.features = features;
+    });
+
     this.getFeatures();
 
     this.addFeatureValueForm = this.fb.group({
@@ -37,12 +44,13 @@ export class AddFeatureValueComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.getFeatures();
+    this._subscription.unsubscribe();
   }
 
   getFeatures() {
     this.featureService.getAll()
     .subscribe(res => {
-      this.featureService.features = res.data;
+      this.featureService.setFeatures(res.data);
     });
   }
 

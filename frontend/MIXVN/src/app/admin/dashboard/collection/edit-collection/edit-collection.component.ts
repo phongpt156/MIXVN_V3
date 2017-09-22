@@ -53,9 +53,13 @@ export class EditCollectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.getCollections();
+  }
+
+  getCollections() {
     this.collectionService.getAll()
     .subscribe(res => {
-      this.collectionService.collections = res.data;
+      this.collectionService.setCollections(res.data);
     });
   }
 
@@ -69,7 +73,7 @@ export class EditCollectionComponent implements OnInit, OnDestroy {
     }
   }
 
-  imageRemoved(e) {
+  imageRemoved() {
     this.isSelectImage = false;
     this.cropper.destroy();
   }

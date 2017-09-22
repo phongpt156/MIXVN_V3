@@ -1,0 +1,61 @@
+@import "/../../../../../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+:host {
+    overflow: auto;
+    max-height: 397px;
+    display: block;
+    background-color: #313131;
+}
+
+.product-item {
+    padding: 0 12px 24px 12px;
+    flex-basis: calc(100% / 6);
+}
+
+@include media-breakpoint-down(xl) {
+    .product-item {
+        flex-basis: calc(100% / 6);
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .product-item {
+        flex-basis: calc(100% / 5);
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .product-item {
+        flex-basis: calc(100% / 4);
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .product-item {
+        flex-basis: calc(100% / 3);
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .product-item {
+        flex-basis: calc(100% / 2);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .product-item {
+        flex-basis: calc(100% / 1);
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .product-item {
+        flex-basis: calc(100% / 4);
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .product-item {
+        flex-basis: calc(100% / 2);
+    }
+}

@@ -61,7 +61,7 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.supplierService.getAll()
     .subscribe(res => {
-      this.supplierService.suppliers = res.data;
+      this.supplierService.setSuppliers(res.data);
     });
   }
 

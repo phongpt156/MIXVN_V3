@@ -19,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let feature of featureService.features; let i = index">
+            <ng-container *ngFor="let feature of features; let i = index">
               <tr (click)="listCollapsed[feature.id] = !listCollapsed[feature.id]" style="cursor: pointer">
                 <td><h4>{{ i + 1 }}</h4></td>
                 <td><h4>{{ feature.name }}</h4></td>

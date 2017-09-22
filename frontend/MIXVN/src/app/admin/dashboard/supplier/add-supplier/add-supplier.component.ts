@@ -50,9 +50,13 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.getSuppliers();
+  }
+
+  getSuppliers() {
     this.supplierService.getAll()
     .subscribe(res => {
-      this.supplierService.suppliers = res.data;
+      this.supplierService.setSuppliers(res.data);
     });
   }
 
@@ -118,8 +122,7 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
     this.supplierService.add(this.formData)
     .subscribe(res => {
       this.bsModalRef.hide();
-      console.log(res);
-      this.supplierService.suppliers = res.data;
+      this.supplierService.setSuppliers(res.data);
     });
   }
 }

@@ -37,9 +37,13 @@ export class AddCollectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.getCollections();
+  }
+
+  getCollections() {
     this.collectionService.getAll()
     .subscribe(res => {
-      this.collectionService.collections = res.data;
+      this.collectionService.setCollections(res.data);
     });
   }
 

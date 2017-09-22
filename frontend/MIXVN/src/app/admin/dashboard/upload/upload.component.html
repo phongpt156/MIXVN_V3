@@ -30,7 +30,7 @@
       </div>
 
       <div formArrayName="products">
-        <div *ngFor="let product of addProductGroupForm.controls.products.controls; let i = index">
+        <div *ngFor="let product of addProductGroupForm.controls.products['controls']; let i = index">
           <div [formGroupName]="i">
             <mix-add-product-form [addProductForm]="addProductGroupForm.controls.products.controls[i]" (removeProduct)="removeProduct(i)" [index]="i" (productImageAction)="productImageChange($event)" (productId)="addProductId($event)"></mix-add-product-form>
           </div>
