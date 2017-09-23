@@ -31,6 +31,9 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
     this.addSupplierForm = this.fb.group({
       name: ['', Validators.required],
       address: ['', Validators.required],
+      phone_number: [''],
+      open_time: [''],
+      close_time: [''],
       facebook_link: [''],
       facebook_title: [''],
       instagram_link: [''],

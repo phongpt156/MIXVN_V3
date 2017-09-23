@@ -36,6 +36,9 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
     this.editSupplierForm = this.fb.group({
       name: ['', Validators.required],
       address: ['', Validators.required],
+      phone_number: [''],
+      open_time: [''],
+      close_time: [''],
       facebook_link: [''],
       facebook_title: [''],
       instagram_link: [''],
@@ -69,10 +72,13 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
     this.editSupplierForm.patchValue({
       name: this.supplier.name,
       address: this.supplier.address,
-      facebook_link: this.supplier.facebook_link ? this.supplier.facebook_link : '',
-      facebook_title: this.supplier.facebook_title ? this.supplier.facebook_title : '',
-      instagram_link: this.supplier.instagram_link ? this.supplier.instagram_link : '',
-      instagram_title: this.supplier.instagram_title ? this.supplier.instagram_title : '',
+      phone_number: this.supplier.phone_number || '',
+      open_time: this.supplier.open_time,
+      close_time: this.supplier.close_time,
+      facebook_link: this.supplier.facebook_link || '',
+      facebook_title: this.supplier.facebook_title || '',
+      instagram_link: this.supplier.instagram_link || '',
+      instagram_title: this.supplier.instagram_title || '',
       active: this.supplier.active ? true : false
     });
 

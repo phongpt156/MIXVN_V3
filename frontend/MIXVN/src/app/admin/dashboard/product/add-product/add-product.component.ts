@@ -105,7 +105,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   getProducts() {
     this.productService.getAll()
     .subscribe(res => {
-      this.productService.products = res.data;
+      this.productService.setProducts(res.data);
     });
   }
 

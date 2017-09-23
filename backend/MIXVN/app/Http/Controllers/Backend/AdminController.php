@@ -37,7 +37,7 @@ class AdminController extends Controller
 
     public function isSuperAdmin(Request $request)
     {
-        $role_id = $this->getRole($request);
+        $role_id = (int)$this->getRole($request);
         return $role_id === \App\Constants\Admin::getSuperAdmin();
     }
 }

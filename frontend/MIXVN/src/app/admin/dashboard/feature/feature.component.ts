@@ -53,7 +53,6 @@ export class FeatureComponent implements OnInit, OnDestroy {
         this.listCollapsed[val.id] = false;
       });
       this.featureService.setFeatures(res.data);
-      console.log(res.data);
     });
   }
 

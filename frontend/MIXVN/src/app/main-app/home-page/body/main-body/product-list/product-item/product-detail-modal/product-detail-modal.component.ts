@@ -27,7 +27,7 @@ export class ProductDetailModalComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.products = this.productService.getProducts();
     this.product = this.productService.getSelectedProduct();
-    
+
     this._productSubscription = this.productService.selectedProductChange.subscribe(product => {
       this.product = product;
     });

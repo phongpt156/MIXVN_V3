@@ -21,10 +21,8 @@
       <div class="col-12 text-center">
         <image-upload [max]="1" [buttonCaption]="'Collection Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved()" [preview]="false"></image-upload>
         <div class="d-flex">
-          <div class="wrapper-percentage image-21-9">
-            <div>
-              <img alt="" #collectionImagePreview id="collectionImagePreview" />
-            </div>
+          <div class="collection-image-wrapper">
+            <img alt="" #collectionImagePreview id="collectionImagePreview" />
           </div>
           <div *ngIf="isSelectImage" class="ml-2">
             <button class="btn btn-primary" (click)="cropper.zoom(0.1)">
@@ -34,6 +32,9 @@
               <a><span class="fa fa-search-minus"></span></a>
             </button>
           </div>
+        </div>
+        <div class="image-wrapper image-21-9" *ngIf="collectionImage">
+          <img [src]="collectionImage" alt="" />
         </div>
       </div>
     </div>

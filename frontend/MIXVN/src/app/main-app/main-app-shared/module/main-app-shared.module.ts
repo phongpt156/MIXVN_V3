@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+
 import { SharedModule } from 'app/shared/module/shared.module';
 
 import { SearchTaggingService } from './../services/search-tagging/search-tagging.service';
@@ -20,10 +22,11 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
 
 @NgModule({
   imports: [
-    CommonModule,
     SharedModule,
     BsDropdownModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    SwiperModule.forChild(),
+    PerfectScrollbarModule.forChild()
   ],
   declarations: [
     HeaderComponent,
@@ -38,6 +41,8 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     SearchFilterComponent,
   ],
   exports: [
+    SwiperModule,
+    PerfectScrollbarModule,
     HeaderComponent,
     FooterComponent,
     TopHeaderComponent,

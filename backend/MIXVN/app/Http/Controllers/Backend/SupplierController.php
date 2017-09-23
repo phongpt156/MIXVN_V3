@@ -51,15 +51,25 @@ class SupplierController extends Controller
         $supplier->facebook_title = $request->facebook_title;
         $supplier->instagram_link = $request->instagram_link;
         $supplier->instagram_title = $request->instagram_title;
+        $supplier->phone_number = $request->phone_number;
+        $supplier->open_time = $request->open_time;
+        $supplier->close_time = $request->close_time;
+
         if ($request->background_image) {
-            $supplier->background_image = 'images/bg_' . $now->format('Y-m-dTH-i-s-') . $request->background_image->getClientOriginalName();
-            Image::make($request->background_image)->resize(1366, null, function ($constraint) {
+            $convertBlobFile = Storage::disk('upload_image')->put('images', $request->background_image);
+            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+
+            $supplier->background_image = 'images/' . $converBlobFileName;
+            Image::make($convertBlobFile)->resize(1366, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($supplier->background_image);
         }
         if ($request->avatar) {
-            $supplier->avatar = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->avatar->getClientOriginalName();
-            Image::make($request->avatar)->resize(300, null, function ($constraint) {
+            $convertBlobFile = Storage::disk('upload_image')->put('images', $request->avatar);
+            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+
+            $supplier->avatar = 'images/' . $converBlobFileName;
+            Image::make($request->avatar)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($supplier->avatar);
         }
@@ -125,17 +135,22 @@ class SupplierController extends Controller
         $supplier->facebook_title = $request->facebook_title;
         $supplier->instagram_link = $request->instagram_link;
         $supplier->instagram_title = $request->instagram_title;
+        $supplier->phone_number = $request->phone_number;
+        $supplier->open_time = $request->open_time;
+        $supplier->close_time = $request->close_time;
 
         if ($request->background_image) {
             if (File::exists($supplier->background_image)) {
                 File::delete($supplier->background_image);
             }
             
-            $supplier->background_image = 'images/bg_' . $now->format('Y-m-dTH-i-s-') . $request->background_image->getClientOriginalName();
-            Image::make($request->background_image)->resize(1366, null, function ($constraint) {
+            $convertBlobFile = Storage::disk('upload_image')->put('images', $request->background_image);
+            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+
+            $supplier->background_image = 'images/' . $converBlobFileName;
+            Image::make($convertBlobFile)->resize(1366, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($supplier->background_image);
-
         }
 
         if ($request->avatar) {
@@ -143,8 +158,11 @@ class SupplierController extends Controller
                 File::delete($supplier->avatar);
             }
 
-            $supplier->avatar = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->avatar->getClientOriginalName();
-            Image::make($request->avatar)->resize(300, null, function ($constraint) {
+            $convertBlobFile = Storage::disk('upload_image')->put('images', $request->avatar);
+            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+
+            $supplier->avatar = 'images/' . $converBlobFileName;
+            Image::make($request->avatar)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($supplier->avatar);
         }

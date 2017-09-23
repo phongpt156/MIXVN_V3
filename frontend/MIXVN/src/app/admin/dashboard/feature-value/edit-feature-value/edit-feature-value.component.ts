@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { Subscription } from 'rxjs/Subscription';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 import { FeatureValueService } from 'app/admin/admin-shared/services/feature-value/feature-value.service';
@@ -13,6 +14,8 @@ import { FeatureValueService } from 'app/admin/admin-shared/services/feature-val
 export class EditFeatureValueComponent implements OnInit, OnDestroy {
   editFeatureValueForm: FormGroup;
   featureValue: any = {};
+  features: any[] = [];
+  _subscription: Subscription;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -30,12 +33,18 @@ export class EditFeatureValueComponent implements OnInit, OnDestroy {
       active: ['', Validators.required]
     });
 
+    this.features = this.featureService.getFeatures();
+    this._subscription = this.featureService.featuresChange.subscribe((features: any[]) => {
+      this.features = features;
+    });
+
     this.getFeatures();
     this.patchValue();
   }
 
   ngOnDestroy() {
     this.getFeatures();
+    this._subscription.unsubscribe();
   }
 
   patchValue() {

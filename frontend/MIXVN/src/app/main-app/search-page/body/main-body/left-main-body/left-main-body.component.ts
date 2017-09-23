@@ -6,7 +6,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
   styleUrls: ['./left-main-body.component.scss']
 })
 export class LeftMainBodyComponent implements OnInit {
-  @HostBinding('class') classes = 'p-3';
+  @HostBinding('class') classes = 'pb-3';
 
   constructor() { }
 

@@ -68,9 +68,9 @@
             <md-option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</md-option>
           </ng-container>
         </md-select>
-      </div>
+      </div> -->
       
-      <div *ngIf="isDisabled && product">
+      <div *ngIf="product">
         <div class="row form-group">
           <div class="col-1 form-group">
             <div class="image-wrapper image-2-3">
@@ -81,7 +81,7 @@
             {{ product.name }}
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </fieldset>
 </form>

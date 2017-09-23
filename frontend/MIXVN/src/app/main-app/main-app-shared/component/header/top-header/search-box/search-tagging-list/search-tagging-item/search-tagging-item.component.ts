@@ -20,11 +20,11 @@ export class SearchTaggingItemComponent implements OnInit {
   }
 
   deleteSearchTagging() {
-    this.searchTaggingService.searchTaggings.splice(this.index, 1);
+    this.searchTaggingService.deleteSearchTagging(this.index);
   }
 
   showFilter() {
-    this.searchTaggingService.isFilter = !this.searchTaggingService.isFilter;
-    this.searchTaggingService.selectedIndex = this.index;
+    this.searchTaggingService.setFilter(!this.searchTaggingService.getFilter());
+    this.searchTaggingService.setSelectedIndex(this.index);
   }
 }

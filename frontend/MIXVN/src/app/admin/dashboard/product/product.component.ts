@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { Subscription } from 'rxjs/Subscription';
 
 import { ProductService } from 'app/admin/admin-shared/services/product/product.service';
 
@@ -12,11 +13,12 @@ import { EditProductComponent } from './edit-product/edit-product.component';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
   @ViewChild('deleteProductModal') deleteProductModal;
-
+  products: any[] = [];
   bsModalRef: BsModalRef;
   selectedProductId: number;
+  _subscription: Subscription;
 
   constructor(
     private productService: ProductService,
@@ -24,13 +26,21 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.products = this.productService.getProducts();
+    this._subscription = this.productService.productsChange.subscribe((products: any[]) => {
+      this.products = products;
+    });
     this.getProducts();
+  }
+
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
   }
 
   getProducts() {
     this.productService.getAll()
     .subscribe(res => {
-      this.productService.products = res.data;
+      this.productService.setProducts(res.data);
     });
   }
 

@@ -1,4 +1,5 @@
-import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ElementRef } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { SearchTaggingService } from 'app/main-app/main-app-shared/services/search-tagging/search-tagging.service';
 
@@ -7,8 +8,10 @@ import { SearchTaggingService } from 'app/main-app/main-app-shared/services/sear
   templateUrl: './top-header.component.html',
   styleUrls: ['./top-header.component.scss']
 })
-export class TopHeaderComponent implements OnInit {
+export class TopHeaderComponent implements OnInit, OnDestroy {
   mobile = false;
+  isFilter: boolean;
+  _subscription: Subscription;
 
   constructor(
     private temRef: ElementRef,
@@ -16,7 +19,15 @@ export class TopHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isFilter = this.searchTaggingService.getFilter();
+    this._subscription = this.searchTaggingService.filterChange.subscribe(value => {
+      this.isFilter = value;
+    });
     this.mobile = this.isMobile();
+  }
+
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
   }
 
   @HostListener('window:resize') onresize() {

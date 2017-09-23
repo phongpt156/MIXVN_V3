@@ -17,7 +17,7 @@ import { CategoryService } from './main-app-shared/services/category/category.se
     CommonModule,
     MainAppRoutingModule,
     MainAppSharedModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     MainAppComponent,

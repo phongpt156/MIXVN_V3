@@ -2,7 +2,7 @@
 
 :host {
     overflow: auto;
-    max-height: 397px;
+    max-height: 580.33px;
     display: block;
     background-color: #313131;
 }
@@ -10,6 +10,10 @@
 .product-item {
     padding: 0 12px 24px 12px;
     flex-basis: calc(100% / 6);
+
+    img {
+        cursor: pointer;
+    }
 }
 
 @include media-breakpoint-down(xl) {

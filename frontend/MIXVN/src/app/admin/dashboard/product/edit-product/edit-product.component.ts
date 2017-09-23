@@ -22,7 +22,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
   editProductForm: FormGroup;
   categories: any[] = [];
   suppliers: any[] = [];
-  productImage: File;
+  productImage: string;
   features: any[] = [];
   gender: any = GENDER;
   cropper: any;
@@ -77,6 +77,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
         gender: this.product.gender,
         active: this.product.active,
       });
+      this.productImage = this.product.img;
       const features: any[] = [];
       this.product.featureValues.forEach(val => {
         features.push(val.id);
@@ -113,7 +114,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
   getProducts() {
     this.productService.getAll()
     .subscribe(res => {
-      this.productService.products = res.data;
+      this.productService.setProducts(res.data);
     });
   }
 

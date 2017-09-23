@@ -1,0 +1,52 @@
+@import "/../../../../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+:host {
+    display: block;
+    border-top: 1px solid #a7a7a7;
+}
+
+.swiper-button-wrapper {
+    width: 55px;
+
+    .swiper-button-prev {
+        left: 14px;
+    }
+
+    .swiper-button-next {
+        right: 14px;
+    }
+}
+
+img {
+    cursor: pointer;
+}
+
+@include media-breakpoint-down(xl) {
+    .swiper-slide {
+        flex-basis: calc(100% / 11);
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .swiper-slide {
+        flex-basis: calc(100% / 7);
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .swiper-slide {
+        flex-basis: calc(100% / 5);
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .swiper-slide {
+        flex-basis: calc(100% / 3);
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .swiper-slide {
+        flex-basis: calc(100% / 1);
+    }
+}

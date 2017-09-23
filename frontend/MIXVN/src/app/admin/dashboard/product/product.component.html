@@ -27,11 +27,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let product of productService.products; let i = index">
+              <tr *ngFor="let product of products; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.discount }}</td>
+                <td>{{ product.price.toFixed(3) }}</td>
+                <td>{{ product.discount.toFixed(3) }}</td>
                 <td>{{ product.sum_like }}</td>
                 <td>{{ product.sum_buy }}</td>
                 <td>{{ product.sum_mark }}</td>

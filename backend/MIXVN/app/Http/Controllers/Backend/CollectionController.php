@@ -44,18 +44,20 @@ class CollectionController extends Controller
     {
         $now = Carbon::now('UTC');
         $collection = new Collection;
-
         $collection->name = $request->name;
-        if ($request->img) {
-            $collection->img = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
-            $collection->sm_img = 'images/sm_' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
 
-            Image::make($request->img)->resize(300, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save($collection->img);
-            Image::make($request->img)->resize(1366, null, function ($constraint) {
+        if ($request->img) {
+            $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
+            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+            $collection->img = 'images/' . $converBlobFileName;
+            $collection->sm_img = 'images/sm_' . $converBlobFileName;
+
+            Image::make($convertBlobFile)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($collection->sm_img);
+            Image::make($convertBlobFile)->resize(1366, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($collection->img);
         }
         $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;        
         $collection->created_at = $now;
@@ -119,18 +121,20 @@ class CollectionController extends Controller
                 File::delete($collection->sm_img);
             }
             
-            $collection->img = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
-            $collection->sm_img = 'images/sm_' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
+            $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
+            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+            $collection->img = 'images/' . $converBlobFileName;
+            $collection->sm_img = 'images/sm_' . $converBlobFileName;
 
-            Image::make($request->img)->resize(300, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save($collection->img);
-            Image::make($request->img)->resize(1366, null, function ($constraint) {
+            Image::make($convertBlobFile)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($collection->sm_img);
+            Image::make($convertBlobFile)->resize(1366, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($collection->img);
         }
 
-        $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;        
+        $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;
         $collection->created_at = $now;
         $collection->updated_at = $now;
 

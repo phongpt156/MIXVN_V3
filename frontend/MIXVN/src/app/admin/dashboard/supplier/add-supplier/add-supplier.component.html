@@ -18,7 +18,24 @@
           <input type="text" mdInput class="text-dark" formControlName="address" placeholder="Address" required="required" />
         </md-input-container>
       </div>
-    </div>    
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <md-input-container class="w-100">
+          <input type="text" class="text-dark" mdInput formControlName="phone_number" placeholder="Phone Number" />
+        </md-input-container>
+      </div>
+      <div class="col-md-4">
+        <md-input-container style="width: 200px">
+          <input type="number" mdInput class="text-dark" formControlName="open_time" placeholder="Open Time" [min]="0" [max]="23" />
+        </md-input-container>
+      </div>
+      <div class="col-md-4">
+        <md-input-container style="width: 200px">
+          <input type="number" mdInput class="text-dark" formControlName="close_time" placeholder="Close Time" [min]="0" [max]="23" />
+        </md-input-container>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <md-input-container class="w-100">
@@ -47,10 +64,8 @@
       <div class="col-12">
         <image-upload [max]="1" [buttonCaption]="'Background Image'" (onFileUploadFinish)="imageUploaded($event, 'background_image')" (onRemove)="imageRemoved($event, 'background_image')" [preview]="false"></image-upload>
         <div class="d-flex">
-          <div class="wrapper-percentage image-21-9">
-            <div>
-              <img alt="" #supplierBackgroundImagePreview />
-            </div>
+          <div class="supplier-background-wrapper">
+            <img alt="" #supplierBackgroundImagePreview />
           </div>
           <div *ngIf="isSelectBackgroundImage" class="ml-2">
             <button class="btn btn-primary" (click)="cropper.zoom(0.1)">
@@ -67,10 +82,8 @@
       <div class="col-5">
         <image-upload [max]="1" [buttonCaption]="'Avatar'" (onFileUploadFinish)="imageUploaded($event, 'avatar')" (onRemove)="imageRemoved($event, 'avatar')" [preview]="false"></image-upload>
         <div class="d-flex">
-          <div class="wrapper-percentage image-1-1">
-            <div>
-              <img alt="" #supplierAvatarImagePreview />
-            </div>
+          <div class="supplier-avatar-wrapper">
+            <img alt="" #supplierAvatarImagePreview />
           </div>
           <div *ngIf="isSelectAvatarImage" class="ml-2">
             <button class="btn btn-primary" (click)="cropper.zoom(0.1)">

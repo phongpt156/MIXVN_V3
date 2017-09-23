@@ -10,7 +10,7 @@ import { ProductService } from 'app/main-app/main-app-shared/services/product/pr
 export class ProductListComponent implements OnInit, OnChanges {
   @Input() loadMoreProductData = [];
   @HostBinding('class') classes = 'custom-scrollbar';
-   
+
   products = [
     {
       like: '1001',

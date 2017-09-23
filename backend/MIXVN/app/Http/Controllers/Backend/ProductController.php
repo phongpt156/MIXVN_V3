@@ -13,6 +13,7 @@ use App\FeatureValueRelProduct;
 use App\ProductGroupRelProduct;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
+use Storage;
 
 class ProductController extends Controller
 {
@@ -57,8 +58,11 @@ class ProductController extends Controller
             $product->gender_id = $request->gender;
             $product->active = ($request->active === 'true' || $request->active == 1) ? true : false;
             if ($request->img) {
-                $product->img = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
-                Image::make($request->img)->resize(300, null, function ($constraint) {
+                $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
+                $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+
+                $product->img = 'images/' . $converBlobFileName;
+                Image::make($convertBlobFile)->resize(325, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($product->img);
             }
@@ -130,8 +134,11 @@ class ProductController extends Controller
                 if (File::exists($product->img)) {
                     File::delete($product->img);
                 }
-                $product->img = 'images/' . $now->format('Y-m-dTH-i-s-') . $request->img->getClientOriginalName();
-                Image::make($request->img)->resize(300, null, function ($constraint) {
+                $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
+                $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+
+                $product->img = 'images/' . $converBlobFileName;
+                Image::make($convertBlobFile)->resize(325, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($product->img);
             }

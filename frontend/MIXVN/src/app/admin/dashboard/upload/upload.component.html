@@ -9,10 +9,8 @@
         <div class="col-12 form-group">
           <image-upload [max]="1" [buttonCaption]="'Product Group Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved()" [preview]="false"></image-upload>
           <div class="d-flex">
-            <div class="wrapper-percentage image-21-9">
-              <div>
-                <img alt="" #productGroupImagePreview id="productGroupImagePreview" />
-              </div>
+            <div class="product-group-wrapper">
+              <img alt="" #productGroupImagePreview id="productGroupImagePreview" />
             </div>
             <div *ngIf="isSelectImage" class="ml-2">
               <button class="btn btn-primary" (click)="cropper.zoom(0.1)">

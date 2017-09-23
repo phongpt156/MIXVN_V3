@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.blur = this.commonService.getBlur();
 
-    this._subscription = this.commonService.blurChange.subscribe(value => { 
+    this._subscription = this.commonService.blurChange.subscribe(value => {
       this.blur = value;
     });
   }
