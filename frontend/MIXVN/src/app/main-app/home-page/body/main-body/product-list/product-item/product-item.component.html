@@ -6,7 +6,7 @@
 </div>
 <div class="product-item-body w-100 p-2">
   <p class="text-uppercase product-name font-weight-bold m-0 mb-2">{{ product.name }}</p>
-  <p class="m-0">{{ product.supplier?.name }}</p>
+  <p class="m-0"><a (click)="goToSupplierPage()">{{ product.supplier?.name }}</a></p>
   <div class="clearfix">
     <p class="text-left float-left m-0">{{ product.price }}</p>
     <p class="text-right float-right m-0">{{ product.like }} <i class="fa fa-heart"></i></p>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/operator/catch';
 
@@ -12,22 +11,11 @@ import { createCommonHeaders, handleError } from 'app/shared/functions/http-req'
 
 @Injectable()
 export class ProductService {
-  private products: any[] = [];
-  productsChange: Subject<any[]> = new Subject<any[]>();
 
   constructor(
     private authService: AuthService,
     private http: HttpClient
   ) {}
-
-  getProducts(): any[] {
-    return this.products;
-  }
-
-  setProducts(products) {
-    this.products = products;
-    this.productsChange.next(products);
-  }
 
   searchByName(name: string): Observable<ApiResponse> {
     const options = createCommonHeaders(this.authService);

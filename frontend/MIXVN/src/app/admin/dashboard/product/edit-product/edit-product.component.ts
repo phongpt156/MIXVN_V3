@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MdDialogRef } from '@angular/material';
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ProductService } from 'app/admin/admin-shared/services/product/product.service';
@@ -16,7 +17,7 @@ declare var Cropper: any;
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.scss']
 })
-export class EditProductComponent implements OnInit, OnDestroy {
+export class EditProductComponent implements OnInit {
   @ViewChild('productImagePreview') productImagePreview;
   product: any;
   editProductForm: FormGroup;
@@ -31,7 +32,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
   isPending = false;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public dialogRef: MdDialogRef<EditProductComponent>,
     private fb: FormBuilder,
     private productService: ProductService,
     private categoryGroupService: CategoryGroupService,
@@ -62,29 +63,23 @@ export class EditProductComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnDestroy() {
-    this.getProducts();
-  }
-
   patchValue() {
-    setTimeout(() => {
-      this.editProductForm.patchValue({
-        name: this.product.name,
-        price: this.product.price,
-        discount: this.product.discount,
-        category: this.product.category.id,
-        supplier: this.product.supplier.id,
-        gender: this.product.gender,
-        active: this.product.active,
-      });
-      this.productImage = this.product.img;
-      const features: any[] = [];
-      this.product.featureValues.forEach(val => {
-        features.push(val.id);
-      });
-      this.getCategories(this.product.gender);
-      this.editProductForm.controls.features.setValue(features);
+    this.editProductForm.patchValue({
+      name: this.product.name,
+      price: this.product.price,
+      discount: this.product.discount,
+      category: this.product.category.id,
+      supplier: this.product.supplier.id,
+      gender: this.product.gender,
+      active: this.product.active,
     });
+    this.productImage = this.product.img;
+    const features: any[] = [];
+    this.product.featureValues.forEach(val => {
+      features.push(val.id);
+    });
+    this.getCategories(this.product.gender);
+    this.editProductForm.controls.features.setValue(features);
   }
 
   getCategories(genderId: number) {
@@ -108,13 +103,6 @@ export class EditProductComponent implements OnInit, OnDestroy {
     this.featureService.getAll()
     .subscribe(res => {
       this.features = res.data;
-    });
-  }
-
-  getProducts() {
-    this.productService.getAll()
-    .subscribe(res => {
-      this.productService.setProducts(res.data);
     });
   }
 
@@ -152,8 +140,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
     }
     this.productService.edit(this.formData, this.product.id)
     .subscribe(res => {
-      console.log(res);
-      this.bsModalRef.hide();
+      this.dialogRef.close(true);
       this.isPending = false;
     });
   }

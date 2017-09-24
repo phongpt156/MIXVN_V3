@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mix-left-main-body',
@@ -8,9 +9,14 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 export class LeftMainBodyComponent implements OnInit {
   @HostBinding('class') classes = 'pb-3';
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  goToSupplierPage() {
+    this.router.navigate(['/shop']);
+  }
 }

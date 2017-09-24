@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/operator/catch';
 
@@ -14,17 +13,6 @@ import { COLLECTION } from 'app/shared/constants/api/backend';
 
 @Injectable()
 export class CollectionService {
-  protected collections: any[] = [];
-  collectionsChange: Subject<any[]> = new Subject<any[]>();
-
-  getCollections(): any[] {
-    return this.collections;
-  }
-
-  setCollections(collections: any[]) {
-    this.collections = collections;
-    this.collectionsChange.next(collections);
-  };
 
   constructor(
     private http: HttpClient,

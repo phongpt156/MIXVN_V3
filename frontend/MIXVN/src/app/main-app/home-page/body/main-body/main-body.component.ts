@@ -13,8 +13,4 @@ export class MainBodyComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  onScroll(data) {
-    this.products = data;
-  }
 }

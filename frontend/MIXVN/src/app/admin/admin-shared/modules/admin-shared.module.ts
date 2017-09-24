@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule, MdIconModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatCheckboxModule, MatInputModule, MatRadioModule, MatSelectModule, MatMenuModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'app/shared/module/shared.module';
@@ -12,15 +12,30 @@ import { SideMenuComponent } from './../components/menu/side-menu/side-menu.comp
     SharedModule,
     CommonModule,
     RouterModule,
-    MaterialModule,
-    MdIconModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatSnackBarModule,
     CollapseModule.forRoot()
   ],
   exports: [
+    SharedModule,
     TopMenuComponent,
     SideMenuComponent,
-    MaterialModule,
-    MdIconModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatSnackBarModule,
     CollapseModule
   ],
   declarations: [

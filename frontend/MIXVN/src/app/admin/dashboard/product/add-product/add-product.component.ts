@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { MdDialogRef } from '@angular/material';
 
 import { ProductService } from 'app/admin/admin-shared/services/product/product.service';
 import { CategoryGroupService } from 'app/admin/admin-shared/services/category-group/category-group.service';
@@ -16,7 +16,7 @@ declare var Cropper: any;
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss']
 })
-export class AddProductComponent implements OnInit, OnDestroy {
+export class AddProductComponent implements OnInit {
   @ViewChild('productImagePreview') productImagePreview;
   addProductForm: FormGroup;
   categories: any[] = [];
@@ -29,7 +29,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   isPending = false;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public dialogRef: MdDialogRef<AddProductComponent>,
     private fb: FormBuilder,
     private productService: ProductService,
     private categoryGroupService: CategoryGroupService,
@@ -56,10 +56,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
     this.getSuppliers();
     this.getFeatures();
-  }
-
-  ngOnDestroy() {
-    this.getProducts();
   }
 
   getCategories(genderId: number) {
@@ -102,13 +98,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
     this.cropper.destroy();
   }
 
-  getProducts() {
-    this.productService.getAll()
-    .subscribe(res => {
-      this.productService.setProducts(res.data);
-    });
-  }
-
   async submit() {
     if (!this.isPending) {
       if (this.addProductForm.valid && this.isSelectImage) {
@@ -120,9 +109,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
         }
         this.productService.add(this.formData)
         .subscribe(res => {
-          console.log(res);
-          this.bsModalRef.hide();
-          this.cropper.destroy();
+          this.dialogRef.close(true);
           this.isPending = false;
         });
       }

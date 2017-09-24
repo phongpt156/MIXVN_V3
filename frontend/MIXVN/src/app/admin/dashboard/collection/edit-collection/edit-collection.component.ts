@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { MdDialogRef } from '@angular/material';
 
 import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
 
@@ -11,7 +11,7 @@ declare var Cropper: any;
   templateUrl: './edit-collection.component.html',
   styleUrls: ['./edit-collection.component.scss']
 })
-export class EditCollectionComponent implements OnInit, OnDestroy {
+export class EditCollectionComponent implements OnInit {
   @ViewChild('collectionImagePreview') collectionImagePreview;
   collection: any = {};
   collectionImage: string;
@@ -21,7 +21,7 @@ export class EditCollectionComponent implements OnInit, OnDestroy {
   isSelectImage = false;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public dialogRef: MdDialogRef<EditCollectionComponent>,
     private fb: FormBuilder,
     private collectionService: CollectionService
   ) { }
@@ -42,25 +42,12 @@ export class EditCollectionComponent implements OnInit, OnDestroy {
   }
 
   patchValue() {
-    setTimeout(() => {
-      this.editCollectionForm.patchValue({
-        name: this.collection.name,
-        active: this.collection.active ? true : false
-      });
-
-      this.collectionImage = this.collection.img;
+    this.editCollectionForm.patchValue({
+      name: this.collection.name,
+      active: this.collection.active ? true : false
     });
-  }
 
-  ngOnDestroy() {
-    this.getCollections();
-  }
-
-  getCollections() {
-    this.collectionService.getAll()
-    .subscribe(res => {
-      this.collectionService.setCollections(res.data);
-    });
+    this.collectionImage = this.collection.img;
   }
 
   imageUploaded(e) {
@@ -89,16 +76,14 @@ export class EditCollectionComponent implements OnInit, OnDestroy {
   }
 
   sendData() {
-      for (const i of Object.keys(this.editCollectionForm.value)) {
-        this.formData.append(i, this.editCollectionForm.value[i]);
-      }
+    for (const i of Object.keys(this.editCollectionForm.value)) {
+      this.formData.append(i, this.editCollectionForm.value[i]);
+    }
 
-      this.collectionService.edit(this.formData, this.collection.id)
-      .subscribe(res => {
-        this.bsModalRef.hide();
-        console.log(res);
-      });
-
+    this.collectionService.edit(this.formData, this.collection.id)
+    .subscribe(res => {
+      this.dialogRef.close(true);
+    });
   }
 
   convertBlob() {

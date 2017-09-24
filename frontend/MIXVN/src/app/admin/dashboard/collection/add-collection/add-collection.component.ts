@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { MdDialogRef } from '@angular/material';
 
 import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
 
@@ -11,7 +11,7 @@ declare var Cropper: any;
   templateUrl: './add-collection.component.html',
   styleUrls: ['./add-collection.component.scss']
 })
-export class AddCollectionComponent implements OnInit, OnDestroy {
+export class AddCollectionComponent implements OnInit {
   @ViewChild('collectionImagePreview') collectionImagePreview;
   addCollectionForm: FormGroup;
   formData: FormData = new FormData;
@@ -19,7 +19,7 @@ export class AddCollectionComponent implements OnInit, OnDestroy {
   isSelectImage = false;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public dialogRef: MdDialogRef<AddCollectionComponent>,
     private fb: FormBuilder,
     private collectionService: CollectionService,
   ) { }
@@ -36,17 +36,6 @@ export class AddCollectionComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.getCollections();
-  }
-
-  getCollections() {
-    this.collectionService.getAll()
-    .subscribe(res => {
-      this.collectionService.setCollections(res.data);
-    });
-  }
-
   onSubmit() {
     if (this.addCollectionForm.valid && this.isSelectImage) {
       this.cropper.getCroppedCanvas().toBlob(collectionImage => {
@@ -58,8 +47,7 @@ export class AddCollectionComponent implements OnInit, OnDestroy {
 
         this.collectionService.add(this.formData)
         .subscribe(res => {
-          console.log(res);
-          this.bsModalRef.hide();
+          this.dialogRef.close(true);
         });
       });
     }

@@ -1,71 +1,76 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal/modal-options.class';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
 import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
 
 import { AddCollectionComponent } from './add-collection/add-collection.component';
 import { EditCollectionComponent } from './edit-collection/edit-collection.component';
+import { DeleteCollectionComponent } from './delete-collection/delete-collection.component';
 
 @Component({
   selector: 'mix-collection',
   templateUrl: './collection.component.html',
   styleUrls: ['./collection.component.scss']
 })
-export class CollectionComponent implements OnInit, OnDestroy {
+export class CollectionComponent implements OnInit {
   @ViewChild('deleteCollectionModal') deleteCollectionModal;
-  bsModalRef: BsModalRef
-  config: ModalOptions = {
-    class: 'mw-100 w-75'
-  }
+
   selectedCollectionId: number;
-  _subscription: Subscription;
   collections: any[] = [];
+  dialogRef: any;
 
   constructor(
-    private bsModalService: BsModalService,
+    public dialog: MdDialog,
     private collectionService: CollectionService
   ) { }
 
   ngOnInit() {
-    this.collections = this.collectionService.getCollections();
-    this._subscription = this.collectionService.collectionsChange.subscribe((collections: any[]) => {
-      this.collections = collections;
-    });
     this.getCollections();
-  }
-
-  ngOnDestroy() {
-    this._subscription.unsubscribe();
   }
 
   getCollections() {
     this.collectionService.getAll()
     .subscribe(res => {
-      this.collectionService.setCollections(res.data);
+      this.collections = res.data;
     });
   }
 
-  openAddCollectionModal() {
-    this.bsModalRef = this.bsModalService.show(AddCollectionComponent, this.config);
+  openAddCollectionDialog() {
+    this.dialogRef = this.dialog.open(AddCollectionComponent, {
+      panelClass: ['w-50', 'mh-100', 'overflow']
+    });
+
+    this.dialogRef.afterClosed().subscribe(isAdd => {
+      if (isAdd) {
+        this.getCollections();
+      }
+    });
   }
 
-  openEditCollectionModal(collection: any) {
-    this.bsModalRef = this.bsModalService.show(EditCollectionComponent, this.config);
-    this.bsModalRef.content.collection = collection;
+  openEditCollectionDialog(collection: any) {
+    this.dialogRef = this.dialog.open(EditCollectionComponent, {
+      panelClass: ['w-50', 'mh-100', 'overflow']
+    });
+
+    this.dialogRef.componentInstance.collection = collection;
+
+    this.dialogRef.afterClosed().subscribe(isEdit => {
+      if (isEdit) {
+        this.getCollections();
+      }
+    });
   }
 
-  openDeleteCollectionModal(collectionId: number) {
-    this.bsModalRef = this.bsModalService.show(this.deleteCollectionModal);
-    this.selectedCollectionId = collectionId;
-  }
+  openDeleteCollectionDialog(collectionId: number) {
+    this.dialogRef = this.dialog.open(DeleteCollectionComponent);
 
-  deleteCollection() {
-    this.collectionService.delete(this.selectedCollectionId)
-    .subscribe(res => {
-      this.bsModalRef.hide();
-      this.getCollections();
+    this.dialogRef.afterClosed().subscribe(isDelete => {
+      if (isDelete) {
+        this.collectionService.delete(collectionId)
+        .subscribe(res => {
+          this.getCollections();
+        });
+      }
     });
   }
 }

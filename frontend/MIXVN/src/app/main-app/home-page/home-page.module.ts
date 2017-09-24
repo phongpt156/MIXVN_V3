@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
+import { MainAppSharedModule } from 'app/main-app/main-app-shared/module/main-app-shared.module';
 import { HomePageRoutingModule } from './home-page-routing.module';
 
 import { HomePageComponent } from './home-page.component';
@@ -12,16 +13,17 @@ import { AsideComponent } from './body/aside/aside.component';
 import { MainBodyComponent } from './body/main-body/main-body.component';
 import { CollectionListComponent } from './body/aside/collection-list/collection-list.component';
 import { CollectionItemComponent } from './body/aside/collection-list/collection-item/collection-item.component';
-import { ProductListComponent } from './body/main-body/product-list/product-list.component';
-import { ProductItemComponent } from './body/main-body/product-list/product-item/product-item.component';
-import { ProductUserInteractiveComponent } from './body/main-body/product-list/product-item/product-user-interactive/product-user-interactive.component';
+// import { ProductListComponent } from './body/main-body/product-list/product-list.component';
+// import { ProductItemComponent } from './body/main-body/product-list/product-item/product-item.component';
+// import { ProductUserInteractiveComponent } from './body/main-body/product-list/product-item/product-user-interactive/product-user-interactive.component';
 
 @NgModule({
   imports: [
     CommonModule,
     HomePageRoutingModule,
     CollapseModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    MainAppSharedModule
   ],
   declarations: [
     HomePageComponent,
@@ -31,9 +33,9 @@ import { ProductUserInteractiveComponent } from './body/main-body/product-list/p
     MainBodyComponent,
     CollectionListComponent,
     CollectionItemComponent,
-    ProductListComponent,
-    ProductItemComponent,
-    ProductUserInteractiveComponent,
+    // ProductListComponent,
+    // ProductItemComponent,
+    // ProductUserInteractiveComponent,
   ],
 })
 export class HomePageModule { }

@@ -1,5 +1,5 @@
 <div class="search-box-container d-flex align-items-center m-auto pb-1" [ngClass]="{'w-75': !isMobile, 'w-100': isMobile}">
-  <div class="w-100 d-flex flex-wrap search-box">
+  <form class="w-100 d-flex flex-wrap search-box" (ngSubmit)="onSubmit()">
     <mix-search-tagging-list>
     </mix-search-tagging-list>
     
@@ -7,5 +7,5 @@
     <div class="d-flex align-items-center search-icon" (click)="onSubmit()">
       <img src="http://i.imgur.com/lga22vW.png" alt="search-icon" />
     </div>
-  </div>
+  </form>
 </div>

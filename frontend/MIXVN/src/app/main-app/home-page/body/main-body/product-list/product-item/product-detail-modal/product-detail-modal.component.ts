@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { ProductService } from 'app/main-app/main-app-shared/services/product/product.service';
 import { CommonService } from 'app/shared/services/common/common.service';
@@ -20,8 +22,10 @@ export class ProductDetailModalComponent implements OnInit, OnDestroy {
   index: number;
 
   constructor(
+    public bsModalRef: BsModalRef,
     private commonService: CommonService,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -58,5 +62,10 @@ export class ProductDetailModalComponent implements OnInit, OnDestroy {
     } else if (e.key === 'ArrowRight' && this.index < this.products.length - 1) {
       this.changeProduct(2);
     }
+  }
+
+  goToSupplierPage() {
+    this.bsModalRef.hide();
+    this.router.navigate(['/shop']);
   }
 }

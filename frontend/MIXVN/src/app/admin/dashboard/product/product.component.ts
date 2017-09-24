@@ -1,68 +1,73 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
 import { ProductService } from 'app/admin/admin-shared/services/product/product.service';
 
 import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { DeleteProductComponent } from './delete-product/delete-product.component';
 
 @Component({
   selector: 'mix-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit, OnDestroy {
-  @ViewChild('deleteProductModal') deleteProductModal;
+export class ProductComponent implements OnInit {
   products: any[] = [];
-  bsModalRef: BsModalRef;
-  selectedProductId: number;
-  _subscription: Subscription;
+  dialogRef: any;
 
   constructor(
+    public dialog: MdDialog,
     private productService: ProductService,
-    private bsModalService: BsModalService
   ) { }
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
-    this._subscription = this.productService.productsChange.subscribe((products: any[]) => {
-      this.products = products;
-    });
     this.getProducts();
-  }
-
-  ngOnDestroy() {
-    this._subscription.unsubscribe();
   }
 
   getProducts() {
     this.productService.getAll()
     .subscribe(res => {
-      this.productService.setProducts(res.data);
+      this.products = res.data;
     });
   }
 
   openAddProductModal() {
-    this.bsModalRef = this.bsModalService.show(AddProductComponent, {class: 'w-75 modal-lg'});
+    this.dialogRef = this.dialog.open(AddProductComponent, {
+      panelClass: ['w-50', 'mh-100', 'overflow']
+    });
+
+    this.dialogRef.afterClosed().subscribe(isAdd => {
+      if (isAdd) {
+        this.getProducts();
+      }
+    });
   }
 
   openEditProductModal(product: any) {
-    this.bsModalRef = this.bsModalService.show(EditProductComponent, {class: 'w-75 modal-lg'});
-    this.bsModalRef.content.product = product;
+    this.dialogRef = this.dialog.open(EditProductComponent, {
+      panelClass: ['w-50', 'mh-100', 'overflow']
+    });
+
+    this.dialogRef.componentInstance.product = product;
+    
+    this.dialogRef.afterClosed().subscribe(isEdit => {
+      if (isEdit) {
+        this.getProducts();
+      }
+    });
   }
 
   openDeleteProductModal(id: number) {
-    this.selectedProductId = id;
-    this.bsModalRef = this.bsModalService.show(this.deleteProductModal);
-  }
+    this.dialogRef = this.dialog.open(DeleteProductComponent);
 
-  deleteProduct() {
-    this.productService.delete(this.selectedProductId)
-    .subscribe(res => {
-      this.bsModalRef.hide();
-      this.getProducts();
+    this.dialogRef.afterClosed().subscribe((isDelete) => {
+      if (isDelete) {
+        this.productService.delete(id)
+        .subscribe(res => {
+          this.getProducts();
+        });
+      }
     });
   }
 }

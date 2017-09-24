@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Delete Product</h4>
+</div>
+<div class="modal-body">
+  <p>Are you sure to delete this Product?</p>
+  <div class="text-right">
+    <button md-raised-button type="submit" color="warn" (click)="dialogRef.close(true)">Delete</button>
+    <button md-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
+  </div>
+</div>

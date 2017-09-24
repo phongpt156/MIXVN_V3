@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImageUploadModule } from 'angular2-image-upload';
 
 import { AdminSharedModule } from '../admin-shared/modules/admin-shared.module';
@@ -31,14 +30,14 @@ import { SearchProductComponent } from './upload/add-product-form/search-product
 import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { EditProductComponent } from './product/edit-product/edit-product.component';
+import { DeleteProductComponent } from './product/delete-product/delete-product.component';
+import { DeleteCollectionComponent } from './collection/delete-collection/delete-collection.component';
 
 @NgModule({
   imports: [
     CommonModule,
     DashboardRoutingModule,
     AdminSharedModule,
-    ReactiveFormsModule,
-    FormsModule,
     ImageUploadModule.forRoot(),
     CollapseModule.forRoot(),
     ModalModule.forRoot()
@@ -64,7 +63,9 @@ import { EditProductComponent } from './product/edit-product/edit-product.compon
     SearchProductComponent,
     ProductComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    DeleteProductComponent,
+    DeleteCollectionComponent
   ],
   entryComponents: [
     AddSupplierComponent,
@@ -76,7 +77,9 @@ import { EditProductComponent } from './product/edit-product/edit-product.compon
     AddFeatureValueComponent,
     EditFeatureValueComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    DeleteProductComponent,
+    DeleteCollectionComponent
   ]
 })
 export class DashboardModule { }

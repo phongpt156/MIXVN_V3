@@ -77,7 +77,7 @@ export class UploadComponent implements OnInit {
     } else {
       this.productIds[this.selectedProduct[e.index] - 1] = e.productId;
     }
-    console.log(this.productIds);    
+    console.log(this.productIds);
   }
 
   imageUploaded(e) {

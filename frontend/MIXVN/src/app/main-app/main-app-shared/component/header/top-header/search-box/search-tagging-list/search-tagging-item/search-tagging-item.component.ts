@@ -8,7 +8,7 @@ import { SearchTaggingService } from 'app/main-app/main-app-shared/services/sear
   styleUrls: ['./search-tagging-item.component.scss']
 })
 export class SearchTaggingItemComponent implements OnInit {
-  @HostBinding('class') classes = 'pb-1 px-3';
+  @HostBinding('class') classes = 'pb-1 px-2';
   @Input() searchTagging: any;
   @Input() index: number;
 

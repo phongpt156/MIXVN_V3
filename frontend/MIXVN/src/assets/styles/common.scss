@@ -47,22 +47,6 @@ a:hover, a:focus, a:active, a:visited {
     cursor: pointer;
 }
 
-button[color="add"] {
-    background-color: #039be5;
-}
-button[color="delete"] {
-    background-color: #EA63A5;
-}
-button {
-    &:focus {
-        outline: 5px auto rgba(255, 255, 255, 0.1);
-    }
-    &.close {
-        cursor: pointer;
-    }
-    
-}
-
 /**------------------- Image Wrapper Style -------------------**/
 img {
     object-fit: cover;
@@ -94,6 +78,9 @@ img {
 }
 .image-3-4 {
     padding-top: calc(100% * 4 / 3);
+}
+.image-17-4 {
+    padding-top: calc(100% * 4 / 17);
 }
 .wrapper-percentage {
     width: 100%;
@@ -146,41 +133,59 @@ img {
     background-color: #222;    
 }
 
-/**------------------- Material themes custom -------------------**/
-.mat-input-placeholder, .mat-focused .mat-input-placeholder {
-    color: #868e96 !important;
-}
+// /**------------------- Material themes custom -------------------**/
+// .mat-input-placeholder, .mat-focused .mat-input-placeholder {
+//     color: #868e96 !important;
+// }
 
-.mat-select-value, .mat-select-arrow, .mat-select-underline, .mat-select-trigger {
-    color: #868e96;
-}
+// .mat-select-value, .mat-select-arrow, .mat-select-underline, .mat-select-trigger {
+//     color: #868e96;
+// }
 
-.mat-radio-outer-circle {
-    border-color: #868e86;
-}
+// .mat-radio-outer-circle {
+//     border-color: #868e86;
+// }
 
-.mat-select-underline {
-    height: 2px !important;
-    background-color: #868e96;
-}
+// .mat-select-underline {
+//     height: 2px !important;
+//     background-color: #868e96;
+// }
 
-.mat-input-underline, .mat-input-ripple, .mat-focused .mat-input-ripple {
-    background-color: #868e96 !important;
-}
+// .mat-input-underline, .mat-input-ripple, .mat-focused .mat-input-ripple {
+//     background-color: #868e96 !important;
+// }
 
-.mat-checkbox-frame {
-    border-color: #868e96;
-}
+// .mat-checkbox-frame {
+//     border-color: #868e96;
+// }
 
-.mat-input-invalid {
-    .mat-input-ripple {
-        background-color: #f44336 !important;
-    }
-    .mat-input-placeholder {
-        color: #f44336 !important;
-    }
-}
+// .mat-input-invalid {
+//     .mat-input-ripple {
+//         background-color: #f44336 !important;
+//     }
+//     .mat-input-placeholder {
+//         color: #f44336 !important;
+//     }
+// }
 
+// button[color="add"] {
+//     background-color: #039be5;
+// }
+// button[color="delete"] {
+//     background-color: #EA63A5;
+// }
+// button {
+//     &:focus {
+//         outline: 5px auto rgba(255, 255, 255, 0.1);
+//     }
+//     &.close {
+//         cursor: pointer;
+//     }
+    
+// }
+.file-upload {
+    background-color: transparent !important;
+}
 
 .cdk-overlay-container {
     z-index: 5000;
@@ -188,6 +193,10 @@ img {
 
 .mat-input-underline {
     height: 2px !important;
+}
+
+.overflow {
+    overflow: auto
 }
 // End Material themes custom //
 

@@ -18,6 +18,10 @@ import { AlertLoginComponent } from './../component/alert-login/alert-login.comp
 import { SearchTaggingItemComponent } from './../component/header/top-header/search-box/search-tagging-list/search-tagging-item/search-tagging-item.component';
 import { SearchFilterComponent } from './../component/header/top-header/search-box/search-tagging-list/search-tagging-item/search-filter/search-filter.component';
 
+import { ProductListComponent } from 'app/main-app/home-page/body/main-body/product-list/product-list.component';
+import { ProductItemComponent } from 'app/main-app/home-page/body/main-body/product-list/product-item/product-item.component';
+import { ProductUserInteractiveComponent } from 'app/main-app/home-page/body/main-body/product-list/product-item/product-user-interactive/product-user-interactive.component';
+
 import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll-load-more.directive';
 
 @NgModule({
@@ -39,8 +43,12 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     AlertLoginComponent,
     SearchTaggingItemComponent,
     SearchFilterComponent,
+    ProductListComponent,
+    ProductItemComponent,
+    ProductUserInteractiveComponent,
   ],
   exports: [
+    SharedModule,
     SwiperModule,
     PerfectScrollbarModule,
     HeaderComponent,
@@ -52,6 +60,9 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     ScrollLoadMoreDirective,
     AlertLoginComponent,
     SearchTaggingItemComponent,
+    ProductListComponent,
+    ProductItemComponent,
+    ProductUserInteractiveComponent,
   ],
   providers: [
     SearchTaggingService

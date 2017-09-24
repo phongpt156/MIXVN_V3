@@ -1,0 +1,49 @@
+:host {
+    display: block;
+}
+
+.supplier-cover {
+    position: relative;
+}
+
+.supplier-cover-bg {
+    z-index: 10;
+    top: 0;
+    position: absolute;
+    opacity: 0.23;
+    left: 0;
+    background-color: #030303;
+}
+
+.supplier-cover-info {
+    z-index: 10;
+    top: 0;
+    position: absolute;
+    left: 0;
+    cursor: pointer;    
+
+    .supplier-name {
+        margin-left: -2vw;
+        margin-bottom: 1vw;
+        font-size: 2.5vw;
+    }
+
+    p {
+        margin-bottom: 0.5vw;
+        font-size: 1.2vw;
+        color: #f2f1f0;
+    }
+}
+
+.supplier-avatar {
+    z-index: 10;
+    width: 10vw;
+    position: absolute;
+    left: 1.5vw;
+    cursor: pointer;
+    bottom: -4.5vw;
+}
+
+.supplier-page-body {
+    padding-top: 10vw;
+}
