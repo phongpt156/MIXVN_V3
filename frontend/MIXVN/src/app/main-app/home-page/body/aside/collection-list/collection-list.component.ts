@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mix-collection-list',
@@ -21,9 +22,14 @@ export class CollectionListComponent implements OnInit {
     { url: 'http://lorempixel.com/235/70/?58039'},
   ];
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  goToSupplierPage() {
+    this.router.navigate(['/bo-suu-tap']);
+  }
 }

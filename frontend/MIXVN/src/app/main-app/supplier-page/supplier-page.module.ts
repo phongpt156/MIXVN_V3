@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SupplierPageComponent } from './supplier-page.component';
-import { SupplierPageRoutingModule } from './supplier-page-routing.module';
-import { BodyComponent } from './body/body.component';
-import { AsideComponent } from './body/aside/aside.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { SharedModule } from 'app/shared/module/shared.module';
+import { SupplierPageRoutingModule } from './supplier-page-routing.module';
 import { MainAppSharedModule } from 'app/main-app/main-app-shared/module/main-app-shared.module';
+
+import { SupplierPageComponent } from './supplier-page.component';
+import { BodyComponent } from './body/body.component';
+import { AsideComponent } from './body/aside/aside.component';
 import { MainBodyComponent } from './body/main-body/main-body.component';
 
 @NgModule({
@@ -14,7 +16,8 @@ import { MainBodyComponent } from './body/main-body/main-body.component';
     CommonModule,
     SupplierPageRoutingModule,
     SharedModule,
-    MainAppSharedModule
+    MainAppSharedModule,
+    CollapseModule.forRoot()
   ],
   declarations: [
     SupplierPageComponent,

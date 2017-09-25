@@ -13,7 +13,7 @@ export class DeleteFeatureValueComponent implements OnInit {
 
   constructor(
     public dialogRef: MdDialogRef<DeleteFeatureValueComponent>,
-    private featureValueService: FeatureValueService,    
+    private featureValueService: FeatureValueService,
   ) { }
 
   ngOnInit() {

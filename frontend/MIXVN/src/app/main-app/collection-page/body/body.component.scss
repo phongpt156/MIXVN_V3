@@ -1,0 +1,35 @@
+@import "./../../../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+:host {
+    display: block;
+}
+
+@include media-breakpoint-down(xl) {
+    :host ::ng-deep mix-product-item {
+        flex-basis: calc(100% / 7);
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    :host ::ng-deep mix-product-item {
+        flex-basis: calc(100% / 6);
+    }
+}
+
+@include media-breakpoint-down(md) {
+    :host ::ng-deep mix-product-item {
+        flex-basis: calc(100% / 4);
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    :host ::ng-deep mix-product-item {
+        flex-basis: calc(100% / 3);
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    :host ::ng-deep mix-product-item {
+        flex-basis: calc(100% / 2);
+    }
+}

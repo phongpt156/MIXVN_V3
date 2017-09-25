@@ -59,13 +59,13 @@ export class FeatureComponent implements OnInit {
       if (isEdit) {
         this.getFeatures();
       }
-    }); 
+    });
   }
 
   openDeleteFeatureDialog(e, featureId: number) {
     e.stopPropagation();
     this.dialogRef = this.dialog.open(DeleteFeatureComponent);
-    
+
     this.dialogRef.componentInstance.id = featureId;
 
     this.dialogRef.afterClosed().subscribe(isDelete => {

@@ -24,6 +24,7 @@ class CreateUserTable extends Migration
             $table->smallInteger('gender_id')->nullable();
             $table->string('avatar')->nullable();
             $table->string('avatar_original')->nullable();
+            $table->string('background_image')->nullable();
             $table->boolean('active');
             $table->smallInteger('role_id');
             $table->rememberToken();

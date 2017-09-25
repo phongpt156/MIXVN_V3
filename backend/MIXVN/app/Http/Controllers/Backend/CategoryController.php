@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ParentCategory as ParentCategoryResource;
+use App\Http\Resources\Category as CategoryResource;
 use App\Http\Requests\Category as CategoryRequest;
 use App\Category;
 use Carbon\Carbon;
@@ -136,5 +137,10 @@ class CategoryController extends Controller
         }
 
         return response()->json([], 401);
+    }
+
+    public function getByGender($id)
+    {
+        return CategoryResource::collection(Category::where('gender_id', $id)->orderBy('order')->get());
     }
 }

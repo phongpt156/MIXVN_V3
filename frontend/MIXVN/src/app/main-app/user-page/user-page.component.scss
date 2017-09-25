@@ -2,11 +2,11 @@
     display: block;
 }
 
-.supplier-cover {
+.user-cover {
     position: relative;
 }
 
-.supplier-cover-bg {
+.user-cover-bg {
     z-index: 10;
     top: 0;
     position: absolute;
@@ -15,15 +15,14 @@
     background-color: #030303;
 }
 
-.supplier-cover-info {
+.user-cover-info {
     z-index: 10;
     top: 0;
     position: absolute;
     left: 0;
     cursor: pointer;    
 
-    .supplier-name {
-        margin-left: -2vw;
+    .user-name {
         margin-bottom: 1vw;
         font-size: 2.5vw;
     }
@@ -35,7 +34,7 @@
     }
 }
 
-.supplier-avatar {
+.user-avatar {
     z-index: 10;
     width: 10vw;
     position: absolute;
@@ -44,6 +43,6 @@
     bottom: -4.5vw;
 }
 
-.supplier-page-body {
+.user-page-body {
     padding-top: 10vw;
 }

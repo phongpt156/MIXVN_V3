@@ -55,7 +55,7 @@ export class SupplierComponent implements OnInit {
     this.dialogRef = this.dialog.open(EditSupplierComponent, {
       panelClass: ['w-75']
     });
-    
+
     this.dialogRef.componentInstance.supplier = supplier;
 
     this.dialogRef.afterClosed().subscribe(isEdit => {

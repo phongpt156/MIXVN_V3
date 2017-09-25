@@ -24,6 +24,14 @@ const mainAppRoutes: Routes = [
       {
         path: 'shop',
         loadChildren: './supplier-page/supplier-page.module#SupplierPageModule'
+      },
+      {
+        path: 'trang-ca-nhan',
+        loadChildren: './user-page/user-page.module#UserPageModule'
+      },
+      {
+        path: 'bo-suu-tap',
+        loadChildren: './collection-page/collection-page.module#CollectionPageModule'
       }
     ]
   }

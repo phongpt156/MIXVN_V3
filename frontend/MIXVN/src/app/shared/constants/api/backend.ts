@@ -11,20 +11,14 @@ export const CATEGORY = {
     getAll: HOST + '/api/category',
     add: HOST + '/api/admin/category',
     edit: HOST + '/api/admin/category/',
-    delete: HOST + '/api/admin/category/'
+    delete: HOST + '/api/admin/category/',
+    getByGender: HOST + '/api/admin/category/gender/'
 }
 
 export const PARENT_CATEGORY = {
     add: HOST + '/api/admin/parent-category',
     edit: HOST + '/api/admin/parent-category/',
     delete: HOST + '/api/admin/parent-category/',
-}
-
-export const CATEGORY_GROUP = {
-    add: HOST + '/api/admin/category-group',
-    edit: HOST + '/api/admin/category-group/',
-    delete: HOST + '/api/admin/category-group/',
-    getByGender: HOST + '/api/admin/category-group/gender/'
 }
 
 export const SUPPLIER = {

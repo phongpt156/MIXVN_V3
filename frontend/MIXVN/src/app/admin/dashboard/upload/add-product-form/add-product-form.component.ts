@@ -5,6 +5,7 @@ import { GENDER } from 'app/shared/constants/constants';
 
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
+import { CategoryService } from 'app/admin/admin-shared/services/category/category.service';
 
 @Component({
   selector: 'mix-add-product-form',
@@ -28,7 +29,8 @@ export class AddProductFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private supplierService: SupplierService,
-    private featureService: FeatureService
+    private featureService: FeatureService,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit() {
@@ -39,12 +41,9 @@ export class AddProductFormComponent implements OnInit {
   }
 
   // getCategories(genderId: number) {
-  //   this.categoryGroupService.getByGender(genderId)
+  //   this.categoryService.getByGender(genderId)
   //   .subscribe(res => {
-  //     this.categories = [];
-  //     res.data.forEach(categoryGroup => {
-  //       this.categories = this.categories.concat(categoryGroup.categories);
-  //     });
+  //     this.categories = res.data;
   //   })
   // }
 

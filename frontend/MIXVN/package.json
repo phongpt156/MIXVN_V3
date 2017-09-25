@@ -33,7 +33,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "ngx-bootstrap": "^1.9.3",
-    "ngx-perfect-scrollbar": "^4.6.4",
+    "ngx-perfect-scrollbar": "^4.6.5",
     "ngx-swiper-wrapper": "^4.6.2",
     "popper": "^1.0.0",
     "rxjs": "^5.1.0",

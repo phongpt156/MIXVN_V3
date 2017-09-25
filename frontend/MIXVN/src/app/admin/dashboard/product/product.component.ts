@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit {
     });
 
     this.dialogRef.componentInstance.product = product;
-    
+
     this.dialogRef.afterClosed().subscribe(isEdit => {
       if (isEdit) {
         this.getProducts();

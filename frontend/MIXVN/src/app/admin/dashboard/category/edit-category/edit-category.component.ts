@@ -27,7 +27,7 @@ export class EditCategoryComponent implements OnInit {
       order: ['', [Validators.required]],
       active: [true]
     });
-    
+
     this.patchValue();
   }
 

@@ -1,0 +1,91 @@
+@import "./../../../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+:host {
+    margin-top: 8vw;    
+    display: block;
+}
+
+@include media-breakpoint-down(xl) {
+    :host ::ng-deep mix-product-item {
+        flex-basis: calc(100% / 8);
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    :host ::ng-deep mix-product-item {
+        flex-basis: calc(100% / 6);
+    }
+}
+
+@include media-breakpoint-down(md) {
+    :host ::ng-deep mix-product-item {
+        flex-basis: calc(100% / 4);
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    :host ::ng-deep mix-product-item {
+        flex-basis: calc(100% / 3);
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    :host ::ng-deep mix-product-item {
+        flex-basis: calc(100% / 2);
+    }
+}
+
+
+.body-header {
+    position: relative;
+    margin-bottom: 30px;
+    background-color: #242323;
+
+    &>div {
+        font-size: 24px;
+    }
+
+    &>.active {
+        color: #6c6c6c;
+    }
+
+    .top-arrow {
+        z-index: 10;
+        width: 0;
+        transition: all .5s linear;
+        position: absolute;
+        left: 0;
+        height: 0;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;        
+        border-bottom: 10px solid #a7a7a6;
+        bottom: -32px;
+    }
+}
+
+.body-header .col-4:nth-child(3):hover, .body-header .col-4:nth-child(3).active {
+    ~ .top-arrow {
+        left: 83.2%;
+    }
+}
+
+.body-header .col-4:first-child:hover, .body-header .col-4:first-child.active {
+    ~ .top-arrow {
+        left: 16.5%;
+    }
+}
+
+.body-header .col-4:nth-child(2):hover, .body-header .col-4:nth-child(2).active {
+    ~ .top-arrow {
+        left: 49.7%;
+    }
+}
+
+.border {
+    border-top: 2px solid #fffefd;
+}
+
+.product-list-wrapper {
+    overflow: auto;
+    max-height: 1193px;
+}

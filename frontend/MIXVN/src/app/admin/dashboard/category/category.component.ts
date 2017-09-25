@@ -77,7 +77,7 @@ export class CategoryComponent implements OnInit {
   openDeleteParentCategoryDialog(e: any, parentCategoryId: number) {
     e.stopPropagation();
     this.dialogRef = this.dialog.open(DeleteParentCategoryComponent);
-    
+
     this.dialogRef.componentInstance.parentCategoryId = parentCategoryId;
 
     this.dialogRef.afterClosed()
@@ -105,7 +105,7 @@ export class CategoryComponent implements OnInit {
   openEditCategoryDialog(category: any, parentCategoryId: number, genderId: number) {
     this.dialogRef = this.dialog.open(EditCategoryComponent);
 
-    this.dialogRef.componentInstance.category =category;
+    this.dialogRef.componentInstance.category = category;
     this.dialogRef.componentInstance.parentCategoryId = parentCategoryId;
     this.dialogRef.componentInstance.genderId = genderId;
 

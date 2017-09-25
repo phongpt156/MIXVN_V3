@@ -5,6 +5,7 @@ import { MdDialogRef } from '@angular/material';
 import { ProductService } from 'app/admin/admin-shared/services/product/product.service';
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
+import { CategoryService } from 'app/admin/admin-shared/services/category/category.service';
 
 import { GENDER } from 'app/shared/constants/constants';
 
@@ -32,7 +33,8 @@ export class AddProductComponent implements OnInit {
     private fb: FormBuilder,
     private productService: ProductService,
     private supplierService: SupplierService,
-    private featureService: FeatureService
+    private featureService: FeatureService,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit() {
@@ -57,13 +59,10 @@ export class AddProductComponent implements OnInit {
   }
 
   getCategories(genderId: number) {
-    // this.categoryGroupService.getByGender(genderId)
-    // .subscribe(res => {
-    //   this.categories = [];
-    //   res.data.forEach(categoryGroup => {
-    //     this.categories = this.categories.concat(categoryGroup.categories);
-    //   });
-    // })
+    this.categoryService.getByGender(genderId)
+    .subscribe(res => {
+      this.categories = res.data;
+    });
   }
 
   getSuppliers() {

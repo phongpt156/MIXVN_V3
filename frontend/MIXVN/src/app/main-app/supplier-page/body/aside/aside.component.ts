@@ -7,6 +7,8 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 })
 export class AsideComponent implements OnInit {
   @HostBinding('class') classes = 'pr-4';
+  isMaleCollapsed = true;
+  isFemaleCollapsed = true;
 
   constructor() { }
 
