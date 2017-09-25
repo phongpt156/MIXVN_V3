@@ -25,8 +25,10 @@ class Category extends FormRequest
     {
         return [
             'name' => 'required',
+            'order' => 'required|integer',
+            'gender' => 'required|integer',
+            'parent_category' => 'required|integer',
             'active' => 'required|boolean',
-            'category_group' => 'required|integer'
         ];
     }
 }

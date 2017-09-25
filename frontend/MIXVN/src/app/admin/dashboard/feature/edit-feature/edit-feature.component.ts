@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { MdDialogRef } from '@angular/material';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 
@@ -9,12 +9,12 @@ import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.
   templateUrl: './edit-feature.component.html',
   styleUrls: ['./edit-feature.component.scss']
 })
-export class EditFeatureComponent implements OnInit, OnDestroy {
+export class EditFeatureComponent implements OnInit {
   feature: any = {};
   editFeatureForm: FormGroup;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public dialogRef: MdDialogRef<EditFeatureComponent>,
     private fb: FormBuilder,
     private featureService: FeatureService
   ) { }
@@ -29,25 +29,12 @@ export class EditFeatureComponent implements OnInit, OnDestroy {
     this.patchValue();
   }
 
-  ngOnDestroy() {
-    this.getFeatures();
-  }
-
-  getFeatures() {
-    this.featureService.getAll()
-    .subscribe(res => {
-      this.featureService.setFeatures(res.data);
-    });
-  }
-
   patchValue() {
-    setTimeout(() => {
-      this.editFeatureForm.patchValue({
-        name: this.feature.name,
-        order: this.feature.order,
-        active: this.feature.active
-      })
-    });
+    this.editFeatureForm.patchValue({
+      name: this.feature.name,
+      order: this.feature.order,
+      active: this.feature.active
+    })
   }
 
   onSubmit() {
@@ -57,7 +44,7 @@ export class EditFeatureComponent implements OnInit, OnDestroy {
 
       this.featureService.edit(body, this.feature.id)
       .subscribe(res => {
-        this.bsModalRef.hide();
+        this.dialogRef.close(true);
       })
     }
   }

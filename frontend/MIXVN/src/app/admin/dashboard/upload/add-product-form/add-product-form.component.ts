@@ -3,7 +3,6 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 import { GENDER } from 'app/shared/constants/constants';
 
-import { CategoryGroupService } from 'app/admin/admin-shared/services/category-group/category-group.service';
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 
@@ -28,7 +27,6 @@ export class AddProductFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private categoryGroupService: CategoryGroupService,
     private supplierService: SupplierService,
     private featureService: FeatureService
   ) { }

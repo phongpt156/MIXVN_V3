@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
-use App\Http\Backend\FeatureValue\Feature as FeatureResource;
 
 class FeatureValue extends Resource
 {

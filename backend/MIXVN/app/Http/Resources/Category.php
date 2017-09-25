@@ -17,6 +17,8 @@ class Category extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'order' => $this->order,
+            'gender_id' => $this->gender_id,
             'active' => $this->active
         ];
     }

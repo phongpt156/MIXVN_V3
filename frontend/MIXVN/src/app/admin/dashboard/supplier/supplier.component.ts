@@ -1,7 +1,5 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal/modal-options.class';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 
@@ -9,47 +7,31 @@ import { Page } from 'app/shared/classes/page';
 
 import { AddSupplierComponent } from './add-supplier/add-supplier.component';
 import { EditSupplierComponent } from './edit-supplier/edit-supplier.component';
+import { DeleteSupplierComponent } from './delete-supplier/delete-supplier.component';
 
 @Component({
   selector: 'mix-supplier',
   templateUrl: './supplier.component.html',
   styleUrls: ['./supplier.component.scss']
 })
-export class SupplierComponent implements OnInit, OnDestroy {
-  @ViewChild('deleteSupplierModal') deleteSupplierModal;
-  _subscription: Subscription;
+export class SupplierComponent implements OnInit {
   suppliers: any[] = [];
   page: Page = new Page;
-  bsModalRef: BsModalRef;
-  config: ModalOptions = {
-    class: 'mw-100 w-75'
-  };
-  selectedSupplierId: number;
+  dialogRef: any;
 
   constructor(
-    private bsModalService: BsModalService,
+    public dialog: MdDialog,
     private supplierService: SupplierService,
   ) { }
 
   ngOnInit() {
-    this.suppliers = this.supplierService.getSuppliers();
-
-    this._subscription = this.supplierService.suppliersChange
-    .subscribe((suppliers: any[]) => {
-      this.suppliers = suppliers;
-    });
-
     this.getSuppliers();
-  }
-
-  ngOnDestroy() {
-    this._subscription.unsubscribe();
   }
 
   getSuppliers() {
     this.supplierService.getAll()
     .subscribe(res => {
-      this.supplierService.setSuppliers(res.data);
+      this.suppliers = res.data;
       this.page.size = res.meta.per_page;
       this.page.totalElements = res.meta.total;
       this.page.totalPages = res.meta.last_page;
@@ -57,25 +39,41 @@ export class SupplierComponent implements OnInit, OnDestroy {
     });
   }
 
-  openAddSupplierModal() {
-    this.bsModalRef = this.bsModalService.show(AddSupplierComponent, this.config);
+  openAddSupplierDialog() {
+    this.dialogRef = this.dialog.open(AddSupplierComponent, {
+      panelClass: ['w-75']
+    });
+
+    this.dialogRef.afterClosed().subscribe(isAdd => {
+      if (isAdd) {
+        this.getSuppliers();
+      }
+    });
   }
 
-  openEditSupplierModal(supplier: any) {
-    this.bsModalRef = this.bsModalService.show(EditSupplierComponent, this.config);
-    this.bsModalRef.content.supplier = supplier;
+  openEditSupplierDialog(supplier: any) {
+    this.dialogRef = this.dialog.open(EditSupplierComponent, {
+      panelClass: ['w-75']
+    });
+    
+    this.dialogRef.componentInstance.supplier = supplier;
+
+    this.dialogRef.afterClosed().subscribe(isEdit => {
+      if (isEdit) {
+        this.getSuppliers();
+      }
+    });
   }
 
-  openRemoveSupplierModal(id: number) {
-    this.bsModalRef = this.bsModalService.show(this.deleteSupplierModal);
-    this.selectedSupplierId = id;
-  }
+  openDeleteSupplierDialog(id: number) {
+    this.dialogRef = this.dialog.open(DeleteSupplierComponent);
 
-  deleteSupplier() {
-    this.bsModalRef.hide();
-    this.supplierService.delete(this.selectedSupplierId)
-    .subscribe(res => {
-      this.getSuppliers();
+    this.dialogRef.componentInstance.id = id;
+
+    this.dialogRef.afterClosed().subscribe(isDelete => {
+      if (isDelete) {
+        this.getSuppliers();
+      }
     });
   }
 }

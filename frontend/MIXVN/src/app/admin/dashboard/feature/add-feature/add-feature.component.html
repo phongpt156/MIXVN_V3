@@ -1,33 +1,27 @@
-<div class="modal-header">
-  <h4 class="modal-title pull-left pr-3 text-dark">Add Feature</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+<h1 class="mat-dialog-title">Add Feature</h1>
 
-<div class="modal-body">
-  <form [formGroup]="addFeatureForm">
+<form [formGroup]="addFeatureForm">
+  <div class="mat-dialog-content">
     <div class="row">
       <div class="col-md-6">
-        <md-input-container class="w-100">
-          <input type="text" class="text-dark" mdInput formControlName="name" placeholder="Name" required="required" />
-        </md-input-container>
+        <md-form-field class="w-100" color="accent">
+          <input type="text" mdInput formControlName="name" placeholder="Name" required="required" />
+        </md-form-field>
       </div>
       <div class="col-md-6">
-        <md-input-container class="w-100">
-          <input type="number" mdInput class="text-dark" formControlName="order" placeholder="Order" required="required" />
-        </md-input-container>
+        <md-form-field class="w-100" color="accent">
+          <input type="number" mdInput formControlName="order" placeholder="Order" required="required" />
+        </md-form-field>
       </div>
     </div>
     <div class="row">
       <div class="text-right col-12">
-        <md-checkbox formControlName="active" class="text-dark">Active</md-checkbox>
+        <md-checkbox formControlName="active">Active</md-checkbox>
       </div>
     </div>
-    <div class="row mt-4">
-      <div class="text-right col-12">
-        <button md-button type="submit" class="text-white" (click)="onSubmit()" color="add">Add</button>
-      </div>
-    </div>
-  </form>
-</div>
+  </div>
+  <div class="mat-dialog-actions justify-content-end">
+    <button md-raised-button color="accent" type="submit" (click)="onSubmit()">Add</button>
+    <button md-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
+  </div>
+</form>

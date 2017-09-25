@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MdDialogRef } from '@angular/material';
 
 import { ProductService } from 'app/admin/admin-shared/services/product/product.service';
-import { CategoryGroupService } from 'app/admin/admin-shared/services/category-group/category-group.service';
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 
@@ -32,7 +31,6 @@ export class AddProductComponent implements OnInit {
     public dialogRef: MdDialogRef<AddProductComponent>,
     private fb: FormBuilder,
     private productService: ProductService,
-    private categoryGroupService: CategoryGroupService,
     private supplierService: SupplierService,
     private featureService: FeatureService
   ) { }
@@ -59,13 +57,13 @@ export class AddProductComponent implements OnInit {
   }
 
   getCategories(genderId: number) {
-    this.categoryGroupService.getByGender(genderId)
-    .subscribe(res => {
-      this.categories = [];
-      res.data.forEach(categoryGroup => {
-        this.categories = this.categories.concat(categoryGroup.categories);
-      });
-    })
+    // this.categoryGroupService.getByGender(genderId)
+    // .subscribe(res => {
+    //   this.categories = [];
+    //   res.data.forEach(categoryGroup => {
+    //     this.categories = this.categories.concat(categoryGroup.categories);
+    //   });
+    // })
   }
 
   getSuppliers() {

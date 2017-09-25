@@ -1,25 +1,23 @@
-<div class="modal-header">
-  <h4 class="modal-title pull-left pr-3">Edit Product</h4>
-</div>
+<h1 class="mat-dialog-title">Edit Product</h1>
 
-<div class="modal-body">
-  <form [formGroup]="editProductForm">
+<form [formGroup]="editProductForm">
+  <div class="mat-dialog-content">
     <div class="row form-group">
       <div class="col-md-6">
-        <md-form-field class="w-100">
-          <input type="text" mdInput formControlName="name" placeholder="Name" required="required" color="accent" />
+        <md-form-field class="w-100" color="accent">
+          <input type="text" mdInput formControlName="name" placeholder="Name" required="required" />
         </md-form-field>
       </div>
     </div>    
     <div class="row form-group">
       <div class="col-md-6">
-        <md-form-field class="w-100">
-          <input type="text" mdInput formControlName="price" placeholder="Price" required="required" color="accent" />
+        <md-form-field class="w-100" color="accent">
+          <input type="text" mdInput formControlName="price" placeholder="Price" required="required" />
         </md-form-field>
       </div>
       <div class="col-md-6">
-        <md-form-field class="w-100">
-          <input type="text" mdInput formControlName="discount" placeholder="Discount" color="accent" />
+        <md-form-field class="w-100" color="accent">
+          <input type="text" mdInput formControlName="discount" placeholder="Discount" />
         </md-form-field>
       </div>
     </div>
@@ -63,10 +61,10 @@
             <img alt="" #productImagePreview />
           </div>
           <div *ngIf="isSelectImage" class="ml-2">
-            <button class="btn btn-primary" (click)="cropper.zoom(0.1)">
+            <button md-raised-button color="accent" (click)="cropper.zoom(0.1)">
               <a><span class="fa fa-search-plus"></span></a>
             </button>
-            <button class="btn btn-primary" (click)="cropper.zoom(-0.1)">
+            <button md-raised-button color="accent" (click)="cropper.zoom(-0.1)">
               <a><span class="fa fa-search-minus"></span></a>
             </button>
           </div>
@@ -81,12 +79,10 @@
         <md-checkbox formControlName="active">Active</md-checkbox>
       </div>
     </div>
-    <div class="row form-group">
-      <div class="text-right col-12">
-        <button md-raised-button type="submit" (click)="onSubmit()" color="accent">Save</button>
-        <button md-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
-      </div>
-    </div>
-  </form>
-</div>
+  </div>
+  <div class="mat-dialog-actions justify-content-end">
+    <button md-raised-button type="submit" (click)="onSubmit()" color="accent">Save</button>
+    <button md-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
+  </div>
+</form>
   

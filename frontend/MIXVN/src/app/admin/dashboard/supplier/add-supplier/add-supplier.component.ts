@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MdDialogRef } from '@angular/material';
 
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 
@@ -11,7 +11,7 @@ declare var Cropper: any;
   templateUrl: './add-supplier.component.html',
   styleUrls: ['./add-supplier.component.scss']
 })
-export class AddSupplierComponent implements OnInit, OnDestroy {
+export class AddSupplierComponent implements OnInit {
   @ViewChild('supplierBackgroundImagePreview') supplierBackgroundImagePreview;
   @ViewChild('supplierAvatarImagePreview') supplierAvatarImagePreview;
   addSupplierForm: FormGroup;
@@ -22,7 +22,7 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
   isSelectAvatarImage = false;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public dialogRef: MdDialogRef<AddSupplierComponent>,
     private fb: FormBuilder,
     private supplierService: SupplierService
   ) { }
@@ -49,17 +49,6 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
     this.avatarCropper = new Cropper(this.supplierAvatarImagePreview.nativeElement, {
       aspectRatio: 1 / 1,
       viewMode: 1
-    });
-  }
-
-  ngOnDestroy() {
-    this.getSuppliers();
-  }
-
-  getSuppliers() {
-    this.supplierService.getAll()
-    .subscribe(res => {
-      this.supplierService.setSuppliers(res.data);
     });
   }
 
@@ -124,8 +113,7 @@ export class AddSupplierComponent implements OnInit, OnDestroy {
 
     this.supplierService.add(this.formData)
     .subscribe(res => {
-      this.bsModalRef.hide();
-      this.supplierService.setSuppliers(res.data);
+      this.dialogRef.close(true);
     });
   }
 }

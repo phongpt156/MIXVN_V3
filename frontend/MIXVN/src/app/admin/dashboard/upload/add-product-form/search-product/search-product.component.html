@@ -1,17 +1,17 @@
-<md-input-container class="w-100 search" (click)="handleClick($event)">
+<md-form-field color="accent" class="w-100 search" (click)="handleClick($event)">
   <input mdInput type="text" [formControl]="productName" placeholder="Search Product By Name" autocomplete="off" (focus)="isSearchFocus = true" />
-  <div class="search-result-wrapper" *ngIf="products.length && isSearchFocus">
-    <div *ngFor="let product of products" class="search-result">
-      <button md-button class="w-100 py-3" (click)="selectProduct(product)">
-        <div class="d-flex align-items-center">
-          <div style="width: 50px" class="mr-3">
-            <div class="image-wrapper image-2-3">
-              <img [src]="product.img" alt="" />
-            </div>
+</md-form-field>
+<div class="search-result-wrapper" *ngIf="products.length && isSearchFocus">
+  <div *ngFor="let product of products" class="search-result">
+    <button md-raised-button color="accent" class="w-100 py-3" (click)="selectProduct(product)">
+      <div class="d-flex align-items-center">
+        <div style="width: 50px" class="mr-3">
+          <div class="image-wrapper image-2-3">
+            <img [src]="product.img" alt="" />
           </div>
-          {{ product.name }}
         </div>
-      </button>
-    </div>
+        {{ product.name }}
+      </div>
+    </button>
   </div>
-</md-input-container>
+</div>

@@ -6,7 +6,6 @@ import { AuthGuard } from './admin-shared/guards/auth-guard.service';
 import { CheckLogin } from './admin-shared/guards/check-login.service';
 import { AdminService } from './admin-shared/services/admin/admin.service';
 import { ParentCategoryService } from './admin-shared/services/parent-category/parent-category.service';
-import { CategoryGroupService } from './admin-shared/services/category-group/category-group.service';
 import { CategoryService } from './admin-shared/services/category/category.service';
 import { SupplierService } from './admin-shared/services/supplier/supplier.service';
 import { CollectionService } from './admin-shared/services/collection/collection.service';
@@ -37,7 +36,6 @@ import { LoginComponent } from './login/login.component';
     CheckLogin,
     AdminService,
     ParentCategoryService,
-    CategoryGroupService,
     CategoryService,
     SupplierService,
     CollectionService,

@@ -1,0 +1,23 @@
+<h1 class="mat-dialog-title">Edit Category</h1>
+
+<form [formGroup]="editCategoryForm">
+  <div class="mat-dialog-content">    
+    <div>
+      <md-form-field class="w-100" color="accent">
+        <input type="text" mdInput placeholder="Name" required="required" formControlName="name" />
+      </md-form-field>
+    </div>
+    <div>
+      <md-form-field class="w-100" color="accent">
+        <input type="number" mdInput placeholder="Order" required="required" formControlName="order" />
+      </md-form-field>
+    </div>
+    <div class="text-right">
+      <md-checkbox formControlName="active">Active</md-checkbox>
+    </div>
+  </div>
+  <div class="mat-dialog-actions justify-content-end">
+    <button md-raised-button type="submit" (click)="onSubmit()" color="accent">Save</button>
+    <button md-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
+  </div>
+</form>

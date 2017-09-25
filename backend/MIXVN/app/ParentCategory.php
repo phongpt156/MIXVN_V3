@@ -8,8 +8,8 @@ class ParentCategory extends Model
 {
     protected $table = 'parent_category';
 
-    public function categoryGroups()
+    public function categories()
     {
-        return $this->hasMany('App\CategoryGroup');
+        return $this->hasMany('App\Category');
     }
 }

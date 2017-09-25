@@ -6,13 +6,9 @@
         <div class="w-100">
           <div class="text-center"><i class="fa fa-mars text-white" style="font-size: 2rem"></i></div>
           <div class="py-5">
-            <ul class="nav" >
-              <li class="nav-item" *ngFor="let groupCategory of parentCategory.male_cate">
-                <ul class="nav flex-column">
-                  <li class="nav-item" *ngFor="let category of groupCategory.categories" (click)="addSearchTagging(category)">
-                    <a href="javascript:void(0)" class="nav-link">{{ category.name }}</a>
-                  </li>
-                </ul>
+            <ul class="nav justify-content-end" >
+              <li class="w-25 text-center" *ngFor="let category of parentCategory.male_cate" (click)="addSearchTagging(category)">
+                <a href="javascript:void(0)" class="nav-link">{{ category.name }}</a>
               </li>
             </ul>
           </div>
@@ -21,13 +17,9 @@
         <div class="w-100">
           <div class="text-center"><i class="fa fa-venus text-white" style="font-size: 2rem"></i></div>
           <div class="py-5">
-            <ul class="nav" >
-              <li class="nav-item" *ngFor="let groupCategory of parentCategory.female_cate">
-                <ul class="nav flex-column">
-                  <li class="nav-item" *ngFor="let category of groupCategory.categories" (click)="addSearchTagging(category)">
-                    <a href="javascript:void(0)" class="nav-link">{{ category.name }}</a>
-                  </li>
-                </ul>
+            <ul class="nav justify-content-start" >
+              <li class="w-25 text-center" *ngFor="let category of parentCategory.female_cate" (click)="addSearchTagging(category)">
+                <a href="javascript:void(0)" class="nav-link">{{ category.name }}</a>
               </li>
             </ul>
           </div>

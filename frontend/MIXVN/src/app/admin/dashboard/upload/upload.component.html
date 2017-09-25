@@ -13,10 +13,10 @@
               <img alt="" #productGroupImagePreview id="productGroupImagePreview" />
             </div>
             <div *ngIf="isSelectImage" class="ml-2">
-              <button class="btn btn-primary" (click)="cropper.zoom(0.1)">
+              <button md-raised-button color="accent" (click)="cropper.zoom(0.1)">
                 <a><span class="fa fa-search-plus"></span></a>
               </button>
-              <button class="btn btn-primary" (click)="cropper.zoom(-0.1)">
+              <button md-raised-button color="accent" (click)="cropper.zoom(-0.1)">
                 <a><span class="fa fa-search-minus"></span></a>
               </button>
             </div>
@@ -37,13 +37,13 @@
 
       <div class="row form-group">
         <div class="col-12 form-group">
-          <button md-button color="add" (click)="addProduct()" class="text-white">Add Product</button>
+          <button md-raised-button color="accent" (click)="addProduct()">Add Product</button>
         </div>
       </div>
 
       <div class="row form-group">
         <div class="col-12 form-group text-right">
-          <button md-raised-button color="add" (click)="onSubmit()" color="accent">Upload</button>
+          <button md-raised-button (click)="onSubmit()" color="accent">Upload</button>
         </div>
       </div>
     </form>

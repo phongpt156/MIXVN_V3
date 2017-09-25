@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
 import { ProductService } from 'app/admin/admin-shared/services/product/product.service';
@@ -32,9 +32,9 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  openAddProductModal() {
+  openAddProductDialog() {
     this.dialogRef = this.dialog.open(AddProductComponent, {
-      panelClass: ['w-50', 'mh-100', 'overflow']
+      panelClass: ['w-50']
     });
 
     this.dialogRef.afterClosed().subscribe(isAdd => {
@@ -44,9 +44,9 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  openEditProductModal(product: any) {
+  openEditProductDialog(product: any) {
     this.dialogRef = this.dialog.open(EditProductComponent, {
-      panelClass: ['w-50', 'mh-100', 'overflow']
+      panelClass: ['w-50']
     });
 
     this.dialogRef.componentInstance.product = product;
@@ -58,15 +58,14 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  openDeleteProductModal(id: number) {
+  openDeleteProductDialog(id: number) {
     this.dialogRef = this.dialog.open(DeleteProductComponent);
+
+    this.dialogRef.componentInstance.id = id;
 
     this.dialogRef.afterClosed().subscribe((isDelete) => {
       if (isDelete) {
-        this.productService.delete(id)
-        .subscribe(res => {
-          this.getProducts();
-        });
+        this.getProducts();
       }
     });
   }

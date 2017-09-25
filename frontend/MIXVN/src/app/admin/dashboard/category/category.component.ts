@@ -1,13 +1,17 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MdDialog } from '@angular/material';
 
 import { CategoryService } from 'app/admin/admin-shared/services/category/category.service';
-import { ParentCategoryService } from 'app/admin/admin-shared/services/parent-category/parent-category.service';
-import { CategoryGroupService } from 'app/admin/admin-shared/services/category-group/category-group.service';
 
 import { GENDER } from 'app/shared/constants/constants';
+
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { DeleteCategoryComponent } from './delete-category/delete-category.component';
+import { AddParentCategoryComponent } from '../parent-category/add-parent-category/add-parent-category.component';
+import { EditParentCategoryComponent } from '../parent-category/edit-parent-category/edit-parent-category.component';
+import { DeleteParentCategoryComponent } from '../parent-category/delete-parent-category/delete-parent-category.component';
 
 @Component({
   selector: 'mix-category',
@@ -17,26 +21,18 @@ import { GENDER } from 'app/shared/constants/constants';
 export class CategoryComponent implements OnInit {
   categories: any[] = [];
   listCollapsed: any = {};
-  modalRef: BsModalRef;
-  parentCategoryName: FormControl = new FormControl('', [Validators.required]);
+  dialogRef: any;
   parentCategoryId: FormControl = new FormControl('', [Validators.required]);
   genderId: FormControl = new FormControl('', [Validators.required]);
-  parentCategoryOrder: FormControl = new FormControl('', [Validators.required]);
-  categoryGroupOrder: FormControl = new FormControl('', [Validators.required]);
-  categoryName: FormControl = new FormControl('', [Validators.required]);
-  categoryActive: FormControl = new FormControl(true, [Validators.required]);
   choosedParentCategoryId: number;
   choosedParentCategory: any;
   choosedGender: any;
-  choosedCategoryGroupId: number;
   choosedCategoryId: number;
   gender: any = GENDER;
 
   constructor(
+    public dialog: MdDialog,
     private categoryService: CategoryService,
-    private parentCategoryService: ParentCategoryService,
-    private categoryGroupService: CategoryGroupService,
-    private modalService: BsModalService,
   ) { }
 
   ngOnInit() {
@@ -53,211 +49,93 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  openAddParentCategory(addParentCategoryModal: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(addParentCategoryModal);
+  openAddParentCategoryDialog() {
+    this.dialogRef = this.dialog.open(AddParentCategoryComponent);
+
+    this.dialogRef.afterClosed()
+    .subscribe(isAdd => {
+      if (isAdd) {
+        this.getCategories();
+      }
+    });
   }
 
-  openEditParentCategory(editParentCategoryModal: TemplateRef<any>, e: any, parentCategory: any) {
+  openEditParentCategoryDialog(e: any, parentCategory: any) {
     e.stopPropagation();
-    this.modalRef = this.modalService.show(editParentCategoryModal);
-    this.parentCategoryName.setValue(parentCategory.name);
-    this.parentCategoryOrder.setValue(parentCategory.order);
-    this.choosedParentCategoryId = parentCategory.id;
+    this.dialogRef = this.dialog.open(EditParentCategoryComponent);
+
+    this.dialogRef.componentInstance.parentCategory = parentCategory;
+
+    this.dialogRef.afterClosed()
+    .subscribe(isEdit => {
+      if (isEdit) {
+        this.getCategories();
+      }
+    });
   }
 
-  openDeleteParentCategory(deleteParentCategoryModal: TemplateRef<any>, e: any, parentCategoryId: number) {
+  openDeleteParentCategoryDialog(e: any, parentCategoryId: number) {
     e.stopPropagation();
-    this.modalRef = this.modalService.show(deleteParentCategoryModal);
-    this.choosedParentCategoryId = parentCategoryId;
-  }
+    this.dialogRef = this.dialog.open(DeleteParentCategoryComponent);
+    
+    this.dialogRef.componentInstance.parentCategoryId = parentCategoryId;
 
-  addParentCategory() {
-    if (this.parentCategoryName.valid && this.parentCategoryOrder.valid) {
-      const body: any = {};
-      body.name = this.parentCategoryName.value;
-      body.order = this.parentCategoryOrder.value;
-
-      this.parentCategoryService.add(body)
-      .subscribe(res => {
-        this.modalRef.hide();
+    this.dialogRef.afterClosed()
+    .subscribe(isDelete => {
+      if (isDelete) {
         this.getCategories();
-        this.parentCategoryName.reset();
-        this.parentCategoryOrder.reset();
-      });
-    }
-  }
-
-  deleteParentCategory() {
-    this.parentCategoryService.delete(this.choosedParentCategoryId)
-    .subscribe(res => {
-      this.modalRef.hide();
-      this.getCategories();
+      }
     });
   }
 
-  editParentCategory() {
-    if (this.parentCategoryName.valid && this.parentCategoryOrder.valid) {
-      const body: any = {};
-      body.name = this.parentCategoryName.value;
-      body.order = this.parentCategoryOrder.value;
+  openAddCategoryDialog(parentCategoryId: number, genderId: number) {
+    this.dialogRef = this.dialog.open(AddCategoryComponent);
 
-      this.parentCategoryService.edit(body, this.choosedParentCategoryId)
-      .subscribe(res => {
-        this.modalRef.hide();
+    this.dialogRef.componentInstance.parentCategoryId = parentCategoryId;
+    this.dialogRef.componentInstance.genderId = genderId;
+
+    this.dialogRef.afterClosed()
+    .subscribe(isAdd => {
+      if (isAdd) {
         this.getCategories();
-        this.parentCategoryName.reset();
-        this.parentCategoryOrder.reset();
-      });
-    }
-  }
-
-  openAddCategoryGroupModal(addCategoryGroupModal: TemplateRef<any>, parentCategory: any, gender: any) {
-    this.choosedParentCategory = parentCategory;
-    this.choosedGender = gender;
-    this.modalRef = this.modalService.show(addCategoryGroupModal);
-  }
-
-  openEditCategoryGroupModal(editCategoryGroupModal: TemplateRef<any>, categoryGroup: any, parentCategory: any, gender: any) {
-    this.modalRef = this.modalService.show(editCategoryGroupModal);
-
-    this.choosedCategoryGroupId = categoryGroup.id;
-    this.categoryGroupOrder.setValue(categoryGroup.order);
-    this.parentCategoryId.setValue(parentCategory.id);
-    this.genderId.setValue(gender.id);
-  }
-
-  openDeleteCategoryGroupModal(deleteCategoryGroupModal: TemplateRef<any>, categoryGroupId: number) {
-    this.modalRef = this.modalService.show(deleteCategoryGroupModal);
-
-    this.choosedCategoryGroupId = categoryGroupId;
-  }
-
-  addCategoryGroup() {
-    if (this.categoryGroupOrder.valid) {
-      const body: any = {};
-
-      body.parent_category = this.choosedParentCategory.id;
-      body.gender = this.choosedGender.id;
-      body.order = this.categoryGroupOrder.value;
-
-      this.categoryGroupService.add(body)
-      .subscribe(res => {
-        console.log(res);
-        this.modalRef.hide();
-        this.getCategories();
-        this.categoryGroupOrder.reset();
-      });
-    }
-  }
-
-  editCategoryGroup() {
-    if (this.categoryGroupOrder.valid) {
-      const body: any = {};
-
-      body.parent_category = this.parentCategoryId.value;
-      body.gender = this.genderId.value;
-      body.order = this.categoryGroupOrder.value;
-      const categoryGroupId = this.choosedCategoryGroupId;
-
-      this.categoryGroupService.edit(body, categoryGroupId)
-      .subscribe(res => {
-        this.modalRef.hide();
-        this.getCategories();
-        this.categoryGroupOrder.reset();
-      });
-    }
-  }
-
-  deleteCategoryGroup() {
-    this.categoryGroupService.delete(this.choosedCategoryGroupId)
-    .subscribe(res => {
-      this.modalRef.hide();
-      this.getCategories();
+      }
     });
   }
 
-  openAddCategoryModal(addCategoryModal: TemplateRef<any>, categoryGroupId: number) {
-    this.modalRef = this.modalService.show(addCategoryModal);
+  openEditCategoryDialog(category: any, parentCategoryId: number, genderId: number) {
+    this.dialogRef = this.dialog.open(EditCategoryComponent);
 
-    this.choosedCategoryGroupId = categoryGroupId;
-  }
+    this.dialogRef.componentInstance.category =category;
+    this.dialogRef.componentInstance.parentCategoryId = parentCategoryId;
+    this.dialogRef.componentInstance.genderId = genderId;
 
-  openEditCategoryModal(editCategoryModal: TemplateRef<any>, categoryGroupId: number, category: any) {
-    this.modalRef = this.modalService.show(editCategoryModal);
-
-    this.categoryName.setValue(category.name);
-    this.categoryActive.setValue(category.active);
-    this.choosedCategoryGroupId = categoryGroupId;
-    this.choosedCategoryId = category.id;
-  }
-
-  openDeleteCategoryModal(deleteCategoryModal: TemplateRef<any>, categoryId: number) {
-    this.modalRef = this.modalService.show(deleteCategoryModal);
-
-    this.choosedCategoryId = categoryId;
-  }
-
-  addCategory() {
-    if (this.categoryName.valid && this.categoryActive.valid) {
-      const body: any = {};
-      body.category_group = this.choosedCategoryGroupId;
-      body.name = this.categoryName.value;
-      body.active = this.categoryActive.value;
-
-      this.categoryService.add(body)
-      .subscribe(res => {
-        this.modalRef.hide();
+    this.dialogRef.afterClosed()
+    .subscribe(isEdit => {
+      if (isEdit) {
         this.getCategories();
-        this.categoryName.reset();
-        this.categoryActive.setValue(true);
-      });
-    }
+      }
+    })
   }
 
-  editCategory() {
-    if (this.categoryName.valid && this.categoryActive.valid) {
-      const body: any = {};
+  openDeleteCategoryDialog(categoryId: number) {
+    this.dialogRef = this.dialog.open(DeleteCategoryComponent);
 
-      body.name = this.categoryName.value;
-      body.active = this.categoryActive.value;
-      body.category_group = this.choosedCategoryGroupId;
+    this.dialogRef.componentInstance.id = categoryId;
 
-      this.categoryService.edit(body, this.choosedCategoryId)
-      .subscribe(res => {
-        console.log(res);
-        this.modalRef.hide();
+    this.dialogRef.afterClosed()
+    .subscribe(isDelete => {
+      if (isDelete) {
         this.getCategories();
-        this.categoryName.reset();
-        this.categoryActive.setValue(true);
-      });
-    }
+      }
+    })
   }
 
-  deleteCategory() {
-    this.categoryService.delete(this.choosedCategoryId)
-    .subscribe(res => {
-      console.log(res);
-      this.modalRef.hide();
-      this.getCategories();
-    });
-  }
-
-  hiddenParentCategoryModal() {
-    this.modalRef.hide();
-    this.parentCategoryName.reset();
-    this.parentCategoryOrder.reset();
-  }
-
-  hiddenCategoryGroupModal() {
-    this.modalRef.hide();
-    this.parentCategoryId.reset();
-    this.genderId.reset();
-    this.categoryGroupOrder.reset();
-  }
-
-  hiddenCategoryModal() {
-    this.modalRef.hide();
-    this.categoryName.reset();
-    this.categoryActive.reset();
-  }
+  // deleteCategory() {
+  //   this.categoryService.delete(this.choosedCategoryId)
+  //   .subscribe(res => {
+  //     console.log(res);
+  //     this.modalRef.hide();
+  //     this.getCategories();
+  //   });
+  // }
 }

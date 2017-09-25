@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { Subscription } from 'rxjs/Subscription';
+import { MdDialogRef } from '@angular/material';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 import { FeatureValueService } from 'app/admin/admin-shared/services/feature-value/feature-value.service';
@@ -11,14 +10,13 @@ import { FeatureValueService } from 'app/admin/admin-shared/services/feature-val
   templateUrl: './edit-feature-value.component.html',
   styleUrls: ['./edit-feature-value.component.scss']
 })
-export class EditFeatureValueComponent implements OnInit, OnDestroy {
+export class EditFeatureValueComponent implements OnInit {
   editFeatureValueForm: FormGroup;
   featureValue: any = {};
   features: any[] = [];
-  _subscription: Subscription;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public dialogRef: MdDialogRef<EditFeatureValueComponent>,
     private fb: FormBuilder,
     private featureService: FeatureService,
     private featureValueService: FeatureValueService
@@ -32,37 +30,25 @@ export class EditFeatureValueComponent implements OnInit, OnDestroy {
       order: ['', Validators.required],
       active: ['', Validators.required]
     });
-
-    this.features = this.featureService.getFeatures();
-    this._subscription = this.featureService.featuresChange.subscribe((features: any[]) => {
-      this.features = features;
-    });
-
+    console.log(this.featureValue);
     this.getFeatures();
     this.patchValue();
   }
 
-  ngOnDestroy() {
-    this.getFeatures();
-    this._subscription.unsubscribe();
-  }
-
   patchValue() {
-    setTimeout(() => {
-      this.editFeatureValueForm.patchValue({
-        vi_name: this.featureValue.vi_name,
-        dev_name: this.featureValue.dev_name,
-        feature: this.featureValue.feature_id,
-        order: this.featureValue.order,
-        active: this.featureValue.active
-      });
+    this.editFeatureValueForm.patchValue({
+      vi_name: this.featureValue.vi_name,
+      dev_name: this.featureValue.dev_name,
+      feature: this.featureValue.feature.id,
+      order: this.featureValue.order,
+      active: this.featureValue.active
     });
   }
 
   getFeatures() {
     this.featureService.getAll()
     .subscribe(res => {
-      this.featureService.setFeatures(res.data);
+      this.features = res.data;
     });
   }
 
@@ -72,7 +58,7 @@ export class EditFeatureValueComponent implements OnInit, OnDestroy {
       body = this.editFeatureValueForm.value;
       this.featureValueService.edit(body, this.featureValue.id)
       .subscribe(res => {
-        this.bsModalRef.hide();
+        this.dialogRef.close(true);
       });
     }
   }

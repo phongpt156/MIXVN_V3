@@ -42,7 +42,9 @@ class CategoryController extends Controller
         $category = new Category;
         
         $category->name = $request->input('name');
-        $category->group_id = $request->input('category_group');
+        $category->order = $request->input('order');
+        $category->gender_id = $request->input('gender');
+        $category->parent_category_id = $request->input('parent_category');
         $category->active = $request->input('active');
         $category->created_at = Carbon::now('UTC');
         $category->updated_at = Carbon::now('UTC');
@@ -53,7 +55,10 @@ class CategoryController extends Controller
             return response()->json([
                 'id' => $category->id,
                 'name' => $category->name,
-                'active' => $category->active
+                'order' => $category->order,
+                'gender_id' => $category->gender_id,
+                'parent_category_id' => $category->parent_category_id,
+                'active' => $category->active,
             ], 200);
         }
 
@@ -93,9 +98,11 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        $category->name = $request->name;
-        $category->group_id = $request->category_group;
-        $category->active = $request->active;
+        $category->name = $request->input('name');
+        $category->order = $request->input('order');
+        $category->gender_id = $request->input('gender');
+        $category->parent_category_id = $request->input('parent_category');
+        $category->active = $request->input('active');
         $category->updated_at = Carbon::now('UTC');
 
         $success = $category->save();
@@ -104,7 +111,9 @@ class CategoryController extends Controller
             return response()->json([
                 'id' => $category->id,
                 'name' => $category->name,
-                'group_id' => $category->group_id,
+                'order' => $category->order,
+                'gender_id' => $category->gender_id,
+                'parent_category_id' => $category->parent_category_id,
                 'active' => $category->active,
             ], 200);
         }

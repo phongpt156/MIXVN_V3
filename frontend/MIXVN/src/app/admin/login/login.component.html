@@ -7,20 +7,20 @@
       <div class="title text-uppercase text-center">
         login to your account
       </div>
-      <form class="px-4" [formGroup]="loginForm">
-        <md-input-container class="w-100">
+      <form class="px-4 text-center" [formGroup]="loginForm">
+        <md-form-field class="w-100" color="accent">
           <input type="text" mdInput placeholder="Email" required="required" formControlName="email" />
           <md-error *ngIf="loginForm.controls.email.errors?.required">Email is required</md-error>
-        </md-input-container>
-        <md-input-container class="w-100">
+        </md-form-field>
+        <md-form-field class="w-100" color="accent">
           <input type="password" mdInput placeholder="Password" required="required" formControlName="password" />
           <md-error *ngIf="loginForm.controls.password.errors?.required">Password is required</md-error>
-        </md-input-container>
+        </md-form-field>
         <div class="d-flex justify-content-between mt-3">
-          <md-checkbox color="primary" style="font-size: 0.9rem">Remember me</md-checkbox>
+          <md-checkbox style="font-size: 0.9rem" color="accent">Remember me</md-checkbox>
           <a href="#" class="forgot-password">Forgot password?</a>
         </div>
-        <button md-button type="submit" class="submit" (click)="onSubmit()">Login</button>
+        <button md-raised-button type="submit" (click)="onSubmit()" class="mt-3">Login</button>
       </form>
     </div>
   </div>

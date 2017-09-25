@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { MdDialogRef } from '@angular/material';
 
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 
@@ -11,7 +11,7 @@ declare var Cropper: any;
   templateUrl: './edit-supplier.component.html',
   styleUrls: ['./edit-supplier.component.scss']
 })
-export class EditSupplierComponent implements OnInit, OnDestroy {
+export class EditSupplierComponent implements OnInit {
   @ViewChild('supplierBackgroundImagePreview') supplierBackgroundImagePreview;
   @ViewChild('supplierAvatarImagePreview') supplierAvatarImagePreview;
   editSupplierForm: FormGroup;
@@ -27,7 +27,7 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
   isSelectAvatarImage = false;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public dialogRef: MdDialogRef<EditSupplierComponent>,
     private fb: FormBuilder,
     private supplierService: SupplierService
   ) { }
@@ -46,9 +46,7 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
       active: [true]
     });
 
-    setTimeout(() => {
-      this.patchValue();
-    });
+    this.patchValue();
 
     this.backgroundCropper = new Cropper(this.supplierBackgroundImagePreview.nativeElement, {
       aspectRatio: 21 / 9,
@@ -58,13 +56,6 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
     this.avatarCropper = new Cropper(this.supplierAvatarImagePreview.nativeElement, {
       aspectRatio: 1 / 1,
       viewMode: 1
-    });
-  }
-
-  ngOnDestroy() {
-    this.supplierService.getAll()
-    .subscribe(res => {
-      this.supplierService.setSuppliers(res.data);
     });
   }
 
@@ -148,8 +139,7 @@ export class EditSupplierComponent implements OnInit, OnDestroy {
 
     this.supplierService.edit(this.formData, this.supplier.id)
     .subscribe(res => {
-      console.log(res);
-      this.bsModalRef.hide();
+      this.dialogRef.close(true);
     });
   }
 }

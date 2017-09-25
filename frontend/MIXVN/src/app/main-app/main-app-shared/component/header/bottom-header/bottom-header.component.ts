@@ -21,6 +21,7 @@ export class BottomHeaderComponent implements OnInit {
     this.categoryService.getCategories()
     .subscribe(res => {
       this.categories = res.data;
+      console.log(this.categories);
     });
   }
 

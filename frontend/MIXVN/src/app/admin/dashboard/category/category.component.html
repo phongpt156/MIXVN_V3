@@ -9,7 +9,7 @@
           <th><h3>#</h3></th>
           <th><h3>Name</h3></th>
           <th><h3>Order</h3></th>
-          <th><a (click)="openAddParentCategory(addParentCategoryModal)"><i class="material-icons">add_circle</i></a></th>
+          <th><a (click)="openAddParentCategoryDialog()"><i class="material-icons">add_circle</i></a></th>
         </tr>
       </thead>
       <tbody>
@@ -19,337 +19,61 @@
             <td><h4>{{ parentCategory.name }}</h4></td>
             <td><h4>{{ parentCategory.order }}</h4></td>
             <td>
-              <a (click)="openEditParentCategory(editParentCategoryModal, $event, parentCategory)"><i class="material-icons tex-white">mode_edit</i></a>
-              <a (click)="openDeleteParentCategory(deleteParentCategoryModal, $event, parentCategory.id)"><i class="material-icons">delete_forever</i></a>
+              <a (click)="openEditParentCategoryDialog($event, parentCategory)"><i class="material-icons tex-white">mode_edit</i></a>
+              <a (click)="openDeleteParentCategoryDialog($event, parentCategory.id)"><i class="material-icons">delete_forever</i></a>
             </td>
           </tr>
           
           <!-- male category -->
           <ng-container>
             <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
-              <td colspan="3"># {{ gender.male.name }}</td>
+              <td colspan="4"># {{ gender.male.name }}</td>
+            </tr>
+            <tr class="bg-custom" [collapse]="listCollapsed[parentCategory.id]">
+              <td>Name</td>
+              <td>Order</td>
+              <td>Active</td>
               <td>
-                <a (click)="openAddCategoryGroupModal(addCategoryGroupModal, parentCategory, gender.male)"><i class="material-icons">add_circle</i></a>
+                <a (click)="openAddCategoryDialog(parentCategory.id, gender.male.id)"><i class="material-icons">add_circle</i></a>
               </td>
             </tr>
-            <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
-              <td>Group</td>
-              <td colspan="3">Order</td>
+            <tr class="bg-custom" *ngFor="let category of parentCategory.male_cate" [collapse]="listCollapsed[parentCategory.id]">
+              <td>{{ category.name }}</td>
+              <td>{{ category.order }}</td>
+              <td><md-checkbox [checked]="category.active" readonly="readonly" click-prevent-default></md-checkbox></td>
+              <td>
+                <a (click)="openEditCategoryDialog(category, parentCategory.id, gender.male.id)"><i class="material-icons tex-white">mode_edit</i></a>
+                <a (click)="openDeleteCategoryDialog(category.id)"><i class="material-icons">delete_forever</i></a>
+              </td>
             </tr>
-            <ng-container *ngFor="let categoryGroup of parentCategory.male_cate; let j = index">
-              <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
-                <td><h5>{{ j + 1 }}</h5></td>
-                <td colspan="2"><h5>{{ categoryGroup.order }}</h5></td>
-                <td>
-                  <a (click)="openEditCategoryGroupModal(editCategoryGroupModal, categoryGroup, parentCategory, gender.male)"><i class="material-icons tex-white">mode_edit</i></a>
-                  <a (click)="openDeleteCategoryGroupModal(deleteCategoryGroupModal, categoryGroup.id)"><i class="material-icons">delete_forever</i></a>
-                </td>
-              </tr>
-
-              <tr class="bg-custom" [collapse]="listCollapsed[parentCategory.id]">
-                <td>Name</td>
-                <td colspan="2">Active</td>
-                <td>
-                  <a (click)="openAddCategoryModal(addCategoryModal, categoryGroup.id)"><i class="material-icons">add_circle</i></a>
-                </td>
-              </tr>
-              <tr class="bg-custom" *ngFor="let category of categoryGroup.categories" [collapse]="listCollapsed[parentCategory.id]">
-                <td>{{ category.name }}</td>
-                <td colspan="2"><md-checkbox [checked]="category.active" readonly="readonly" click-prevent-default></md-checkbox></td>
-                <td>
-                  <a (click)="openEditCategoryModal(editCategoryModal, categoryGroup.id, category)"><i class="material-icons tex-white">mode_edit</i></a>
-                  <a (click)="openDeleteCategoryModal(deleteCategoryModal, category.id)"><i class="material-icons">delete_forever</i></a>
-                </td>
-              </tr>
-            </ng-container>
           </ng-container><!-- end male category -->
 
           <!-- female category -->
           <ng-container>
             <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
-              <td colspan="3"># {{ gender.female.name }}</td>
+              <td colspan="4"># {{ gender.female.name }}</td>
+            </tr>
+            <tr class="bg-custom" [collapse]="listCollapsed[parentCategory.id]">
+              <td>Name</td>
+              <td>Order</td>
+              <td>Active</td>
               <td>
-                <a (click)="openAddCategoryGroupModal(addCategoryGroupModal, parentCategory, gender.male)"><i class="material-icons">add_circle</i></a>
+                <a (click)="openAddCategoryDialog(parentCategory.id)"><i class="material-icons">add_circle</i></a>
               </td>
             </tr>
-            <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
-              <td>Group</td>
-              <td colspan="2">Order</td>
+            <tr class="bg-custom" *ngFor="let category of parentCategory.female_cate" [collapse]="listCollapsed[parentCategory.id]">
+              <td>{{ category.name }}</td>
+              <td>{{ category.order }}</td>
+              <td><md-checkbox [checked]="category.active" readonly="readonly" click-prevent-default></md-checkbox></td>
               <td>
-                <a (click)="openAddCategoryGroupModal(addCategoryGroupModal, parentCategory, gender.female)"><i class="material-icons">add_circle</i></a>
+                <a (click)="openEditCategoryDialog(category, parentCategory.id, gender.male.id)"><i class="material-icons tex-white">mode_edit</i></a>
+                <a (click)="openDeleteCategoryDialog(category.id)"><i class="material-icons">delete_forever</i></a>
               </td>
             </tr>
-            <ng-container *ngFor="let categoryGroup of parentCategory.female_cate; let j = index">
-              <tr class="bg-dark-custom" [collapse]="listCollapsed[parentCategory.id]">
-                <td><h5>{{ j + 1 }}</h5></td>
-                <td colspan="2"><h5>{{ categoryGroup.order }}</h5></td>
-                <td>
-                  <a (click)="openEditCategoryGroupModal(editCategoryGroupModal, categoryGroup, parentCategory, gender.female)"><i class="material-icons tex-white">mode_edit</i></a>
-                  <a (click)="openDeleteCategoryGroupModal(deleteCategoryGroupModal, categoryGroup.id)"><i class="material-icons">delete_forever</i></a>
-                </td>
-              </tr>
-
-              <tr class="bg-custom" [collapse]="listCollapsed[parentCategory.id]">
-                <td>Name</td>
-                <td colspan="2">Active</td>
-                <td>
-                  <a (click)="openAddCategoryModal(addCategoryModal, categoryGroup.id)"><i class="material-icons">add_circle</i></a>
-                </td>
-              </tr>
-              <tr class="bg-custom" *ngFor="let category of categoryGroup.categories" [collapse]="listCollapsed[parentCategory.id]">
-                <td>{{ category.name }}</td>
-                <td colspan="2"><md-checkbox [checked]="category.active" readonly="readonly" click-prevent-default></md-checkbox></td>
-                <td>
-                  <a (click)="openEditCategoryModal(editCategoryModal, categoryGroup.id, category)"><i class="material-icons tex-white">mode_edit</i></a>
-                  <a (click)="openDeleteCategoryModal(deleteCategoryModal, category.id)"><i class="material-icons">delete_forever</i></a>
-                </td>
-              </tr>
-            </ng-container>
           </ng-container><!-- end female category -->
 
         </ng-container>
       </tbody>
     </table>
   </fieldset>
-
-
-  <!-- add parent category modal -->
-  <ng-template #addParentCategoryModal>
-    <div class="modal-dialog modal-lg my-0">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title pull-left pr-3">Add Parent Category</h4>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="hiddenParentCategoryModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div>
-              <md-input-container class="w-100">
-                <input type="text" mdInput placeholder="Name" required="required" [formControl]="parentCategoryName" />
-              </md-input-container>
-            </div>
-            <div>
-              <md-input-container class="w-100">
-                <input type="number" mdInput placeholder="Order" required="required" [formControl]="parentCategoryOrder" />
-              </md-input-container>
-            </div>
-            <div class="text-right">
-              <button md-button type="submit" class="submit" (click)="addParentCategory()">Add</button>
-              <button md-button type="submit" class="submit" (click)="hiddenParentCategoryModal()">Cancel</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-
-  <!-- edit parent category modal -->
-  <ng-template #editParentCategoryModal>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left pr-3">Edit Parent Category</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="hiddenParentCategoryModal()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div>
-          <md-input-container class="w-100">
-            <input type="text" mdInput placeholder="Name" required="required" [formControl]="parentCategoryName" />
-          </md-input-container>
-        </div>
-        <div>
-          <md-input-container class="w-100">
-            <input type="number" mdInput placeholder="Order" required="required" [formControl]="parentCategoryOrder" />
-          </md-input-container>
-        </div>
-        <div class="text-right">
-          <button md-button type="submit" class="submit" (click)="hiddenParentCategoryModal()">Edit</button>
-          <button md-button type="submit" class="submit" (click)="modalRef.hide()">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </ng-template>
-
-  <!-- delete parent category modal -->
-  <ng-template #deleteParentCategoryModal>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Delete Parent Category</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Are you sure to delete this parent category?</p>
-      <div class="text-right">
-        <button md-button type="submit" class="submit" (click)="deleteParentCategory()">Delete</button>
-        <button md-button type="submit" class="submit" (click)="modalRef.hide()">Cancel</button>
-      </div>
-    </div>
-  </ng-template>
-
-  <!-- add category group modal -->
-  <ng-template #addCategoryGroupModal>
-    <div class="modal-dialog modal-lg my-0">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title pull-left pr-3">Add Category Group</h4>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="hiddenCategoryGroupModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div>
-              <p class="text-left">Parent Category: {{ choosedParentCategory.name }}</p>
-              <p class="text-left">Gender: {{ choosedGender.name }}</p>
-              <md-input-container class="w-100">
-                <input type="number" mdInput placeholder="Order" required="required" [formControl]="categoryGroupOrder" />
-              </md-input-container>
-            </div>
-            <div class="text-right">
-              <button md-button type="submit" class="submit" (click)="addCategoryGroup()">Add</button>
-              <button md-button type="submit" class="submit" (click)="hiddenCategoryGroupModal()">Cancel</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-
-  <!-- edit category group modal -->
-  <ng-template #editCategoryGroupModal>
-    <div class="modal-dialog modal-lg my-0">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title pull-left pr-3">Edit Category Group</h4>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="hiddenCategoryGroupModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="text-left pt-4">
-              <md-select placeholder="Parent Category" [formControl]="parentCategoryId" style="color: white">
-                <md-option *ngFor="let parentCategory of categories" [value]="parentCategory.id">
-                  {{ parentCategory.name }}
-                </md-option>
-              </md-select>
-            </div>
-            <div class="text-left pt-3">
-              <md-radio-group [formControl]="genderId">
-                <md-radio-button [value]="1">Male</md-radio-button>
-                <md-radio-button [value]="2">Female</md-radio-button>
-              </md-radio-group>
-            </div>
-            <div>
-              <md-input-container class="w-100">
-                <input type="text" mdInput placeholder="Order" required="required" [formControl]="categoryGroupOrder" />
-              </md-input-container>
-            </div>
-            <div class="text-right">
-              <button md-button type="submit" class="submit" (click)="editCategoryGroup()">Edit</button>
-              <button md-button type="submit" class="submit" (click)="hiddenCategoryGroupModal()">Cancel</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-
-  <!-- delete category group modal -->
-  <ng-template #deleteCategoryGroupModal>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Delete Category Group</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Are you sure to delete this Category Group?</p>
-      <div class="text-right">
-        <button md-button type="submit" class="submit" (click)="deleteCategoryGroup()">Delete</button>
-        <button md-button type="submit" class="submit" (click)="modalRef.hide()">Cancel</button>
-      </div>
-    </div>
-  </ng-template>
-
-  <!-- add category modal -->
-  <ng-template #addCategoryModal>
-    <div class="modal-dialog modal-lg my-0">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title pull-left pr-3">Add Category</h4>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="hiddenCategoryModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div>
-              <md-input-container class="w-100">
-                <input type="text" mdInput placeholder="Category Name" required="required" [formControl]="categoryName" />
-              </md-input-container>
-            </div>
-            <div class="text-left">
-              <md-checkbox [formControl]="categoryActive" required="required">Active</md-checkbox>
-            </div>
-            <div class="text-right">
-              <button md-button type="submit" class="submit" (click)="addCategory()">Add</button>
-              <button md-button type="submit" class="submit" (click)="hiddenCategoryModal()">Cancel</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-
-  <!-- edit category modal -->
-  <ng-template #editCategoryModal>
-    <div class="modal-dialog modal-lg my-0">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title pull-left pr-3">Edit Category</h4>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="hiddenCategoryModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div>
-              <md-input-container class="w-100">
-                <input type="text" mdInput placeholder="Category Name" required="required" [formControl]="categoryName" />
-              </md-input-container>
-            </div>
-            <div class="text-left">
-              <md-checkbox [formControl]="categoryActive" required="required">Active</md-checkbox>
-            </div>
-            <div class="text-right">
-              <button md-button type="submit" class="submit" (click)="editCategory()">Edit</button>
-              <button md-button type="submit" class="submit" (click)="hiddenCategoryModal()">Cancel</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-
-  <!-- delete category modal -->
-  <ng-template #deleteCategoryModal>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Delete Category</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Are you sure to delete this Category?</p>
-      <div class="text-right">
-        <button md-button type="submit" class="submit" (click)="deleteCategory()">Delete</button>
-        <button md-button type="submit" class="submit" (click)="modalRef.hide()">Cancel</button>
-      </div>
-    </div>
-  </ng-template>
 </form>

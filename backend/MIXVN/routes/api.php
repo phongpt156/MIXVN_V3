@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/delete/{id}', 'Backend\CollectionController@destroy')->where('id', '[0-9]+')->middleware('admin.super');
     });
     
-    Route::resource('feature', 'Backend\FeatureController')->middleware('admin.super');
+    Route::resource('feature', 'Backend\FeatureController');
     Route::resource('feature-value', 'Backend\FeatureValueController')->middleware('admin.super');
 
     Route::group(['prefix' => 'product'], function () {
@@ -48,14 +48,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('', 'Backend\CategoryController@store')->middleware('admin.super');
         Route::put('/{id}', 'Backend\CategoryController@update')->middleware('admin.super')->where('id', '[0-9]+');
         Route::delete('/{id}', 'Backend\CategoryController@destroy')->middleware('admin.super')->where('id', '[0-9]+');
-    });
-
-    Route::group(['prefix' => 'category-group'], function () {
-        Route::get('', 'Backend\CategoryGroupController@index')->middleware('admin.super');
-        Route::post('', 'Backend\CategoryGroupController@store')->middleware('admin.super');
-        Route::put('/{id}', 'Backend\CategoryGroupController@update')->middleware('admin.super')->where('id', '[0-9]+');
-        Route::delete('/{id}', 'Backend\CategoryGroupController@destroy')->middleware('admin.super')->where('id', '[0-9]+');
-        Route::get('/gender/{genderId}', 'Backend\CategoryGroupController@getGenderCategoryGroups')->where('genderId', '[0-9]+');
     });
 
     Route::group(['prefix' => 'product-group'], function () {

@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { Subscription } from 'rxjs/Subscription';
+import { MdDialogRef } from '@angular/material';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 import { FeatureValueService } from 'app/admin/admin-shared/services/feature-value/feature-value.service';
@@ -11,24 +10,19 @@ import { FeatureValueService } from 'app/admin/admin-shared/services/feature-val
   templateUrl: './add-feature-value.component.html',
   styleUrls: ['./add-feature-value.component.scss']
 })
-export class AddFeatureValueComponent implements OnInit, OnDestroy {
+export class AddFeatureValueComponent implements OnInit {
   addFeatureValueForm: FormGroup;
   feature: any = {};
   features: any[] = [];
-  _subscription: Subscription;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public dialogRef: MdDialogRef<AddFeatureValueComponent>,
     private fb: FormBuilder,
     private featureService: FeatureService,
     private featureValueService: FeatureValueService
   ) { }
 
   ngOnInit() {
-    this._subscription = this.featureService.featuresChange.subscribe((features: any[]) => {
-      this.features = features;
-    });
-
     this.getFeatures();
 
     this.addFeatureValueForm = this.fb.group({
@@ -42,23 +36,16 @@ export class AddFeatureValueComponent implements OnInit, OnDestroy {
     this.patchValue();
   }
 
-  ngOnDestroy() {
-    this.getFeatures();
-    this._subscription.unsubscribe();
-  }
-
   getFeatures() {
     this.featureService.getAll()
     .subscribe(res => {
-      this.featureService.setFeatures(res.data);
+      this.features = res.data;
     });
   }
 
   patchValue() {
-    setTimeout(() => {
-      this.addFeatureValueForm.patchValue({
-        feature: this.feature.id
-      });
+    this.addFeatureValueForm.patchValue({
+      feature: this.feature.id
     });
   }
 
@@ -68,7 +55,7 @@ export class AddFeatureValueComponent implements OnInit, OnDestroy {
       body = this.addFeatureValueForm.value;
       this.featureValueService.add(body)
       .subscribe(res => {
-        this.bsModalRef.hide();
+        this.dialogRef.close(true);
       });
     }
   }

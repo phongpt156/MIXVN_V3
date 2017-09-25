@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
 import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
@@ -13,8 +13,6 @@ import { DeleteCollectionComponent } from './delete-collection/delete-collection
   styleUrls: ['./collection.component.scss']
 })
 export class CollectionComponent implements OnInit {
-  @ViewChild('deleteCollectionModal') deleteCollectionModal;
-
   selectedCollectionId: number;
   collections: any[] = [];
   dialogRef: any;
@@ -37,7 +35,7 @@ export class CollectionComponent implements OnInit {
 
   openAddCollectionDialog() {
     this.dialogRef = this.dialog.open(AddCollectionComponent, {
-      panelClass: ['w-50', 'mh-100', 'overflow']
+      panelClass: ['w-50']
     });
 
     this.dialogRef.afterClosed().subscribe(isAdd => {
@@ -49,7 +47,7 @@ export class CollectionComponent implements OnInit {
 
   openEditCollectionDialog(collection: any) {
     this.dialogRef = this.dialog.open(EditCollectionComponent, {
-      panelClass: ['w-50', 'mh-100', 'overflow']
+      panelClass: ['w-50']
     });
 
     this.dialogRef.componentInstance.collection = collection;
@@ -61,15 +59,14 @@ export class CollectionComponent implements OnInit {
     });
   }
 
-  openDeleteCollectionDialog(collectionId: number) {
+  openDeleteCollectionDialog(id: number) {
     this.dialogRef = this.dialog.open(DeleteCollectionComponent);
+
+    this.dialogRef.componentInstance.id = id;
 
     this.dialogRef.afterClosed().subscribe(isDelete => {
       if (isDelete) {
-        this.collectionService.delete(collectionId)
-        .subscribe(res => {
-          this.getCollections();
-        });
+        this.getCollections();
       }
     });
   }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/operator/catch';
 
@@ -12,23 +11,10 @@ import { createCommonHeaders, handleError, handleErrorRes } from 'app/shared/fun
 
 @Injectable()
 export class FeatureService {
-  protected features: any[] = [];
-
-  featuresChange: Subject<any[]> = new Subject<any[]>();
-
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
-
-  getFeatures(): any[] {
-    return this.features;
-  }
-
-  setFeatures(features: any[]) {
-    this.features = features;
-    this.featuresChange.next(features);
-  }
 
   getAll(): Observable<ApiResponse> {
     const options = createCommonHeaders(this.authService);

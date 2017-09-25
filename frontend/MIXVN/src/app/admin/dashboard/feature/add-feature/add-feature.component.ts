@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { MdDialogRef } from '@angular/material';
+
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 
@@ -9,11 +10,11 @@ import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.
   templateUrl: './add-feature.component.html',
   styleUrls: ['./add-feature.component.scss']
 })
-export class AddFeatureComponent implements OnInit, OnDestroy {
+export class AddFeatureComponent implements OnInit {
   addFeatureForm: FormGroup;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public dialogRef: MdDialogRef<AddFeatureComponent>,
     private featureService: FeatureService,
     private fb: FormBuilder
   ) { }
@@ -26,17 +27,6 @@ export class AddFeatureComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.getFeatures();
-  }
-
-  getFeatures() {
-    this.featureService.getAll()
-    .subscribe(res => {
-      this.featureService.setFeatures(res.data);
-    });
-  }
-
   onSubmit() {
     if (this.addFeatureForm.valid) {
       let body: any = {};
@@ -44,7 +34,7 @@ export class AddFeatureComponent implements OnInit, OnDestroy {
 
       this.featureService.add(body)
       .subscribe(res => {
-        this.bsModalRef.hide();
+        this.dialogRef.close(true);
       });
     }
   }

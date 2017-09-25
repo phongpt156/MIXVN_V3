@@ -1,49 +1,33 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal/modal-options.class';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 import { FeatureValueService } from 'app/admin/admin-shared/services/feature-value/feature-value.service';
 
 import { AddFeatureComponent } from './add-feature/add-feature.component';
 import { EditFeatureComponent } from './edit-feature/edit-feature.component';
+import { DeleteFeatureComponent } from './delete-feature/delete-feature.component';
 import { AddFeatureValueComponent } from '../feature-value/add-feature-value/add-feature-value.component';
 import { EditFeatureValueComponent } from '../feature-value/edit-feature-value/edit-feature-value.component';
+import { DeleteFeatureValueComponent } from '../feature-value/delete-feature-value/delete-feature-value.component';
 
 @Component({
   selector: 'mix-feature',
   templateUrl: './feature.component.html',
   styleUrls: ['./feature.component.scss']
 })
-export class FeatureComponent implements OnInit, OnDestroy {
-  @ViewChild('deleteFeatureModal') deleteFeatureModal;
-  @ViewChild('deleteFeatureValueModal') deleteFeatureValueModal;
-  bsModalRef: BsModalRef;
-  selectedFeatureId: number;
-  selectedFeatureValueId: number;
+export class FeatureComponent implements OnInit {
   listCollapsed: any = {};
   features: any[] = [];
-  _subscription: Subscription;
+  dialogRef: any;
 
   constructor(
+    public dialog: MdDialog,
     private featureService: FeatureService,
-    private featureValueService: FeatureValueService,
-    private bsModalService: BsModalService
   ) { }
 
   ngOnInit() {
-    this.features = this.featureService.getFeatures();
-
-    this._subscription = this.featureService.featuresChange.subscribe((features: any[]) => {
-      this.features = features;
-    });
-
     this.getFeatures();
-  }
-
-  ngOnDestroy() {
-    this._subscription.unsubscribe();
   }
 
   getFeatures() {
@@ -52,54 +36,76 @@ export class FeatureComponent implements OnInit, OnDestroy {
       res.data.forEach(val => {
         this.listCollapsed[val.id] = false;
       });
-      this.featureService.setFeatures(res.data);
+      this.features = res.data;
     });
   }
 
-  openAddFeatureModal() {
-    this.bsModalRef = this.bsModalService.show(AddFeatureComponent);
-  }
+  openAddFeatureDialog() {
+    this.dialogRef = this.dialog.open(AddFeatureComponent);
 
-  openEditFeatureModal(e, feature: any) {
-    e.stopPropagation();
-    this.bsModalRef = this.bsModalService.show(EditFeatureComponent);
-    this.bsModalRef.content.feature = feature;
-  }
-
-  openDeleteFeatureModal(e, featureId: number) {
-    e.stopPropagation();
-    this.bsModalRef = this.bsModalService.show(this.deleteFeatureModal);
-    this.selectedFeatureId = featureId;
-  }
-
-  deleteFeature() {
-    this.featureService.delete(this.selectedFeatureId)
-    .subscribe(res => {
-      this.bsModalRef.hide();
-      this.getFeatures();
+    this.dialogRef.afterClosed().subscribe(isAdd => {
+      if (isAdd) {
+        this.getFeatures();
+      }
     });
   }
 
-  openAddFeatureValueModal(feature) {
-    this.bsModalRef = this.bsModalService.show(AddFeatureValueComponent);
-    this.bsModalRef.content.feature = feature;
+  openEditFeatureDialog(e, feature: any) {
+    e.stopPropagation();
+    this.dialogRef = this.dialog.open(EditFeatureComponent);
+    this.dialogRef.componentInstance.feature = feature;
+
+    this.dialogRef.afterClosed().subscribe(isEdit => {
+      if (isEdit) {
+        this.getFeatures();
+      }
+    }); 
   }
 
-  openEditFeatureValueModal(featureValue) {
-    this.bsModalRef = this.bsModalService.show(EditFeatureValueComponent);
-    this.bsModalRef.content.featureValue = featureValue;
+  openDeleteFeatureDialog(e, featureId: number) {
+    e.stopPropagation();
+    this.dialogRef = this.dialog.open(DeleteFeatureComponent);
+    
+    this.dialogRef.componentInstance.id = featureId;
+
+    this.dialogRef.afterClosed().subscribe(isDelete => {
+      if (isDelete) {
+        this.getFeatures();
+      }
+    });
   }
 
-  openDeleteFeatureValueModal(featureValueId) {
-    this.bsModalRef = this.bsModalService.show(this.deleteFeatureValueModal);
-    this.selectedFeatureValueId = featureValueId;
+  openAddFeatureValueDialog(feature) {
+    this.dialogRef = this.dialog.open(AddFeatureValueComponent);
+    this.dialogRef.componentInstance.feature = feature;
+
+    this.dialogRef.afterClosed().subscribe(isAdd => {
+      if (isAdd) {
+        this.getFeatures();
+      }
+    })
   }
 
-  deleteFeatureValue() {
-    this.featureValueService.delete(this.selectedFeatureValueId)
-    .subscribe(res => {
-      this.bsModalRef.hide();
-      this.getFeatures();
+  openEditFeatureValueDialog(featureValue) {
+    this.dialogRef = this.dialog.open(EditFeatureValueComponent);
+    this.dialogRef.componentInstance.featureValue = featureValue;
+
+    this.dialogRef.afterClosed().subscribe(isEdit => {
+      if (isEdit) {
+        this.getFeatures();
+      }
+    });
+  }
+
+  openDeleteFeatureValueDialog(featureValueId) {
+    this.dialogRef = this.dialog.open(DeleteFeatureValueComponent);
+
+    this.dialogRef.componentInstance.id = featureValueId;
+
+    this.dialogRef.afterClosed().subscribe(isDelete => {
+      if (isDelete) {
+        this.getFeatures();
+      }
     });
   }
 }

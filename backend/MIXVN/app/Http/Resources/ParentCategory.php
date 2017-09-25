@@ -18,8 +18,8 @@ class ParentCategory extends Resource
             'id' => $this->id,
             'name' => $this->name,
             'order' => $this->order,
-            'male_cate' => CategoryGroup::collection($this->categoryGroups->where('gender_id', 1)->sortBy('order')->values()),
-            'female_cate' => CategoryGroup::collection($this->categoryGroups->where('gender_id', 2)->sortBy('order')->values())
+            'male_cate' => Category::collection($this->categories->where('gender_id', 1)->sortBy('order')->values()),
+            'female_cate' => Category::collection($this->categories->where('gender_id', 2)->sortBy('order')->values())
         ];
     }
 }

@@ -32,6 +32,15 @@ import { AddProductComponent } from './product/add-product/add-product.component
 import { EditProductComponent } from './product/edit-product/edit-product.component';
 import { DeleteProductComponent } from './product/delete-product/delete-product.component';
 import { DeleteCollectionComponent } from './collection/delete-collection/delete-collection.component';
+import { DeleteSupplierComponent } from './supplier/delete-supplier/delete-supplier.component';
+import { DeleteFeatureComponent } from './feature/delete-feature/delete-feature.component';
+import { DeleteFeatureValueComponent } from './feature-value/delete-feature-value/delete-feature-value.component';
+import { AddCategoryComponent } from './category/add-category/add-category.component';
+import { EditCategoryComponent } from './category/edit-category/edit-category.component';
+import { DeleteCategoryComponent } from './category/delete-category/delete-category.component';
+import { AddParentCategoryComponent } from './parent-category/add-parent-category/add-parent-category.component';
+import { EditParentCategoryComponent } from './parent-category/edit-parent-category/edit-parent-category.component';
+import { DeleteParentCategoryComponent } from './parent-category/delete-parent-category/delete-parent-category.component';
 
 @NgModule({
   imports: [
@@ -65,7 +74,16 @@ import { DeleteCollectionComponent } from './collection/delete-collection/delete
     AddProductComponent,
     EditProductComponent,
     DeleteProductComponent,
-    DeleteCollectionComponent
+    DeleteCollectionComponent,
+    DeleteSupplierComponent,
+    DeleteFeatureComponent,
+    DeleteFeatureValueComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
+    DeleteCategoryComponent,
+    AddParentCategoryComponent,
+    EditParentCategoryComponent,
+    DeleteParentCategoryComponent
   ],
   entryComponents: [
     AddSupplierComponent,
@@ -79,7 +97,16 @@ import { DeleteCollectionComponent } from './collection/delete-collection/delete
     AddProductComponent,
     EditProductComponent,
     DeleteProductComponent,
-    DeleteCollectionComponent
+    DeleteCollectionComponent,
+    DeleteSupplierComponent,
+    DeleteFeatureComponent,
+    DeleteFeatureValueComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
+    DeleteCategoryComponent,
+    AddParentCategoryComponent,
+    EditParentCategoryComponent,
+    DeleteParentCategoryComponent
   ]
 })
 export class DashboardModule { }
