@@ -13,11 +13,11 @@
         </svg>
       </button>
       <ul *dropdownMenu class="dropdown-menu dropdown-menu-right p-0 pb-4" role="menu">
-        <li role="menuitem"><a href="#" class="dropdown-item">Home</a></li>
-        <li role="menuitem"><a href="#" class="dropdown-item">Shop</a></li>
-        <li role="menuitem"><a href="#" class="dropdown-item">Login</a></li>
-        <li role="menuitem"><a href="#" class="dropdown-item">Sign Up</a></li>
-        <li role="menuitem"><a href="#" class="dropdown-item">Location</a></li>
+        <li role="menuitem"><a class="dropdown-item">Home</a></li>
+        <li role="menuitem"><a class="dropdown-item">Shop</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openLoginModal()">Login</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openRegisterModal()">Sign Up</a></li>
+        <li role="menuitem"><a class="dropdown-item">Location</a></li>
       </ul>
     </div>
     <div class="search-filter-wrapper">

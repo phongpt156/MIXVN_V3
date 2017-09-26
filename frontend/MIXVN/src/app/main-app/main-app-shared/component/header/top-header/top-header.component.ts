@@ -1,7 +1,14 @@
 import { Component, OnInit, OnDestroy, HostListener, ElementRef } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+
 import { Subscription } from 'rxjs/Subscription';
 
 import { SearchTaggingService } from 'app/main-app/main-app-shared/services/search-tagging/search-tagging.service';
+import { CommonService } from 'app/shared/services/common/common.service';
+
+import { LoginBoxComponent } from 'app/main-app/main-app-shared/component/login-box/login-box.component';
+import { RegisterBoxComponent } from 'app/main-app/main-app-shared/component/register-box/register-box.component';
 
 @Component({
   selector: 'mix-top-header',
@@ -12,10 +19,13 @@ export class TopHeaderComponent implements OnInit, OnDestroy {
   mobile = false;
   isFilter: boolean;
   _subscription: Subscription;
+  modalRef: BsModalRef;
 
   constructor(
-    private temRef: ElementRef,
-    private searchTaggingService: SearchTaggingService
+    private el: ElementRef,
+    private searchTaggingService: SearchTaggingService,
+    private modalService: BsModalService,
+    private commonService: CommonService
   ) { }
 
   ngOnInit() {
@@ -35,6 +45,16 @@ export class TopHeaderComponent implements OnInit, OnDestroy {
   }
 
   isMobile(): boolean {
-    return this.temRef.nativeElement.offsetWidth < 769 ? true : false;
+    return this.el.nativeElement.offsetWidth < 769 ? true : false;
+  }
+
+  openLoginModal() {
+    this.commonService.setBlur(true);
+    this.modalService.show(LoginBoxComponent);
+  }
+
+  openRegisterModal() {
+    this.commonService.setBlur(true);
+    this.modalService.show(RegisterBoxComponent);
   }
 }

@@ -17,6 +17,8 @@ import { SearchTaggingListComponent } from './../component/header/top-header/sea
 import { AlertLoginComponent } from './../component/alert-login/alert-login.component';
 import { SearchTaggingItemComponent } from './../component/header/top-header/search-box/search-tagging-list/search-tagging-item/search-tagging-item.component';
 import { SearchFilterComponent } from './../component/header/top-header/search-box/search-tagging-list/search-tagging-item/search-filter/search-filter.component';
+import { LoginBoxComponent } from './../component/login-box/login-box.component';
+import { RegisterBoxComponent } from './../component/register-box/register-box.component';
 
 import { ProductListComponent } from 'app/main-app/home-page/body/main-body/product-list/product-list.component';
 import { ProductItemComponent } from 'app/main-app/home-page/body/main-body/product-list/product-item/product-item.component';
@@ -41,6 +43,8 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     SearchTaggingListComponent,
     ScrollLoadMoreDirective,
     AlertLoginComponent,
+    LoginBoxComponent,
+    RegisterBoxComponent,
     SearchTaggingItemComponent,
     SearchFilterComponent,
     ProductListComponent,
@@ -59,6 +63,8 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     SearchTaggingListComponent,
     ScrollLoadMoreDirective,
     AlertLoginComponent,
+    LoginBoxComponent,
+    RegisterBoxComponent,
     SearchTaggingItemComponent,
     ProductListComponent,
     ProductItemComponent,
@@ -68,7 +74,9 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     SearchTaggingService
   ],
   entryComponents: [
-    AlertLoginComponent
+    AlertLoginComponent,
+    LoginBoxComponent,
+    RegisterBoxComponent
   ]
 })
 export class MainAppSharedModule {}
