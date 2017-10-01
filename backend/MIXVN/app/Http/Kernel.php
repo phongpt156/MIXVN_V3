@@ -42,6 +42,10 @@ class Kernel extends HttpKernel
             'bindings',
             \Barryvdh\Cors\HandleCors::class,
         ],
+
+        'admin' => [
+            \App\Http\Middleware\SetAdminModelGuard::class
+        ]
     ];
 
     /**

@@ -8,7 +8,6 @@ import { SearchTaggingService } from 'app/main-app/main-app-shared/services/sear
 import { CommonService } from 'app/shared/services/common/common.service';
 
 import { LoginBoxComponent } from 'app/main-app/main-app-shared/component/login-box/login-box.component';
-import { RegisterBoxComponent } from 'app/main-app/main-app-shared/component/register-box/register-box.component';
 
 @Component({
   selector: 'mix-top-header',
@@ -51,10 +50,5 @@ export class TopHeaderComponent implements OnInit, OnDestroy {
   openLoginModal() {
     this.commonService.setBlur(true);
     this.modalService.show(LoginBoxComponent);
-  }
-
-  openRegisterModal() {
-    this.commonService.setBlur(true);
-    this.modalService.show(RegisterBoxComponent);
   }
 }

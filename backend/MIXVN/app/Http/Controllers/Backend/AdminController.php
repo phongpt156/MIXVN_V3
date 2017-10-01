@@ -21,7 +21,7 @@ class AdminController extends Controller
             return response()->json(['error' => 'Could not create token!'], 500);
         }
 
-        return response()->json(compact('token'));   
+        return response()->json(compact('token'));
     }
 
     public function getAdmin(Request $request)
