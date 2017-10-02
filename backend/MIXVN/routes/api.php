@@ -60,3 +60,5 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'category'], function () {
     Route::get('', 'Frontend\CategoryController@index');
 });
+
+Route::get('user', 'Frontend\UserController@index');

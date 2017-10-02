@@ -3,6 +3,10 @@
     display: block;
 }
 
+:host ::ng-deep perfect-scrollbar {
+    height: 1056.35px;
+}
+
 a {
     &.nav-link {
         color: #a8a8a8;
@@ -37,9 +41,4 @@ a {
         border: none;
         background-color: transparent;
     }
-}
-
-.product-list-wrapper {
-    overflow: auto;
-    max-height: 1056.35px;
 }

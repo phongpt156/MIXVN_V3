@@ -22,7 +22,7 @@ export class AddCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.addCategoryForm = this.fb.group({
-      name: ['', [Validators.required]],
+      name: [''],
       order: ['', [Validators.required]],
       active: [true, [Validators.required]]
     });
@@ -37,7 +37,7 @@ export class AddCategoryComponent implements OnInit {
       body.active = this.addCategoryForm.value.active;
       body.gender = this.genderId;
       body.parent_category = this.parentCategoryId;
-
+      console.log(body);
       this.categoryService.add(body)
       .subscribe(res => {
         this.dialogRef.close(true);

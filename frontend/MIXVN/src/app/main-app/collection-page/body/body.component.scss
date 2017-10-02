@@ -4,6 +4,10 @@
     display: block;
 }
 
+:host ::ng-deep perfect-scrollbar {
+    height: 900px;
+}
+
 @include media-breakpoint-down(xl) {
     :host ::ng-deep mix-product-item {
         flex-basis: calc(100% / 7);

@@ -23,7 +23,7 @@ export class EditCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.editCategoryForm = this.fb.group({
-      name: ['', [Validators.required]],
+      name: [''],
       order: ['', [Validators.required]],
       active: [true]
     });

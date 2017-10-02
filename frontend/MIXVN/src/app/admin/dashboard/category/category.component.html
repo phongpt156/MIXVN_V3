@@ -58,7 +58,7 @@
               <td>Order</td>
               <td>Active</td>
               <td>
-                <a (click)="openAddCategoryDialog(parentCategory.id)"><i class="material-icons">add_circle</i></a>
+                <a (click)="openAddCategoryDialog(parentCategory.id, gender.female.id)"><i class="material-icons">add_circle</i></a>
               </td>
             </tr>
             <tr class="bg-custom" *ngFor="let category of parentCategory.female_cate" [collapse]="listCollapsed[parentCategory.id]">
@@ -66,7 +66,7 @@
               <td>{{ category.order }}</td>
               <td><md-checkbox [checked]="category.active" readonly="readonly" click-prevent-default></md-checkbox></td>
               <td>
-                <a (click)="openEditCategoryDialog(category, parentCategory.id, gender.male.id)"><i class="material-icons tex-white">mode_edit</i></a>
+                <a (click)="openEditCategoryDialog(category, parentCategory.id, gender.female.id)"><i class="material-icons tex-white">mode_edit</i></a>
                 <a (click)="openDeleteCategoryDialog(category.id)"><i class="material-icons">delete_forever</i></a>
               </td>
             </tr>

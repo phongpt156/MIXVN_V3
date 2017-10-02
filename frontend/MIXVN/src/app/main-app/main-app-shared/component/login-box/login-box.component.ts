@@ -26,23 +26,10 @@ export class LoginBoxComponent implements OnInit, OnDestroy {
   }
 
   loginFacebook() {
-    console.log(123);
-
-    FB.getAuthResponse(function(response) {
-      console.log(response);
-    });
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
         console.log('Logged in.');
         console.log(response);
-      }
-      else {
-        FB.login((function (response) {
-          console.log(response);
-          FB.api('/me', function(response) {
-            console.log(JSON.stringify(response));
-          });
-        }));
       }
     });
   }

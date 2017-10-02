@@ -14,14 +14,26 @@ class AdminTableSeeder extends Seeder
     public function run()
     {
         DB::table('admin')->insert([
-            'id' => 1,
-            'name' => 'Thanh Phong',
-            'email' => 'pthanhphong156@gmail.com',
-            'password' => Hash::make('123456'),
-            'active' => 1,
-            'role_id' => 1,
-            'created_at' => Carbon::now('UTC'),
-            'updated_at' => Carbon::now('UTC')
+            [
+                'id' => 1,
+                'name' => 'Thanh Phong',
+                'email' => 'pthanhphong156@gmail.com',
+                'password' => Hash::make('123456'),
+                'active' => 1,
+                'role_id' => 1,
+                'created_at' => Carbon::now('UTC'),
+                'updated_at' => Carbon::now('UTC')
+            ],
+            [
+                'id' => 2,
+                'name' => 'Đạt Lok',
+                'email' => 'datht@mix.net.vn',
+                'password' => Hash::make('hoangtiendat'),
+                'active' => 1,
+                'role_id' => 1,
+                'created_at' => Carbon::now('UTC'),
+                'updated_at' => Carbon::now('UTC')
+            ],
         ]);
     }
 }
