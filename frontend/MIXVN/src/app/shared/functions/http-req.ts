@@ -10,15 +10,9 @@ export function createCommonHeaders(authService, contentType = 'application/json
         headerObj['Content-Type'] = contentType;
     }
 
-    const token = authService.getToken();
-    if (token) {
-        headerObj['Authorization'] = `Bearer ${token}`;
-    }
-
-    const headers = new HttpHeaders( headerObj );
+    const headers = new HttpHeaders(headerObj);
     return { headers: headers };
 }
-
 
 export function handleError(response: HttpResponse<any> | any) {
     let errMsg: string;

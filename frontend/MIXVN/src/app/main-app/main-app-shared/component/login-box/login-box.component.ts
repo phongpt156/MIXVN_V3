@@ -1,6 +1,11 @@
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { CommonService } from 'app/shared/services/common/common.service';
+import { UserService } from 'app/main-app/main-app-shared/services/user/user.service';
+import { AuthService } from 'app/shared/services/auth/auth.service';
+
+import { GENDER } from 'app/shared/constants/constants';
 
 declare var window: any;
 declare var FB: any;
@@ -12,9 +17,13 @@ declare var FB: any;
 })
 export class LoginBoxComponent implements OnInit, OnDestroy {
   @HostBinding('class') classes = 'p-4 dark-modal';
+  gender: any = GENDER;
 
   constructor(
-    private commonService: CommonService
+    public modalRef: BsModalRef,
+    private commonService: CommonService,
+    private userService: UserService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -26,11 +35,46 @@ export class LoginBoxComponent implements OnInit, OnDestroy {
   }
 
   loginFacebook() {
-    FB.getLoginStatus(function(response) {
+
+    FB.getLoginStatus(response => {
       if (response.status === 'connected') {
-        console.log('Logged in.');
-        console.log(response);
+        FB.api('/me', {fields: 'id,name,picture,email,gender,hometown,cover,location,birthday'}, response => {
+          this.sendFacebookData(response);
+        });
       }
+      else {
+        FB.login((response => {
+          FB.api('/me', {fields: 'id,name,picture,email,gender,hometown,cover,location,birthday'}, response => {
+            this.sendFacebookData(response);
+          });
+        }), {
+          scope: 'public_profile,email,user_hometown,user_location,user_birthday'
+        });
+      }
+    });
+  }
+
+  sendFacebookData(response) {
+    const body: any = {};
+    body.name = response.name;
+    body.email = response.email;
+    body.birthday = response.birthday;
+    body.hometown = response.hometown.name;
+    body.location = response.location.name;
+    body.facebook_id = response.id;
+    if (response.gender.toLowerCase() === this.gender.male.name.toLowerCase()) {
+      body.gender = this.gender.male.id;
+    } else if (response.gender.toLowerCase() === this.gender.female.name.toLowerCase()) {
+      body.gender = this.gender.female.id;
+    }
+    body.avatar = response.picture.data.url;
+    body.cover = response.cover.source;
+    this.modalRef.hide();
+    this.userService.loginFacebook(body)
+    .subscribe(res => {
+      const response: any = res;
+      this.userService.setUser(response.data);
+      console.log(response.data);
     });
   }
 }

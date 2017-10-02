@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { AuthHttp } from 'angular2-jwt';
 
 import 'rxjs/add/operator/catch';
 
@@ -15,7 +16,8 @@ export class AdminService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private authHttp: AuthHttp
   ) { }
 
   login(body): Observable<any> {
@@ -27,10 +29,6 @@ export class AdminService {
   getAdmin(): Observable<any> {
     const options = createCommonHeaders(this.authService);
     return this.http.get(ADMIN.getAdmin, options)
-    .catch((error: Response | any) => {
-      localStorage.removeItem('token');
-      this.router.navigate(['/admin/login']);
-      return handleError(error);
-    });
+    .catch(handleError);
   }
 }

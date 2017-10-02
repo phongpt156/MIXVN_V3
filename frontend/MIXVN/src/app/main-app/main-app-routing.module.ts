@@ -12,10 +12,7 @@ const mainAppRoutes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './home-page/home-page.module#HomePageModule',
-        data: {
-          preload: true
-        }
+        loadChildren: './home-page/home-page.module#HomePageModule'
       },
       {
         path: 'tim-kiem',

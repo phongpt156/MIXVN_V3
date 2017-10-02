@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
     const body: any = {};
     body.email = this.loginForm.value.email;
     body.password = this.loginForm.value.password;
-    const admin = this.adminService.login(body);
-    admin.subscribe(res => {
+    this.adminService.login(body)
+    .subscribe(res => {
+      console.log(res);
       if (res.token) {
         localStorage.setItem('token', res.token);
         this.router.navigate(['/admin/dashboard']);

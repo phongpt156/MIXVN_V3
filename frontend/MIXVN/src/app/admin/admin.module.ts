@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from 'app/shared/module/auth.module';
 
 import { AuthGuard } from './admin-shared/guards/auth-guard.service';
 import { CheckLogin } from './admin-shared/guards/check-login.service';
@@ -25,7 +25,7 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     AdminRoutingModule,
     AdminSharedModule,
-    HttpClientModule
+    AuthModule
   ],
   declarations: [
     AdminComponent,

@@ -15,7 +15,13 @@ const appRoutes: Routes = [
           preload: true
         }
       },
-      { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
+      {
+        path: 'admin',
+        loadChildren: './admin/admin.module#AdminModule',
+        data: {
+          preload: true
+        }
+      },
     ]
   },
   { path: '**', component: PageNotFoundComponent }

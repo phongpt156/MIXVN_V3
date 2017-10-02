@@ -15,7 +15,6 @@ import { ProductDetailModalComponent  } from './product-detail-modal/product-det
 })
 export class ProductItemComponent implements OnInit {
   bsModalRef: BsModalRef;
-
   @Input() product: any = {};
   @Input() index: number;
 
@@ -32,7 +31,7 @@ export class ProductItemComponent implements OnInit {
   openDetailProductModal(product: any) {
     this.commonService.setBlur(true);
 
-    this.bsModalRef = this.bsModalService.show(ProductDetailModalComponent, { class: 'modal-lg'});
+    this.bsModalRef = this.bsModalService.show(ProductDetailModalComponent, { class: 'w-50'});
 
     this.bsModalRef.content.index = this.index;
     this.productService.setSelectedProduct(this.product);

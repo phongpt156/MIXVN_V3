@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
     Route::post('/signin', 'Backend\AdminController@signin');
     Route::get('/info', 'Backend\AdminController@getAdmin');
     Route::resource('parent-category', 'Backend\ParentCategoryController')->middleware('admin.super');
@@ -61,4 +61,4 @@ Route::group(['prefix' => 'category'], function () {
     Route::get('', 'Frontend\CategoryController@index');
 });
 
-Route::get('user', 'Frontend\UserController@index');
+Route::post('/login/facebook', 'Frontend\UserController@loginFacebook');

@@ -11,6 +11,7 @@ import { ProductDetailModalComponent } from './home-page/body/main-body/product-
 import { MainAppComponent } from './main-app.component';
 
 import { CategoryService } from './main-app-shared/services/category/category.service';
+import { UserService } from './main-app-shared/services/user/user.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { CategoryService } from './main-app-shared/services/category/category.se
   ],
   providers: [
     ProductService,
-    CategoryService
+    CategoryService,
+    UserService
   ],
   entryComponents: [
     ProductDetailModalComponent
