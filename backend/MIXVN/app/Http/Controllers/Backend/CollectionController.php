@@ -52,12 +52,12 @@ class CollectionController extends Controller
             $collection->img = 'images/' . $converBlobFileName;
             $collection->sm_img = 'images/sm_' . $converBlobFileName;
 
-            Image::make($convertBlobFile)->resize(325, null, function ($constraint) {
+            Image::make(public_path() . '/' . $convertBlobFile)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($collection->sm_img);
-            Image::make($convertBlobFile)->resize(1366, null, function ($constraint) {
+            })->save(public_path() . '/' . $collection->sm_img);
+            Image::make(public_path() . '/' . $convertBlobFile)->resize(1366, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($collection->img);
+            })->save(public_path() . '/' . $collection->img);
         }
         $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;        
         $collection->created_at = $now;
@@ -126,12 +126,12 @@ class CollectionController extends Controller
             $collection->img = 'images/' . $converBlobFileName;
             $collection->sm_img = 'images/sm_' . $converBlobFileName;
 
-            Image::make($convertBlobFile)->resize(325, null, function ($constraint) {
+            Image::make(public_path() . '/' . $convertBlobFile)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($collection->sm_img);
-            Image::make($convertBlobFile)->resize(1366, null, function ($constraint) {
+            })->save(public_path() . '/' . $collection->sm_img);
+            Image::make(public_path() . '/' . $convertBlobFile)->resize(1366, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($collection->img);
+            })->save(public_path() . '/' . $collection->img);
         }
 
         $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;

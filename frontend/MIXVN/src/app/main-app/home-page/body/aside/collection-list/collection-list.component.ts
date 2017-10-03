@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CollectionService } from 'app/main-app/main-app-shared/services/collection/collection.service';
 
 @Component({
   selector: 'mix-collection-list',
@@ -7,26 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./collection-list.component.scss']
 })
 export class CollectionListComponent implements OnInit {
-  collections = [
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-    { url: 'http://lorempixel.com/235/70/?58039'},
-  ];
+  collections: any = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private collectionService: CollectionService
   ) { }
 
   ngOnInit() {
+    this.collectionService.getCategories()
+    .subscribe(res => {
+      this.collections = res.data;
+    });
   }
 
   goToSupplierPage() {

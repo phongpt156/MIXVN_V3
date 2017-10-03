@@ -12,6 +12,7 @@ import { MainAppComponent } from './main-app.component';
 
 import { CategoryService } from './main-app-shared/services/category/category.service';
 import { UserService } from './main-app-shared/services/user/user.service';
+import { CollectionService } from './main-app-shared/services/collection/collection.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { UserService } from './main-app-shared/services/user/user.service';
   providers: [
     ProductService,
     CategoryService,
-    UserService
+    UserService,
+    CollectionService
   ],
   entryComponents: [
     ProductDetailModalComponent

@@ -20,7 +20,6 @@ export class SearchTaggingListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.searchTaggings = this.searchTaggingService.getSearchTaggings();
     this._subscription = this.searchTaggingService.searchTaggingsChange.subscribe((searchTaggings: any[]) => {
-      console.log(searchTaggings);
       this.searchTaggings = searchTaggings;
     });
   }

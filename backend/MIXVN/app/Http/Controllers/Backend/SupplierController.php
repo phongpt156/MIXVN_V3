@@ -60,18 +60,18 @@ class SupplierController extends Controller
             $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
             $supplier->background_image = 'images/' . $converBlobFileName;
-            Image::make($convertBlobFile)->resize(1366, null, function ($constraint) {
+            Image::make(public_path() . '/' . $convertBlobFile)->resize(1366, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($supplier->background_image);
+            })->save(public_path() . '/' . $supplier->background_image);
         }
         if ($request->avatar) {
             $convertBlobFile = Storage::disk('upload_image')->put('images', $request->avatar);
             $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
             $supplier->avatar = 'images/' . $converBlobFileName;
-            Image::make($request->avatar)->resize(325, null, function ($constraint) {
+            Image::make(public_path() . '/' . $request->avatar)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($supplier->avatar);
+            })->save(public_path() . '/' . $supplier->avatar);
         }
         $supplier->active = $request->active === 'true' ? true : false;
         $supplier->created_at = $now;
@@ -148,9 +148,9 @@ class SupplierController extends Controller
             $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
             $supplier->background_image = 'images/' . $converBlobFileName;
-            Image::make($convertBlobFile)->resize(1366, null, function ($constraint) {
+            Image::make(public_path() . '/' . $convertBlobFile)->resize(1366, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($supplier->background_image);
+            })->save(public_path() . '/' . $supplier->background_image);
         }
 
         if ($request->avatar) {
@@ -162,9 +162,9 @@ class SupplierController extends Controller
             $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
             $supplier->avatar = 'images/' . $converBlobFileName;
-            Image::make($request->avatar)->resize(325, null, function ($constraint) {
+            Image::make(public_path() . '/' . $request->avatar)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($supplier->avatar);
+            })->save(public_path() . '/' . $supplier->avatar);
         }
 
         $supplier->active = $request->active === 'true' ? true : false;

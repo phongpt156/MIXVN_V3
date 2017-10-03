@@ -52,9 +52,9 @@ class ProductGroupController extends Controller
                 $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
                 $productGroup->img = 'images/' . $converBlobFileName;
-                Image::make($convertBlobFile)->resize(525, null, function ($constraint) {
+                Image::make(public_path() . '/' . $convertBlobFile)->resize(525, null, function ($constraint) {
                     $constraint->aspectRatio();
-                })->save($productGroup->img);
+                })->save(public_path() . '/' . $productGroup->img);
             }
             $productGroup->created_at = $now;
             $productGroup->updated_at = $now;
@@ -75,9 +75,9 @@ class ProductGroupController extends Controller
                         $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
                         
                         $newProduct->img = 'images/' . $converBlobFileName;
-                        Image::make($convertBlobFile)->resize(300, null, function ($constraint) {
+                        Image::make(public_path() . '/' . $convertBlobFile)->resize(300, null, function ($constraint) {
                             $constraint->aspectRatio();
-                        })->save($newProduct->img);
+                        })->save(public_path() . '/' . $newProduct->img);
                     }
                     $newProduct->active = ($product['active'] === 'true' || $product['active'] == 1) ? true : false;
                     $newProduct->supplier_id = $product['supplier'];

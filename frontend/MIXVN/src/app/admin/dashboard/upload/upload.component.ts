@@ -77,7 +77,6 @@ export class UploadComponent implements OnInit {
     } else {
       this.productIds[this.selectedProduct[e.index] - 1] = e.productId;
     }
-    console.log(this.productIds);
   }
 
   imageUploaded(e) {
@@ -135,6 +134,7 @@ export class UploadComponent implements OnInit {
           // });
 
           if (valid) {
+            console.log(valid);
             this.productGroupService.add(this.formData)
             .subscribe(res => {
               console.log(res);

@@ -30,7 +30,6 @@ export class EditFeatureValueComponent implements OnInit {
       order: ['', Validators.required],
       active: ['', Validators.required]
     });
-    console.log(this.featureValue);
     this.getFeatures();
     this.patchValue();
   }

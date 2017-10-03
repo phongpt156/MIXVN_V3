@@ -38,14 +38,13 @@ export class LoginBoxComponent implements OnInit, OnDestroy {
 
     FB.getLoginStatus(response => {
       if (response.status === 'connected') {
-        FB.api('/me', {fields: 'id,name,picture,email,gender,hometown,cover,location,birthday'}, response => {
-          this.sendFacebookData(response);
+        FB.api('/me', {fields: 'id,name,picture,email,gender,hometown,cover,location,birthday'}, res => {
+          this.sendFacebookData(res);
         });
-      }
-      else {
-        FB.login((response => {
-          FB.api('/me', {fields: 'id,name,picture,email,gender,hometown,cover,location,birthday'}, response => {
-            this.sendFacebookData(response);
+      } else {
+        FB.login((res => {
+          FB.api('/me', {fields: 'id,name,picture,email,gender,hometown,cover,location,birthday'}, r => {
+            this.sendFacebookData(r);
           });
         }), {
           scope: 'public_profile,email,user_hometown,user_location,user_birthday'
@@ -59,8 +58,12 @@ export class LoginBoxComponent implements OnInit, OnDestroy {
     body.name = response.name;
     body.email = response.email;
     body.birthday = response.birthday;
-    body.hometown = response.hometown.name;
-    body.location = response.location.name;
+    if (response.hometown) {
+      body.hometown = response.hometown.name;
+    }
+    if (response.location) {
+      body.location = response.location.name;
+    }
     body.facebook_id = response.id;
     if (response.gender.toLowerCase() === this.gender.male.name.toLowerCase()) {
       body.gender = this.gender.male.id;
@@ -72,9 +75,10 @@ export class LoginBoxComponent implements OnInit, OnDestroy {
     this.modalRef.hide();
     this.userService.loginFacebook(body)
     .subscribe(res => {
-      const response: any = res;
-      this.userService.setUser(response.data);
-      console.log(response.data);
+      const r: any = res;
+      this.userService.setUser(r.data);
+      this.authService.setToken(r.token);
+      location.reload();
     });
   }
 }

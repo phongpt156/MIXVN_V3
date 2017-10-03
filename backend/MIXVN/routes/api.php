@@ -62,3 +62,11 @@ Route::group(['prefix' => 'category'], function () {
 });
 
 Route::post('/login/facebook', 'Frontend\UserController@loginFacebook');
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('', 'Frontend\UserController@getUser');
+});
+
+Route::group(['prefix' => 'collection'], function () {
+    Route::get('', 'Frontend\CollectionController@getCollections');
+});

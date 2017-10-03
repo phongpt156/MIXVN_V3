@@ -1,6 +1,6 @@
-export const PORT = 8000;
+export const PORT = 80;
 
-export const HOST = `//${location.hostname}:${PORT}`;
+export const HOST = `//mixvn.webstarterz.com:${PORT}`;
 
 export const ADMIN = {
     signin: HOST + '/api/admin/signin',

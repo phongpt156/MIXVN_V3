@@ -20,7 +20,6 @@ export class JwtInterceptor implements HttpInterceptor {
       }
     }, err => {
       if (err instanceof HttpErrorResponse) {
-        console.log('err', err);
         if (err.status === 401) {
           this.auth.collectFailedRequest(request);
         }

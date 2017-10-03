@@ -5,7 +5,6 @@ import { Directive, HostListener,  } from '@angular/core';
 })
 export class PreventDefaultDirective {
   @HostListener('click', ['$event']) click(e: any) {
-    console.log(e);
     e.preventDefault();
   }
 

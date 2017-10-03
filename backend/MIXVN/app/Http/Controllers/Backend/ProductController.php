@@ -62,9 +62,9 @@ class ProductController extends Controller
                 $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
                 $product->img = 'images/' . $converBlobFileName;
-                Image::make($convertBlobFile)->resize(325, null, function ($constraint) {
+                Image::make(public_path() . '/' . $convertBlobFile)->resize(325, null, function ($constraint) {
                     $constraint->aspectRatio();
-                })->save($product->img);
+                })->save(public_path() . '/' . $product->img);
             }
             $product->created_at = $now;
             $product->updated_at = $now;
@@ -135,10 +135,10 @@ class ProductController extends Controller
                     File::delete($product->img);
                 }
                 $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
-                $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+                $converBlobFileName = pathinfo(public_path() . '/' . $convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
                 $product->img = 'images/' . $converBlobFileName;
-                Image::make($convertBlobFile)->resize(325, null, function ($constraint) {
+                Image::make(public_path() . '/' . $convertBlobFile)->resize(325, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($product->img);
             }

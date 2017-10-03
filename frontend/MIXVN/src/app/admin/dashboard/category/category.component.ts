@@ -129,13 +129,4 @@ export class CategoryComponent implements OnInit {
       }
     })
   }
-
-  // deleteCategory() {
-  //   this.categoryService.delete(this.choosedCategoryId)
-  //   .subscribe(res => {
-  //     console.log(res);
-  //     this.modalRef.hide();
-  //     this.getCategories();
-  //   });
-  // }
 }

@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     body.password = this.loginForm.value.password;
     this.adminService.login(body)
     .subscribe(res => {
-      console.log(res);
       if (res.token) {
         localStorage.setItem('token', res.token);
         this.router.navigate(['/admin/dashboard']);
