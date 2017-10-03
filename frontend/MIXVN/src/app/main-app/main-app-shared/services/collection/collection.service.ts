@@ -6,7 +6,6 @@ import 'rxjs/add/operator/catch';
 
 import { ApiResponse } from 'app/shared/interfaces/api-response';
 import { createCommonHeaders, handleError, handleErrorRes } from 'app/shared/functions/http-req';
-import { AuthService } from 'app/shared/services/auth/auth.service';
 import { COLLECTION } from 'app/shared/constants/api/frontend';
 
 @Injectable()
@@ -14,11 +13,10 @@ export class CollectionService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService
   ) { }
 
   getCategories(): Observable<ApiResponse> {
-    const options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders();
 
     return this.http.get(COLLECTION.getCollections, options)
     .catch(handleError);

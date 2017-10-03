@@ -3,7 +3,7 @@ import { BsModalService  } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AuthService } from 'app/shared/services/auth/auth.service';
+import { AuthService } from 'app/main-app/main-app-shared/services/auth-user/auth.service';
 import { CommonService } from 'app/shared/services/common/common.service';
 import { UserService } from 'app/main-app/main-app-shared/services/user/user.service';
 

@@ -49,7 +49,7 @@ export class EditSupplierComponent implements OnInit {
     this.patchValue();
 
     this.backgroundCropper = new Cropper(this.supplierBackgroundImagePreview.nativeElement, {
-      aspectRatio: 21 / 9,
+      aspectRatio: 17 / 4,
       viewMode: 1
     });
 
@@ -64,8 +64,8 @@ export class EditSupplierComponent implements OnInit {
       name: this.supplier.name,
       address: this.supplier.address,
       phone_number: this.supplier.phone_number || '',
-      open_time: this.supplier.open_time,
-      close_time: this.supplier.close_time,
+      open_time: this.supplier.open_time || '',
+      close_time: this.supplier.close_time || '',
       facebook_link: this.supplier.facebook_link || '',
       facebook_title: this.supplier.facebook_title || '',
       instagram_link: this.supplier.instagram_link || '',

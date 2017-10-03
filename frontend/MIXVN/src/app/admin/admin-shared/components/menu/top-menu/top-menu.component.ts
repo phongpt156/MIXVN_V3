@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from 'app/shared/services/auth/auth.service';
+import { AuthService } from 'app/admin/admin-shared/services/auth-admin/auth.service';
 
 @Component({
   selector: 'mix-top-menu',

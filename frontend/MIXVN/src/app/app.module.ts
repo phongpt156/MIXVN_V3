@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { CustomPreloader } from 'app/shared/classes/custom.preloader';
 
 import { CommonService } from './shared/services/common/common.service';
-import { AuthService } from './shared/services/auth/auth.service';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -27,7 +26,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   providers: [
     CustomPreloader,
     CommonService,
-    AuthService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
-export const PORT = 80;
+export const PORT = 8000;
 
-export const HOST = `//mixvn.webstarterz.com:${PORT}`;
+export const HOST = `//${location.hostname}:${PORT}`;
 
 export const CATEGORY = {
     getAll: HOST + '/api/category'

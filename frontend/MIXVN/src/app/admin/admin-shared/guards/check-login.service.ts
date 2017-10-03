@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
 
-import { AuthService } from 'app/shared/services/auth/auth.service';
+import { AuthService } from 'app/admin/admin-shared/services/auth-admin/auth.service';
 
 @Injectable()
 export class CheckLogin implements CanActivate {

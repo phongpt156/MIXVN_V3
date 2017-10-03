@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthModule } from 'app/shared/module/auth.module';
 
 import { AuthGuard } from './admin-shared/guards/auth-guard.service';
 import { CheckLogin } from './admin-shared/guards/check-login.service';
@@ -14,6 +13,7 @@ import { FeatureValueService } from './admin-shared/services/feature-value/featu
 import { ProductService } from './admin-shared/services/product/product.service';
 import { ProductGroupService } from './admin-shared/services/product-group/product-group.service';
 
+import { AuthService } from 'app/admin/admin-shared/services/auth-admin/auth.service';
 import { AdminSharedModule } from './admin-shared/modules/admin-shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 
@@ -25,13 +25,13 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     AdminRoutingModule,
     AdminSharedModule,
-    AuthModule
   ],
   declarations: [
     AdminComponent,
     LoginComponent
   ],
   providers: [
+    AuthService,
     AuthGuard,
     CheckLogin,
     AdminService,

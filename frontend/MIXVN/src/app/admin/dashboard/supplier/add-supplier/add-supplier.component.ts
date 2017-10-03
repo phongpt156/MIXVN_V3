@@ -42,7 +42,7 @@ export class AddSupplierComponent implements OnInit {
     });
 
     this.backgroundCropper = new Cropper(this.supplierBackgroundImagePreview.nativeElement, {
-      aspectRatio: 21 / 9,
+      aspectRatio: 17 / 4,
       viewMode: 1
     });
 

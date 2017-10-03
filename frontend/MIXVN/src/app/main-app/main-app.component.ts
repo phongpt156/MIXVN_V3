@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 
-import { AuthService } from 'app/shared/services/auth/auth.service';
+import { AuthService } from 'app/main-app/main-app-shared/services/auth-user/auth.service';
 import { UserService } from './main-app-shared/services/user/user.service';
 
 @Component({

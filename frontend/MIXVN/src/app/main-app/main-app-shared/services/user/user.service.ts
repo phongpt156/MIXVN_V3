@@ -7,7 +7,6 @@ import 'rxjs/add/operator/catch';
 
 import { ApiResponse } from 'app/shared/interfaces/api-response';
 import { createCommonHeaders, handleError, handleErrorRes } from 'app/shared/functions/http-req';
-import { AuthService } from 'app/shared/services/auth/auth.service';
 import { USER } from 'app/shared/constants/api/frontend';
 
 @Injectable()
@@ -18,7 +17,6 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService
   ) { }
 
   getUser(): any {
@@ -31,14 +29,14 @@ export class UserService {
   }
 
   loginFacebook(body): Observable<ApiResponse> {
-    const options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders();
 
     return this.http.post(USER.loginFacebook, body, options)
     .catch(handleError);
   }
 
   get(): Observable<any> {
-    const options = createCommonHeaders(this.authService);
+    const options = createCommonHeaders();
 
     return this.http.get(USER.getUser, options)
     .catch(handleError);

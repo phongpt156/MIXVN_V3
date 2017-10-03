@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { SearchTaggingService } from 'app/main-app/main-app-shared/services/search-tagging/search-tagging.service';
 import { CommonService } from 'app/shared/services/common/common.service';
-import { AuthService } from 'app/shared/services/auth/auth.service';
+import { AuthService } from 'app/main-app/main-app-shared/services/auth-user/auth.service';
 import { UserService } from 'app/main-app/main-app-shared/services/user/user.service';
 
 import { LoginBoxComponent } from 'app/main-app/main-app-shared/component/login-box/login-box.component';

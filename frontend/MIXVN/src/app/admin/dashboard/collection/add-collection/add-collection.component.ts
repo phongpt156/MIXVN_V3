@@ -31,7 +31,7 @@ export class AddCollectionComponent implements OnInit {
     });
 
     this.cropper = new Cropper(this.collectionImagePreview.nativeElement, {
-      aspectRatio: 21 / 9,
+      aspectRatio: 17 / 4,
       viewMode: 1
     });
   }

@@ -5,13 +5,10 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/do';
 
-import { AuthService } from './auth.service';
-
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(
     private router: Router,
-    private auth: AuthService
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -21,7 +18,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }, err => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-          this.auth.collectFailedRequest(request);
+          console.log(err);
         }
       }
     });

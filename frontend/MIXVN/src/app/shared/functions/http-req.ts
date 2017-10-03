@@ -2,7 +2,7 @@ import { HttpHeaders, HttpRequest, HttpResponse, HttpErrorResponse } from '@angu
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
-export function createCommonHeaders(authService, contentType = 'application/json') {
+export function createCommonHeaders(contentType = 'application/json') {
     const headerObj = {};
     headerObj['X-Requested-With'] = 'XMLHttpRequest';
 

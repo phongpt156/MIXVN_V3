@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.adminService.login(body)
     .subscribe(res => {
       if (res.token) {
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('admin-token', res.token);
         this.router.navigate(['/admin/dashboard']);
       }
     });

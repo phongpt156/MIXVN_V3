@@ -135,7 +135,6 @@ class CollectionController extends Controller
         }
 
         $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;
-        $collection->created_at = $now;
         $collection->updated_at = $now;
 
         $success = $collection->save();
