@@ -44,7 +44,7 @@ export class EditProductComponent implements OnInit {
     this.editProductForm = this.fb.group({
       name: ['', Validators.required],
       price: ['', Validators.required],
-      discount: ['', Validators.required],
+      discount: [''],
       category: ['', Validators.required],
       supplier: ['', Validators.required],
       features: [],

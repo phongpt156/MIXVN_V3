@@ -45,7 +45,7 @@
         </md-select>
       </div>
       <div class="col-md-4">
-        <md-select [multiple]="true" formControlName="features" *ngIf="features.length" placeholder="Feature">
+        <md-select [multiple]="true" formControlName="features" *ngIf="features.length" placeholder="Feature" color="accent">
           <ng-container *ngFor="let feature of features">
             <md-option disabled="disabled" class="feature-option">+ {{ feature.name }}</md-option>
             <md-option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</md-option>

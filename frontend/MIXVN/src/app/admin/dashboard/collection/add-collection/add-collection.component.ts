@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MdDialogRef } from '@angular/material';
 
 import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
@@ -17,6 +17,8 @@ export class AddCollectionComponent implements OnInit {
   formData: FormData = new FormData;
   cropper: any;
   isSelectImage = false;
+  productIds: any[] = [];
+  selectedProduct: any = {};
 
   constructor(
     public dialogRef: MdDialogRef<AddCollectionComponent>,
@@ -27,7 +29,8 @@ export class AddCollectionComponent implements OnInit {
   ngOnInit() {
     this.addCollectionForm = this.fb.group({
       name: ['', Validators.required],
-      active: [true]
+      active: [true],
+      products: this.fb.array([])
     });
 
     this.cropper = new Cropper(this.collectionImagePreview.nativeElement, {
@@ -41,12 +44,17 @@ export class AddCollectionComponent implements OnInit {
       this.cropper.getCroppedCanvas().toBlob(collectionImage => {
         this.formData.append('img', collectionImage);
 
+        this.productIds.forEach((val, i) => {
+          this.formData.append(`productIds[${i}]`, val);
+        });
+
         for (const i of Object.keys(this.addCollectionForm.value)) {
           this.formData.append(i, this.addCollectionForm.value[i]);
         }
 
         this.collectionService.add(this.formData)
         .subscribe(res => {
+          console.log(res);
           this.dialogRef.close(true);
         });
       });
@@ -66,5 +74,28 @@ export class AddCollectionComponent implements OnInit {
   imageRemoved() {
     this.isSelectImage = false;
     this.cropper.destroy();
+  }
+
+  initProduct() {
+    return this.fb.group({});
+  }
+
+  addProduct() {
+    const control = <FormArray>this.addCollectionForm.controls.products;
+    control.push(this.initProduct());
+  }
+
+  removeProduct(i) {
+    const control = <FormArray>this.addCollectionForm.controls.products;
+    control.removeAt(i);
+  }
+
+  addProductId(e) {
+    if (!this.selectedProduct[e.index]) {
+      this.productIds.push(e.productId);
+      this.selectedProduct[e.index] = this.productIds.length;
+    } else {
+      this.productIds[this.selectedProduct[e.index] - 1] = e.productId;
+    }
   }
 }

@@ -41,10 +41,13 @@ export class ProductUserInteractiveComponent implements OnInit, OnDestroy {
     });
   }
 
-  onClick() {
+  onClick(element) {
     if (!this.authService.isAuthenticated()) {
       this.commonService.setBlur(true);
       this.bsModalRef = this.bsModalService.show(AlertLoginComponent);
+    } else {
+      console.log(element);
+      element.classList.toggle('active');
     }
   }
 }

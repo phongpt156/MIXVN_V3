@@ -26,7 +26,7 @@ class Product extends Resource
             'sum_like' => $this->sum_like,
             'sum_buy' => $this->sum_buy,
             'sum_mark' => $this->sum_mark,
-            'img' => $this->img ? asset($this->img) : '',
+            'img' => $this->img ? asset('public/' . $this->img) : '',
             'active' => $this->active,
             'category' => new CategoryResource($this->category),
             'supplier' => new SupplierResource($this->supplier),

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Collection as CollectionResource;
 use App\Http\Requests\Collection as CollectionRequest;
 use App\Collection;
+use App\ProductCollection;
 use Carbon\Carbon;
 use Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -42,40 +44,43 @@ class CollectionController extends Controller
      */
     public function store(CollectionRequest $request)
     {
-        $now = Carbon::now('UTC');
-        $collection = new Collection;
-        $collection->name = $request->name;
+        DB::transaction(function () use ($request) {
+            $now = Carbon::now('UTC');
+            $collection = new Collection;
+            $collection->name = $request->name;
 
-        if ($request->img) {
-            $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
-            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
-            $collection->img = 'images/' . $converBlobFileName;
-            $collection->sm_img = 'images/sm_' . $converBlobFileName;
+            if ($request->img) {
+                $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
+                $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+                $collection->img = 'images/' . $convertBlobFileName;
+                $collection->sm_img = 'images/sm_' . $convertBlobFileName;
+    
+                Image::make(public_path() . '/' . $convertBlobFile)->resize(325, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path() . '/' . $collection->sm_img);
+                Image::make(public_path() . '/' . $convertBlobFile)->resize(1366, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path() . '/' . $collection->img);
+            }
+            $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;        
+            $collection->created_at = $now;
+            $collection->updated_at = $now;
+            $collection->save();
 
-            Image::make(public_path() . '/' . $convertBlobFile)->resize(325, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path() . '/' . $collection->sm_img);
-            Image::make(public_path() . '/' . $convertBlobFile)->resize(1366, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path() . '/' . $collection->img);
-        }
-        $collection->active = ($request->active === 'true' || $request->active == 1) ? true : false;        
-        $collection->created_at = $now;
-        $collection->updated_at = $now;
-
-        $success = $collection->save();
-
-        if ($success) {
-            return response()->json([
-                'id' => $collection->id,
-                'name' => $collection->name,
-                'img' => $collection->img ? asset($collection->img) : '',
-                'sm_img' => $collection->img ? asset($collection->sm_img) : '',
-                'active' => $collection->active
-            ], 200);
-        }
-
-        return response()->json([], 401);
+            $productIds = $request->productIds;
+            if (count($productIds)) {
+                foreach ($productIds as $productId) {
+                    $productCollection = new ProductCollection;
+                    $productCollection->collection_id = $collection->id;
+                    $productCollection->product_id = $productId;
+                    $productCollection->created_at = $now;
+                    $productCollection->updated_at = $now;
+                    $productCollection->active = true;
+                    $productCollection->save();
+                }
+            }
+        }, 1);
+        return response()->json([]);
     }
 
     /**
@@ -114,17 +119,17 @@ class CollectionController extends Controller
         $collection = Collection::find($id);
         $collection->name = $request->name;
         if ($request->img) {
-            if (File::exists($collection->img)) {
-                File::delete($collection->img);
+            if (File::exists(public_path($collection->img))) {
+                File::delete(public_path($collection->img));
             }
-            if (File::exists($collection->sm_img)) {
-                File::delete($collection->sm_img);
+            if (File::exists(public_path($collection->sm_img))) {
+                File::delete(public_path($collection->sm_img));
             }
             
             $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
-            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
-            $collection->img = 'images/' . $converBlobFileName;
-            $collection->sm_img = 'images/sm_' . $converBlobFileName;
+            $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+            $collection->img = 'images/' . $convertBlobFileName;
+            $collection->sm_img = 'images/sm_' . $convertBlobFileName;
 
             Image::make(public_path() . '/' . $convertBlobFile)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -142,8 +147,8 @@ class CollectionController extends Controller
         if ($success) {
             return response()->json([
                 'id' => $collection->id,
-                'img' => $collection->img ? asset($collection->img) : '',
-                'img' => $collection->img ? asset($collection->sm_img) : '',
+                'img' => $collection->img ? asset('public/' . $collection->img) : '',
+                'sm_img' => $collection->img ? asset('public/' . $collection->img) : '',
                 'name' => $collection->name,
                 'active' => $collection->active
             ], 200);
@@ -160,23 +165,20 @@ class CollectionController extends Controller
      */
     public function destroy($id)
     {
-        $collection = Collection::find($id);
+        DB::transaction(function () use ($id) {
+            $collection = Collection::find($id);
+            
+            if (File::exists(public_path($collection->img))) {
+                File::delete(public_path($collection->img));
+            }
+            if (File::exists(public_path($collection->sm_img))) {
+                File::delete(public_path($collection->sm_img));
+            }
+            
+            $product_collections = ProductCollection::where('collection_id', $id)->delete();
 
-        if (File::exists($collection->img)) {
-            File::delete($collection->img);
-        }
-        if (File::exists($collection->sm_img)) {
-            File::delete($collection->sm_img);
-        }
-
-        $success = $collection->delete();
-
-        if ($success) {
-            return response()->json([
-                'messages' => 'Success'
-            ], 200);
-        }
-
-        return response()->json([], 401);
+            $success = $collection->delete();
+        });
+        return response()->json([]);
     }
 }

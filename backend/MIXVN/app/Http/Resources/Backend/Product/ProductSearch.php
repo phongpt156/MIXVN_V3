@@ -17,7 +17,7 @@ class ProductSearch extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'img' => $this->img ? asset($this->img) : ''
+            'img' => $this->img ? $this->img : ''
         ];
     }
 }

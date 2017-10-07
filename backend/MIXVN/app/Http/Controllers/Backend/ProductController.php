@@ -59,9 +59,9 @@ class ProductController extends Controller
             $product->active = ($request->active === 'true' || $request->active == 1) ? true : false;
             if ($request->img) {
                 $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
-                $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+                $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
-                $product->img = 'images/' . $converBlobFileName;
+                $product->img = 'images/' . $convertBlobFileName;
                 Image::make(public_path() . '/' . $convertBlobFile)->resize(325, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(public_path() . '/' . $product->img);
@@ -131,13 +131,13 @@ class ProductController extends Controller
             $product->active = ($request->active === 'true' || $request->active == 1) ? true : false;
 
             if ($request->img) {
-                if (File::exists($product->img)) {
-                    File::delete($product->img);
+                if (File::exists(public_path($product->img))) {
+                    File::delete(public_path($product->img));
                 }
                 $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
-                $converBlobFileName = pathinfo(public_path() . '/' . $convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+                $convertBlobFileName = pathinfo(public_path() . '/' . $convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
-                $product->img = 'images/' . $converBlobFileName;
+                $product->img = 'images/' . $convertBlobFileName;
                 Image::make(public_path() . '/' . $convertBlobFile)->resize(325, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($product->img);
@@ -188,8 +188,8 @@ class ProductController extends Controller
             $product = Product::find($id);
             FeatureValueRelProduct::where('product_id', $product->id)->delete();
             ProductGroupRelProduct::where('product_id', $product->id)->delete();
-            if (File::exists($product->img)) {
-                File::delete($product->img);
+            if (File::exists(public_path($product->img))) {
+                File::delete(public_path($product->img));
             }
             $product->delete();
         });

@@ -35,7 +35,6 @@ export class LoginBoxComponent implements OnInit, OnDestroy {
   }
 
   loginFacebook() {
-
     FB.getLoginStatus(response => {
       if (response.status === 'connected') {
         FB.api('/me', {fields: 'id,name,picture,email,gender,hometown,cover,location,birthday'}, res => {

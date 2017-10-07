@@ -49,9 +49,9 @@ class ProductGroupController extends Controller
             $productGroup->active = ($request->active === 'true' || $request->active == 1) ? true : false;
             if ($request->img) {
                 $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
-                $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+                $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
-                $productGroup->img = 'images/' . $converBlobFileName;
+                $productGroup->img = 'images/' . $convertBlobFileName;
                 Image::make(public_path() . '/' . $convertBlobFile)->resize(525, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(public_path() . '/' . $productGroup->img);
@@ -72,9 +72,9 @@ class ProductGroupController extends Controller
                     $newProduct->gender_id = $product['gender'];
                     if ($product['img']) {
                         $convertBlobFile = Storage::disk('upload_image')->put('images', $product['img']);
-                        $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+                        $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
                         
-                        $newProduct->img = 'images/' . $converBlobFileName;
+                        $newProduct->img = 'images/' . $convertBlobFileName;
                         Image::make(public_path() . '/' . $convertBlobFile)->resize(300, null, function ($constraint) {
                             $constraint->aspectRatio();
                         })->save(public_path() . '/' . $newProduct->img);

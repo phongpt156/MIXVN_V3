@@ -57,19 +57,19 @@ class SupplierController extends Controller
 
         if ($request->background_image) {
             $convertBlobFile = Storage::disk('upload_image')->put('images', $request->background_image);
-            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+            $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
-            $supplier->background_image = 'images/' . $converBlobFileName;
+            $supplier->background_image = 'images/' . $convertBlobFileName;
             Image::make(public_path() . '/' . $convertBlobFile)->resize(1366, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path() . '/' . $supplier->background_image);
         }
         if ($request->avatar) {
             $convertBlobFile = Storage::disk('upload_image')->put('images', $request->avatar);
-            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+            $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
-            $supplier->avatar = 'images/' . $converBlobFileName;
-            Image::make(public_path() . '/' . $request->avatar)->resize(325, null, function ($constraint) {
+            $supplier->avatar = 'images/' . $convertBlobFileName;
+            Image::make(public_path() . '/' . $convertBlobFile)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path() . '/' . $supplier->avatar);
         }
@@ -87,8 +87,8 @@ class SupplierController extends Controller
             'facebook_title' => $supplier->facebook_title,
             'instagram_link' => $supplier->instagram_link,
             'instagram_title' => $supplier->instagram_title,
-            'background_image' => $supplier->background_image ? asset($supplier->background_image) : '',
-            'avatar' => $supplier->avatar ? asset($supplier->avatar) : '',
+            'background_image' => $supplier->background_image ? asset('public/' . $supplier->background_image) : '',
+            'avatar' => $supplier->avatar ? asset('public/' . $supplier->avatar) : '',
             'active' => $supplier->active
         ], 200);
 
@@ -140,28 +140,28 @@ class SupplierController extends Controller
         $supplier->close_time = $request->close_time;
 
         if ($request->background_image) {
-            if (File::exists($supplier->background_image)) {
-                File::delete($supplier->background_image);
+            if (File::exists(public_path($supplier->background_image))) {
+                File::delete(public_path($supplier->background_image));
             }
             
             $convertBlobFile = Storage::disk('upload_image')->put('images', $request->background_image);
-            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+            $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
-            $supplier->background_image = 'images/' . $converBlobFileName;
+            $supplier->background_image = 'images/' . $convertBlobFileName;
             Image::make(public_path() . '/' . $convertBlobFile)->resize(1366, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path() . '/' . $supplier->background_image);
         }
 
         if ($request->avatar) {
-            if (File::exists($supplier->avatar)) {
-                File::delete($supplier->avatar);
+            if (File::exists(public_path($supplier->avatar))) {
+                File::delete(public_path($supplier->avatar));
             }
 
             $convertBlobFile = Storage::disk('upload_image')->put('images', $request->avatar);
-            $converBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+            $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
 
-            $supplier->avatar = 'images/' . $converBlobFileName;
+            $supplier->avatar = 'images/' . $convertBlobFileName;
             Image::make(public_path() . '/' . $request->avatar)->resize(325, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path() . '/' . $supplier->avatar);
@@ -199,11 +199,11 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::find($id);
         
-        if (File::exists($supplier->background_image)) {
-            File::delete($supplier->background_image);
+        if (File::exists(public_path($supplier->background_image))) {
+            File::delete(public_path($supplier->background_image));
         }
-        if (File::exists($supplier->avatar)) {
-            File::delete($supplier->avatar);
+        if (File::exists(public_path($supplier->avatar))) {
+            File::delete(public_path($supplier->avatar));
         }
 
         $success = $supplier->delete();
