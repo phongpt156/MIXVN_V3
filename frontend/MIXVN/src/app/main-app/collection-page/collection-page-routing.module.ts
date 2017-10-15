@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CollectionPageComponent } from './collection-page.component';
 
 const collectionPageRoutes: Routes = [
-  { path: '', component: CollectionPageComponent, pathMatch: 'full' }
+  { path: '', component: CollectionPageComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

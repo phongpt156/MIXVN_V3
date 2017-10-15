@@ -27,7 +27,7 @@ const mainAppRoutes: Routes = [
         loadChildren: './user-page/user-page.module#UserPageModule'
       },
       {
-        path: 'bo-suu-tap',
+        path: 'bo-suu-tap/:id',
         loadChildren: './collection-page/collection-page.module#CollectionPageModule'
       }
     ]

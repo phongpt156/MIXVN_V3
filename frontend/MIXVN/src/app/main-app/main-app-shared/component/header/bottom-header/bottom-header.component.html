@@ -1,11 +1,13 @@
 <ul class="nav nav-fill" id="test">
   <li class="nav-item" dropdown *ngFor="let parentCategory of categories">
     <a dropdownToggle href="javascript:void(0)" class="nav-link text-uppercase">{{ parentCategory.name }}</a>
-    <div *dropdownMenu class="dropdown-menu px-4 w-100 mt-0" role="menu">
+    <div *dropdownMenu class="dropdown-menu p-4 w-100 mt-0" role="menu">
       <div class="d-flex flex-row inner-dropdown-menu pt-2">
         <div class="w-100">
-          <div class="text-center"><i class="fa fa-mars text-white" style="font-size: 2rem"></i></div>
-          <div class="py-5">
+          <div class="text-center">
+            <img src="assets/imgs/male.png" alt="" />
+          </div>
+          <div class="py-3">
             <ul class="nav justify-content-end" >
               <li class="w-25 text-center" *ngFor="let category of parentCategory.male_cate" (click)="addSearchTagging(category)">
                 <a href="javascript:void(0)" class="nav-link">{{ category.name }}</a>
@@ -13,10 +15,12 @@
             </ul>
           </div>
         </div>
-        <div class="border border-top-0 border-right-0 border-bottom-0 my-4"></div>
+        <div class="border border-top-0 border-right-0 border-bottom-0 mb-2"></div>
         <div class="w-100">
-          <div class="text-center"><i class="fa fa-venus text-white" style="font-size: 2rem"></i></div>
-          <div class="py-5">
+          <div class="text-center">
+              <img src="assets/imgs/female.png" alt="" />
+          </div>
+          <div class="py-3">
             <ul class="nav justify-content-start" >
               <li class="w-25 text-center" *ngFor="let category of parentCategory.female_cate" (click)="addSearchTagging(category)">
                 <a href="javascript:void(0)" class="nav-link">{{ category.name }}</a>

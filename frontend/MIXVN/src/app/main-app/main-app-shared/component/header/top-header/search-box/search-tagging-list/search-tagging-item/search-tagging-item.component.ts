@@ -21,6 +21,7 @@ export class SearchTaggingItemComponent implements OnInit {
 
   deleteSearchTagging() {
     this.searchTaggingService.deleteSearchTagging(this.index);
+    this.searchTaggingService.setFilter(!this.searchTaggingService.getFilter());
   }
 
   showFilter() {

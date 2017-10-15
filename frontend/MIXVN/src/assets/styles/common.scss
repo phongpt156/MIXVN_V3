@@ -1,9 +1,14 @@
 @import './_variables.scss';
 
+@font-face {
+    font-family: Helvetical-Light;
+    src: url(./assets/fonts//helveticaneuelight.ttf);
+}
+
 body {
     line-height: $line-height-base;
     font-size: $font-size-base;
-    font-family: $font-family-base;
+    font-family: Helvetical-Light;
     color: #fff;
     background-color: $main-color;
 }
