@@ -8,7 +8,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 export class MainBodyComponent implements OnInit {
   @HostBinding('class') classes = 'pl-3';
 
-  products: any[] = [];
+  items: any[] = [];
 
   constructor() { }
 

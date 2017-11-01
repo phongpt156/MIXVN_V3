@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Collection as CollectionResource;
+use App\Http\Resources\Frontend\Collection\Collection as CollectionResource;
 use App\Http\Requests\Collection as CollectionRequest;
 use App\Collection;
-use App\ProductCollection;
+use App\SetCollection;
 use Carbon\Carbon;
 use Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -67,18 +67,18 @@ class CollectionController extends Controller
             $collection->updated_at = $now;
             $collection->save();
 
-            $productIds = $request->productIds;
-            if (count($productIds)) {
-                foreach ($productIds as $productId) {
-                    $productCollection = new ProductCollection;
-                    $productCollection->collection_id = $collection->id;
-                    $productCollection->product_id = $productId;
-                    $productCollection->created_at = $now;
-                    $productCollection->updated_at = $now;
-                    $productCollection->active = true;
-                    $productCollection->save();
-                }
-            }
+            // $productIds = $request->productIds;
+            // if (count($productIds)) {
+            //     foreach ($productIds as $productId) {
+            //         $productCollection = new ProductCollection;
+            //         $productCollection->collection_id = $collection->id;
+            //         $productCollection->product_id = $productId;
+            //         $productCollection->created_at = $now;
+            //         $productCollection->updated_at = $now;
+            //         $productCollection->active = true;
+            //         $productCollection->save();
+            //     }
+            // }
         }, 1);
         return response()->json([]);
     }
@@ -175,7 +175,7 @@ class CollectionController extends Controller
                 File::delete(public_path($collection->sm_img));
             }
             
-            $product_collections = ProductCollection::where('collection_id', $id)->delete();
+            $set_collections = SetCollection::where('collection_id', $id)->delete();
 
             $success = $collection->delete();
         });

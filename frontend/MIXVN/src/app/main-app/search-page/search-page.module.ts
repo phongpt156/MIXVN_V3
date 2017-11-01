@@ -10,7 +10,7 @@ import { MainBodyComponent } from './body/main-body/main-body.component';
 import { LeftMainBodyComponent } from './body/main-body/left-main-body/left-main-body.component';
 import { RightMainBodyComponent } from './body/main-body/right-main-body/right-main-body.component';
 import { MixItemComponent } from './body/main-body/left-main-body/mix-item/mix-item.component';
-import { InvolveProductComponent } from './body/involve-product/involve-product.component';
+import { InvolveItemComponent } from './body/involve-item/involve-item.component';
 
 @NgModule({
   imports: [
@@ -25,7 +25,7 @@ import { InvolveProductComponent } from './body/involve-product/involve-product.
     LeftMainBodyComponent,
     RightMainBodyComponent,
     MixItemComponent,
-    InvolveProductComponent,
+    InvolveItemComponent,
   ]
 })
 export class SearchPageModule { }

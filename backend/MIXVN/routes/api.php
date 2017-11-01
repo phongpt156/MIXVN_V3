@@ -35,12 +35,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
     Route::resource('feature', 'Backend\FeatureController');
     Route::resource('feature-value', 'Backend\FeatureValueController')->middleware('admin.super');
 
-    Route::group(['prefix' => 'product'], function () {
-        Route::get('', 'Backend\ProductController@index')->middleware('admin.super');
-        Route::post('', 'Backend\ProductController@store')->middleware('admin.super');
-        Route::post('/{id}', 'Backend\ProductController@update')->where('id', '[0-9]+')->middleware('admin.super');
-        Route::delete('/{id}', 'Backend\ProductController@destroy')->where('id', '[0-9]+')->middleware('admin.super');
-        Route::get('search/{name?}', 'Backend\ProductController@search')->middleware('admin.super');
+    Route::group(['prefix' => 'item'], function () {
+        Route::get('', 'Backend\ItemController@index')->middleware('admin.super');
+        Route::post('', 'Backend\ItemController@store')->middleware('admin.super');
+        Route::post('/{id}', 'Backend\ItemController@update')->where('id', '[0-9]+')->middleware('admin.super');
+        Route::delete('/{id}', 'Backend\ItemController@destroy')->where('id', '[0-9]+')->middleware('admin.super');
+        Route::get('search/{name?}', 'Backend\ItemController@search')->middleware('admin.super');
     });
 
     Route::group(['prefix' => 'category'], function () {
@@ -51,9 +51,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
         Route::get('/gender/{id}', 'Backend\CategoryController@getByGender')->middleware('admin.super')->where('id', '[0-9]+');
     });
 
-    Route::group(['prefix' => 'product-group'], function () {
-        Route::get('', 'Backend\ProductGroupController@index');
-        Route::post('', 'Backend\ProductGroupController@store');
+    Route::group(['prefix' => 'set'], function () {
+        Route::get('', 'Backend\SetController@index');
+        Route::post('', 'Backend\SetController@store');
     });
 });
 
@@ -69,4 +69,9 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::group(['prefix' => 'collection'], function () {
     Route::get('', 'Frontend\CollectionController@getCollections');
+    Route::get('page/{id}', 'Frontend\CollectionController@getCollectionPage')->where('id', '[0-9]+');
+});
+
+Route::group(['prefix' => 'set'], function () {
+    Route::get('', 'Frontend\SetController@index');
 });

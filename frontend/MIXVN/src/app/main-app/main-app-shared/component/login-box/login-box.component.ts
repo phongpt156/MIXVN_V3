@@ -42,9 +42,11 @@ export class LoginBoxComponent implements OnInit, OnDestroy {
         });
       } else {
         FB.login((res => {
-          FB.api('/me', {fields: 'id,name,picture,email,gender,hometown,cover,location,birthday'}, r => {
-            this.sendFacebookData(r);
-          });
+          if (res.authResponse) {
+            FB.api('/me', {fields: 'id,name,picture,email,gender,hometown,cover,location,birthday'}, r => {
+              this.sendFacebookData(r);
+            });
+          }
         }), {
           scope: 'public_profile,email,user_hometown,user_location,user_birthday'
         });

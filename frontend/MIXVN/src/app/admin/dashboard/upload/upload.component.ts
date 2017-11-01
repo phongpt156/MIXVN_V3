@@ -5,7 +5,7 @@ import { MdSnackBar } from '@angular/material';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { ProductGroupService } from 'app/admin/admin-shared/services/product-group/product-group.service';
+import { SetService } from 'app/admin/admin-shared/services/set/set.service';
 
 declare var Cropper: any;
 
@@ -16,12 +16,12 @@ declare var Cropper: any;
 })
 
 export class UploadComponent implements OnInit {
-  @ViewChild('productGroupImagePreview') productGroupImagePreview;
-  addProductGroupForm: FormGroup;
-  productGroupImage: File;
-  // productImages: File[] = [];
-  productIds: any[] = [];
-  selectedProduct: any = {};
+  @ViewChild('setImagePreview') setImagePreview;
+  addSetForm: FormGroup;
+  setImage: File;
+  // itemImages: File[] = [];
+  itemIds: any[] = [];
+  selectedItem: any = {};
   formData: FormData = new FormData;
   isPending = false;
   cropper: any;
@@ -30,24 +30,24 @@ export class UploadComponent implements OnInit {
   constructor(
     public snackBar: MdSnackBar,
     private fb: FormBuilder,
-    private productGroupService: ProductGroupService,
+    private setService: SetService,
     private router: Router,
     private location: Location
   ) { }
 
   ngOnInit() {
-    this.addProductGroupForm = this.fb.group({
+    this.addSetForm = this.fb.group({
       active: [true, Validators.required],
-      products: this.fb.array([])
+      items: this.fb.array([])
     });
 
-    this.cropper = new Cropper(this.productGroupImagePreview.nativeElement, {
+    this.cropper = new Cropper(this.setImagePreview.nativeElement, {
       aspectRatio: 17 / 4,
       viewMode: 1
     });
   }
 
-  initProduct() {
+  initItem() {
     return this.fb.group({
       // name: ['', Validators.required],
       // price: ['', Validators.required],
@@ -60,22 +60,22 @@ export class UploadComponent implements OnInit {
     });
   }
 
-  addProduct() {
-    const control = <FormArray>this.addProductGroupForm.controls.products;
-    control.push(this.initProduct());
+  addItem() {
+    const control = <FormArray>this.addSetForm.controls.items;
+    control.push(this.initItem());
   }
 
-  removeProduct(i) {
-    const control = <FormArray>this.addProductGroupForm.controls.products;
+  removeItem(i) {
+    const control = <FormArray>this.addSetForm.controls.items;
     control.removeAt(i);
   }
 
-  addProductId(e) {
-    if (!this.selectedProduct[e.index]) {
-      this.productIds.push(e.productId);
-      this.selectedProduct[e.index] = this.productIds.length;
+  addItemId(e) {
+    if (!this.selectedItem[e.index]) {
+      this.itemIds.push(e.itemId);
+      this.selectedItem[e.index] = this.itemIds.length;
     } else {
-      this.productIds[this.selectedProduct[e.index] - 1] = e.productId;
+      this.itemIds[this.selectedItem[e.index] - 1] = e.itemId;
     }
   }
 
@@ -95,52 +95,50 @@ export class UploadComponent implements OnInit {
     this.cropper.destroy();
   }
 
-  // productImageChange(e) {
-  //   this.productImages[e.index] = e.productImage;
+  // itemImageChange(e) {
+  //   this.itemImages[e.index] = e.itemImage;
   // }
 
   onSubmit() {
     if (!this.isPending) {
-      if (this.addProductGroupForm.valid && this.isSelectImage) {
-        this.cropper.getCroppedCanvas().toBlob((productGroupImage) => {
-          this.formData.append('img', productGroupImage);
+      if (this.addSetForm.valid && this.isSelectImage) {
+        this.cropper.getCroppedCanvas().toBlob((setImage) => {
+          this.formData.append('img', setImage);
 
           this.isPending = true;
           const valid = true;
 
-          this.formData.append('active', this.addProductGroupForm.value.active);
-          this.productIds.forEach((val, i) => {
-            this.formData.append(`productIds[${i}]`, val);
+          this.formData.append('active', this.addSetForm.value.active);
+          this.itemIds.forEach((val, i) => {
+            this.formData.append(`itemIds[${i}]`, val);
           });
 
-          // this.addProductGroupForm.controls.products['controls'].forEach((val, i) => {
-          //   if (!this.selectedProduct[i]) {
-          //     if (!this.productImages[i]) {
+          // this.addSetForm.controls.items['controls'].forEach((val, i) => {
+          //   if (!this.selectedItem[i]) {
+          //     if (!this.itemImages[i]) {
           //       valid = false;
-          //       this.openSnackBar('Please upload product image');
+          //       this.openSnackBar('Please upload item image');
           //       return;
           //     }
 
-          //     this.formData.append(`products[${i}][img]`, this.productImages[i], this.productImages[i].name);
-          //     this.formData.append(`products[${i}][name]`, val.value.name);
-          //     this.formData.append(`products[${i}][price]`, val.value.price);
-          //     this.formData.append(`products[${i}][discount]`, val.value.discount);
-          //     this.formData.append(`products[${i}][category]`, val.value.category);
-          //     this.formData.append(`products[${i}][supplier]`, val.value.supplier);
-          //     this.formData.append(`products[${i}][features]`, val.value.features);
-          //     this.formData.append(`products[${i}][active]`, val.value.active);
-          //     this.formData.append(`products[${i}][gender]`, val.value.gender);
+          //     this.formData.append(`items[${i}][img]`, this.itemImages[i], this.itemImages[i].name);
+          //     this.formData.append(`items[${i}][name]`, val.value.name);
+          //     this.formData.append(`items[${i}][price]`, val.value.price);
+          //     this.formData.append(`items[${i}][discount]`, val.value.discount);
+          //     this.formData.append(`items[${i}][category]`, val.value.category);
+          //     this.formData.append(`items[${i}][supplier]`, val.value.supplier);
+          //     this.formData.append(`items[${i}][features]`, val.value.features);
+          //     this.formData.append(`items[${i}][active]`, val.value.active);
+          //     this.formData.append(`items[${i}][gender]`, val.value.gender);
           //   }
           // });
-
           if (valid) {
-            console.log(valid);
-            this.productGroupService.add(this.formData)
+            this.setService.add(this.formData)
             .subscribe(res => {
               console.log(res);
               this.isPending = false;
               this.cropper.destroy();
-              this.openSnackBar('Successfully Added New Product Group');
+              this.openSnackBar('Successfully Added New Item Group');
               this.resetForm();
             });
           }
@@ -154,15 +152,15 @@ export class UploadComponent implements OnInit {
   }
 
   resetForm() {
-    // this.addProductGroupForm.reset();
-    // this.addProductGroupForm.controls.active.setValue(true);
-    const length = this.addProductGroupForm.controls.products['controls'].length;
+    // this.addSetForm.reset();
+    // this.addSetForm.controls.active.setValue(true);
+    const length = this.addSetForm.controls.items['controls'].length;
     for (let i = length - 1; i > -1; i--) {
-      this.removeProduct(i);
+      this.removeItem(i);
     }
-    this.productIds = [];
-    // this.productImages = [];
-    // this.selectedProduct = {};
+    this.itemIds = [];
+    // this.itemImages = [];
+    // this.selectedItem = {};
   }
 
   openSnackBar(message) {

@@ -9,13 +9,13 @@ import { SupplierComponent } from './supplier/supplier.component';
 import { CollectionComponent } from './collection/collection.component';
 import { FeatureComponent } from './feature/feature.component';
 import { UploadComponent } from './upload/upload.component';
-import { ProductComponent } from './product/product.component';
+import { ItemComponent } from './item/item.component';
 
 export const dashBoardRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   {
-    path: 'dashboard/product',
-    component: ProductComponent
+    path: 'dashboard/item',
+    component: ItemComponent
   },
   {
     path: 'dashboard/category',

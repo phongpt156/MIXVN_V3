@@ -25,12 +25,12 @@ import { AddFeatureComponent } from './feature/add-feature/add-feature.component
 import { EditFeatureComponent } from './feature/edit-feature/edit-feature.component';
 import { AddFeatureValueComponent } from './feature-value/add-feature-value/add-feature-value.component';
 import { EditFeatureValueComponent } from './feature-value/edit-feature-value/edit-feature-value.component';
-import { AddProductFormComponent } from './upload/add-product-form/add-product-form.component';
-import { SearchProductComponent } from './upload/add-product-form/search-product/search-product.component';
-import { ProductComponent } from './product/product.component';
-import { AddProductComponent } from './product/add-product/add-product.component';
-import { EditProductComponent } from './product/edit-product/edit-product.component';
-import { DeleteProductComponent } from './product/delete-product/delete-product.component';
+import { AddItemFormComponent } from './upload/add-item-form/add-item-form.component';
+import { SearchItemComponent } from './upload/add-item-form/search-item/search-item.component';
+import { ItemComponent } from './item/item.component';
+import { AddItemComponent } from './item/add-item/add-item.component';
+import { EditItemComponent } from './item/edit-item/edit-item.component';
+import { DeleteItemComponent } from './item/delete-item/delete-item.component';
 import { DeleteCollectionComponent } from './collection/delete-collection/delete-collection.component';
 import { DeleteSupplierComponent } from './supplier/delete-supplier/delete-supplier.component';
 import { DeleteFeatureComponent } from './feature/delete-feature/delete-feature.component';
@@ -68,12 +68,12 @@ import { DeleteParentCategoryComponent } from './parent-category/delete-parent-c
     EditFeatureComponent,
     AddFeatureValueComponent,
     EditFeatureValueComponent,
-    AddProductFormComponent,
-    SearchProductComponent,
-    ProductComponent,
-    AddProductComponent,
-    EditProductComponent,
-    DeleteProductComponent,
+    AddItemFormComponent,
+    SearchItemComponent,
+    ItemComponent,
+    AddItemComponent,
+    EditItemComponent,
+    DeleteItemComponent,
     DeleteCollectionComponent,
     DeleteSupplierComponent,
     DeleteFeatureComponent,
@@ -94,9 +94,9 @@ import { DeleteParentCategoryComponent } from './parent-category/delete-parent-c
     EditFeatureComponent,
     AddFeatureValueComponent,
     EditFeatureValueComponent,
-    AddProductComponent,
-    EditProductComponent,
-    DeleteProductComponent,
+    AddItemComponent,
+    EditItemComponent,
+    DeleteItemComponent,
     DeleteCollectionComponent,
     DeleteSupplierComponent,
     DeleteFeatureComponent,

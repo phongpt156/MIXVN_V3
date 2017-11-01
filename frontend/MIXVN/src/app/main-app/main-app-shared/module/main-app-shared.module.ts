@@ -19,9 +19,9 @@ import { SearchTaggingItemComponent } from './../component/header/top-header/sea
 import { SearchFilterComponent } from './../component/header/top-header/search-box/search-tagging-list/search-tagging-item/search-filter/search-filter.component';
 import { LoginBoxComponent } from './../component/login-box/login-box.component';
 
-import { ProductListComponent } from 'app/main-app/home-page/body/main-body/product-list/product-list.component';
-import { ProductItemComponent } from 'app/main-app/home-page/body/main-body/product-list/product-item/product-item.component';
-import { ProductUserInteractiveComponent } from 'app/main-app/home-page/body/main-body/product-list/product-item/product-user-interactive/product-user-interactive.component';
+import { ItemListComponent } from 'app/main-app/home-page/body/main-body/item-list/item-list.component';
+import { ItemItemComponent } from 'app/main-app/home-page/body/main-body/item-list/item-item/item-item.component';
+import { ItemUserInteractiveComponent } from 'app/main-app/home-page/body/main-body/item-list/item-item/item-user-interactive/item-user-interactive.component';
 
 import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll-load-more.directive';
 
@@ -45,9 +45,9 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     LoginBoxComponent,
     SearchTaggingItemComponent,
     SearchFilterComponent,
-    ProductListComponent,
-    ProductItemComponent,
-    ProductUserInteractiveComponent,
+    ItemListComponent,
+    ItemItemComponent,
+    ItemUserInteractiveComponent,
   ],
   exports: [
     SharedModule,
@@ -63,9 +63,9 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     AlertLoginComponent,
     LoginBoxComponent,
     SearchTaggingItemComponent,
-    ProductListComponent,
-    ProductItemComponent,
-    ProductUserInteractiveComponent,
+    ItemListComponent,
+    ItemItemComponent,
+    ItemUserInteractiveComponent,
   ],
   providers: [
     SearchTaggingService

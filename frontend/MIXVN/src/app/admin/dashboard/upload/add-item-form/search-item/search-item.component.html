@@ -1,0 +1,17 @@
+<md-form-field color="accent" class="w-100 search" (click)="handleClick($event)">
+  <input mdInput type="text" [formControl]="itemName" placeholder="Search Item By Name" autocomplete="off" (focus)="isSearchFocus = true" />
+</md-form-field>
+<div class="search-result-wrapper" *ngIf="items.length && isSearchFocus">
+  <div *ngFor="let item of items" class="search-result">
+    <button md-raised-button color="accent" class="w-100 py-3" (click)="selectItem(item)">
+      <div class="d-flex align-items-center">
+        <div style="width: 50px" class="mr-3">
+          <div class="image-wrapper image-2-3">
+            <img [src]="item.img" alt="" />
+          </div>
+        </div>
+        {{ item.name }}
+      </div>
+    </button>
+  </div>
+</div>

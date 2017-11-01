@@ -9,9 +9,10 @@ import { SharedModule } from 'app/shared/module/shared.module';
 import { TokenInterceptor } from 'app/main-app/main-app-shared/services/auth-user/token.interceptor';
 
 import { AuthService } from 'app/main-app/main-app-shared/services/auth-user/auth.service';
-import { ProductService } from 'app/main-app/main-app-shared/services/product/product.service';
+import { ItemService } from 'app/main-app/main-app-shared/services/item/item.service';
+import { SetService } from 'app/main-app/main-app-shared/services/set/set.service';
 
-import { ProductDetailModalComponent } from './home-page/body/main-body/product-list/product-item/product-detail-modal/product-detail-modal.component';
+import { ItemDetailModalComponent } from './home-page/body/main-body/item-list/item-item/item-detail-modal/item-detail-modal.component';
 import { MainAppComponent } from './main-app.component';
 
 import { CategoryService } from './main-app-shared/services/category/category.service';
@@ -27,7 +28,7 @@ import { CollectionService } from './main-app-shared/services/collection/collect
   ],
   declarations: [
     MainAppComponent,
-    ProductDetailModalComponent,
+    ItemDetailModalComponent,
   ],
   providers: [
     {
@@ -36,13 +37,14 @@ import { CollectionService } from './main-app-shared/services/collection/collect
       multi: true,
     },
     AuthService,    
-    ProductService,
+    ItemService,
     CategoryService,
     UserService,
     CollectionService,
+    SetService,
   ],
   entryComponents: [
-    ProductDetailModalComponent
+    ItemDetailModalComponent
   ]
 })
 export class MainAppModule { }

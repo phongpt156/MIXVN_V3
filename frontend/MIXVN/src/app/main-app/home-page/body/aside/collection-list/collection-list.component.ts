@@ -16,13 +16,13 @@ export class CollectionListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.collectionService.getCategories()
+    this.collectionService.getCollections()
     .subscribe(res => {
       this.collections = res.data;
     });
   }
 
-  goToSupplierPage() {
-    this.router.navigate(['/bo-suu-tap']);
+  goToSupplierPage(collection) {
+    this.router.navigate([`/bo-suu-tap/${collection.name}`, { id: collection.id} ]);
   }
 }

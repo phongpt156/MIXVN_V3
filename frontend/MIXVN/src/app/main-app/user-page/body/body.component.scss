@@ -10,31 +10,31 @@
 }
 
 @include media-breakpoint-down(xl) {
-    :host ::ng-deep mix-product-item {
+    :host ::ng-deep mix-item-item {
         flex-basis: calc(100% / 8);
     }
 }
 
 @include media-breakpoint-down(lg) {
-    :host ::ng-deep mix-product-item {
+    :host ::ng-deep mix-item-item {
         flex-basis: calc(100% / 6);
     }
 }
 
 @include media-breakpoint-down(md) {
-    :host ::ng-deep mix-product-item {
+    :host ::ng-deep mix-item-item {
         flex-basis: calc(100% / 4);
     }
 }
 
 @include media-breakpoint-down(sm) {
-    :host ::ng-deep mix-product-item {
+    :host ::ng-deep mix-item-item {
         flex-basis: calc(100% / 3);
     }
 }
 
 @include media-breakpoint-down(xs) {
-    :host ::ng-deep mix-product-item {
+    :host ::ng-deep mix-item-item {
         flex-basis: calc(100% / 2);
     }
 }

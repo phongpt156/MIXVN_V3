@@ -1,6 +1,8 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 
-import { PRODUCT_TYPE } from 'app/shared/constants/constants';
+import { ITEM_TYPE } from 'app/shared/constants/constants';
+
+import { SetService } from 'app/main-app/main-app-shared/services/set/set.service';
 
 @Component({
   selector: 'mix-main-body',
@@ -9,32 +11,40 @@ import { PRODUCT_TYPE } from 'app/shared/constants/constants';
 })
 export class MainBodyComponent implements OnInit {
   @HostBinding('class') classes = 'pr-2';
-  productType: any = PRODUCT_TYPE
+  itemType: any = ITEM_TYPE
   isNewest = true;
   isMostLike = false;
   isSale = false;
-  products = [];
+  sets = [];
 
-  constructor() { }
+  constructor(
+    private setService: SetService
+  ) { }
 
   ngOnInit() {
+    this.setService.getAll()
+    .subscribe(res => {
+      this.sets = res.data;
+      this.setService.setSets(res.data);
+      console.log(res.data);
+    });
   }
 
-  onClick(productType: number) {
-    switch (productType) {
-      case this.productType.newest: {
+  onClick(itemType: number) {
+    switch (itemType) {
+      case this.itemType.newest: {
         this.isNewest = true;
         this.isMostLike = false;
         this.isSale = false;
         break;
       }
-      case this.productType.mostLike: {
+      case this.itemType.mostLike: {
         this.isNewest = false;
         this.isMostLike = true;
         this.isSale = false;
         break;
       }
-      case this.productType.sale: {
+      case this.itemType.sale: {
         this.isNewest = false;
         this.isMostLike = false;
         this.isSale = true;

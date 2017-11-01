@@ -13,9 +13,6 @@ import { AsideComponent } from './body/aside/aside.component';
 import { MainBodyComponent } from './body/main-body/main-body.component';
 import { CollectionListComponent } from './body/aside/collection-list/collection-list.component';
 import { CollectionItemComponent } from './body/aside/collection-list/collection-item/collection-item.component';
-// import { ProductListComponent } from './body/main-body/product-list/product-list.component';
-// import { ProductItemComponent } from './body/main-body/product-list/product-item/product-item.component';
-// import { ProductUserInteractiveComponent } from './body/main-body/product-list/product-item/product-user-interactive/product-user-interactive.component';
 
 @NgModule({
   imports: [
@@ -33,9 +30,6 @@ import { CollectionItemComponent } from './body/aside/collection-list/collection
     MainBodyComponent,
     CollectionListComponent,
     CollectionItemComponent,
-    // ProductListComponent,
-    // ProductItemComponent,
-    // ProductUserInteractiveComponent,
   ],
 })
 export class HomePageModule { }

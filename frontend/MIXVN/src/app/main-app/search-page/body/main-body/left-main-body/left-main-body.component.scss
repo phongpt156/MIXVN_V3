@@ -3,17 +3,17 @@
     background-color: #2b2b2b;
 }
 
-.product-image {
+.item-image {
     min-width: 272px;
     position: relative;
 
     &:hover {
-        .product-item-image-wrapper {
+        .item-item-image-wrapper {
             display: block !important;
         }
     }
     
-    .product-item-image-wrapper {
+    .item-item-image-wrapper {
         width: 100%;
         position: absolute;
         opacity: 0.89;    
@@ -22,10 +22,10 @@
         bottom: 0;        
         background-color: #313131;
 
-        .list-product-item {
+        .list-item-item {
             flex: 1;
             
-            .product-item {
+            .item-item {
                 width: 35px;
                 margin: 0 10px;
                 height: 35px;
@@ -41,7 +41,7 @@
     }
 }
 
-.right-product-detail {
+.right-item-detail {
     min-width: 270px;
     color: #fff;
 
@@ -54,7 +54,7 @@
         color: #d4d4d4;
     }
     
-    .right-product-detail-content {
+    .right-item-detail-content {
         p {
             font-size: 12px;
             color: #dedede;

@@ -15,10 +15,17 @@ export class CollectionService {
     private http: HttpClient,
   ) { }
 
-  getCategories(): Observable<ApiResponse> {
+  getCollections(): Observable<ApiResponse> {
     const options = createCommonHeaders();
 
     return this.http.get(COLLECTION.getCollections, options)
     .catch(handleError);
   }
+
+  getCollectionPage(id: number): Observable<ApiResponse> {
+    const options = createCommonHeaders();
+
+    return this.http.get(COLLECTION.getCollectionPage + id, options)
+    .catch(handleError);
+  } 
 }

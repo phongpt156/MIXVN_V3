@@ -17,7 +17,7 @@ export class ScrollLoadMoreDirective implements OnInit {
 
   ngOnInit() {
     this.el = this.elementRef.nativeElement;
-    this.children = document.getElementById('product-item-container');
+    this.children = document.getElementById('item-item-container');
 
     if (this.children.clientHeight <= this.el.clientHeight) {
       this.getData();

@@ -1,6 +1,6 @@
-export const PORT = 80;
+export const PORT = 8000;
 
-export const HOST = `//mixvn.webstarterz.com:${PORT}`;
+export const HOST = `//localhost:${PORT}`;
 
 export const CATEGORY = {
     getAll: HOST + '/api/category'
@@ -12,5 +12,10 @@ export const USER = {
 }
 
 export const COLLECTION = {
-    getCollections: HOST + '/api/collection'
+    getCollections: HOST + '/api/collection',
+    getCollectionPage: HOST + '/api/collection/page/'
+}
+
+export const SET = {
+    getSets: HOST + '/api/set'
 }

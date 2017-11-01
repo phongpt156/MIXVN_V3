@@ -1,6 +1,6 @@
-export const PORT = 80;
+export const PORT = 8000;
 
-export const HOST = `//mixvn.webstarterz.com:${PORT}`;
+export const HOST = `//localhost:${PORT}`;
 
 export const ADMIN = {
     signin: HOST + '/api/admin/signin',
@@ -49,14 +49,14 @@ export const FEATURE_VALUE = {
     delete: HOST + '/api/admin/feature-value/'
 }
 
-export const PRODUCT = {
-    getAll: HOST + '/api/admin/product',
-    add: HOST + '/api/admin/product',
-    edit: HOST + '/api/admin/product/',
-    delete: HOST + '/api/admin/product/',
-    searchByName: HOST + '/api/admin/product/search/'
+export const ITEM = {
+    getAll: HOST + '/api/admin/item',
+    add: HOST + '/api/admin/item',
+    edit: HOST + '/api/admin/item/',
+    delete: HOST + '/api/admin/item/',
+    searchByName: HOST + '/api/admin/item/search/'
 }
 
-export const PRODUCT_GROUP = {
-    add: HOST + '/api/admin/product-group'
+export const SET = {
+    add: HOST + '/api/admin/set'
 }

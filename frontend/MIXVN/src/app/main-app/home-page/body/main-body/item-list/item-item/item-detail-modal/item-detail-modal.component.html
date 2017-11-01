@@ -1,0 +1,39 @@
+<div class="item-detail-wrapper d-flex align-items-center">
+  <div class="arrow arrow-left" *ngIf="index !== 0">
+    <a (click)="changeSet(1)"><img src="http://i.imgur.com/N0iLNfz.png" alt="" /></a>
+  </div>
+  <div class="item-detail d-flex">
+    <div class="left-item-detail w-100">
+      <div class="image-wrapper image-3-4">
+        <img [src]="set?.img" alt="" />
+        <div class="image-wrapper-footer d-flex align-items-center py-1 w-100 justify-content-between">
+          <!-- <div class="text-uppercase supplier-name w-100"><a (click)="goToSupplierPage()">{{ item?.supplier?.name }}</a></div> -->
+          <a class="w-100">
+            <i class="fa fa-long-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="right-item-detail text-left pt-2 pl-3 pr-5">
+      <div class="right-item-detail-header d-inline-block">
+        <h5 class="text-uppercase text-left">{{ item?.name }}</h5>
+        <a><div class="text-uppercase text-right collection-name">top 10 cách mặc bomber</div></a>
+        <hr />
+        <h6 class="pl-3 text-left">Thông tin</h6>
+        <hr />
+      </div>
+      
+      <div class="right-item-detail-content pl-2">
+        <p><strong>-Shop: <span class="text-uppercase"><a (click)="goToSupplierPage()">{{ item?.supplier?.name }}</a></span></strong></p>
+        <p>-Giá: {{ item?.price }} VNĐ</p>
+        <p>-Size: S, M, L, XL</p>
+        <p>-Màu: Đen, Ghi, Trắng</p>
+        <p>-Chất liệu: Da bóng</p>
+        <p>-Địa chỉ: 380 Phố Huế - Hai Bà Trưng - Hà Nội</p>
+      </div>
+    </div> -->
+  </div>
+  <div class="arrow arrow-right" *ngIf="index !== sets.length - 1">
+    <a (click)="changeSet(2)"><img src="http://i.imgur.com/zKqUS4u.png" alt="" /></a>
+  </div>
+</div>
