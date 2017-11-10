@@ -20,7 +20,6 @@ declare var FB: any;
 })
 export class TopHeaderComponent implements OnInit, OnDestroy {
   mobile = false;
-  isFilter: boolean;
   _subscriptions: Subscription[] = [];
   modalRef: BsModalRef;
   user: any = {};
@@ -35,11 +34,6 @@ export class TopHeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.isFilter = this.searchTaggingService.getFilter();
-    this._subscriptions.push(this.searchTaggingService.filterChange.subscribe(value => {
-      this.isFilter = value;
-    }));
-
     this.user = this.userService.getUser();
     this._subscriptions.push(this.userService.userChange.subscribe(user => {
       this.user = user;

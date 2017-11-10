@@ -1,8 +1,8 @@
-<ul class="nav nav-fill" id="test">
+<ul class="nav nav-fill">
   <li class="nav-item" dropdown *ngFor="let parentCategory of categories">
     <a dropdownToggle href="javascript:void(0)" class="nav-link text-uppercase">{{ parentCategory.name }}</a>
-    <div *dropdownMenu class="dropdown-menu p-4 w-100 mt-0" role="menu">
-      <div class="d-flex flex-row inner-dropdown-menu pt-2">
+    <div *dropdownMenu class="dropdown-menu px-4 pt-2 w-100 mt-0" role="menu">
+      <div class="d-flex flex-row inner-dropdown-menu pt-4">
         <div class="w-100">
           <div class="text-center">
             <img src="assets/imgs/male.png" alt="" />

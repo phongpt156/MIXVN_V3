@@ -3,7 +3,7 @@
     <div class="delete-search-tagging pb-1 pl-2 pr-3 d-flex align-items-center" (click)="deleteSearchTagging()">
       <a>x</a>
     </div>
-    <a (click)="showFilter()">
+    <a (click)="showFilter()" [ngStyle]="{'opacity': opacity}">
       <div class="search-tagging-info-wrapper d-flex align-items-center py-1 pl-3 pr-2">
         <span class="pr-2">{{ searchTagging.category.name }}</span>
         <i class="fa fa-angle-down"></i>
@@ -11,5 +11,4 @@
     </a>
   </div>
 </div>
-
-
+<mix-search-filter [ngClass]="{'d-none': opacity === 1}" [index]="index"></mix-search-filter>

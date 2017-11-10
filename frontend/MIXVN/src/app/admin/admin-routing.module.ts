@@ -7,7 +7,7 @@ import { CheckLogin } from './admin-shared/guards/check-login.service';
 import { AdminComponent } from './admin.component';
 import { LoginComponent } from './login/login.component';
 
-export const adminRoutes: Routes = [
+const adminRoutes: Routes = [
   { path: '',
     component: AdminComponent,
     canActivate: [AuthGuard],

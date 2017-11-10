@@ -16,4 +16,9 @@ class Set extends SetModel
     {
         return $this->hasMany('App\Models\Frontend\Set\SetRelItem');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\Frontend\Set\User', 'set_rel_liker');
+    }
 }

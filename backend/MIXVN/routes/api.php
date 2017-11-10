@@ -73,5 +73,7 @@ Route::group(['prefix' => 'collection'], function () {
 });
 
 Route::group(['prefix' => 'set'], function () {
-    Route::get('', 'Frontend\SetController@index');
+    Route::get('/type={type}', 'Frontend\SetController@index')->where('type', '[0-9]');
+    Route::get('/like/{id}', 'Frontend\SetController@like')->where('id', '[0-9]+');
+    Route::post('/search', 'Frontend\SetController@search');
 });

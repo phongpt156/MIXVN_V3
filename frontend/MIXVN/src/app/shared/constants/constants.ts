@@ -3,7 +3,7 @@ export const GENDER = {
     female: { id: 2, name: 'Female' }
 };
 
-export const ITEM_TYPE = {
+export const SET_TYPE = {
     newest: 1,
     mostLike: 2,
     sale: 3

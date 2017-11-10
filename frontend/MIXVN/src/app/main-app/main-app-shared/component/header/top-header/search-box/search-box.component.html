@@ -3,7 +3,7 @@
     <mix-search-tagging-list>
     </mix-search-tagging-list>
     
-    <input type="text" placeholder='Nhập hoặc chọn "Menu" bên dưới để tìm sản phẩm' class="mx-1" />
+    <input type="text" placeholder='Nhập hoặc chọn "Menu" bên dưới để tìm sản phẩm' class="mx-1" [formControl]="itemName" />
     <div class="d-flex align-items-center search-icon" (click)="onSubmit()">
       <img src="http://i.imgur.com/lga22vW.png" alt="search-icon" />
     </div>

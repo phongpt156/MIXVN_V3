@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 
-import { ITEM_TYPE } from 'app/shared/constants/constants';
+import { SET_TYPE } from 'app/shared/constants/constants';
 
 import { SetService } from 'app/main-app/main-app-shared/services/set/set.service';
 
@@ -11,7 +11,7 @@ import { SetService } from 'app/main-app/main-app-shared/services/set/set.servic
 })
 export class MainBodyComponent implements OnInit {
   @HostBinding('class') classes = 'pr-2';
-  itemType: any = ITEM_TYPE
+  setType: any = SET_TYPE
   isNewest = true;
   isMostLike = false;
   isSale = false;
@@ -22,34 +22,60 @@ export class MainBodyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.setService.getAll()
-    .subscribe(res => {
-      this.sets = res.data;
-      this.setService.setSets(res.data);
-      console.log(res.data);
-    });
+    this.getSet(this.setType.newest);
   }
 
-  onClick(itemType: number) {
-    switch (itemType) {
-      case this.itemType.newest: {
+  getSet(type: number) {
+    switch (type) {
+      case this.setType.newest: {
+        this.setService.getNewest()
+        .subscribe(res => {
+          console.log(res)
+          this.sets = res.data;
+          this.setService.setSets(res.data);
+        });
+        break;
+      }
+      case this.setType.mostLike: {
+        this.setService.getMostLike()
+        .subscribe(res => {
+          this.sets = res.data;
+          this.setService.setSets(res.data);
+        });
+        break;
+      }
+      case this.setType.sale: {
+        this.setService.getDiscount()
+        .subscribe(res => {
+          this.sets = res.data;
+          this.setService.setSets(res.data);
+        });
+        break;
+      }
+    }
+  }
+
+  onClick(setType: number) {
+    switch (setType) {
+      case this.setType.newest: {
         this.isNewest = true;
         this.isMostLike = false;
         this.isSale = false;
         break;
       }
-      case this.itemType.mostLike: {
+      case this.setType.mostLike: {
         this.isNewest = false;
         this.isMostLike = true;
         this.isSale = false;
         break;
       }
-      case this.itemType.sale: {
+      case this.setType.sale: {
         this.isNewest = false;
         this.isMostLike = false;
         this.isSale = true;
         break;
       }
     }
+    this.getSet(setType);
   }
 }

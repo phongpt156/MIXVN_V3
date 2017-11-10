@@ -10,19 +10,19 @@
   </div> -->
   <ul class="nav justify-content-end w-100">
     <li class="nav-item">
-      <a class="nav-link d-flex align-items-center pb-0" [ngClass]="{'active': isNewest}" (click)="onClick(itemType.newest)">
+      <a class="nav-link d-flex align-items-center pb-0" [ngClass]="{'active': isNewest}" (click)="onClick(setType.newest)">
         <i class="fa fa-angle-down d-none"></i>
         <div class="px-3">Mới nhất</div>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link d-flex align-items-center pb-0" [ngClass]="{'active': isMostLike}" (click)="onClick(itemType.mostLike)">
+      <a class="nav-link d-flex align-items-center pb-0" [ngClass]="{'active': isMostLike}" (click)="onClick(setType.mostLike)">
         <i class="fa fa-angle-down d-none"></i>
         <div class="px-3">Thích nhiều nhất</div>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link d-flex align-items-center pb-0" [ngClass]="{'active': isSale}" (click)="onClick(itemType.sale)">
+      <a class="nav-link d-flex align-items-center pb-0" [ngClass]="{'active': isSale}" (click)="onClick(setType.sale)">
         <i class="fa fa-angle-down d-none"></i>
         <div class="px-3">Sale</div>
       </a>
@@ -31,5 +31,5 @@
 </div>
 
 <div class="ml-lg-5 item-list-wrapper" style="margin-top: 26px">
-  <mix-item-list [itemGroups]="itemGroups"></mix-item-list>
+  <mix-item-list [sets]="sets"></mix-item-list>
 </div>

@@ -7,6 +7,11 @@
     background-color: #3a3a3a;
 }
 
+.selected-tagging {
+    opacity: 0.6;
+    background-color: #575757 !important;
+}
+
 .row-container {
     position: relative;
 
@@ -20,10 +25,6 @@
 .feature-wrapper {
     a {
         padding: 1px 10px;
-
-        &:hover {
-            background-color: #575757 !important;
-        }
     }
 }
 
@@ -36,4 +37,16 @@
     height: 15px;
     display: inline-block;
     border: 1px solid #787878;
+}
+
+.d-inline-flex {
+    &:hover {
+        opacity: .6;
+    }
+
+    a {
+        &:hover {
+            opacity: 1;
+        }
+    }
 }

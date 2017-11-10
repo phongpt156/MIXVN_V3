@@ -39,11 +39,38 @@ export class SetService {
     this.setsChange.next(sets);
   }
 
-  getAll(): Observable<ApiResponse> {
+  getNewest(): Observable<ApiResponse> {
     let options = createCommonHeaders();
 
-    return this.http.get(SET.getSets, options)
+    return this.http.get(SET.getSets + 1, options)
     .catch(handleError);
   }
 
+  getMostLike(): Observable<ApiResponse> {
+    let options = createCommonHeaders();
+
+    return this.http.get(SET.getSets + 2, options)
+    .catch(handleError);
+  }
+
+  getDiscount(): Observable<ApiResponse> {
+    let options = createCommonHeaders();
+
+    return this.http.get(SET.getSets + 3, options)
+    .catch(handleError);
+  }
+
+  like(setId: number): Observable<ApiResponse> {
+    let options = createCommonHeaders();
+
+    return this.http.get(SET.like + setId, options)
+    .catch(handleError);
+  }
+
+  search(body: any): Observable<ApiResponse> {
+    let options = createCommonHeaders();
+
+    return this.http.post(SET.search, body, options)
+    .catch(handleError);
+  }
 }

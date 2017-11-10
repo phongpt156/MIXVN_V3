@@ -16,9 +16,6 @@ class CreateSetRelItemTable extends Migration
         Schema::create('set_rel_item', function (Blueprint $table) {
             $table->integer('set_id');
             $table->integer('item_id');
-            $table->integer('sum_like')->default(0);
-            $table->integer('sum_buy')->default(0);
-            $table->integer('sum_mark')->default(0);
             $table->timestamps();
             $table->primary(['set_id', 'item_id']);
         });

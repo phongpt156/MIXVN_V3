@@ -6,8 +6,6 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { SharedModule } from 'app/shared/module/shared.module';
 
-import { SearchTaggingService } from './../services/search-tagging/search-tagging.service';
-
 import { HeaderComponent } from './../component/header/header.component';
 import { FooterComponent } from './../component/footer/footer.component';
 import { TopHeaderComponent } from './../component/header/top-header/top-header.component';
@@ -66,9 +64,6 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     ItemListComponent,
     ItemItemComponent,
     ItemUserInteractiveComponent,
-  ],
-  providers: [
-    SearchTaggingService
   ],
   entryComponents: [
     AlertLoginComponent,

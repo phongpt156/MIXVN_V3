@@ -1,5 +1,9 @@
 import { Component, OnInit, HostBinding, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+
+import { SetService } from 'app/main-app/main-app-shared/services/set/set.service';
+import { SearchTaggingService } from 'app/main-app/main-app-shared/services/search-tagging/search-tagging.service';
 
 @Component({
   selector: 'mix-search-box',
@@ -7,12 +11,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-box.component.scss']
 })
 export class SearchBoxComponent implements OnInit {
+  @HostBinding('class') classes = 'text-center align-self-md-end';
   @Input() isMobile = false;
 
-  @HostBinding('class') classes = 'text-center align-self-md-end';
+  itemName: FormControl = new FormControl('');
 
   constructor(
-    private router: Router
+    private router: Router,
+    private setService: SetService,
+    private searchTaggingService: SearchTaggingService
   ) { }
 
   ngOnInit() {
@@ -20,6 +27,13 @@ export class SearchBoxComponent implements OnInit {
   }
 
   onSubmit() {
+    const body: any = {};
+    body.item_name = this.itemName.value;
+    body.items = this.searchTaggingService.searchTaggings;
+    this.setService.search(body)
+    .subscribe(res => {
+      console.log(res);
+    });
     this.router.navigate(['/tim-kiem']);
   }
 }

@@ -1,14 +1,14 @@
-<!-- <div class="item-item-top image-wrapper image-3-4">
-  <img [src]="itemGroup.img" alt="" class="img-fluid" (click)="openDetailitemModal()" />
+<div class="item-item-top image-wrapper image-3-4">
+  <img [src]="set.img" alt="" class="img-fluid" (click)="openDetailItemModal()" />
   <div class="item-action d-none w-100">
-    <mix-item-user-interactive [item]="itemGroup.items[0]"></mix-item-user-interactive>
+    <mix-item-user-interactive [set]="set"></mix-item-user-interactive>
   </div>
 </div>
 <div class="item-item-body w-100 p-2">
-  <p class="text-uppercase item-name font-weight-bold m-0 mb-2">{{ itemGroup?.items[0]?.name }}</p>
-  <p class="m-0"><a (click)="goToSupplierPage(itemGroup?.items[0]?.supplier)">{{ itemGroup.items[0]?.supplier?.name }}</a></p>
+  <p class="text-uppercase item-name font-weight-bold m-0 mb-2">{{ set.item_name }}</p>
+  <p class="m-0"><a (click)="goToSupplierPage(set.supplier_id)">{{ set.supplier_name }}</a></p>
   <div class="clearfix">
-    <p class="text-left float-left m-0">{{ itemGroup.items[0]?.price?.toFixed(3) }}</p>
-    <p class="text-right float-right m-0">{{ itemGroup.items[0]?.sum_like }} <i class="fa fa-heart"></i></p>
+    <p class="text-left float-left m-0">{{ set.item_price }}</p>
+    <p class="text-right float-right m-0">{{ set.sum_like }} <i class="fa fa-heart"></i></p>
   </div>
-</div> -->
+</div>

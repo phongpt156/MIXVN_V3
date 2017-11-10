@@ -97,24 +97,24 @@ class SetController extends Controller
                         }
                     }
 
-                    $setRefItem = new ItemGroupRelItem;
-                    $setRefItem->set_id = $set->id;
-                    $setRefItem->item_id = $newItem->id;
-                    $setRefItem->created_at = $now;
-                    $setRefItem->updated_at = $now;
-                    $setRefItem->save();
+                    $setRelItem = new SetRelItem;
+                    $setRelItem->set_id = $set->id;
+                    $setRelItem->item_id = $newItem->id;
+                    $setRelItem->created_at = $now;
+                    $setRelItem->updated_at = $now;
+                    $setRelItem->save();
                 }
             }
 
             $itemIds = $request->itemIds;
             if (count($itemIds)) {
                 foreach ($itemIds as $itemId) {
-                    $setRefItem = new ItemGroupRelItem;
-                    $setRefItem->set_id = $set->id;
-                    $setRefItem->item_id = $itemId;
-                    $setRefItem->created_at = $now;
-                    $setRefItem->updated_at = $now;
-                    $setRefItem->save();
+                    $setRelItem = new SetRelItem;
+                    $setRelItem->set_id = $set->id;
+                    $setRelItem->item_id = $itemId;
+                    $setRelItem->created_at = $now;
+                    $setRelItem->updated_at = $now;
+                    $setRelItem->save();
                 }
             }
             
