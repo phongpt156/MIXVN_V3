@@ -30,9 +30,12 @@ export class SearchBoxComponent implements OnInit {
     const body: any = {};
     body.item_name = this.itemName.value;
     body.items = this.searchTaggingService.searchTaggings;
+    console.log(body);
     this.setService.search(body)
     .subscribe(res => {
       console.log(res);
+      this.setService.setSets([]);
+      this.setService.addSets(this.setService.convertData(res.data));
     });
     this.router.navigate(['/tim-kiem']);
   }

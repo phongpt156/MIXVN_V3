@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LeftMainBodyComponent implements OnInit {
   @HostBinding('class') classes = 'pb-3';
+  @Input() sets: any[] = [];
 
   constructor(
     private router: Router

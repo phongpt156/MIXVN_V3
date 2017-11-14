@@ -39,6 +39,62 @@ export class SetService {
     this.setsChange.next(sets);
   }
 
+  convertData(data: any[]): any[] {
+    let currentSetId: number;
+    let sets: any[] = [];
+    let set: any;
+    let item: any;
+    let feature: any;
+
+    data.forEach(val => {
+      item = {};
+
+      if (val.id != currentSetId) {
+        set = {};
+        sets.push(set);
+
+        set.items = [];
+        set.id = currentSetId = val.id;
+        set.img = val.img;
+      }
+
+      item.id = val.item_id;
+      item.img = val.item_img;
+      item.price = val.item_price;
+      item.supplier = {};
+      item.supplier.id = val.supplier_id;
+      item.supplier.name = val.supplier_name;
+      item.supplier.address = val.supplier_address;
+
+      if (val.features) {
+        item.features = [];
+        let featureName: string;
+        let length: number;
+
+        val.features.split(',').forEach(val => {
+          val = val.split(': ');
+          if (val[0] !== featureName) {
+            featureName = val[0];
+            item.features.push({name: val[0], value: [val[1]]});
+            length = item.features.length;
+          } else {
+            item.features[length - 1].value.push(val[1]);
+          }
+        });
+      }
+
+      set.items.push(item);
+    });
+    
+    console.log(sets);
+    return sets;
+  }
+
+  addSets(sets: any[]) {
+    this.sets.push(sets);
+    this.setsChange.next(sets);
+  }
+
   getNewest(): Observable<ApiResponse> {
     let options = createCommonHeaders();
 

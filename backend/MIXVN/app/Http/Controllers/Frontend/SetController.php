@@ -119,6 +119,6 @@ class SetController extends Controller
     public function search(Request $request)
     {
         $results = SetDAL::search($request->all());
-        return response(['test' => $results]);
+        return response(['data' => $results]);
     }
 }

@@ -58,9 +58,16 @@ export class SearchFilterComponent implements OnInit {
     }
 
     if (this.selectedSize[index] || this.selectedColor[index]) {
-      this.searchTaggingService.searchTaggings[this.index].featureId = featureId;
+      if (this.selectedColor[index] && type === 1) {
+        this.searchTaggingService.searchTaggings[this.index].color_feature_id = featureId;
+      }
+
+      if (this.selectedSize[index] && type === 2) {
+        this.searchTaggingService.searchTaggings[this.index].size_feature_id = featureId;
+      }
     } else {
-      this.searchTaggingService.searchTaggings[this.index].featureId = undefined;
+      this.searchTaggingService.searchTaggings[this.index].size_feature_id = undefined;
+      this.searchTaggingService.searchTaggings[this.index].color_feature_id = undefined;
     }
   }
 }

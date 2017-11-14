@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'mix-main-body',
@@ -7,6 +7,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 })
 export class MainBodyComponent implements OnInit {
   @HostBinding('class') classes = 'd-md-flex';
+  @Input() sets: any[] = [];
 
   constructor() { }
 
