@@ -8,3 +8,5 @@ export const SET_TYPE = {
     mostLike: 2,
     sale: 3
 };
+
+export const MIX_PATH = 'http://' + location.hostname + ':8000/';

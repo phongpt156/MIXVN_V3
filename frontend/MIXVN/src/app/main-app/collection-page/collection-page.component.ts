@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { MIX_PATH } from 'app/shared/constants/constants';
+
 import { CollectionService } from 'app/main-app/main-app-shared/services/collection/collection.service';
 
 @Component({
@@ -11,6 +13,7 @@ import { CollectionService } from 'app/main-app/main-app-shared/services/collect
 export class CollectionPageComponent implements OnInit {
   id: number;
   collection: any = {};
+  mixPath: string = MIX_PATH;
 
   constructor(
     private activatedRoute: ActivatedRoute,

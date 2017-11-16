@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
 
 Route::group(['prefix' => 'category'], function () {
     Route::get('', 'Frontend\CategoryController@index');
+    Route::get('/child', 'Frontend\CategoryController@getChildCategories');
 });
 
 Route::post('/login/facebook', 'Frontend\UserController@loginFacebook');
@@ -76,4 +77,5 @@ Route::group(['prefix' => 'set'], function () {
     Route::get('/type={type}', 'Frontend\SetController@index')->where('type', '[0-9]');
     Route::get('/like/{id}', 'Frontend\SetController@like')->where('id', '[0-9]+');
     Route::post('/search', 'Frontend\SetController@search');
+    Route::get('/item/{id}', 'Frontend\SetController@getSetByItem')->where('id', '[0-9]+');
 });

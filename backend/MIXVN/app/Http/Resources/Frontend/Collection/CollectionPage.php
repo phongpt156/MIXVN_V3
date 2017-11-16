@@ -16,8 +16,8 @@ class CollectionPage extends Resource
     {
         return [
             'id' => $this->id,
-            'img' => $this->img ? asset('public/' . $this->img) : '',
-            'sm_img' => $this->sm_img ? asset('public/' . $this->sm_img) : '',
+            'img' => $this->img ? $this->img : '',
+            'sm_img' => $this->sm_img ? $this->sm_img : '',
             'set' => $this->sets,
             'relates' => $this->relates
         ];

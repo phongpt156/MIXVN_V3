@@ -3,7 +3,8 @@ export const PORT = 8000;
 export const HOST = `//localhost:${PORT}`;
 
 export const CATEGORY = {
-    getAll: HOST + '/api/category'
+    getAll: HOST + '/api/category',
+    getChild: HOST + '/api/category/child',
 }
 
 export const USER = {

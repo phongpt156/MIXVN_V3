@@ -123,18 +123,18 @@ class SetDAL
             $passedItemCondition = '1';
 
             if (isset($item['category'])) {
-                $passedItemCondition .= ' and i.category_id = ' . $item['category']['id'];
+                $passedItemCondition .= ' and i.category_id = ' . $item['category'];
             }
             if (isset($item['price'])) {
                 $passedItemCondition .= ' and i.price < ' . $item['price'];
             }
 
-            if (isset($item['color_feature_id'])) {
-                $passedItemCondition .= ' and instr(i.tag, ' . $item['color_feature_id'] . ')';
+            if (isset($item['color_feature'])) {
+                $passedItemCondition .= ' and instr(i.tag, ' . $item['color_feature'] . ')';
             }
 
-            if (isset($item['size_feature_id'])) {
-                $passedItemCondition .= ' and instr(i.tag, ' . $item['size_feature_id'] . ')';
+            if (isset($item['size_feature'])) {
+                $passedItemCondition .= ' and instr(i.tag, ' . $item['size_feature'] . ')';
             }
 
             if ($passed) {
@@ -152,8 +152,13 @@ class SetDAL
         }
         
         $result = DB::table('set as s')
-                    ->select('s.id', 's.img', 's.sum_like', 'i.id as item_id', 'i.price as item_price', 'i.discount as item_discount', 'i.name as item_name', 'i.img as item_img', 'sup.id as supplier_id', 'sup.name as supplier_name', 'sup.address as supplier_address', 'tmp.passed_item as passed_item', DB::raw($if), DB::raw('group_concat(f.name, ": ", fv.vi_name) as features'))
+                    ->select('s.id', 's.img', 's.sum_like', 'c.id as collection_id', 'c.name as collection_name', 'i.id as item_id', 'i.price as item_price', 'i.discount as item_discount', 'i.name as item_name', 'i.img as item_img', 'sup.id as supplier_id', 'sup.name as supplier_name', 'sup.address as supplier_address', 'tmp.passed_item as passed_item', DB::raw($if), DB::raw('group_concat(f.name, ": ", fv.vi_name) as features'))
                     ->join(DB::raw('(select s.id as id, ' . $passed . ' from `set` as s inner join set_rel_item as sri on sri.set_id = s.id inner join item as i on sri.item_id = i.id ' . $where . ' group by s.id ' . $having . $orderBy . $limit . ') as tmp'), 's.id', '=', 'tmp.id')
+                    ->leftJoin('set_rel_collection as src', function ($join) {
+                        $join->on('s.id', '=', 'src.set_id')
+                             ->on('s.main_collection_id', '=', 'src.collection_id');
+                    })
+                    ->leftJoin('collection as c', 'src.collection_id', '=', 'c.id')
                     ->join('set_rel_item as sri', 's.id', '=', 'sri.set_id')
                     ->join('item as i', 'i.id', '=', 'sri.item_id')
                     ->join('supplier as sup', 'i.supplier_id', '=', 'sup.id')

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ParentCategory as ParentCategoryResource;
+use App\Http\Resources\Category as CategoryResource;
+use App\Category;
 
 class CategoryController extends Controller
 {
@@ -16,6 +18,11 @@ class CategoryController extends Controller
     public function index()
     {
         return ParentCategoryResource::collection(\App\ParentCategory::all()->sortBy('order')->values());
+    }
+
+    public function getChildCategories()
+    {
+        return CategoryResource::collection(Category::all());
     }
 
     /**

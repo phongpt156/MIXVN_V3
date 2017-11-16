@@ -12,9 +12,11 @@ import { SET } from 'app/shared/constants/api/frontend';
 @Injectable()
 export class SetService {
   protected sets: any[] = [];
-  protected selectedSet: any;
+  protected selectedItem: any;
+  public selectedSet: any;  
 
   setsChange: Subject<any[]> = new Subject<any[]>();
+  selectedSetChange: Subject<any> = new Subject<any>();
   selectedItemChange: Subject<any> = new Subject<any>();
 
   constructor(
@@ -27,7 +29,7 @@ export class SetService {
 
   setSelectedSet(set: any) {
     this.selectedSet = set;
-    this.selectedItemChange.next(set);
+    this.selectedSetChange.next(set);
   }
 
   getSets(): any[] {
@@ -37,6 +39,15 @@ export class SetService {
   setSets(sets: any[]) {
     this.sets = sets;
     this.setsChange.next(sets);
+  }
+
+  getSelectedItem(): any {
+    return this.selectedItem;
+  }
+
+  setSelectedItem(item: any) {
+    this.selectedItem = item;
+    this.selectedItemChange.next(item);
   }
 
   convertData(data: any[]): any[] {
@@ -53,13 +64,22 @@ export class SetService {
         set = {};
         sets.push(set);
 
+        if (val.collection_id) {
+          set.collection = {};
+          set.collection.id = val.collection_id;
+          set.collection.name = val.collection_name;
+        }
+
         set.items = [];
         set.id = currentSetId = val.id;
-        set.img = val.img;
+        set.img = set.tmp_img = val.img;
+        set.sum_like = val.sum_like;
       }
+      
 
       item.id = val.item_id;
       item.img = val.item_img;
+      item.name = val.item_name;
       item.price = val.item_price;
       item.supplier = {};
       item.supplier.id = val.supplier_id;
@@ -91,7 +111,7 @@ export class SetService {
   }
 
   addSets(sets: any[]) {
-    this.sets.push(sets);
+    this.sets = this.sets.concat(sets);
     this.setsChange.next(sets);
   }
 

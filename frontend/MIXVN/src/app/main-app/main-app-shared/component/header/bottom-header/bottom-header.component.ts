@@ -25,6 +25,6 @@ export class BottomHeaderComponent implements OnInit {
   }
 
   addSearchTagging(category) {
-    this.searchTaggingService.addSearchTagging({category: category});
+    this.searchTaggingService.addSearchTagging({category: category.id, name: category.name});
   }
 }

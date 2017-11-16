@@ -121,4 +121,9 @@ class SetController extends Controller
         $results = SetDAL::search($request->all());
         return response(['data' => $results]);
     }
+
+    public function getSetByItem($itemId)
+    {
+        
+    }
 }

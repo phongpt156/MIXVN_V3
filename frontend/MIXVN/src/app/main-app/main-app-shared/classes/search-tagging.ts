@@ -1,6 +1,7 @@
 export class SearchTagging {
-    public category: any;
-    public price: number;
-    public color_feature_id: number;
-    public size_feature_id: number;
+    public category: number = undefined;
+    public name: string = '';
+    public price: number = undefined;
+    public color_feature: number = undefined;
+    public size_feature: number = undefined;
 }

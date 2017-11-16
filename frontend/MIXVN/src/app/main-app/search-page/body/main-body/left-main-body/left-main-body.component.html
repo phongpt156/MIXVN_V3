@@ -1,58 +1,48 @@
 <div class="d-sm-flex justify-content-center p-3 pb-4" style="border-bottom: 2px solid #4c4c4c">
   <div class="item-image">
     <div class="image-wrapper image-3-4">
-      <img src="https://s25.postimg.org/h10oyh8jz/13934712_286958348337750_4408410489384742748_n.jpg" alt="" />
+      <img [src]="mixPath + selectedSet?.tmp_img" alt="" />
     </div>
     <div class="item-item-image-wrapper">
-      <div class="d-flex align-items-center justify-content-between h-100 py-2">
-        <a class="px-2"><i class="fa fa-angle-left"></i></a>
-        <div class="list-item-item d-flex">
-          <div class="w-100 text-center">
-            <a class="item-item">
-              <img src="http://coly.vn/wp-content/uploads/2017/02/%C3%81o-n%E1%BB%AF-voan-tr%E1%BA%AFng-c%E1%BB%95-ng%E1%BB%8Dc-trai-%C4%91%C3%A1.jpg" alt="" class="rounded-circle" />
+      <div class="d-flex align-items-center justify-content-between h-100 py-2" [swiper]="swiperConfig">
+        <a class="px-2 swiper-button-wrapper"><i class="fa fa-angle-left" id="item-prev"></i></a>
+        <div class="list-item-item d-flex swiper-container">
+          <div class="w-100 text-center swiper-wrapper">
+            <a class="item-item swiper-slide" *ngFor="let item of selectedSet?.items" (click)="selectItem(item)">
+              <img [src]="mixPath + item.img" alt="" class="rounded-circle" />
             </a>
-          </div>
-          <div class="w-100 text-center">
-            <a class="item-item">
-              <img src="https://thoitrangkorea.com/wp-content/uploads/2016/11/Q946-05.jpg" alt="" class="rounded-circle" />
-            </a>
-          </div>
-          <div class="w-100 text-center">
-            <a class="item-item">
-              <img src="http://tuividathat.com/profiles/tuividathatcom/uploads/attach/1487766679_171257-1301.jpg" alt="" class="rounded-circle" />
-            </a>
-          </div>
-          <div class="w-100 text-center">
-            <a class="item-item">
-              <img src="http://item.hstatic.net/1000101458/item/0-650-511-sierra-softshell-jacket-battle-brown_large.jpg" alt="" class="rounded-circle" />
+            <a class="item-item swiper-slide" (click)="selectItem(selectedSet?.items[0], selectedSet?.img)">
+              <img [src]="mixPath + selectedSet?.img" alt="" class="rounded-circle" />
             </a>
           </div>
         </div>
-        <a class="px-3"><i class="fa fa-angle-right"></i></a>
+        <a class="px-2 swiper-button-wrapper"><i class="fa fa-angle-right" id="item-next"></i></a>
       </div>
     </div>
   </div>
 
   <div class="right-item-detail text-left pl-3 pr-4 d-none d-md-block">
     <div class="right-item-detail-header d-inline-block">
-      <h5 class="text-uppercase text-left" style="font-size: 15.89px">áo khoác dạ xám</h5>
-      <a><div class="text-uppercase text-right collection-name">top 10 cách mặc bomber</div></a>
+      <h5 class="text-uppercase text-left" style="font-size: 15.89px">{{ selectedItem?.name }}</h5>
+      <a><div class="text-uppercase text-right collection-name">{{ selectedSet?.collection?.name }}</div></a>
       <hr />
       <h6 class="pl-3 text-left" style="font-size: 14px">Thông tin</h6>
       <hr class="mt-0" />
     </div>
     
     <div class="right-item-detail-content pl-2">
-      <p><strong>-Shop: <a (click)="goToSupplierPage()"><span class="text-uppercase">decao</span></a></strong></p>
-      <p>-Giá: 400.000 VNĐ</p>
-      <p>-Size: S, M, L, XL</p>
-      <p>-Màu: Đen, Ghi, Trắng</p>
-      <p>-Chất liệu: Da bóng</p>
-      <p>-Địa chỉ: 380 Phố Huế - Hai Bà Trưng - Hà Nội</p>
+      <p><strong>-Shop: <a (click)="goToSupplierPage(selectedItem?.supplier)"><span class="text-uppercase">{{ selectedItem?.supplier?.name }}</span></a></strong></p>
+      <p *ngFor="let feature of selectedItem?.features">-{{ feature.name }}:
+        <span *ngFor="let featureValue of feature?.value; let i = index; let l = last">
+          {{ featureValue }}
+          <span *ngIf="!l">, </span>
+        </span>
+      </p>
+      <p>-Địa chỉ: {{ selectedItem?.supplier?.address }}</p>
     </div>
 
-    <div class="d-flex justify-content-center">
-      <a class="change-button py-1 px-2 text-white">CHANGE</a>
+    <div class="d-flex justify-content-center" *ngIf="isChange">
+      <a class="change-button py-1 px-2 text-white" (click)="getSetByItem()">CHANGE</a>
     </div>
   </div>
 </div>

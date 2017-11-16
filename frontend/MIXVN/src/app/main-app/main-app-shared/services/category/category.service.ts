@@ -21,4 +21,11 @@ export class CategoryService {
     return this.http.get(CATEGORY.getAll, options)
     .catch(handleError);
   }
+
+  getChildCategories(): Observable<ApiResponse> {
+    const options = createCommonHeaders();
+
+    return this.http.get(CATEGORY.getChild, options)
+    .catch(handleError);
+  }
 }

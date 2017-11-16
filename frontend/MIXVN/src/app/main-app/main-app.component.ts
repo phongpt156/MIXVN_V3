@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { AuthService } from 'app/main-app/main-app-shared/services/auth-user/auth.service';
 import { UserService } from './main-app-shared/services/user/user.service';
@@ -12,12 +13,18 @@ export class MainAppComponent implements OnInit {
   @HostBinding('style.padding-top') paddingTop = '97px';
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private userService: UserService
   ) { }
 
   ngOnInit() {
-    console.log(this.authService.isAuthenticated());
+    this.router.events.subscribe(evt => {
+      if (evt instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
+
     if (this.authService.isAuthenticated()) {
       this.userService.get()
       .subscribe(res => {

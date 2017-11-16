@@ -1,93 +1,13 @@
 <perfect-scrollbar class="pr-3">
   <div class="d-flex flex-wrap">
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/792m6kn0v/16939692_1367447593330751_4659085534766732136_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/792m6kn0v/16939692_1367447593330751_4659085534766732136_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/febhd8wi7/14322677_307878919579026_955540443279259041_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/ui6u8txn3/16832176_1362811533794357_1796074166008209795_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/792m6kn0v/16939692_1367447593330751_4659085534766732136_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/ui6u8txn3/16832176_1362811533794357_1796074166008209795_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/792m6kn0v/16939692_1367447593330751_4659085534766732136_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/792m6kn0v/16939692_1367447593330751_4659085534766732136_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/febhd8wi7/14322677_307878919579026_955540443279259041_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/ui6u8txn3/16832176_1362811533794357_1796074166008209795_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/792m6kn0v/16939692_1367447593330751_4659085534766732136_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/ui6u8txn3/16832176_1362811533794357_1796074166008209795_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/792m6kn0v/16939692_1367447593330751_4659085534766732136_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/792m6kn0v/16939692_1367447593330751_4659085534766732136_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/febhd8wi7/14322677_307878919579026_955540443279259041_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/ui6u8txn3/16832176_1362811533794357_1796074166008209795_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/792m6kn0v/16939692_1367447593330751_4659085534766732136_n.jpg" alt="" />
-      </div>
-    </div>
-    <div class="item-item">
-      <div class="image-wrapper image-3-4">
-        <img src="https://s25.postimg.org/ui6u8txn3/16832176_1362811533794357_1796074166008209795_n.jpg" alt="" />
+    <div class="item-item" *ngFor="let set of sets">
+      <div class="item-wrapper">
+        <div class="image-wrapper image-3-4">
+          <img [src]="mixPath + set.img" alt="" />
+        </div>
+        <div class="item-action d-none w-100">
+          <mix-item-user-interactive></mix-item-user-interactive>
+        </div>
       </div>
     </div>
   </div>

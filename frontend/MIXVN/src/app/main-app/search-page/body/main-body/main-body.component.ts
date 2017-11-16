@@ -8,6 +8,8 @@ import { Component, OnInit, HostBinding, Input } from '@angular/core';
 export class MainBodyComponent implements OnInit {
   @HostBinding('class') classes = 'd-md-flex';
   @Input() sets: any[] = [];
+  @Input() selectedSet: any;
+  @Input() selectedItem: any;
 
   constructor() { }
 

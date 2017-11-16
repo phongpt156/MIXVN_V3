@@ -17,8 +17,8 @@ class Collection extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'img' => $this->img ? asset('public/' . $this->img) : '',
-            'sm_img' => $this->sm_img ? asset('public/' . $this->sm_img) : '',
+            'img' => $this->img ? $this->img : '',
+            'sm_img' => $this->sm_img ? $this->sm_img : '',
             'active' => $this->active
         ];
     }

@@ -14,6 +14,27 @@
     img {
         cursor: pointer;
     }
+    
+    .item-wrapper {
+        position: relative;
+
+        &:hover {
+            .item-action {
+                display: block !important;
+            }
+        }
+    }
+}
+
+.item-action {
+    position: absolute;
+    opacity: 0.87;
+    left: 0;
+    bottom: 0;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 @include media-breakpoint-down(xl) {

@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
+import { MIX_PATH } from 'app/shared/constants/constants';
+
 import { SetService } from 'app/main-app/main-app-shared/services/set/set.service';
 import { CommonService } from 'app/shared/services/common/common.service';
 
@@ -20,6 +22,7 @@ export class ItemDetailModalComponent implements OnInit, OnDestroy {
   sets: any[] = [];
   set: any;
   index: number;
+  mixPath: string = MIX_PATH;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -32,7 +35,7 @@ export class ItemDetailModalComponent implements OnInit, OnDestroy {
     this.sets = this.setService.getSets();
     this.set = this.setService.getSelectedSet();
     console.log(this.set);
-    this._itemSubscription = this.setService.selectedItemChange.subscribe(set => {
+    this._itemSubscription = this.setService.selectedSetChange.subscribe(set => {
       this.set = set;
     });
 
