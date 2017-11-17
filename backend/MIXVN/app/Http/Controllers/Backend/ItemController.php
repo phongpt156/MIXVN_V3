@@ -72,7 +72,11 @@ class ItemController extends Controller
 
             if ($request->features && $request->features !== 'null') {
                 $features = explode(',', $request->features);
+                $itemTag = '';
+                
                 foreach ($features as $feature) {
+                    $itemTag .= $feature . ',';
+
                     $featureValueRelItem = new FeatureValueRelItem;
                     $featureValueRelItem->feature_value_id = $feature;
                     $featureValueRelItem->item_id = $item->id;
@@ -82,6 +86,9 @@ class ItemController extends Controller
                     $featureValueRelItem->save();
                 }
             }
+            $item->tag = $itemTag;
+
+            $item->save();
         });
         return response()->json([]);
     }
@@ -124,7 +131,7 @@ class ItemController extends Controller
         
             $item->name = $request->name;
             $item->price = $request->price;
-            $item->discount = $request->discount;
+            $item->discount = $request->discount !== 'null' ? $request->discount : null;
             $item->category_id = $request->category;
             $item->supplier_id = $request->supplier;
             $item->gender_id = $request->gender;
@@ -144,12 +151,16 @@ class ItemController extends Controller
             }
 
             $item->updated_at = $now;
-            $item->save();
+            $tag = '';
 
             $featureValueRelItems = FeatureValueRelItem::where('item_id', $item->id);
             
             if ($request->features && $request->features !== 'null') {
                 $features = explode(',', $request->features);
+                foreach ($features as $feature) {
+                    $tag .= $feature . ',';
+                }
+
                 $featureValueRelItems = $featureValueRelItems->pluck('feature_value_id');
 
                 foreach ($featureValueRelItems as $featureValueRelItem) {
@@ -172,6 +183,9 @@ class ItemController extends Controller
             } else {
                 $featureValueRelItems->delete();
             }
+
+            $item->tag = $tag;
+            $item->save();
         });
         return response()->json([]);
     }

@@ -2,6 +2,8 @@ import { Component, OnInit, HostBinding, Input } from '@angular/core';
 
 import { MIX_PATH } from 'app/shared/constants/constants';
 
+import { SetService } from 'app/main-app/main-app-shared/services/set/set.service';
+
 @Component({
   selector: 'mix-right-main-body',
   templateUrl: './right-main-body.component.html',
@@ -13,9 +15,16 @@ export class RightMainBodyComponent implements OnInit {
 
   mixPath: string = MIX_PATH;
 
-  constructor() { }
+  constructor(
+    private setService: SetService
+  ) { }
 
   ngOnInit() {
   }
 
+  selectSet(set: any) {
+    if (set !== this.setService.getSelectedSet()) {
+      this.setService.setSelectedSet(set);
+    }
+  }
 }

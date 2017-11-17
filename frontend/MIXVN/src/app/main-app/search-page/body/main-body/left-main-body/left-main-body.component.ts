@@ -56,6 +56,25 @@ export class LeftMainBodyComponent implements OnInit {
   }
 
   getSetByItem() {
-    this.setService
+    this.setService.setSelectedItem({});
+    this.setService.setSelectedSet({});
+    this.setService.setSets([]);
+
+    this.setService.getSetsByItem(this.selectedItem.id)
+    .subscribe(res => {
+      console.log(res);
+      this.setService.setSets([]);
+      this.setService.addSets(this.setService.convertData(res.data));
+
+      let selectedSet: any = this.setService.getSets()[0];
+      if (selectedSet) {
+        this.setService.setSelectedSet(selectedSet);
+        console.log(selectedSet);
+        console.log(selectedSet.items[0]);
+        if (selectedSet.items.length) {
+          this.setService.setSelectedItem(selectedSet.items[0]);
+        }
+      }
+    });
   }
 }

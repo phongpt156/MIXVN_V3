@@ -56,6 +56,10 @@ export class BodyComponent implements OnInit, OnDestroy {
   }
 
   search() {
+    this.setService.setSelectedItem({});
+    this.setService.setSelectedSet({});
+    this.setService.setSets([]);
+
     const body: any = {};
 
     body.item_name = this.searchTaggingService.itemName;

@@ -47,8 +47,8 @@
                   {{ item.supplier?.name }} - {{ item.supplier?.address }}
                 </td>
                 <td>
-                  <ng-container *ngFor="let featureValue of item.featureValues; let i = index; let last = last">
-                    {{ featureValue.vi_name }} <ng-container *ngIf="i != last - 1">,</ng-container>
+                  <ng-container *ngFor="let featureValue of item.featureValues; let last = last">
+                    {{ featureValue.vi_name }} <span *ngIf="!last">,</span>
                   </ng-container>
                 </td>
                 <td>

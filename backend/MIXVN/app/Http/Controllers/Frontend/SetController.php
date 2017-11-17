@@ -118,12 +118,18 @@ class SetController extends Controller
 
     public function search(Request $request)
     {
-        $results = SetDAL::search($request->all());
-        return response(['data' => $results]);
+        if (JWTAuth::getToken()) {
+            $userId = JWTAuth::parseToken()->authenticate()->id;
+
+            return response(['data' => SetDAL::searchWithLiker($request->all(), $userId)]);
+        }
+
+        return response(['data' => SetDAL::search($request->all(), $userId)]);
     }
 
-    public function getSetByItem($itemId)
+    public function getSetsByItem($itemId, $page = 1)
     {
-        
+        $results = SetDal::getSetsByItem($itemId, $page);
+        return response(['data' => $results]);
     }
 }

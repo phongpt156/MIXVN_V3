@@ -74,6 +74,10 @@ export class SetService {
         set.id = currentSetId = val.id;
         set.img = set.tmp_img = val.img;
         set.sum_like = val.sum_like;
+
+        if (val.user_id) {
+          set.user_id = val.user_id;
+        }
       }
       
 
@@ -133,6 +137,13 @@ export class SetService {
     let options = createCommonHeaders();
 
     return this.http.get(SET.getSets + 3, options)
+    .catch(handleError);
+  }
+
+  getSetsByItem(itemId: number, page: number = 1): Observable<ApiResponse> {
+    let options = createCommonHeaders();
+
+    return this.http.get(SET.getSetsByItem + itemId + '/p=' + page, options)
     .catch(handleError);
   }
 

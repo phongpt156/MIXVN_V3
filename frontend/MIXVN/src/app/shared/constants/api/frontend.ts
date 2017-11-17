@@ -19,6 +19,7 @@ export const COLLECTION = {
 
 export const SET = {
     getSets: HOST + '/api/set/type=',
+    getSetsByItem: HOST + '/api/set/item/',
     like: HOST + '/api/set/like/',
     search: HOST + '/api/set/search'
 }

@@ -1,12 +1,12 @@
 <perfect-scrollbar class="pr-3">
   <div class="d-flex flex-wrap">
     <div class="item-item" *ngFor="let set of sets">
-      <div class="item-wrapper">
+      <div class="item-wrapper" (click)="selectSet(set)">
         <div class="image-wrapper image-3-4">
           <img [src]="mixPath + set.img" alt="" />
         </div>
         <div class="item-action d-none w-100">
-          <mix-item-user-interactive></mix-item-user-interactive>
+          <mix-item-user-interactive [set]="set"></mix-item-user-interactive>
         </div>
       </div>
     </div>
