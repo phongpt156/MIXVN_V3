@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 import { FeatureValueService } from 'app/admin/admin-shared/services/feature-value/feature-value.service';
@@ -16,7 +16,7 @@ export class EditFeatureValueComponent implements OnInit {
   features: any[] = [];
 
   constructor(
-    public dialogRef: MdDialogRef<EditFeatureValueComponent>,
+    public dialogRef: MatDialogRef<EditFeatureValueComponent>,
     private fb: FormBuilder,
     private featureService: FeatureService,
     private featureValueService: FeatureValueService

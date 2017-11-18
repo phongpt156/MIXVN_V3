@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -28,7 +28,7 @@ export class UploadComponent implements OnInit {
   isSelectImage = false;
 
   constructor(
-    public snackBar: MdSnackBar,
+    public snackBar: MatSnackBar,
     private fb: FormBuilder,
     private setService: SetService,
     private router: Router,

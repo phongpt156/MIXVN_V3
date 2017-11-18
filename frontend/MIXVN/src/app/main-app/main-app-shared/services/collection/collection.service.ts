@@ -27,5 +27,5 @@ export class CollectionService {
 
     return this.http.get(COLLECTION.getCollectionPage + id, options)
     .catch(handleError);
-  } 
+  }
 }

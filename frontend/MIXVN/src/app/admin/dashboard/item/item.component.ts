@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 import { ItemService } from 'app/admin/admin-shared/services/item/item.service';
 
@@ -17,7 +17,7 @@ export class ItemComponent implements OnInit {
   dialogRef: any;
 
   constructor(
-    public dialog: MdDialog,
+    public dialog: MatDialog,
     private itemService: ItemService,
   ) { }
 

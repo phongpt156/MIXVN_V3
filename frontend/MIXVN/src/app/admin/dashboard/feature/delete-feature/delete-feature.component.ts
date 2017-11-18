@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 
@@ -12,7 +12,7 @@ export class DeleteFeatureComponent implements OnInit {
   id: number;
 
   constructor(
-    public dialogRef: MdDialogRef<DeleteFeatureComponent>,
+    public dialogRef: MatDialogRef<DeleteFeatureComponent>,
     private featureService: FeatureService,
   ) { }
 

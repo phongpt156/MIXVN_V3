@@ -41,15 +41,15 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.searchTaggingService.isReload = false;
     this.searchTaggingService.itemName = this.itemName.value;
-    
+
     const routeParam = {};
     if (this.searchTaggingService.itemName) {
-      routeParam["q"] = this.searchTaggingService.itemName; 
+      routeParam['q'] = this.searchTaggingService.itemName;
     }
     if (this.searchTaggingService.searchTaggings.length) {
-      routeParam["f"] = this.searchTaggingService.parseTagToHash();
+      routeParam['f'] = this.searchTaggingService.parseTagToHash();
     }
-    
+
     this.router.navigate(['/tim-kiem', routeParam]);
   }
 }

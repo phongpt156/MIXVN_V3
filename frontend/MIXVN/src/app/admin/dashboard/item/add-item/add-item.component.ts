@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { ItemService } from 'app/admin/admin-shared/services/item/item.service';
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
@@ -29,7 +29,7 @@ export class AddItemComponent implements OnInit {
   isPending = false;
 
   constructor(
-    public dialogRef: MdDialogRef<AddItemComponent>,
+    public dialogRef: MatDialogRef<AddItemComponent>,
     private fb: FormBuilder,
     private itemService: ItemService,
     private supplierService: SupplierService,

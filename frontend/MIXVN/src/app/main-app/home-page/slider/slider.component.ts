@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+// import 'assets/js/slider/homepage-slider.js';
 
 declare var jssor_1_slider_init: any;
 

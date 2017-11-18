@@ -20,7 +20,9 @@ export class SearchFilterComponent implements OnInit {
   }
 
   selectPrice(price: number, index: number) {
-    if (this.searchTaggingService.searchTaggings[this.index].price == price) {
+    price = Number(price);
+
+    if (this.searchTaggingService.searchTaggings[this.index].price === price) {
       this.searchTaggingService.searchTaggings[this.index].price = undefined;
     } else {
       this.searchTaggingService.searchTaggings[this.index].price = price;
@@ -28,14 +30,16 @@ export class SearchFilterComponent implements OnInit {
   }
 
   selectFeatureValue(featureId: number, index: number, type: number) {
+    featureId = Number(featureId);
+
     if (type === 1) {
-      if (this.searchTaggingService.searchTaggings[this.index].color_feature == featureId) {
+      if (this.searchTaggingService.searchTaggings[this.index].color_feature === featureId) {
         this.searchTaggingService.searchTaggings[this.index].color_feature = undefined;
       } else {
         this.searchTaggingService.searchTaggings[this.index].color_feature = featureId;
       }
     } else if (type === 2) {
-      if (this.searchTaggingService.searchTaggings[this.index].size_feature == featureId) {
+      if (this.searchTaggingService.searchTaggings[this.index].size_feature === featureId) {
         this.searchTaggingService.searchTaggings[this.index].size_feature = undefined;
       } else {
         this.searchTaggingService.searchTaggings[this.index].size_feature = featureId;

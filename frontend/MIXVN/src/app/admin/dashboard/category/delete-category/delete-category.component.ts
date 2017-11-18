@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { CategoryService } from 'app/admin/admin-shared/services/category/category.service';
 
@@ -12,7 +12,7 @@ export class DeleteCategoryComponent implements OnInit {
   id: number;
 
   constructor(
-    public dialogRef: MdDialogRef<DeleteCategoryComponent>,
+    public dialogRef: MatDialogRef<DeleteCategoryComponent>,
     private categoryService: CategoryService
   ) { }
 

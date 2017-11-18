@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 
@@ -22,7 +22,7 @@ export class AddSupplierComponent implements OnInit {
   isSelectAvatarImage = false;
 
   constructor(
-    public dialogRef: MdDialogRef<AddSupplierComponent>,
+    public dialogRef: MatDialogRef<AddSupplierComponent>,
     private fb: FormBuilder,
     private supplierService: SupplierService
   ) { }

@@ -4,8 +4,8 @@
       <a mixGoToHomepage><span class="logo-icon">M</span></a>
       <a mixGoToHomepage><span class="logo-text">MIX</span></a>
     </div>
-    <button class="mat-icon-button mat-button" md-icon-button>
-      <md-icon class="mat-icon material-icons" role="img" aria-hidden="true">menu</md-icon>
+    <button class="mat-icon-button mat-button" mat-icon-button>
+      <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">menu</mat-icon>
     </button>
   </div>
 
@@ -16,32 +16,32 @@
       </div>
       <div class="nav-collapse nav-item" [ngClass]="{'open': !isCollapsed}">
         <a class="nav-link d-flex align-items-center w-100" (click)="isCollapsed = !isCollapsed">
-          <md-icon class="nav-link-icon mat-icon material-icons d-flex align-items-center">dashboard</md-icon>
+          <mat-icon class="nav-link-icon mat-icon material-icons d-flex align-items-center">dashboard</mat-icon>
           <span class="nav-link-title">
             Dashboards
           </span>
-          <md-icon class="collapse-arrow mat-icon materials-icon d-flex align-items-center">keyboard_arrow_right</md-icon>
+          <mat-icon class="collapse-arrow mat-icon materials-icon d-flex align-items-center">keyboard_arrow_right</mat-icon>
         </a>
         <div [collapse]="isCollapsed" class="collapse-children">
-          <button md-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/upload" routerLinkActive="active-aside-menu">
+          <button mat-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/upload" routerLinkActive="active-aside-menu">
             Upload
           </button>
-          <button md-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/item" routerLinkActive="active-aside-menu">
+          <button mat-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/item" routerLinkActive="active-aside-menu">
             Item
           </button>
-          <!-- <button md-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/set" routerLinkActive="active-aside-menu">
+          <!-- <button mat-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/set" routerLinkActive="active-aside-menu">
             Set
           </button> -->
-          <button md-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/category" routerLinkActive="active-aside-menu">
+          <button mat-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/category" routerLinkActive="active-aside-menu">
             Category
           </button>
-          <button md-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/collection" routerLinkActive="active-aside-menu">
+          <button mat-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/collection" routerLinkActive="active-aside-menu">
             Collection
           </button>
-          <button md-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/feature" routerLinkActive="active-aside-menu">
+          <button mat-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/feature" routerLinkActive="active-aside-menu">
             Feature
           </button>
-          <button md-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/supplier" routerLinkActive="active-aside-menu">
+          <button mat-button class="nav-link d-flex align-items-center w-100" routerLink="/admin/dashboard/supplier" routerLinkActive="active-aside-menu">
             Shop
           </button>
         </div>

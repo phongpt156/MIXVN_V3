@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { ParentCategoryService } from 'app/admin/admin-shared/services/parent-category/parent-category.service';
 
@@ -13,7 +13,7 @@ export class AddParentCategoryComponent implements OnInit {
   addParentCategoryForm: FormGroup;
 
   constructor(
-    public dialogRef: MdDialogRef<AddParentCategoryComponent>,
+    public dialogRef: MatDialogRef<AddParentCategoryComponent>,
     private parentCategoryService: ParentCategoryService,
     private fb: FormBuilder
   ) { }

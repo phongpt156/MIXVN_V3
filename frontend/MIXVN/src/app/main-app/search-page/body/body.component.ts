@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from  '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { SetService } from 'app/main-app/main-app-shared/services/set/set.service';
@@ -70,7 +70,7 @@ export class BodyComponent implements OnInit, OnDestroy {
       this.setService.setSets([]);
       this.setService.addSets(this.setService.convertData(res.data));
 
-      let selectedSet: any = this.setService.getSets()[0];
+      const selectedSet: any = this.setService.getSets()[0];
       if (selectedSet) {
         this.setService.setSelectedSet(selectedSet);
         console.log(selectedSet);

@@ -14,8 +14,8 @@ export class SearchTaggingItemComponent implements OnInit, OnDestroy {
   @Input() index: number;
 
   _subscriptions: Subscription[] = [];
-  opacity: number = 1;
-  isFilter: boolean = false;
+  opacity = 1;
+  isFilter = false;
 
   constructor(
     private searchTaggingService: SearchTaggingService

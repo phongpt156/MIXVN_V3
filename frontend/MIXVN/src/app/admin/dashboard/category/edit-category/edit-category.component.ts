@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { CategoryService } from 'app/admin/admin-shared/services/category/category.service';
 
@@ -16,7 +16,7 @@ export class EditCategoryComponent implements OnInit {
   category: any = {};
 
   constructor(
-    public dialogRef: MdDialogRef<EditCategoryComponent>,
+    public dialogRef: MatDialogRef<EditCategoryComponent>,
     private fb: FormBuilder,
     private categoryService: CategoryService
   ) { }

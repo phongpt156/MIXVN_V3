@@ -5,9 +5,9 @@
     <div class="row">
       <div class="col-md-6 d-flex align-items-center">
         <md-select placeholder="Feature" class="d-flex align-items-center" formControlName="feature" color="accent">
-          <md-option *ngFor="let feature of features" [value]="feature.id">
+          <mat-option *ngFor="let feature of features" [value]="feature.id">
             {{ feature.name }}
-          </md-option>
+          </mat-option>
         </md-select>
       </div>
       <div class="col-md-6">
@@ -30,7 +30,7 @@
     </div>
     <div class="row">
       <div class="text-right col-12">
-        <md-checkbox formControlName="active">Active</md-checkbox>
+        <mat-checkbox formControlName="active">Active</mat-checkbox>
       </div>
     </div>
   </form>

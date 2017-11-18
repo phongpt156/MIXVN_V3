@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 import { CategoryService } from 'app/admin/admin-shared/services/category/category.service';
 
@@ -31,7 +31,7 @@ export class CategoryComponent implements OnInit {
   gender: any = GENDER;
 
   constructor(
-    public dialog: MdDialog,
+    public dialog: MatDialog,
     private categoryService: CategoryService,
   ) { }
 

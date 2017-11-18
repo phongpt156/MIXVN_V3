@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
 
@@ -21,7 +21,7 @@ export class EditCollectionComponent implements OnInit {
   isSelectImage = false;
 
   constructor(
-    public dialogRef: MdDialogRef<EditCollectionComponent>,
+    public dialogRef: MatDialogRef<EditCollectionComponent>,
     private fb: FormBuilder,
     private collectionService: CollectionService
   ) { }

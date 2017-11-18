@@ -8,19 +8,19 @@
         login to your account
       </div>
       <form class="px-4 text-center" [formGroup]="loginForm">
-        <md-form-field class="w-100" color="accent">
-          <input type="text" mdInput placeholder="Email" required="required" formControlName="email" />
-          <md-error *ngIf="loginForm.controls.email.errors?.required">Email is required</md-error>
-        </md-form-field>
-        <md-form-field class="w-100" color="accent">
-          <input type="password" mdInput placeholder="Password" required="required" formControlName="password" />
-          <md-error *ngIf="loginForm.controls.password.errors?.required">Password is required</md-error>
-        </md-form-field>
+        <mat-form-field class="w-100" color="accent">
+          <input type="text" matInput placeholder="Email" required="required" formControlName="email" />
+          <mat-error *ngIf="loginForm.controls.email.errors?.required">Email is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100" color="accent">
+          <input type="password" matInput placeholder="Password" required="required" formControlName="password" />
+          <mat-error *ngIf="loginForm.controls.password.errors?.required">Password is required</mat-error>
+        </mat-form-field>
         <div class="d-flex justify-content-between mt-3">
-          <md-checkbox style="font-size: 0.9rem" color="accent">Remember me</md-checkbox>
+          <mat-checkbox style="font-size: 0.9rem" color="accent">Remember me</mat-checkbox>
           <a href="#" class="forgot-password">Forgot password?</a>
         </div>
-        <button md-raised-button type="submit" (click)="onSubmit()" class="mt-3">Login</button>
+        <button mat-raised-button type="submit" (click)="onSubmit()" class="mt-3">Login</button>
       </form>
     </div>
   </div>

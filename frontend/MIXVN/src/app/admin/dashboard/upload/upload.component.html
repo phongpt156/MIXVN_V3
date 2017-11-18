@@ -13,17 +13,17 @@
               <img alt="" #setImagePreview id="setImagePreview" />
             </div>
             <div *ngIf="isSelectImage" class="ml-2">
-              <button md-raised-button color="accent" (click)="cropper.zoom(0.1)">
+              <button mat-raised-button color="accent" (click)="cropper.zoom(0.1)">
                 <a><span class="fa fa-search-plus"></span></a>
               </button>
-              <button md-raised-button color="accent" (click)="cropper.zoom(-0.1)">
+              <button mat-raised-button color="accent" (click)="cropper.zoom(-0.1)">
                 <a><span class="fa fa-search-minus"></span></a>
               </button>
             </div>
           </div>
         </div>
         <div class="col-6 d-flex align-items-end form-group">
-          <md-checkbox formControlName="active">Active</md-checkbox>
+          <mat-checkbox formControlName="active">Active</mat-checkbox>
         </div>
       </div>
 
@@ -37,13 +37,13 @@
 
       <div class="row form-group">
         <div class="col-12 form-group">
-          <button md-raised-button color="accent" (click)="addItem()">Add Item</button>
+          <button mat-raised-button color="accent" (click)="addItem()">Add Item</button>
         </div>
       </div>
 
       <div class="row form-group">
         <div class="col-12 form-group text-right">
-          <button md-raised-button (click)="onSubmit()" color="accent">Upload</button>
+          <button mat-raised-button (click)="onSubmit()" color="accent">Upload</button>
         </div>
       </div>
     </form>

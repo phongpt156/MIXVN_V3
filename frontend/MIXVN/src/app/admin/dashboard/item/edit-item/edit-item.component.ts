@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -32,7 +32,7 @@ export class EditItemComponent implements OnInit {
   isPending = false;
 
   constructor(
-    public dialogRef: MdDialogRef<EditItemComponent>,
+    public dialogRef: MatDialogRef<EditItemComponent>,
     private fb: FormBuilder,
     private itemService: ItemService,
     private supplierService: SupplierService,

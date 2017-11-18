@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
 import { FeatureValueService } from 'app/admin/admin-shared/services/feature-value/feature-value.service';
@@ -22,7 +22,7 @@ export class FeatureComponent implements OnInit {
   dialogRef: any;
 
   constructor(
-    public dialog: MdDialog,
+    public dialog: MatDialog,
     private featureService: FeatureService,
   ) { }
 

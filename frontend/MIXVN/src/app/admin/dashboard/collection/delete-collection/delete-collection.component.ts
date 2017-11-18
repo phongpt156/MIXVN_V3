@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
 
@@ -12,7 +12,7 @@ export class DeleteCollectionComponent implements OnInit {
   id: number;
 
   constructor(
-    public dialogRef: MdDialogRef<DeleteCollectionComponent>,
+    public dialogRef: MatDialogRef<DeleteCollectionComponent>,
     private collectionService: CollectionService
   ) { }
 

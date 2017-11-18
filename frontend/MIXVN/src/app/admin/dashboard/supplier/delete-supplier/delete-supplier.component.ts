@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 
@@ -12,7 +12,7 @@ export class DeleteSupplierComponent implements OnInit {
   id: number;
 
   constructor(
-    public dialogRef: MdDialogRef<DeleteSupplierComponent>,
+    public dialogRef: MatDialogRef<DeleteSupplierComponent>,
     private supplierService: SupplierService
   ) { }
 

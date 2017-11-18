@@ -8,7 +8,7 @@
           <button md-raised-button color="accent" (click)="openAddCollectionDialog()" type="button">Add Collection</button>
         </div>
         <div class="mt-3 table-wrapper">
-          <table class="table table-responsive table-inverse table-hover">
+          <table class="table table-responsive table-dark table-hover">
             <thead>
               <tr>
                 <th>STT</th>
@@ -28,7 +28,7 @@
                   </div>
                 </td>
                 <td>
-                  <md-checkbox [checked]="collection.active" readonly="readonly" click-prevent-default></md-checkbox>
+                  <mat-checkbox [checked]="collection.active" readonly="readonly" click-prevent-default></mat-checkbox>
                 </td>
                 <td class="d-flex flex-row">
                   <a (click)="openEditCollectionDialog(collection)"><i class="material-icons tex-white">mode_edit</i></a>

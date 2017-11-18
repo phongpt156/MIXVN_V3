@@ -14,7 +14,7 @@ import { LoginBoxComponent } from 'app/main-app/main-app-shared/component/login-
 export class AlertLoginComponent implements OnInit, OnDestroy {
   @HostBinding('class') classes = 'py-4 dark-modal';
   isBlur = true;
-  
+
   constructor(
     public modalRef: BsModalRef,
     private modalService: BsModalService,

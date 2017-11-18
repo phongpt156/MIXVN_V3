@@ -32,7 +32,7 @@
         <div class="row mt-2">
           <div class="col-6 form-group">
             <md-select formControlName="supplier" placeholder="Shop" required="required">
-              <md-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</md-option>
+              <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</mat-option>
             </md-select>
           </div>
         </div>
@@ -52,20 +52,20 @@
         <div class="row mt-2" *ngIf="addItemForm.value.gender">
           <div class="col-6 form-group">
             <md-select formControlName="category" placeholder="Category">
-              <md-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</md-option>
+              <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
             </md-select>
           </div>
         </div>
 
         <div class="row">
           <div class="col-6 d-flex align-items-end form-group">
-            <md-checkbox formControlName="active">Active</md-checkbox>
+            <mat-checkbox formControlName="active">Active</mat-checkbox>
           </div>
         </div>
         <md-select [multiple]="true" formControlName="features" *ngIf="features.length" placeholder="Feature">
           <ng-container *ngFor="let feature of features">
-            <md-option disabled="disabled" class="feature-option">+ {{ feature.name }}</md-option>
-            <md-option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</md-option>
+            <mat-option disabled="disabled" class="feature-option">+ {{ feature.name }}</mat-option>
+            <mat-option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</mat-option>
           </ng-container>
         </md-select>
       </div> -->

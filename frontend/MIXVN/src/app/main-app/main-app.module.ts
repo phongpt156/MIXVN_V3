@@ -37,7 +37,7 @@ import { SearchTaggingService } from './main-app-shared/services/search-tagging/
       useClass: TokenInterceptor,
       multi: true,
     },
-    AuthService,    
+    AuthService,
     ItemService,
     CategoryService,
     UserService,

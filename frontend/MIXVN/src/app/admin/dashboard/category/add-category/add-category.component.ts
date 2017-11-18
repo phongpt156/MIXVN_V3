@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { CategoryService } from 'app/admin/admin-shared/services/category/category.service';
 
@@ -15,7 +15,7 @@ export class AddCategoryComponent implements OnInit {
   genderId: number;
 
   constructor(
-    public dialogRef: MdDialogRef<AddCategoryComponent>,
+    public dialogRef: MatDialogRef<AddCategoryComponent>,
     private fb: FormBuilder,
     private categoryService: CategoryService
   ) { }

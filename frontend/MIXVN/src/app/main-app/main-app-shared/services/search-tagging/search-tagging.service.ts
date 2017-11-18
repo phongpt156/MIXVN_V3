@@ -55,7 +55,7 @@ export class SearchTaggingService {
   }
 
   parseTagToHash(): string {
-    let hash: string = '';
+    let hash = '';
 
     this.searchTaggings.forEach((searchTagging: SearchTagging) => {
       if (hash) {
@@ -83,7 +83,7 @@ export class SearchTaggingService {
     }
 
     if (filter) {
-      let items: any[] = filter.split('&');
+      const items: any[] = filter.split('&');
       let searchTagging: any;
       let categories;
 
@@ -99,7 +99,7 @@ export class SearchTaggingService {
         this.searchTaggings.push(searchTagging);
       });
     }
-    console.log(123);
+    console.log(this.searchTaggings);
   }
 
   getChildCategories() {
@@ -110,11 +110,4 @@ export class SearchTaggingService {
       });
     });
   }
-
-  findCategory(categories: any[], categoryId: number) {
-    return categories.find(category => {
-      return category.id == categoryId;
-    });
-  }
-
 }

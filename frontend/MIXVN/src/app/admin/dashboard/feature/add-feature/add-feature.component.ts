@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
@@ -14,7 +14,7 @@ export class AddFeatureComponent implements OnInit {
   addFeatureForm: FormGroup;
 
   constructor(
-    public dialogRef: MdDialogRef<AddFeatureComponent>,
+    public dialogRef: MatDialogRef<AddFeatureComponent>,
     private featureService: FeatureService,
     private fb: FormBuilder
   ) { }
