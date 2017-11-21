@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { SetService } from 'app/admin/admin-shared/services/set/set.service';
+import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
 
 declare var Cropper: any;
 
@@ -20,36 +21,43 @@ export class UploadComponent implements OnInit {
   addSetForm: FormGroup;
   setImage: File;
   // itemImages: File[] = [];
-  itemIds: any[] = [];
-  selectedItem: any = {};
   formData: FormData = new FormData;
   isPending = false;
   cropper: any;
   isSelectImage = false;
+  collections: any[] = [];
 
   constructor(
     public snackBar: MatSnackBar,
     private fb: FormBuilder,
-    private setService: SetService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private setService: SetService,
+    private collectionService: CollectionService,
   ) { }
 
   ngOnInit() {
     this.addSetForm = this.fb.group({
       active: [true, Validators.required],
-      items: this.fb.array([])
+      items: this.fb.array([]),
+      collection: ['']
     });
 
     this.cropper = new Cropper(this.setImagePreview.nativeElement, {
-      aspectRatio: 17 / 4,
+      aspectRatio: 3 / 4,
       viewMode: 1
+    });
+
+    this.collectionService.getAll()
+    .subscribe(res => {
+      this.collections = res.data;
     });
   }
 
   initItem() {
     return this.fb.group({
-      // name: ['', Validators.required],
+      id: ['', Validators.required],
+      name: ['', Validators.required]
       // price: ['', Validators.required],
       // discount: [''],
       // category: ['', Validators.required],
@@ -68,15 +76,6 @@ export class UploadComponent implements OnInit {
   removeItem(i) {
     const control = <FormArray>this.addSetForm.controls.items;
     control.removeAt(i);
-  }
-
-  addItemId(e) {
-    if (!this.selectedItem[e.index]) {
-      this.itemIds.push(e.itemId);
-      this.selectedItem[e.index] = this.itemIds.length;
-    } else {
-      this.itemIds[this.selectedItem[e.index] - 1] = e.itemId;
-    }
   }
 
   imageUploaded(e) {
@@ -109,29 +108,17 @@ export class UploadComponent implements OnInit {
           const valid = true;
 
           this.formData.append('active', this.addSetForm.value.active);
-          this.itemIds.forEach((val, i) => {
-            this.formData.append(`itemIds[${i}]`, val);
+          this.formData.append('collection_id', this.addSetForm.value.collection);
+
+          let tag = '';
+
+          this.addSetForm.value.items.forEach((val, i) => {
+            tag += val.name + ',';
+            this.formData.append(`items[${i}]`, val.id);
           });
 
-          // this.addSetForm.controls.items['controls'].forEach((val, i) => {
-          //   if (!this.selectedItem[i]) {
-          //     if (!this.itemImages[i]) {
-          //       valid = false;
-          //       this.openSnackBar('Please upload item image');
-          //       return;
-          //     }
+          this.formData.append('tag', tag);
 
-          //     this.formData.append(`items[${i}][img]`, this.itemImages[i], this.itemImages[i].name);
-          //     this.formData.append(`items[${i}][name]`, val.value.name);
-          //     this.formData.append(`items[${i}][price]`, val.value.price);
-          //     this.formData.append(`items[${i}][discount]`, val.value.discount);
-          //     this.formData.append(`items[${i}][category]`, val.value.category);
-          //     this.formData.append(`items[${i}][supplier]`, val.value.supplier);
-          //     this.formData.append(`items[${i}][features]`, val.value.features);
-          //     this.formData.append(`items[${i}][active]`, val.value.active);
-          //     this.formData.append(`items[${i}][gender]`, val.value.gender);
-          //   }
-          // });
           if (valid) {
             this.setService.add(this.formData)
             .subscribe(res => {
@@ -152,15 +139,12 @@ export class UploadComponent implements OnInit {
   }
 
   resetForm() {
-    // this.addSetForm.reset();
-    // this.addSetForm.controls.active.setValue(true);
+    this.addSetForm.reset();
+    this.addSetForm.controls.active.setValue(true);
     const length = this.addSetForm.controls.items['controls'].length;
     for (let i = length - 1; i > -1; i--) {
       this.removeItem(i);
     }
-    this.itemIds = [];
-    // this.itemImages = [];
-    // this.selectedItem = {};
   }
 
   openSnackBar(message) {

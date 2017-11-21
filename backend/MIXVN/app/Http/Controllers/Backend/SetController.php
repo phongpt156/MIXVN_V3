@@ -9,6 +9,7 @@ use App\Set;
 use App\Item;
 use App\SetRelItem;
 use App\FeatureValueRelItem;
+use App\SetRelCollection;
 use Carbon\Carbon;
 use Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -46,6 +47,10 @@ class SetController extends Controller
         DB::transaction(function () use ($request) {
             $now = Carbon::now('UTC');
             $set = new Set;
+
+            $set->main_collection_id = $request->collection_id;
+            $set->tag = $request->tag;
+
             $set->active = ($request->active === 'true' || $request->active == 1) ? true : false;
             if ($request->img) {
                 $convertBlobFile = Storage::disk('upload_image')->put('images', $request->img);
@@ -61,53 +66,64 @@ class SetController extends Controller
 
             $set->save();
 
-            $items = $request->items;
-            if ($items) {
-                foreach ($request->items as $item) {
-                    $newItem = new Item;
-                    $newItem->name = $item['name'];
-                    $newItem->price = $item['price'];
-                    $newItem->discount = $item['discount'];
-                    $newItem->category_id = $item['category'];
-                    $newItem->gender_id = $item['gender'];
-                    if ($item['img']) {
-                        $convertBlobFile = Storage::disk('upload_image')->put('images', $item['img']);
-                        $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
+            // $items = $request->items;
+            // if ($items) {
+            //     foreach ($request->items as $item) {
+            //         $newItem = new Item;
+            //         $newItem->name = $item['name'];
+            //         $newItem->price = $item['price'];
+            //         $newItem->discount = $item['discount'];
+            //         $newItem->category_id = $item['category'];
+            //         $newItem->gender_id = $item['gender'];
+            //         if ($item['img']) {
+            //             $convertBlobFile = Storage::disk('upload_image')->put('images', $item['img']);
+            //             $convertBlobFileName = pathinfo($convertBlobFile, PATHINFO_FILENAME) . '.' . pathinfo($convertBlobFile, PATHINFO_EXTENSION);
                         
-                        $newItem->img = 'images/' . $convertBlobFileName;
-                        Image::make(public_path() . '/' . $convertBlobFile)->resize(300, null, function ($constraint) {
-                            $constraint->aspectRatio();
-                        })->save(public_path() . '/' . $newItem->img);
-                    }
-                    $newItem->active = ($item['active'] === 'true' || $item['active'] == 1) ? true : false;
-                    $newItem->supplier_id = $item['supplier'];
-                    $newItem->created_at = $now;                
-                    $newItem->updated_at = $now;
-                    $success = $newItem->save();
+            //             $newItem->img = 'images/' . $convertBlobFileName;
+            //             Image::make(public_path() . '/' . $convertBlobFile)->resize(300, null, function ($constraint) {
+            //                 $constraint->aspectRatio();
+            //             })->save(public_path() . '/' . $newItem->img);
+            //         }
+            //         $newItem->active = ($item['active'] === 'true' || $item['active'] == 1) ? true : false;
+            //         $newItem->supplier_id = $item['supplier'];
+            //         $newItem->created_at = $now;                
+            //         $newItem->updated_at = $now;
+            //         $success = $newItem->save();
                     
-                    if ($item['features']) {
-                        $features = explode(',', $item['features']);
-                        foreach ($features as $feature) {
-                            $featureValueRelItem = new FeatureValueRelItem;
-                            $featureValueRelItem->feature_value_id = $feature;
-                            $featureValueRelItem->item_id = $newItem->id;
-                            $featureValueRelItem->created_at = $now;
-                            $featureValueRelItem->updated_at = $now;
-                            $featureValueRelItem->save();
-                        }
-                    }
+            //         if ($item['features']) {
+            //             $features = explode(',', $item['features']);
+            //             foreach ($features as $feature) {
+            //                 $featureValueRelItem = new FeatureValueRelItem;
+            //                 $featureValueRelItem->feature_value_id = $feature;
+            //                 $featureValueRelItem->item_id = $newItem->id;
+            //                 $featureValueRelItem->created_at = $now;
+            //                 $featureValueRelItem->updated_at = $now;
+            //                 $featureValueRelItem->save();
+            //             }
+            //         }
 
-                    $setRelItem = new SetRelItem;
-                    $setRelItem->set_id = $set->id;
-                    $setRelItem->item_id = $newItem->id;
-                    $setRelItem->created_at = $now;
-                    $setRelItem->updated_at = $now;
-                    $setRelItem->save();
-                }
+            //         $setRelItem = new SetRelItem;
+            //         $setRelItem->set_id = $set->id;
+            //         $setRelItem->item_id = $newItem->id;
+            //         $setRelItem->created_at = $now;
+            //         $setRelItem->updated_at = $now;
+            //         $setRelItem->save();
+            //     }
+            // }
+
+
+            if ($set->main_collection_id) {
+                $setRelCollection = new SetRelCollection;
+                $setRelCollection->set_id = $set->id;
+                $setRelCollection->collection_id = $set->main_collection_id;
+                $setRelCollection->save();
             }
 
-            $itemIds = $request->itemIds;
+            $itemIds = $request->items;
+
             if (count($itemIds)) {
+                $set->main_item_id = $itemIds[0];
+                $set->save();
                 foreach ($itemIds as $itemId) {
                     $setRelItem = new SetRelItem;
                     $setRelItem->set_id = $set->id;

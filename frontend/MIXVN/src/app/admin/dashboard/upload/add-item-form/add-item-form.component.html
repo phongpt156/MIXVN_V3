@@ -3,24 +3,30 @@
     <div [formGroup]="addItemForm">
       <div class="row">
         <div class="col-5 form-group">
-          <mix-search-item (itemChange)="selectedItem($event)" [index]="index"></mix-search-item>
+          <mix-search-item (itemChange)="selectedItem($event)"></mix-search-item>
         </div>
       </div>
+      <mat-input-container [hidden]="true">
+        <input type="text" matInput formControlName="name" required="required" />
+      </mat-input-container>
+      <mat-input-container [hidden]="true">
+        <input type="text" matInput formControlName="id" required="required" />
+      </mat-input-container>
       <!-- <div *ngIf="!isDisabled">
         <div class="row">
           <div class="col-4 form-group">
             <md-input-container>
-              <input type="text" mdInput formControlName="name" placeholder="Item Name" required="required" />
+              <input type="text" matInput formControlName="name" placeholder="Item Name" required="required" />
             </md-input-container>
           </div>
           <div class="col-4 form-group">
             <md-input-container>
-              <input type="number" mdInput formControlName="price" placeholder="Item Price" required="required" />
+              <input type="number" matInput formControlName="price" placeholder="Item Price" required="required" />
             </md-input-container>
           </div>
           <div class="col-4 form-group">
             <md-input-container>
-              <input type="number" mdInput formControlName="discount" placeholder="Item Discount" />
+              <input type="number" matInput formControlName="discount" placeholder="Item Discount" />
             </md-input-container>
           </div>
         </div>
@@ -31,29 +37,29 @@
         </div>
         <div class="row mt-2">
           <div class="col-6 form-group">
-            <md-select formControlName="supplier" placeholder="Shop" required="required">
+            <mat-select formControlName="supplier" placeholder="Shop" required="required">
               <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</mat-option>
-            </md-select>
+            </mat-select>
           </div>
         </div>
         <div class="row">
           <div class="col-12 form-group">
-            <md-radio-group required="required" formControlName="gender">
-              <md-radio-button [value]="gender.male.id" (click)="getCategories(gender.male.id)">
+            <mat-radio-group required="required" formControlName="gender">
+              <mat-radio-button [value]="gender.male.id" (click)="getCategories(gender.male.id)">
                 {{ gender.male.name }}
-              </md-radio-button>
-              <md-radio-button [value]="gender.female.id" (click)="getCategories(gender.female.id)">
+              </mat-radio-button>
+              <mat-radio-button [value]="gender.female.id" (click)="getCategories(gender.female.id)">
                 {{ gender.female.name }}
-              </md-radio-button>
-            </md-radio-group>
+              </mat-radio-button>
+            </mat-radio-group>
           </div>
         </div>
 
         <div class="row mt-2" *ngIf="addItemForm.value.gender">
           <div class="col-6 form-group">
-            <md-select formControlName="category" placeholder="Category">
+            <mat-select formControlName="category" placeholder="Category">
               <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
-            </md-select>
+            </mat-select>
           </div>
         </div>
 
@@ -62,22 +68,22 @@
             <mat-checkbox formControlName="active">Active</mat-checkbox>
           </div>
         </div>
-        <md-select [multiple]="true" formControlName="features" *ngIf="features.length" placeholder="Feature">
+        <mat-select [multiple]="true" formControlName="features" *ngIf="features.length" placeholder="Feature">
           <ng-container *ngFor="let feature of features">
             <mat-option disabled="disabled" class="feature-option">+ {{ feature.name }}</mat-option>
             <mat-option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</mat-option>
           </ng-container>
-        </md-select>
+        </mat-select>
       </div> -->
       
       <div *ngIf="item">
         <div class="row form-group">
-          <div class="col-1 form-group">
+          <div class="col-3 form-group">
             <div class="image-wrapper image-2-3">
-              <img [src]="item.img" alt="" />
+              <img [src]="mixPath + item.img" alt="" />
             </div>
           </div>
-          <div class="col-9 form-group d-flex align-items-center">
+          <div class="col-9 form-group d-flex align-items-center text-white">
             {{ item.name }}
           </div>
         </div>

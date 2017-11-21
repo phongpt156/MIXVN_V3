@@ -3,19 +3,19 @@
 <div class="mat-dialog-content">
   <form [formGroup]="editParentCategoryForm">
     <div>
-      <md-form-field class="w-100" color="accent">
-        <input type="text" mdInput placeholder="Name" required="required" formControlName="name" />
-      </md-form-field>
+      <mat-form-field class="w-100" color="accent">
+        <input type="text" matInput placeholder="Name" required="required" formControlName="name" />
+      </mat-form-field>
     </div>
     <div>
-      <md-form-field class="w-100" color="accent">
-        <input type="number" mdInput placeholder="Order" required="required" formControlName="order" />
-      </md-form-field>
+      <mat-form-field class="w-100" color="accent">
+        <input type="number" matInput placeholder="Order" required="required" formControlName="order" />
+      </mat-form-field>
     </div>
   </form>
 </div>
 
 <div class="mat-dialog-actions justify-content-end">
-  <button md-raised-button type="submit" (click)="onSubmit()" color="accent">Save</button>
-  <button md-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
+  <button mat-raised-button type="submit" (click)="onSubmit()" color="accent">Save</button>
+  <button mat-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
 </div>

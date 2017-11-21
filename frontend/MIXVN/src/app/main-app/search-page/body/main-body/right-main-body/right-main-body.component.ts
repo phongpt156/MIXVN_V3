@@ -25,6 +25,9 @@ export class RightMainBodyComponent implements OnInit {
   selectSet(set: any) {
     if (set !== this.setService.getSelectedSet()) {
       this.setService.setSelectedSet(set);
+      if (set.items.length) {
+        this.setService.setSelectedItem(set.items[0]);
+      }
     }
   }
 }

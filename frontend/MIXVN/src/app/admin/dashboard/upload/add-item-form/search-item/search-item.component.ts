@@ -5,6 +5,8 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
+import { MIX_PATH } from 'app/shared/constants/constants';
+
 import { ItemService } from 'app/admin/admin-shared/services/item/item.service';
 
 @Component({
@@ -16,13 +18,13 @@ import { ItemService } from 'app/admin/admin-shared/services/item/item.service';
   }
 })
 export class SearchItemComponent implements OnInit {
-  @Input() index: number;
   @Output() itemChange: EventEmitter<any> = new EventEmitter;
   itemName: FormControl;
   items: any[] = [];
   isSearchFocus = false
   isSelectItem = false;
-
+  mixPath: string = MIX_PATH;
+  
   constructor(
     private itemService: ItemService,
     private elementRef: ElementRef
@@ -63,6 +65,6 @@ export class SearchItemComponent implements OnInit {
       this.isSearchFocus = false;
     }, 200);
 
-    this.itemChange.emit({item: item, index: this.index});
+    this.itemChange.emit({item: item});
   }
 }

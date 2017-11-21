@@ -231,7 +231,7 @@ class SetDAL
         }
         
         $result = DB::table('set as s')
-                    ->select('s.id', 's.img', 's.sum_like', 'c.id as collection_id', 'c.name as collection_name', 'i.id as item_id', 'i.price as item_price', 'i.discount as item_discount', 'i.name as item_name', 'i.img as item_img', 'sup.id as supplier_id', 'sup.name as supplier_name', 'sup.address as supplier_address', 'u.id as user_id', 'tmp.passed_item as passed_item', DB::raw($if), DB::raw('group_concat(f.name, ": ", fv.vi_name) as features'))
+                    ->select('s.id', 's.img', 's.sum_like', 'c.id as collection_id', 'c.name as collection_name', 'i.id as item_id', 'i.price as item_price', 'i.discount as item_discount', 'i.name as item_name', 'i.img as item_img', 'sup.id as supplier_id', 'sup.name as supplier_name', 'sup.address as supplier_address', 'u.id as user_id', 'tmp.passed_item as passed_item', DB::raw($if), DB::raw('group_concat(f.name, ": ", fv.vi_name) as features'), DB::raw('if(s.main_item_id = i.id, 1, 0) as main_item_id'))
                     ->join(DB::raw('(select s.id as id, ' . $passed . ' from `set` as s inner join set_rel_item as sri on sri.set_id = s.id inner join item as i on sri.item_id = i.id ' . $where . ' group by s.id ' . $having . $orderBy . $limit . ') as tmp'), 's.id', '=', 'tmp.id')
                     ->leftJoin('set_rel_collection as src', function ($join) {
                         $join->on('s.id', '=', 'src.set_id')
@@ -252,6 +252,7 @@ class SetDAL
                     ->groupBy('s.id', 'i.id')
                     ->orderBy('passed_item', 'desc')
                     ->orderBy('s.id', 'asc')
+                    ->orderBy('main_item_id', 'desc')
                     ->orderBy('passed_name', 'desc')
                     ->get();
 

@@ -4,7 +4,7 @@
       Upload
     </legend>
 
-    <form [formGroup]="addSetForm">  
+    <form [formGroup]="addSetForm" class="bg-dark p-2">  
       <div class="row">
         <div class="col-12 form-group">
           <image-upload [max]="1" [buttonCaption]="'Set Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved()" [preview]="false"></image-upload>
@@ -22,15 +22,24 @@
             </div>
           </div>
         </div>
-        <div class="col-6 d-flex align-items-end form-group">
-          <mat-checkbox formControlName="active">Active</mat-checkbox>
+        <div class="col-4 form-group">
+          <mat-form-field color="accent">
+            <mat-select placeholder="Bộ sưu tập" formControlName="collection">
+              <mat-option *ngFor="let collection of collections" [value]="collection.id">
+                {{ collection.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12 d-flex align-items-end form-group">
+          <mat-checkbox formControlName="active" class="text-white">Active</mat-checkbox>
         </div>
       </div>
 
       <div formArrayName="items">
         <div *ngFor="let item of addSetForm.controls.items['controls']; let i = index">
           <div [formGroupName]="i">
-            <mix-add-item-form [addItemForm]="addSetForm.controls.items.controls[i]" (removeItem)="removeItem(i)" [index]="i" (itemImageAction)="itemImageChange($event)" (itemId)="addItemId($event)"></mix-add-item-form>
+            <mix-add-item-form [addItemForm]="addSetForm.controls.items.controls[i]" (removeItem)="removeItem(i)" [index]="i"></mix-add-item-form>
           </div>
         </div>
       </div>

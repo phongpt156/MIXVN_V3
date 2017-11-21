@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-6">
         <mat-form-field class="w-100" color="accent">
-          <input type="text" mdInput formControlName="name" placeholder="Name" required="required" />
+          <input type="text" matInput formControlName="name" placeholder="Name" required="required" />
         </mat-form-field>
       </div>
       <div class="col-md-6 d-flex align-items-center">
@@ -20,22 +20,22 @@
             <img alt="" #collectionImagePreview id="collectionImagePreview" />
           </div>
           <div *ngIf="isSelectImage" class="ml-2">
-            <button md-raised-button color="accent" (click)="cropper.zoom(0.1)">
+            <button mat-raised-button color="accent" (click)="cropper.zoom(0.1)">
               <a><span class="fa fa-search-plus"></span></a>
             </button>
-            <button md-raised-button color="accent" (click)="cropper.zoom(-0.1)">
+            <button mat-raised-button color="accent" (click)="cropper.zoom(-0.1)">
               <a><span class="fa fa-search-minus"></span></a>
             </button>
           </div>
         </div>
         <div class="image-wrapper image-17-4" *ngIf="collectionImage">
-          <img [src]="collectionImage" alt="" />
+          <img [src]="mixPath + collectionImage" alt="" />
         </div>
       </div>
     </div>
   </div>
   <div class="mat-dialog-actions justify-content-end">
-    <button md-raised-button type="submit" (click)="onSubmit()" color="accent">Save</button>
-    <button md-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
+    <button mat-raised-button type="submit" (click)="onSubmit()" color="accent">Save</button>
+    <button mat-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
   </div>
 </form>

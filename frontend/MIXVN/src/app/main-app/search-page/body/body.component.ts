@@ -15,6 +15,7 @@ export class BodyComponent implements OnInit, OnDestroy {
   sets: any[];
   selectedSet: any;
   selectedItem: any;
+  isNotFound = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -68,16 +69,21 @@ export class BodyComponent implements OnInit, OnDestroy {
     .subscribe(res => {
       console.log(res);
       this.setService.setSets([]);
-      this.setService.addSets(this.setService.convertData(res.data));
+      if (res.data.length) {
+        this.isNotFound = false;
+        this.setService.addSets(this.setService.convertData(res.data));
 
-      const selectedSet: any = this.setService.getSets()[0];
-      if (selectedSet) {
-        this.setService.setSelectedSet(selectedSet);
-        console.log(selectedSet);
-        console.log(selectedSet.items[0]);
-        if (selectedSet.items.length) {
-          this.setService.setSelectedItem(selectedSet.items[0]);
+        const selectedSet: any = this.setService.getSets()[0];
+        if (selectedSet) {
+          this.setService.setSelectedSet(selectedSet);
+          console.log(selectedSet);
+          console.log(selectedSet.items[0]);
+          if (selectedSet.items.length) {
+            this.setService.setSelectedItem(selectedSet.items[0]);
+          }
         }
+      } else {
+        this.isNotFound = true;
       }
     });
   }

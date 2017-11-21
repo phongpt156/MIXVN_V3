@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { GENDER } from 'app/shared/constants/constants';
+import { MIX_PATH } from 'app/shared/constants/constants';
 
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
@@ -15,8 +16,6 @@ import { CategoryService } from 'app/admin/admin-shared/services/category/catego
 export class AddItemFormComponent implements OnInit {
   @Input() addItemForm: FormGroup;
   @Input() index: number;
-  @Output() itemImageAction: EventEmitter<any> = new EventEmitter;
-  @Output() itemId: EventEmitter<any> = new EventEmitter;
 
   // gender: any = GENDER;
   // categories: any[] = [];
@@ -24,6 +23,7 @@ export class AddItemFormComponent implements OnInit {
   // itemImage: File;
   // isDisabled: boolean = false;
   item: any;
+  mixPath: string = MIX_PATH;
   // features: any[] = [];
 
   constructor(
@@ -73,9 +73,10 @@ export class AddItemFormComponent implements OnInit {
   // }
 
   selectedItem(e) {
-    this.addItemForm.disable();
-    this.itemId.emit({itemId: e.item.id, index: this.index});
-    // this.isDisabled = true;
+    this.addItemForm.setValue({
+      id: e.item.id,
+      name: e.item.name
+    });
     this.item = e.item;
   }
 }

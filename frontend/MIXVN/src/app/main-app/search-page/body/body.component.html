@@ -1,2 +1,5 @@
 <mix-main-body [sets]="sets" [selectedSet]="selectedSet" [selectedItem]="selectedItem" *ngIf="sets.length"></mix-main-body>
+<div style="min-height: calc(100vh - 339px)" class="d-flex justify-content-center align-items-center" *ngIf="isNotFound">
+    <h1>Không tìm thấy sản phẩm</h1>
+</div>
 <!-- <mix-involve-item></mix-involve-item> -->

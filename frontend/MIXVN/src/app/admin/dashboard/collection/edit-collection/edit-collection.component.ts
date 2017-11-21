@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 
+import { MIX_PATH } from 'app/shared/constants/constants';
+
 import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
 
 declare var Cropper: any;
@@ -19,6 +21,7 @@ export class EditCollectionComponent implements OnInit {
   formData: FormData = new FormData;
   cropper: any;
   isSelectImage = false;
+  mixPath: string = MIX_PATH;
 
   constructor(
     public dialogRef: MatDialogRef<EditCollectionComponent>,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
+import { MIX_PATH } from 'app/shared/constants/constants';
+
 import { CollectionService } from 'app/admin/admin-shared/services/collection/collection.service';
 
 import { AddCollectionComponent } from './add-collection/add-collection.component';
@@ -16,6 +18,7 @@ export class CollectionComponent implements OnInit {
   selectedCollectionId: number;
   collections: any[] = [];
   dialogRef: any;
+  mixPath: string = MIX_PATH;
 
   constructor(
     public dialog: MatDialog,

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MIX_PATH } from 'app/shared/constants/constants';
 
 import { CollectionService } from 'app/main-app/main-app-shared/services/collection/collection.service';
+import { SetService } from 'app/main-app/main-app-shared/services/set/set.service';
 
 @Component({
   selector: 'mix-collection-page',
@@ -17,7 +18,8 @@ export class CollectionPageComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private collectionService: CollectionService
+    private collectionService: CollectionService,
+    private setService: SetService
   ) { }
 
   ngOnInit() {
@@ -27,7 +29,8 @@ export class CollectionPageComponent implements OnInit {
     this.collectionService.getCollectionPage(this.id)
     .subscribe(res => {
       console.log(res);
-      this.collection = res.data;
+      this.collection = this.collectionService.convertData(res.data);
+      this.setService.setSets(this.collection.sets);
     });
   }
 

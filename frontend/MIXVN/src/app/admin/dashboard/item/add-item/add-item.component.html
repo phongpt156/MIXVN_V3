@@ -35,22 +35,28 @@
     </div>
     <div class="row form-group text-left">
       <div class="col-md-4">
-        <mat-select formControlName="category" placeholder="Category" required="required" color="accent">
-          <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
-        </mat-select>
+        <mat-form-field color="accent">
+          <mat-select formControlName="category" placeholder="Category" required="required">
+            <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-select formControlName="supplier" placeholder="Shop" required="required" color="accent">
-          <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</mat-option>
-        </mat-select>
+        <mat-form-field color="accent">
+          <mat-select formControlName="supplier" placeholder="Shop" required="required">
+            <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-select [multiple]="true" formControlName="features" *ngIf="features.length" placeholder="Feature" color="accent">
-          <ng-container *ngFor="let feature of features">
-            <mat-option disabled="disabled" class="feature-option">+ {{ feature.name }}</mat-option>
-            <mat-option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</mat-option>
-          </ng-container>
-        </mat-select>
+        <mat-form-field color="accent" *ngIf="features.length">
+          <mat-select [multiple]="true" formControlName="features" placeholder="Feature">
+            <ng-container *ngFor="let feature of features">
+              <mat-option disabled="disabled" class="feature-option">+ {{ feature.name }}</mat-option>
+              <mat-option *ngFor="let feature_value of feature.feature_values" [value]="feature_value.id">{{ feature_value.vi_name }}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
     <div class="row form-group">

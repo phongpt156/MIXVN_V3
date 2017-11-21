@@ -18,7 +18,6 @@ class CreateSetTable extends Migration
             $table->string('img');
             $table->string('alt_img')->nullable();
             $table->string('sum_like')->default(0);
-            $table->float('discount', 12, 3)->nullable();
             $table->string('tag')->nullable();
             $table->integer('main_item_id');
             $table->boolean('active');

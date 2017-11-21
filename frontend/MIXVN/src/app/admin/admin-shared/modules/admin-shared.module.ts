@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatIconModule, MatCheckboxModule, MatInputModule, MatRadioModule, MatSelectModule, MatMenuModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatCheckboxModule, MatInputModule, MatRadioModule, MatSelectModule, MatMenuModule, MatDialogModule, MatSnackBarModule, MatFormFieldModule } from '@angular/material';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'app/shared/module/shared.module';
@@ -25,6 +25,7 @@ import { SideMenuComponent } from './../components/menu/side-menu/side-menu.comp
     MatMenuModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatFormFieldModule,
     CollapseModule.forRoot()
   ],
   exports: [
@@ -40,6 +41,7 @@ import { SideMenuComponent } from './../components/menu/side-menu/side-menu.comp
     MatMenuModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatFormFieldModule,
     CollapseModule
   ],
   declarations: [

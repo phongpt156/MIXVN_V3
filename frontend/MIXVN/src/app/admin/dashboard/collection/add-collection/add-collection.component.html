@@ -4,9 +4,9 @@
   <div class="mat-dialog-content">
     <div class="row">
       <div class="col-md-6">
-        <md-form-field class="w-100" color="accent">
-          <input type="text" mdInput formControlName="name" placeholder="Name" required="required" />
-        </md-form-field>
+        <mat-form-field class="w-100" color="accent">
+          <input type="text" matInput formControlName="name" placeholder="Name" required="required" />
+        </mat-form-field>
       </div>
       <div class="col-md-6 d-flex align-items-center">
         <mat-checkbox formControlName="active">Active</mat-checkbox>
@@ -20,10 +20,10 @@
             <img alt="" #collectionImagePreview id="collectionImagePreview" />
           </div>
           <div *ngIf="isSelectImage" class="ml-2">
-            <button md-raised-button color="accent" (click)="cropper.zoom(0.1)">
+            <button mat-raised-button color="accent" (click)="cropper.zoom(0.1)">
               <a><span class="fa fa-search-plus"></span></a>
             </button>
-            <button md-raised-button color="accent" (click)="cropper.zoom(-0.1)">
+            <button mat-raised-button color="accent" (click)="cropper.zoom(-0.1)">
               <a><span class="fa fa-search-minus"></span></a>
             </button>
           </div>
@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="mat-dialog-actions justify-content-end">
-    <button md-raised-button type="submit" (click)="onSubmit()" color="accent">Add</button>
-    <button md-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
+    <button mat-raised-button type="submit" (click)="onSubmit()" color="accent">Add</button>
+    <button mat-raised-button type="button" (click)="dialogRef.close()">Cancel</button>
   </div>
 </form>
