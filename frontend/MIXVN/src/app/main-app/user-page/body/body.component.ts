@@ -45,6 +45,7 @@ export class BodyComponent implements OnInit, OnChanges {
     this.userService.getSetsUserLike(this.userId)
     .subscribe(res => {
       this.sets = res.data;
+      this.setService.setSets(res.data);
     });
   }
 }
