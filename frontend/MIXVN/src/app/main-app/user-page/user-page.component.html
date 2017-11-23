@@ -1,24 +1,24 @@
 <div class="user-cover">
   <div class="image-wrapper image-17-4">
-    <img src="/assets/imgs/user-bg.jpg" alt="" />
+    <img [src]="user.cover" alt="" />
   </div>
   <div class="user-cover-bg w-100 h-100">
   </div>
   <div class="user-cover-info w-100 h-100 d-flex align-items-center justify-content-center">
     <div class="text-center">
-      <h1 class="text-uppercase user-name"><a>Phan Thanh Phong</a></h1>
-      <p><a>pthanhphong156@gmail.com</a></p>
-      <div class="d-inline-block p-2" style="border: 2px solid #fff; margin-top: 1vw">
+      <h1 class="text-uppercase user-name"><a>{{ user.name }}</a></h1>
+      <p><a>{{ user.email }}</a></p>
+      <!-- <div class="d-inline-block p-2" style="border: 2px solid #fff; margin-top: 1vw">
         <a><span class="pr-3">300</span></a>
         <a><span>60</span></a>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="user-avatar">
     <div class="image-wrapper image-1-1">
-      <img src="/assets/imgs/user.jpg" alt="" />
+      <img [src]="user.avatar" alt="" />
     </div>
   </div>
 </div>
 
-<mix-body></mix-body>
+<mix-body [userId]="user.id"></mix-body>

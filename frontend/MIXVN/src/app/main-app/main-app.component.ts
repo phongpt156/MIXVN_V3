@@ -26,7 +26,7 @@ export class MainAppComponent implements OnInit {
     });
 
     if (this.authService.isAuthenticated()) {
-      this.userService.get()
+      this.userService.getUserByToken()
       .subscribe(res => {
         this.userService.setUser(res.user);
       });

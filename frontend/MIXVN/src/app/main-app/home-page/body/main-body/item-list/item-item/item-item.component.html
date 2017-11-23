@@ -6,7 +6,7 @@
 </div>
 <div class="item-item-body w-100 p-2">
   <p class="text-uppercase item-name font-weight-bold m-0 mb-2">{{ set.item_name }}</p>
-  <p class="m-0"><a (click)="goToSupplierPage(set.supplier_id)">{{ set.supplier_name }}</a></p>
+  <p class="m-0"><a (click)="goToSupplierPage(set.supplier_id, set.supplier_name)">{{ set.supplier_name }}</a></p>
   <div class="clearfix">
     <p class="text-left float-left m-0">{{ set.item_price?.toFixed(3) }} đ</p>
     <p class="text-right float-right m-0">{{ set.sum_like }} <i class="fa fa-heart"></i></p>

@@ -65,7 +65,9 @@ Route::group(['prefix' => 'category'], function () {
 Route::post('/login/facebook', 'Frontend\UserController@loginFacebook');
 
 Route::group(['prefix' => 'user'], function () {
-    Route::get('', 'Frontend\UserController@getUser');
+    Route::get('', 'Frontend\UserController@getUserByToken');
+    Route::get('/{id}', 'Frontend\UserController@getUserById');
+    Route::get('/liked/{id}', 'Frontend\UserController@getSetsUserLike');
 });
 
 Route::group(['prefix' => 'collection'], function () {
@@ -78,4 +80,10 @@ Route::group(['prefix' => 'set'], function () {
     Route::get('/like/{id}', 'Frontend\SetController@like')->where('id', '[0-9]+');
     Route::post('/search', 'Frontend\SetController@search');
     Route::get('/item/{id}/p={page}', 'Frontend\SetController@getSetsByItem')->where(['id' => '[0-9]+', 'p' => '[0-9]+']);
+});
+
+Route::group(['prefix' => 'supplier'], function () {
+    Route::get('/{id}', 'Frontend\SupplierController@getSupplier')->where('id', '[0-9]+');
+    Route::get('/{id}/set/type={type}', 'Frontend\SupplierController@getSetsBySupplier')->where(['id' => '[0-9]+', 'type' => '[0-9]']);
+    Route::get('/{id}/set/s={name}/type={type}', 'Frontend\SupplierController@searchSet')->where(['id' => '[0-9]+', 'type' => '[0-9]']);
 });

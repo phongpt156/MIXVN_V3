@@ -4,31 +4,19 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Frontend\Set\Set as SetResource;
-use App\Models\Frontend\Set\Set;
-use App\SetRelLiker;
-use App\DAL\SetDAL;
-use App\DAL\SetRelLikerDAL;
-
-use Carbon\Carbon;
+use App\DAL\SupplierDAL;
 use JWTAuth;
 
-class SetController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($type = 1)
+    public function index()
     {
-        if (JWTAuth::getToken()) {
-            $userId = JWTAuth::parseToken()->authenticate()->id;
-
-            return SetDAL::getSetsWithLiker($type, $userId);
-        }
-
-        return SetDAL::getSets($type);
+        //
     }
 
     /**
@@ -97,39 +85,30 @@ class SetController extends Controller
         //
     }
 
-    public function like($setId)
+    public function getSupplier($id)
     {
-        $userId = JWTAuth::parseToken()->authenticate()->id;
-
-        $setRelLiker = SetRelLikerDAL::getSetRelLiker($userId, $setId);
-
-        if ($setRelLiker === null) {
-            SetRelLikerDAL::store($userId, $setId);
-
-            SetDAL::like($setId);
-        } else {
-            SetRelLikerDAL::delete($userId, $setId);
-
-            SetDAL::dislike($setId);
-        }
-
-        return response([]);
+        return response(['data' => SupplierDAL::getSupplier($id)]);
     }
 
-    public function search(Request $request)
+    public function getSetsBySupplier($supplierId, $type = 1)
     {
         if (JWTAuth::getToken()) {
             $userId = JWTAuth::parseToken()->authenticate()->id;
 
-            return response(['data' => SetDAL::searchWithLiker($request->all(), $userId)]);
+            return SupplierDAL::getSetBySupplierWithLiker($supplierId, $type, $userId);
         }
-
-        return response(['data' => SetDAL::search($request->all())]);
+        
+        return SupplierDAL::getSetBySupplier($supplierId, $type);
     }
 
-    public function getSetsByItem($itemId, $page = 1)
+    public function searchSet($supplierId, $itemName, $type = 1)
     {
-        $results = SetDal::getSetsByItem($itemId, $page);
-        return response(['data' => $results]);
+        if (JWTAuth::getToken()) {
+            $userId = JWTAuth::parseToken()->authenticate()->id;
+
+            return SupplierDAL::searchSetWithLiker($supplierId, $type, $userId, $itemName);
+        }
+        
+        return SupplierDAL::searchSet($supplierId, $type, $itemName);
     }
 }

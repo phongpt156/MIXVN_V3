@@ -19,11 +19,11 @@ const mainAppRoutes: Routes = [
         loadChildren: './search-page/search-page.module#SearchPageModule'
       },
       {
-        path: 'shop',
+        path: 'shop/:name',
         loadChildren: './supplier-page/supplier-page.module#SupplierPageModule'
       },
       {
-        path: 'trang-ca-nhan',
+        path: 'user/:id',
         loadChildren: './user-page/user-page.module#UserPageModule'
       },
       {

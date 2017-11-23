@@ -6,7 +6,7 @@
 }
 
 :host ::ng-deep perfect-scrollbar {
-    height: 900px;
+    max-height: 900px;
 }
 
 @include media-breakpoint-down(xl) {
@@ -67,23 +67,23 @@
     }
 }
 
-.body-header .col-4:nth-child(3):hover, .body-header .col-4:nth-child(3).active {
-    ~ .top-arrow {
-        left: 83.2%;
-    }
-}
+// .body-header .col-4:nth-child(3):hover, .body-header .col-4:nth-child(3).active {
+//     ~ .top-arrow {
+//         left: 82.3%;
+//     }
+// }
 
-.body-header .col-4:first-child:hover, .body-header .col-4:first-child.active {
-    ~ .top-arrow {
-        left: 16.5%;
-    }
-}
+// .body-header .col-4:first-child:hover, .body-header .col-4:first-child.active {
+//     ~ .top-arrow {
+//         left: 15.6%;
+//     }
+// }
 
-.body-header .col-4:nth-child(2):hover, .body-header .col-4:nth-child(2).active {
-    ~ .top-arrow {
-        left: 49.7%;
-    }
-}
+// .body-header .col-4:nth-child(2):hover, .body-header .col-4:nth-child(2).active {
+//     ~ .top-arrow {
+//         left: 49%;
+//     }
+// }
 
 .border {
     border-top: 2px solid #fffefd;

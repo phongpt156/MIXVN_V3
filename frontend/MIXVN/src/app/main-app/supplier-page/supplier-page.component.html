@@ -1,22 +1,22 @@
 <div class="supplier-cover">
   <div class="image-wrapper image-17-4">
-    <img src="/assets/imgs/shop2background.jpg" alt="" />
+    <img [src]="mixPath + supplier.background_image" alt="" *ngIf="supplier.background_image" />
   </div>
   <div class="supplier-cover-bg w-100 h-100">
   </div>
   <div class="supplier-cover-info w-100 h-100 d-flex align-items-center justify-content-center">
     <div>
-      <h1 class="text-uppercase supplier-name"><a>decao</a></h1>
-      <p class="font-italic"><a><i class="fa fa-map-marker mr-3"></i>Số 69, Bà Triệu, Hai Bà Trưng, Hà Nội</a></p>
-      <p class="font-italic"><a><i class="fa fa-phone mr-3"></i>0169696969669</a></p>
-      <p class="font-italic"><a><i class="fa fa-clock-o mr-3"></i>Mở cửa: 9AM - 9PM</a></p>
+      <h1 class="text-uppercase supplier-name"><a>{{ supplier.name }}</a></h1>
+      <p class="font-italic"><a><i class="fa fa-map-marker mr-3"></i>{{ supplier.address }}</a></p>
+      <p class="font-italic"><a><i class="fa fa-phone mr-3"></i>{{ supplier.phone_number }}</a></p>
+      <p class="font-italic"><a><i class="fa fa-clock-o mr-3"></i>Mở cửa: <span *ngIf="supplier.open_time">{{ supplier.open_time }}</span> <span *ngIf="supplier.close_time">- {{ supplier.close_time }}</span></a></p>
     </div>
   </div>
   <div class="supplier-avatar">
     <div class="image-wrapper image-1-1">
-      <img src="/assets/imgs/shop2avatar.jpg" alt="" />
+      <img [src]="mixPath + supplier.avatar" alt="" *ngIf="supplier.avatar" />
     </div>
   </div>
 </div>
 
-<mix-body></mix-body>
+<mix-body [supplier]="supplier"></mix-body>

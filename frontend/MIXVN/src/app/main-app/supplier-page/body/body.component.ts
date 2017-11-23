@@ -1,4 +1,5 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import 'bootstrap/js/src/util.js';
 
 @Component({
   selector: 'mix-body',
@@ -7,6 +8,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 })
 export class BodyComponent implements OnInit {
   @HostBinding('class') classes = 'd-md-flex pb-5';
+  @Input() supplier: any;
 
   constructor() { }
 

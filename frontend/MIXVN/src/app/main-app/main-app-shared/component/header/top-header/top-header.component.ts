@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
@@ -25,6 +26,7 @@ export class TopHeaderComponent implements OnInit, OnDestroy {
   user: any = {};
 
   constructor(
+    private router: Router,
     public authService: AuthService,
     private el: ElementRef,
     private searchTaggingService: SearchTaggingService,
@@ -63,5 +65,10 @@ export class TopHeaderComponent implements OnInit, OnDestroy {
   logout() {
     this.authService.removeToken();
     document.location.reload();
+  }
+
+  goToUserPage(user: any) {
+    this.router.navigate(['/user/' + user.id]);
+    console.log(user);
   }
 }

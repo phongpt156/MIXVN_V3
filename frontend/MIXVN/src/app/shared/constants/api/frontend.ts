@@ -8,8 +8,10 @@ export const CATEGORY = {
 }
 
 export const USER = {
-    getUser: HOST + '/api/user',
-    loginFacebook: HOST + '/api/login/facebook'
+    getUserByToken: HOST + '/api/user',
+    loginFacebook: HOST + '/api/login/facebook',
+    getUserById: HOST + '/api/user/',
+    getSetsUserLike: HOST + '/api/user/liked/'
 }
 
 export const COLLECTION = {
@@ -22,4 +24,10 @@ export const SET = {
     getSetsByItem: HOST + '/api/set/item/',
     like: HOST + '/api/set/like/',
     search: HOST + '/api/set/search'
+}
+
+export const SUPPLIER = {
+    getSupplier: HOST + '/api/supplier/',
+    getSetsBySupplier: HOST + '/api/supplier/',
+    searchSet: HOST + '/api/supplier/'
 }

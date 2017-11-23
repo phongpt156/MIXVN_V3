@@ -5,7 +5,7 @@
 
 .aside-wrapper {
     min-width: 254px;
-    height: 1193px;
+    max-height: 1193px;
     background-color: #1d1d1d;
 }
 
@@ -20,12 +20,24 @@
         color: white;
         border: none;
         background-color: transparent;
+
+        &::-webkit-input-placeholder {
+            font-style: italic;
+        }
     }
 
     .search-icon {
         top: 0;
         right: 0;
         position: absolute;
+
+        button {
+            outline: none;
+            cursor: pointer;
+            color: white;
+            border: none;
+            background-color: transparent;
+        }
     }
 }
 
@@ -39,4 +51,10 @@
     p {
         margin-bottom: 0;
     }
+}
+
+.active {
+    transition: padding 200ms ease, background 200ms linear;
+    padding-left: 1.5rem !important;
+    background: rgba(107, 99, 90, 0.12);
 }

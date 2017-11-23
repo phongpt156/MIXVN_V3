@@ -35,10 +35,24 @@ export class UserService {
     .catch(handleError);
   }
 
-  get(): Observable<any> {
+  getUserByToken(): Observable<any> {
     const options = createCommonHeaders();
 
-    return this.http.get(USER.getUser, options)
+    return this.http.get(USER.getUserByToken, options)
+    .catch(handleError);
+  }
+
+  getUserById(userId): Observable<any> {
+    const options = createCommonHeaders();
+
+    return this.http.get(USER.getUserById, options)
+    .catch(handleError);
+  }
+
+  getSetsUserLike(userId): Observable<any> {
+    const options = createCommonHeaders();
+
+    return this.http.get(USER.getSetsUserLike + userId, options)
     .catch(handleError);
   }
 }

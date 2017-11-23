@@ -13,10 +13,10 @@
         </svg>
       </button>
       <ul *dropdownMenu class="dropdown-menu dropdown-menu-right p-0 pb-4" role="menu">
-        <li role="menuitem"><a class="dropdown-item">Home</a></li>
+        <li role="menuitem" mixGoToHomepage><a class="dropdown-item">Home</a></li>
         <li role="menuitem"><a class="dropdown-item">Shop</a></li>
         <li role="menuitem" *ngIf="!authService.isAuthenticated()"><a class="dropdown-item" (click)="openLoginModal()">Login</a></li>
-        <li role="menuitem" *ngIf="authService.isAuthenticated() && user"><a class="dropdown-item">{{ user.name }}<img class="avatar ml-3" [src]="user.avatar" /></a></li>
+        <li role="menuitem" *ngIf="authService.isAuthenticated() && user" (click)="goToUserPage(user)"><a class="dropdown-item">{{ user.name }}<img class="avatar ml-3" [src]="user.avatar" /></a></li>
         <li role="menuitem" *ngIf="authService.isAuthenticated()"><a class="dropdown-item" (click)="logout()">Logout</a></li>
       </ul>
     </div>

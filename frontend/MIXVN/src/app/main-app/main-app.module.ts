@@ -19,6 +19,7 @@ import { CategoryService } from './main-app-shared/services/category/category.se
 import { UserService } from './main-app-shared/services/user/user.service';
 import { CollectionService } from './main-app-shared/services/collection/collection.service';
 import { SearchTaggingService } from './main-app-shared/services/search-tagging/search-tagging.service';
+import { SupplierService } from './main-app-shared/services/supplier/supplier.service';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { SearchTaggingService } from './main-app-shared/services/search-tagging/
     UserService,
     CollectionService,
     SetService,
-    SearchTaggingService
+    SearchTaggingService,
+    SupplierService
   ],
   entryComponents: [
     ItemDetailModalComponent

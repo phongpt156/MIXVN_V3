@@ -40,7 +40,7 @@ export class ItemItemComponent implements OnInit {
     this.setService.setSelectedSet(this.set);
   }
 
-  goToSupplierPage(supplier) {
-    this.router.navigate(['/shop']);
+  goToSupplierPage(supplierId: number, supplierName: string) {
+    this.router.navigate([`/shop/${supplierName}`, { id: supplierId } ]);
   }
 }

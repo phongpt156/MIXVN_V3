@@ -1,22 +1,22 @@
 <div class="aside-wrapper pb-5">
   <div class="pt-3 px-2 w-100">
     <form class="search-wrapper pl-2" (ngSubmit)="onSubmit()">
-      <input type="text" placeholder="tìm nhanh đồ của shop này..." class="font-italic search" />
+      <input type="text" placeholder="tìm nhanh đồ của shop này..." class="search" [formControl]="itemName" />
       <div class="search-icon">
-        <a><i class="fa fa-search" aria-hidden="true"></i></a>
+        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
     </form>
   </div>
-  <div class="pt-4 pl-3 border-bottom">
-    <a>Những Sản phẩm mới</a>
+  <div class="pt-4 pl-3 border-bottom" [ngClass]="{active: selectedSetType === setType.newest}">
+    <a (click)="selectSetType(setType.newest)">Những Sản phẩm mới</a>
   </div>
-  <div class="pt-4 pl-3 border-bottom">
-    <a>Sản phẩm đang sale</a>
+  <div class="pt-4 pl-3 border-bottom" [ngClass]="{active: selectedSetType === setType.sale}">
+    <a (click)="selectSetType(setType.sale)">Sản phẩm đang sale</a>
   </div>
-  <div class="pt-4 pl-3 border-bottom">
-    <a>Sản phẩm thích nhiều</a>
+  <div class="pt-4 pl-3 border-bottom" [ngClass]="{active: selectedSetType === setType.mostLike}">
+    <a (click)="selectSetType(setType.mostLike)">Sản phẩm thích nhiều</a>
   </div>
-  <div class="pt-4 pl-3 border-bottom">
+  <!-- <div class="pt-4 pl-3 border-bottom">
     <a (click)="isMaleCollapsed = !isMaleCollapsed">Nam</a>
   </div>
   <div class="pt-4 pl-3" [collapse]="isMaleCollapsed">
@@ -129,5 +129,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

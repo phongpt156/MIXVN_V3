@@ -1,13 +1,13 @@
 <div class="body-header row text-center w-100 py-2">
-    <div class="col-4"><a>Đã Ghim</a></div>
-    <div class="col-4"><a>Đã Mix</a></div>
-    <div class="col-4 active"><a>Theo Dõi</a></div>
+    <div class="col-4" [ngClass]="{active: currentType === type.like}"><a (click)="selectSetType(type.like)">Đã Like</a></div>
+    <div class="col-4" [ngClass]="{active: currentType === type.follow}"><a (click)="selectSetType(type.follow)">Đã Ghim</a></div>
+    <div class="col-4" [ngClass]="{active: currentType === type.mix}"><a (click)="selectSetType(type.mix)">Đã Mix</a></div>
 
-    <div class="top-arrow"></div>
+    <!-- <div class="top-arrow"></div> -->
 </div>
 
 <div class="pt-5">
   <div class="item-list-wrapper px-2">
-    <mix-item-list></mix-item-list>
+    <mix-item-list [sets]="sets"></mix-item-list>
   </div>
 </div>
