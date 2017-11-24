@@ -30,7 +30,7 @@ export class CollectionService {
   }
 
   convertData(data: any[]): any {
-    let collection: any = {};
+    const collection: any = {};
 
     data.forEach(val => {
       if (!collection.id) {
@@ -40,18 +40,20 @@ export class CollectionService {
         collection.sets = [];
       }
 
-      let set: any = {};
-      set.id = val.id;
-      set.img = val.img;
-      set.item_id = val.item_id;
-      set.item_discount = val.item_discount;
-      set.item_name = val.item_name;
-      set.item_price = val.item_price;
-      set.supplier_id = val.supplier_id;
-      set.supplier_name = val.supplier_name;
-      set.sum_like = val.sum_like;
-      set.user_id = val.user_id;
-      collection.sets.push(set);
+      if (val.id) {
+        const set: any = {};
+        set.id = val.id;
+        set.img = val.img;
+        set.item_id = val.item_id;
+        set.item_discount = val.item_discount;
+        set.item_name = val.item_name;
+        set.item_price = val.item_price;
+        set.supplier_id = val.supplier_id;
+        set.supplier_name = val.supplier_name;
+        set.sum_like = val.sum_like;
+        set.user_id = val.user_id;
+        collection.sets.push(set);
+      }
     });
 
     return collection;

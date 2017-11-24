@@ -31,7 +31,7 @@ export class SupplierService {
 
   searchSet(id: number, itemName: string, type: number): Observable<ApiResponse> {
     const options = createCommonHeaders();
-    
+
     return this.http.get(SUPPLIER.getSetsBySupplier + id + '/set/s=' + itemName + '/type=' + type, options)
     .catch(handleError);
   }

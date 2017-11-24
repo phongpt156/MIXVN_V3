@@ -26,16 +26,9 @@ export class BodyComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.currentType = this.type.like;
-    
-    switch (this.currentType) {
-      case this.type.like: {
-      
-      }
-    }
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
-    console.log(simpleChanges);
     if (simpleChanges.userId.currentValue) {
       this.getSetsUserLike();
     }
@@ -47,5 +40,15 @@ export class BodyComponent implements OnInit, OnChanges {
       this.sets = res.data;
       this.setService.setSets(res.data);
     });
+  }
+
+  selectSetType(type: number) {
+    this.currentType = type;
+
+    switch (this.currentType) {
+      case this.type.like: {
+        this.getSetsUserLike();        
+      }
+    }
   }
 }

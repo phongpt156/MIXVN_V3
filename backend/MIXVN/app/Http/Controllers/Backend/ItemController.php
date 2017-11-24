@@ -85,8 +85,8 @@ class ItemController extends Controller
 
                     $featureValueRelItem->save();
                 }
+                $item->tag = $itemTag;
             }
-            $item->tag = $itemTag;
 
             $item->save();
         });

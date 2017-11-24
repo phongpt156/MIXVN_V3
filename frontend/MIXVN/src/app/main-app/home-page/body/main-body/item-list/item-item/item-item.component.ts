@@ -34,7 +34,7 @@ export class ItemItemComponent implements OnInit {
   openDetailItemModal() {
     this.commonService.setBlur(true);
 
-    this.bsModalRef = this.bsModalService.show(ItemDetailModalComponent, { class: 'w-50'});
+    this.bsModalRef = this.bsModalService.show(ItemDetailModalComponent, { class: 'w-50 px-5'});
 
     this.bsModalRef.content.index = this.index;
     this.setService.setSelectedSet(this.set);

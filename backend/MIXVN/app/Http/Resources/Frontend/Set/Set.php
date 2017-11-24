@@ -23,7 +23,7 @@ class Set extends Resource
 
             return [
                 'id' => $this->id,
-                'img' => asset('public/' . $this->img),
+                'img' => $this->img,
                 'sum_like' => $this->sum_like,
                 'liked' => !!$this->users->where('id', $user->id)->values()->first(),
                 'item' => $this->items->first()
@@ -32,7 +32,7 @@ class Set extends Resource
 
         return [
             'id' => $this->id,
-            'img' => asset('public/' . $this->img),
+            'img' => $this->img,
             'sum_like' => $this->sum_like,
             'item' => $this->items->first()
         ];

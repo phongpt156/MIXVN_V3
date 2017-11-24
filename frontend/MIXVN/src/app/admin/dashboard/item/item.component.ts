@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
+import { MIX_PATH } from 'app/shared/constants/constants';
+
 import { ItemService } from 'app/admin/admin-shared/services/item/item.service';
 
 import { AddItemComponent } from './add-item/add-item.component';
@@ -15,6 +17,7 @@ import { DeleteItemComponent } from './delete-item/delete-item.component';
 export class ItemComponent implements OnInit {
   items: any[] = [];
   dialogRef: any;
+  mixPath: string = MIX_PATH;
 
   constructor(
     public dialog: MatDialog,

@@ -24,7 +24,7 @@ export class SearchItemComponent implements OnInit {
   isSearchFocus = false
   isSelectItem = false;
   mixPath: string = MIX_PATH;
-  
+
   constructor(
     private itemService: ItemService,
     private elementRef: ElementRef

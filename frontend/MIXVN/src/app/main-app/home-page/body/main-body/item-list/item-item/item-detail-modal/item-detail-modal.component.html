@@ -1,5 +1,5 @@
 <div class="item-detail-wrapper d-flex align-items-center">
-  <div class="arrow arrow-left" *ngIf="index !== 0">
+  <div class="arrow arrow-left d-flex align-items-center h-100 pr-4" *ngIf="index !== 0">
     <a (click)="changeSet(1)"><img src="http://i.imgur.com/N0iLNfz.png" alt="" /></a>
   </div>
   <div class="item-detail d-flex">
@@ -33,7 +33,7 @@
       </div>
     </div> -->
   </div>
-  <div class="arrow arrow-right" *ngIf="index !== sets.length - 1">
+  <div class="arrow arrow-right d-flex align-items-center h-100 pl-4" *ngIf="index !== sets.length - 1">
     <a (click)="changeSet(2)"><img src="http://i.imgur.com/zKqUS4u.png" alt="" /></a>
   </div>
 </div>

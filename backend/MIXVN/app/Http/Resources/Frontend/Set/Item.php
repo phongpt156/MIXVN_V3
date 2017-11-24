@@ -20,7 +20,7 @@ class Item extends Resource
             'price' => $this->price,
             'discount' => $this->discount,
             'sum_like' => $this->sum_like,
-            'img' => asset('public/' . $this->img),
+            'img' => $this->img,
             'supplier' => $this->supplier
         ];
     }

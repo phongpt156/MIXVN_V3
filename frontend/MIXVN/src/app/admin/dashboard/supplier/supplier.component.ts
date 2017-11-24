@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
+import { MIX_PATH } from 'app/shared/constants/constants';
+
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';
 
 import { Page } from 'app/shared/classes/page';
@@ -18,6 +20,7 @@ export class SupplierComponent implements OnInit {
   suppliers: any[] = [];
   page: Page = new Page;
   dialogRef: any;
+  mixPath: string = MIX_PATH;
 
   constructor(
     public dialog: MatDialog,

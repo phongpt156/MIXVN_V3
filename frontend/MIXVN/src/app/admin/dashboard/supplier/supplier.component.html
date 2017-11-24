@@ -45,12 +45,12 @@
                 <td>{{ supplier.instagram_title }}</td>
                 <td style="width: 300px">
                   <div class="image-wrapper image-17-4" *ngIf="supplier.background_image">
-                    <img [src]="supplier.background_image" />
+                    <img [src]="mixPath + supplier.background_image" />
                   </div>
                 </td>
                 <td style="width: 150px">
                   <div class="image-wrapper image-1-1" *ngIf="supplier.avatar">
-                    <img [src]="supplier.avatar" />
+                    <img [src]="mixPath + supplier.avatar" />
                   </div>
                 </td>
                 <td><mat-checkbox [checked]="supplier.active" readonly="readonly" click-prevent-default></mat-checkbox></td>

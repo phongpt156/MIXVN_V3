@@ -11,7 +11,7 @@ import { UserService } from 'app/main-app/main-app-shared/services/user/user.ser
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
-export class UserPageComponent implements OnInit {
+export class UserPageComponent implements OnInit, OnDestroy {
   _subscription: Subscription;
   userId: number;
   user: any = {};

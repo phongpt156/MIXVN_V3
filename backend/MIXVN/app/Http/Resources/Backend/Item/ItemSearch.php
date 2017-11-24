@@ -17,7 +17,7 @@ class ItemSearch extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'img' => $this->img ? $this->img : ''
+            'img' => $this->img
         ];
     }
 }

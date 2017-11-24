@@ -8,7 +8,7 @@ import { SetService } from 'app/main-app/main-app-shared/services/set/set.servic
   templateUrl: './main-body.component.html',
   styleUrls: ['./main-body.component.scss']
 })
-export class MainBodyComponent implements OnInit {
+export class MainBodyComponent implements OnInit, OnDestroy {
   @HostBinding('class') classes = 'pl-3 w-100';
 
   _subscription: Subscription;
