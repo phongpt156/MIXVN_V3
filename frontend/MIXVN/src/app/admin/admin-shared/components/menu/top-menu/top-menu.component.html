@@ -1,23 +1,23 @@
 <div class="md-white-500-bg d-flex">
   <mat-toolbar class="mat-elevation-z1 mat-toolbar align-items-end w-100 text-right">
-    <button aria-haspopup="true" class="user-button mat-button" mat-button [matMenuTriggerFor]="menu">
+    <button aria-haspopup="true" class="user-button" mat-button [matMenuTriggerFor]="menu">
       <span class="mat-button-wrapper">
         <img class="avatar" src="/assets/imgs/avatars/profile.jpg">
         <span class="username mr-12">{{ admin.name }}</span>
-        <mat-icon class="s-16 mat-icon material-icons" role="img" aria-hidden="true">keyboard_arrow_down</mat-icon>
+        <mat-icon class="s-16 mat-icon" role="img" aria-hidden="true">keyboard_arrow_down</mat-icon>
       </span>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
-        <mat-icon class="mat-icon material-icons">account_circle</mat-icon>
+        <mat-icon>account_circle</mat-icon>
         <span>My Profile</span>
       </button>
       <button mat-menu-item>
-        <mat-icon class="mat-icon material-icons">mail</mat-icon>
+        <mat-icon>mail</mat-icon>
         <span>Inbox</span>
       </button>
       <button mat-menu-item (click)="logout()">
-        <mat-icon class="mat-icon material-icons">exit_to_app</mat-icon>
+        <mat-icon>exit_to_app</mat-icon>
         <span>Logout</span>
       </button>
     </mat-menu>

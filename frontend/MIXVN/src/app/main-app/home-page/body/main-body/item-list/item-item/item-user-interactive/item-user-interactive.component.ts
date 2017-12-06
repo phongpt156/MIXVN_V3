@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, HostBinding, ViewChild } from '@angular/core';
 import { BsModalService  } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AuthService } from 'app/main-app/main-app-shared/services/auth-user/auth.service';

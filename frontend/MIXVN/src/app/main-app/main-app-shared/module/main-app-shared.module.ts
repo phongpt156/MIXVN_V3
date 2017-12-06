@@ -28,8 +28,8 @@ import { ScrollLoadMoreDirective } from './../directives/scroll-load-more/scroll
     SharedModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
-    SwiperModule.forChild(),
-    PerfectScrollbarModule.forChild()
+    SwiperModule,
+    PerfectScrollbarModule
   ],
   declarations: [
     HeaderComponent,

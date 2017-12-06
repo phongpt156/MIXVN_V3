@@ -12,9 +12,9 @@ export class MixItemComponent implements OnInit {
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
     slidesPerView: 4,
-    keyboardControl: true,
-    nextButton: '.button-next',
-    prevButton: '.button-prev'
+    keyboard: true,
+    slideNextClass: '.button-next',
+    slidePrevClass: '.button-prev'
   }
 
   constructor() { }

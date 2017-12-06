@@ -45,7 +45,8 @@ export class UploadComponent implements OnInit {
 
     this.cropper = new Cropper(this.setImagePreview.nativeElement, {
       aspectRatio: 3 / 4,
-      viewMode: 1
+      viewMode: 1,
+      checkOrientation: false
     });
 
     this.collectionService.getAll()

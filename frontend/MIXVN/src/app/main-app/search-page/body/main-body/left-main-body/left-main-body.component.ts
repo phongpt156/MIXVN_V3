@@ -19,9 +19,9 @@ export class LeftMainBodyComponent implements OnInit {
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
     slidesPerView: 4,
-    keyboardControl: true,
-    nextButton: '#item-next',
-    prevButton: '#item-prev'
+    keyboard: true,
+    slideNextClass: '#item-next',
+    slidePrevClass: '#item-prev'
   }
 
   mixPath: string = MIX_PATH;

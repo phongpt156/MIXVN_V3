@@ -9,12 +9,12 @@ class CollectionSetDAL
 {
     public static function getSetsByCollection($collectionId)
     {
-        $sets = DB::table('collection as c')
+        $sets = DB::table('set as s')
                     ->select('c.id as collection_id', 'c.name as collection_name', 'c.img as collection_img', 's.id', 's.img', 's.sum_like', 'i.id as item_id', 'i.price as item_price', 'i.discount as item_discount', 'i.name as item_name', 'sup.id as supplier_id', 'sup.name as supplier_name', DB::raw('group_concat(f.name, ": ", fv.vi_name) as features'))
-                    ->leftJoin('set_rel_collection as src', 'src.collection_id', '=', 'c.id')
-                    ->leftJoin('set as s', 'src.set_id', '=', 's.id')
-                    ->leftJoin('set_rel_item as sri', 's.id', '=', 'sri.set_id')
-                    ->leftJoin('item as i', function ($join) {
+                    ->join('set_rel_collection as src', 'src.set_id', '=', 's.id')
+                    ->join('collection as c', 'c.id', '=', 'src.collection_id')
+                    ->join('set_rel_item as sri', 's.id', '=', 'sri.set_id')
+                    ->join('item as i', function ($join) {
                         $join->on('sri.item_id', '=', 'i.id')
                             ->on('s.main_item_id', '=', 'i.id');
                     })
