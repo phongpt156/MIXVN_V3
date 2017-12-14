@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { GENDER } from 'app/shared/constants/constants';
 import { MIX_PATH } from 'app/shared/constants/constants';
 
 import { SupplierService } from 'app/admin/admin-shared/services/supplier/supplier.service';

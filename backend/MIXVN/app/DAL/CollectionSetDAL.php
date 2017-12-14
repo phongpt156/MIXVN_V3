@@ -32,11 +32,10 @@ class CollectionSetDAL
 
     public static function getSetsByCollectionWithLiker($collectionId, $userId)
     {
-        $sets = DB::table('collection as c')
-                    ->select('c.id as collection_id', 'c.name as collection_name', 'c.img as collection_img', 's.id', 's.img', 's.sum_like', 'i.id as item_id', 'i.price as item_price', 'i.discount as item_discount', 'i.name as item_name', 'sup.id as supplier_id', 'sup.name as supplier_name', 'u.id as user_id', 
-                    DB::raw('group_concat(f.name, ": ", fv.vi_name) as features'))
-                    ->leftJoin('set_rel_collection as src', 'src.collection_id', '=', 'c.id')
-                    ->leftJoin('set as s', 'src.set_id', '=', 's.id')
+        $sets = DB::table('set as s')
+                    ->select('c.id as collection_id', 'c.name as collection_name', 'c.img as collection_img', 's.id', 's.img', 's.sum_like', 'i.id as item_id', 'i.price as item_price', 'i.discount as item_discount', 'i.name as item_name', 'sup.id as supplier_id', 'sup.name as supplier_name', DB::raw('group_concat(f.name, ": ", fv.vi_name) as features'))
+                    ->join('set_rel_collection as src', 'src.set_id', '=', 's.id')
+                    ->join('collection as c', 'c.id', '=', 'src.collection_id')
                     ->leftJoin('set_rel_item as sri', 's.id', '=', 'sri.set_id')
                     ->leftJoin('item as i', function ($join) {
                         $join->on('sri.item_id', '=', 'i.id')

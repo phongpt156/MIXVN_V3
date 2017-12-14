@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { FeatureService } from 'app/admin/admin-shared/services/feature/feature.service';
-import { FeatureValueService } from 'app/admin/admin-shared/services/feature-value/feature-value.service';
 
 import { AddFeatureComponent } from './add-feature/add-feature.component';
 import { EditFeatureComponent } from './edit-feature/edit-feature.component';

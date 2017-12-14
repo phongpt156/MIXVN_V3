@@ -31,8 +31,8 @@
                   <mat-checkbox [checked]="collection.active" readonly="readonly" click-prevent-default></mat-checkbox>
                 </td>
                 <td class="d-flex flex-row">
-                  <a (click)="openEditCollectionDialog(collection)"><i class="tex-white">mode_edit</i></a>
-                  <a (click)="openDeleteCollectionDialog(collection.id)"><i>delete_forever</i></a>
+                  <a (click)="openEditCollectionDialog(collection)"><mat-icon>mode_edit</mat-icon></a>
+                  <a (click)="openDeleteCollectionDialog(collection.id)"><mat-icon>delete_forever</mat-icon></a>
                 </td>
               </tr>
             </tbody>

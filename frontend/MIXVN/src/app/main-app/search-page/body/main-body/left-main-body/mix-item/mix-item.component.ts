@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface, SwiperNavigationInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'mix-mix-item',
@@ -9,12 +9,16 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 export class MixItemComponent implements OnInit {
   @HostBinding('class') classes = 'pt-4';
 
+  swiperNavigation: SwiperNavigationInterface = {
+    nextEl: '.button-next',
+    prevEl: '.button-prev'
+  }
+
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
     slidesPerView: 4,
-    keyboard: true,
-    slideNextClass: '.button-next',
-    slidePrevClass: '.button-prev'
+    keyboard: false,
+    navigation: this.swiperNavigation
   }
 
   constructor() { }

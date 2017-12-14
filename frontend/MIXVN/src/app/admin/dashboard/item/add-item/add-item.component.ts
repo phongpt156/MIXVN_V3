@@ -51,7 +51,8 @@ export class AddItemComponent implements OnInit {
 
     this.cropper = new Cropper(this.itemImagePreview.nativeElement, {
       aspectRatio: 3 / 4,
-      viewMode: 1
+      viewMode: 1,
+      checkOrientation: false
     });
 
     this.getSuppliers();

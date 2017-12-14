@@ -7,7 +7,7 @@
     <form [formGroup]="addSetForm" class="bg-dark p-2">  
       <div class="row">
         <div class="col-12 form-group">
-          <image-upload [max]="1" [buttonCaption]="'Set Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved()" [preview]="false"></image-upload>
+          <image-upload [max]="1" [buttonCaption]="'Set Image'" (uploadFinished)="imageUploaded($event)" (removed)="imageRemoved()" [preview]="false"></image-upload>
           <div class="d-flex">
             <div class="set-wrapper">
               <img alt="" #setImagePreview id="setImagePreview" />

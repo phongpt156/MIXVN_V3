@@ -28,8 +28,8 @@
                   <mat-checkbox [checked]="feature.active" readonly="readonly" click-prevent-default></mat-checkbox>
                 </td>
                 <td class="d-flex flex-row">
-                  <a (click)="openEditFeatureDialog($event, feature)"><i class="tex-white">mode_edit</i></a>
-                  <a (click)="openDeleteFeatureDialog($event, feature.id)"><i>delete_forever</i></a>
+                  <a (click)="openEditFeatureDialog($event, feature)"><mat-icon>mode_edit</mat-icon></a>
+                  <a (click)="openDeleteFeatureDialog($event, feature.id)"><mat-icon>delete_forever</mat-icon></a>
                 </td>
               </tr>
               <tr [collapse]="listCollapsed[feature.id]" class="bg-custom">
@@ -38,7 +38,7 @@
                 <td>Order</td>
                 <td>Active</td>
                 <td>
-                  <a (click)="openAddFeatureValueDialog(feature)"><i>add_circle</i></a>
+                  <a (click)="openAddFeatureValueDialog(feature)"><mat-icon>add_circle</mat-icon></a>
                 </td>
               </tr>
               <tr *ngFor="let featureValue of feature.feature_values" [collapse]="listCollapsed[feature.id]" class="bg-custom">
@@ -49,8 +49,8 @@
                   <mat-checkbox [checked]="featureValue.active" readonly="readonly" click-prevent-default></mat-checkbox>
                 </td>
                 <td>
-                  <a (click)="openEditFeatureValueDialog(featureValue)"><i>mode_edit</i></a>
-                  <a (click)="openDeleteFeatureValueDialog(featureValue.id)"><i>delete_forever</i></a>
+                  <a (click)="openEditFeatureValueDialog(featureValue)"><mat-icon>mode_edit</mat-icon></a>
+                  <a (click)="openDeleteFeatureValueDialog(featureValue.id)"><mat-icon>delete_forever</mat-icon></a>
                 </td>
               </tr>
             </ng-container>

@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding, Input, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface, SwiperNavigationInterface } from 'ngx-swiper-wrapper';
 
 import { MIX_PATH } from 'app/shared/constants/constants';
 
@@ -16,12 +16,16 @@ export class LeftMainBodyComponent implements OnInit {
   @Input() selectedSet: any;
   @Input() selectedItem: any;
 
+  swiperNavigation: SwiperNavigationInterface = {
+    nextEl: '#item-next',
+    prevEl: '#item-prev'
+  }
+
   swiperConfig: SwiperConfigInterface = {
     direction: 'horizontal',
     slidesPerView: 4,
-    keyboard: true,
-    slideNextClass: '#item-next',
-    slidePrevClass: '#item-prev'
+    keyboard: false,
+    navigation: this.swiperNavigation
   }
 
   mixPath: string = MIX_PATH;

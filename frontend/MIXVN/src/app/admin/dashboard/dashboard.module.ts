@@ -8,8 +8,9 @@ import { AdminSharedModule } from '../admin-shared/modules/admin-shared.module';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
-import { Autosize } from 'angular2-autosize/angular2-autosize';
-import { PreventDefaultDirective } from 'app/shared/directives/prevent-default/prevent-default.directive';
+import { Autosize } from 'ng-autosize';
+
+import { PreventDefaultDirective } from './../../shared/directives/prevent-default/prevent-default.directive';
 
 import { DashboardComponent } from './dashboard.component';
 import { CategoryComponent } from './category/category.component';

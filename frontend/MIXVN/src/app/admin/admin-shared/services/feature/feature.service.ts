@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 
 import { ApiResponse } from 'app/shared/interfaces/api-response';
 import { FEATURE } from 'app/shared/constants/api/backend';
-import { createCommonHeaders, handleError, handleErrorRes } from 'app/shared/functions/http-req';
+import { createCommonHeaders, handleError } from 'app/shared/functions/http-req';
 
 @Injectable()
 export class FeatureService {

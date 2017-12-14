@@ -81,9 +81,10 @@ export class UploadComponent implements OnInit {
 
   imageUploaded(e) {
     const oFReader = new FileReader();
-
+    
     oFReader.readAsDataURL(e.file);
     oFReader.onload = (oFREvent) => {
+      console.log(oFREvent.target['result']);
       this.cropper.destroy();
       this.isSelectImage = true;
       this.cropper.replace(oFREvent.target['result']);

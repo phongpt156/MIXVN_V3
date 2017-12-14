@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { tokenNotExpired } from 'angular2-jwt';
 
 import { AuthService } from 'app/admin/admin-shared/services/auth-admin/auth.service';
 

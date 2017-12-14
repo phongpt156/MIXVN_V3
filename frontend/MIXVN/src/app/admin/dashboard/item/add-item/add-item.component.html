@@ -61,7 +61,7 @@
     </div>
     <div class="row form-group">
       <div class="col-7">
-        <image-upload [max]="1" [buttonCaption]="'Item Image'" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved()" [preview]="false"></image-upload>
+        <image-upload [max]="1" [buttonCaption]="'Item Image'" (uploadFinished)="imageUploaded($event)" (removed)="imageRemoved()" [preview]="false"></image-upload>
         <div class="d-flex">
           <div class="item-image-wrapper">
             <img alt="" #itemImagePreview />

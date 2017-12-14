@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 
 import { ApiResponse } from 'app/shared/interfaces/api-response';
-import { createCommonHeaders, handleError, handleErrorRes } from 'app/shared/functions/http-req';
+import { createCommonHeaders, handleError } from 'app/shared/functions/http-req';
 import { FEATURE_VALUE } from 'app/shared/constants/api/backend';
 
 @Injectable()

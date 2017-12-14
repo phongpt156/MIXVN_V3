@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import 'rxjs/add/operator/switchMap';
