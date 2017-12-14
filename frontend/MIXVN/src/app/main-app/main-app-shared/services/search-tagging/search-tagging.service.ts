@@ -77,7 +77,7 @@ export class SearchTaggingService {
     return hash;
   }
 
-  async parseHashToTag(itemName?: string, filter?: string) {
+  parseHashToTag(itemName?: string, filter?: string) {
     if (itemName) {
       this.setItemName(itemName);
     }
@@ -85,9 +85,6 @@ export class SearchTaggingService {
     if (filter) {
       const items: any[] = filter.split('&');
       let searchTagging: any;
-      let categories;
-
-      categories = await this.getChildCategories();
 
       items.forEach(item => {
         searchTagging = {};

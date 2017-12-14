@@ -1,4 +1,4 @@
-import { HttpHeaders, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 

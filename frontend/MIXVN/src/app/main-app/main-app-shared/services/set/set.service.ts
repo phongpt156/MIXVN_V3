@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/catch';
 
 import { ApiResponse } from 'app/shared/interfaces/api-response';
-import { createCommonHeaders, handleError, handleErrorRes } from 'app/shared/functions/http-req';
+import { createCommonHeaders, handleError } from 'app/shared/functions/http-req';
 import { SET } from 'app/shared/constants/api/frontend';
 
 @Injectable()

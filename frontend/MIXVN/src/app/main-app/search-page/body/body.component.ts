@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { SetService } from 'app/main-app/main-app-shared/services/set/set.service';

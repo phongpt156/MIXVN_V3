@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, HostListener, HostBinding, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, HostBinding, Input } from '@angular/core';
 
 import { ItemService } from 'app/main-app/main-app-shared/services/item/item.service';
 

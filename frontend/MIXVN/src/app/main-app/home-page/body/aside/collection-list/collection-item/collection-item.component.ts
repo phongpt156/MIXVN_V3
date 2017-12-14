@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 
 import { MIX_PATH } from 'app/shared/constants/constants';
 

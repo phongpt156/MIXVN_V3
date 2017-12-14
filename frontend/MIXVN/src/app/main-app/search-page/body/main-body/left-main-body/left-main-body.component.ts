@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { SwiperConfigInterface, SwiperNavigationInterface } from 'ngx-swiper-wrapper';
 
