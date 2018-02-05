@@ -16,6 +16,8 @@ export class BodyComponent implements OnInit, OnDestroy {
   selectedSet: any;
   selectedItem: any;
   isNotFound = false;
+  query: string;
+  filter: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,14 +27,9 @@ export class BodyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramsAsMap => {
-      if (this.searchTaggingService.isReload) {
-        this.searchTaggingService.parseHashToTag(paramsAsMap['params']['q'], paramsAsMap['params']['f']).then(() => {
-          this.search();
-          this.searchTaggingService.isReload = false;
-        });
-      } else {
-        this.search();
-      }
+      this.query = paramsAsMap['params']['q'];
+      this.filter = paramsAsMap['params']['f'];
+      this.search();
     });
 
     this.sets = this.setService.getSets();
@@ -56,15 +53,18 @@ export class BodyComponent implements OnInit, OnDestroy {
     });
   }
 
-  search() {
+  async search() {
+    if (this.searchTaggingService.isReload) {
+      await this.parseHashToTag();
+      this.searchTaggingService.isReload = false;
+    }
+
     this.setService.setSelectedItem({});
     this.setService.setSelectedSet({});
     this.setService.setSets([]);
 
-    const body: any = {};
+    const body: any = this.formatBodySendToServer();
 
-    body.item_name = this.searchTaggingService.itemName;
-    body.items = this.searchTaggingService.searchTaggings;
     this.setService.search(body)
     .subscribe(res => {
       console.log(res);
@@ -86,5 +86,19 @@ export class BodyComponent implements OnInit, OnDestroy {
         this.isNotFound = true;
       }
     });
+  }
+
+  parseHashToTag(): Promise<any> {
+    return new Promise(resolve => {
+      this.searchTaggingService.parseHashToTag(this.query, this.filter);
+      resolve();
+    });
+  }
+
+  formatBodySendToServer(): any {
+    return {
+      item_name: this.searchTaggingService.itemName,
+      items: this.searchTaggingService.searchTaggings
+    }
   }
 }
