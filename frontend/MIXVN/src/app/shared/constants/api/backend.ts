@@ -1,6 +1,7 @@
 export const PORT = 8000;
+export const HOST_NAME = 'localhost';
 
-export const HOST = `//localhost:${PORT}`;
+export const HOST = `//${HOST_NAME}:${PORT}`;
 
 export const ADMIN = {
     signin: HOST + '/api/admin/signin',
